@@ -5,7 +5,7 @@
         HOMEWEB LOGIN
       </div>
       <div>
-        <form [formGroup]="form" class="border p-2" (ngSubmit)="onLogin()">
+        <form [formGroup]="loginForm" class="border p-2" (ngSubmit)="onLogin()">
           <fieldset>
             <div class="form-group">
               <label for="email">Email address</label>
@@ -17,6 +17,9 @@
                      required
                      formControlName="email"
               >
+              <span *ngIf="email!.invalid && email!.touched" class="text-danger">
+                Email is required
+              </span>
             </div>
             <div class="form-group">
               <label for="password">Password</label>
@@ -28,9 +31,12 @@
                      required
                      formControlName="password"
               >
+              <span *ngIf="password!.invalid && password!.touched" class="text-danger">
+                Password is required
+              </span>
             </div>
             <div class="form-group">
-              <input type="submit" class="btn btn-primary" value="Login" />
+              <input type="submit" class="btn btn-primary" value="Login"/>
             </div>
           </fieldset>
         </form>
