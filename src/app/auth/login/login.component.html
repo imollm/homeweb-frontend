@@ -1,0 +1,40 @@
+<div class="container p-5">
+  <div class="row d-flex justify-content-center p-5">
+    <div class="col-xl-4 col-lg-6 col-md-8 col-12">
+      <div class="bg-primary text-white text-center title p-3 fs-1">
+        HOMEWEB LOGIN
+      </div>
+      <div>
+        <form [formGroup]="form" class="border p-2" (ngSubmit)="onLogin()">
+          <fieldset>
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email"
+                     class="form-control"
+                     id="email"
+                     name="email"
+                     placeholder="Enter email"
+                     required
+                     formControlName="email"
+              >
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password"
+                     class="form-control"
+                     id="password"
+                     name="password"
+                     placeholder="Password"
+                     required
+                     formControlName="password"
+              >
+            </div>
+            <div class="form-group">
+              <input type="submit" class="btn btn-primary" value="Login" />
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
