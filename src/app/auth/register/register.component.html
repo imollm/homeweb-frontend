@@ -1,0 +1,111 @@
+<div class="container p-5">
+  <div class="row d-flex justify-content-center p-5">
+    <div class="col-xl-4 col-lg-6 col-md-8 col-12">
+      <div class="bg-primary text-white text-center title p-3 fs-1">
+        HOMEWEB REGISTER
+      </div>
+      <div>
+        <form [formGroup]="registerForm" class="border p-2" (ngSubmit)="onRegister()">
+          <fieldset>
+            <div class="form-group">
+              <label for="name">Email address</label>
+              <input type="text"
+                     class="form-control"
+                     id="name"
+                     name="name"
+                     placeholder="Enter your name"
+                     required
+                     formControlName="name"
+              >
+              <div *ngIf="name!.errors && name!.hasError('required')" class="text-danger">Name is required</div>
+              <div *ngIf="name!.errors && name!.hasError('minlength')" class="text-danger">Name must be at least 4 characters</div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email"
+                     class="form-control"
+                     id="email"
+                     name="email"
+                     placeholder="Enter email"
+                     required
+                     formControlName="email"
+              >
+              <div *ngIf="email!.errors && email!.hasError('required')" class="text-danger">Email is required</div>
+              <div *ngIf="email!.errors && email!.hasError('email')" class="text-danger">Is not a valid format email</div>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password"
+                     class="form-control"
+                     id="password"
+                     name="password"
+                     placeholder="Password"
+                     required
+                     formControlName="password"
+              >
+              <span *ngIf="password!.invalid && password!.touched" class="text-danger">Password is required</span>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="text"
+                     class="form-control"
+                     id="phone"
+                     name="phone"
+                     placeholder="Phone"
+                     required
+                     formControlName="phone"
+              >
+              <div *ngIf="phone!.errors && phone!.hasError('required')" class="text-danger">Phone is required</div>
+              <div *ngIf="phone!.errors && phone!.hasError('minlength')" class="text-danger">Phone must be at least 9 numbers</div>
+            </div>
+            <div class="form-group">
+              <label for="address">Address</label>
+              <input type="text"
+                     class="form-control"
+                     id="address"
+                     name="address"
+                     placeholder="Address"
+                     required
+                     formControlName="address"
+              >
+              <div *ngIf="address!.errors && address!.hasError('required')" class="text-danger">Address is required</div>
+              <div *ngIf="address!.errors && address!.hasError('maxlength')" class="text-danger">Address cannot be more than 255 characters </div>
+            </div>
+            <div class="form-group">
+              <label for="fiscal_id">Fiscal ID</label>
+              <input type="text"
+                     class="form-control"
+                     id="fiscal_id"
+                     name="fiscal_id"
+                     placeholder="Your fiscal ID"
+                     required
+                     formControlName="fiscal_id"
+              >
+              <div *ngIf="fiscalId!.errors && fiscalId!.hasError('required')" class="text-danger">Fiscal ID is required</div>
+              <div *ngIf="fiscalId!.errors && fiscalId!.hasError('maxlength')" class="text-danger">Fiscal ID cannot be more than 25 characters</div>
+            </div>
+            <fieldset class="form-group">
+              <label>Role</label>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" formControlName="role" class="form-check-input" name="role" id="optionsRadios1" value="customer" checked="">
+                  Customer
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" formControlName="role" class="form-check-input" name="role" id="optionsRadios2" value="employee">
+                  Employee
+                </label>
+              </div>
+              <div *ngIf="role!.errors && role!.hasError('required')" class="text-danger">Role is required</div>
+            </fieldset>
+            <div class="form-group">
+              <input type="submit" class="btn btn-primary" value="Login" />
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
