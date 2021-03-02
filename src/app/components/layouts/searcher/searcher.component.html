@@ -1,0 +1,36 @@
+<section class="bg-dark">
+  <div class="container">
+    <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+    <div class="row p-5">
+        <div class="col-12 col-md-2">
+          <label class="text-white mb-2 mt-2 mt-md-0">Referencia</label>
+          <input type="text" class="form-control" placeholder="Referencia" formControlName="reference">
+        </div>
+        <div class="col-12 col-md-3">
+          <label class="text-white mb-2 mt-2 mt-md-0">Preu</label>
+          <select class="form-control" formControlName="price">
+            <option value="" class="disabled">Tria</option>
+            <option value="0-100">menys de 100.000€</option>
+            <option value="100-200">entre 100.000€ i 200.000€</option>
+            <option value="200-300">entre 100.000€ i 200.000€</option>
+            <option value="300-400">entre 100.000€ i 200.000€</option>
+            <option value="500-">més de 500.000€</option>
+          </select>
+        </div>
+        <div class="col-12 col-md-3">
+          <label class="text-white mb-2 mt-2 mt-md-0">Localitat</label>
+          <input type="text" class="form-control" placeholder="Referencia">
+        </div>
+        <div class="col-12 col-md-3">
+          <label class="text-white mb-2 mt-2 mt-md-0">Categoria</label>
+          <input type="text" class="form-control" placeholder="Referencia">
+        </div>
+        <div class="col-12 col-md-1 mt-4 mt-md-0 d-flex align-items-end">
+          <div>
+            <button type="submit" class="btn btn-light">Cerca</button>
+          </div>
+        </div>
+    </div>
+    </form>
+  </div>
+</section>
