@@ -11,6 +11,8 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { ContactComponent } from './components/contact/contact.component';
 import { AboutusComponent } from './components/aboutus/aboutus.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { ResultsComponent } from './components/results/results.component';
+import { SearcherComponent } from './components/layouts/searcher/searcher.component';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import {ReactiveFormsModule} from '@angular/forms';
     FooterComponent,
     CategoriesComponent,
     ContactComponent,
-    AboutusComponent
+    AboutusComponent,
+    ResultsComponent,
+    SearcherComponent
   ],
   imports: [
     BrowserModule,
