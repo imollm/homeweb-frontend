@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" [routerLink]="['/home']">HOMEWEB</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -19,7 +19,7 @@
         <a class="nav-link" [routerLink]="[ '/contact' ]" [routerLinkActive]="[ 'active' ]">Contacte</a>
       </li>
     </ul>
-    <div class="form-inline my-2 my-lg-0">
+    <div class="form-inline my-2 my-md-3">
       <button class="btn btn-light mr-2" [routerLink]="['/login']">Inicia sessió</button>
       <button class="btn btn-light" [routerLink]="['/register']">Crea un compte</button>
     </div>
