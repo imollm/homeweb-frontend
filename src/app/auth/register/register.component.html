@@ -98,10 +98,16 @@
                   Employee
                 </label>
               </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" formControlName="role" class="form-check-input" name="role" id="optionsRadios3" value="owner">
+                  Owner
+                </label>
+              </div>
               <div *ngIf="role!.errors && role!.hasError('required')" class="text-danger">Role is required</div>
             </fieldset>
             <div class="form-group">
-              <input type="submit" class="btn btn-dark" value="Login" />
+              <input type="submit" class="btn btn-dark" value="Crea" />
             </div>
           </fieldset>
         </form>

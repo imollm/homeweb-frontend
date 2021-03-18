@@ -4,6 +4,6 @@ export interface JwtResponseI {
     name: string;
     email: string;
     accessToken: string;
-    roles: string[];
+    role: string;
   };
 }

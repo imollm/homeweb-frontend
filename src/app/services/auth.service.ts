@@ -1,20 +1,24 @@
-import { Injectable } from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserI } from '../models/user';
 import { JwtResponseI } from '../models/jwt-response';
 import { tap } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
+import {AuthServiceI} from './auth-service-interface';
+import { environment } from '../app.environment';
 
 @Injectable()
-export class AuthService {
-  AUTH_SERVER = 'http://localhost/TFG_UOC/homeweb-backend/public/api';
+export class AuthService implements AuthServiceI {
+  AUTH_SERVER: string;
   authSubject = new BehaviorSubject(false);
   private token: string | null | undefined;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+    this.AUTH_SERVER = environment.apiHost;
+  }
 
   register(user: UserI): Observable<JwtResponseI> {
-    return this.httpClient.post<JwtResponseI>(`${this.AUTH_SERVER}/register`,
+    return this.httpClient.post<JwtResponseI>(`${this.AUTH_SERVER}/auth/register`,
       user).pipe(tap(
         (res: JwtResponseI) => {
           if (res) {
@@ -26,7 +30,7 @@ export class AuthService {
   }
 
   login(user: UserI): Observable<JwtResponseI> {
-    return this.httpClient.post<JwtResponseI>(`${this.AUTH_SERVER}/login`,
+    return this.httpClient.post<JwtResponseI>(`${this.AUTH_SERVER}/auth/login`,
       user).pipe(tap(
       (res: JwtResponseI) => {
         if (res) {
