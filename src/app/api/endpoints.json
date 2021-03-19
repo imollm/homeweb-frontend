@@ -1,0 +1,48 @@
+{
+  "baseUrl": "http://localhost/TFG_UOC/homeweb-backend/public/api",
+  "headers": {
+    "authorization": "Bearer %(token)s",
+    "accept": "application/json"
+  },
+  "endpoints": {
+    "properties": {
+      "create": {
+        "uri": "/properties/create",
+        "method": "POST"
+      },
+      "update": {
+        "uri": "/properties/%(id)s/update",
+        "method": "PUT"
+      },
+      "setStatus": {
+        "uri": "/properties/%(id)s/setActive/%(status)s",
+        "method": "GET"
+      },
+      "owner": {
+        "uri": "/properties/%(id)s/owner",
+        "method": "GET"
+      },
+      "all": {
+        "uri": "/properties/all",
+        "method": "GET"
+      },
+      "showById": {
+        "uri": "/properties/%(id)s/show",
+        "method": "GET"
+      },
+      "showByFilter": {
+        "uri": "/properties/showByFilter",
+        "method": "POST"
+      }
+    },
+    "roles": {
+      "user": "/roles/%(id)s",
+      "myRole": "/roles/myRole",
+      "all": "/roles/all"
+    },
+    "categories": {
+      "create": "/categories/create",
+      "update": "/%(id)s/update"
+    }
+  }
+}
