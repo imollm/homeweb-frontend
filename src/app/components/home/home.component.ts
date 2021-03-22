@@ -11,9 +11,7 @@ export class HomeComponent implements OnInit {
 
   properties: Property[];
 
-  constructor(
-    private propertiesService: PropertiesService
-  ) {
+  constructor(private propertiesService: PropertiesService) {
     this.properties = [];
   }
 
