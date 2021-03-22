@@ -36,14 +36,11 @@ export class EndPointMapper {
     }
   }
 
-  getBaseHeaders(token: string = ''): HttpHeaders {
+  getBaseHeaders(): HttpHeaders {
     const headers = new HttpHeaders();
 
     headers.set('Accept', this.baseHeaders.accept);
 
-    if (!isNil(token)) {
-      headers.set('Authorization', this.baseHeaders.authorization);
-    }
     return headers;
   }
 
