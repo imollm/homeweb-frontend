@@ -5,8 +5,9 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ResultsComponent } from './components/results/results.component';
-import { AuthGuard } from "./auth/auth.guard";
-import { DashboardComponent } from "./components/dashboard/dashboard.component";
+import { AuthGuard } from './auth/auth.guard';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'aboutus', component:  AboutusComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'results', component: ResultsComponent },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] }
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
