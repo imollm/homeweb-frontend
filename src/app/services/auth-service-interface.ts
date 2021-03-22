@@ -6,4 +6,5 @@ export interface AuthServiceI {
   login(user: UserI): Observable<JwtResponseI>;
   register(user: UserI): Observable<JwtResponseI>;
   logout(): void;
+  isLogged(): boolean;
 }

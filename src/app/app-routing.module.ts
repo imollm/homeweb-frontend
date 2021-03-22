@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
-import {CategoriesComponent} from './components/categories/categories.component';
-import {AboutusComponent} from './components/aboutus/aboutus.component';
-import {ContactComponent} from './components/contact/contact.component';
-import {ResultsComponent} from './components/results/results.component';
+import { CategoriesComponent } from './components/categories/categories.component';
+import { AboutusComponent } from './components/aboutus/aboutus.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { ResultsComponent } from './components/results/results.component';
+import { AuthGuard } from "./auth/auth.guard";
+import { DashboardComponent } from "./components/dashboard/dashboard.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -13,7 +15,8 @@ const routes: Routes = [
   { path: 'categories', component: CategoriesComponent },
   { path: 'aboutus', component:  AboutusComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'results', component: ResultsComponent }
+  { path: 'results', component: ResultsComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

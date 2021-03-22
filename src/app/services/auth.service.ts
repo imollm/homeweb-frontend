@@ -6,6 +6,7 @@ import { tap } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
 import {AuthServiceI} from './auth-service-interface';
 import { environment } from '../app.environment';
+import {Router} from "@angular/router";
 
 @Injectable()
 export class AuthService implements AuthServiceI {
@@ -13,7 +14,7 @@ export class AuthService implements AuthServiceI {
   authSubject = new BehaviorSubject(false);
   private token: string | null | undefined;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private router: Router) {
     this.AUTH_SERVER = environment.apiHost;
   }
 
@@ -24,6 +25,7 @@ export class AuthService implements AuthServiceI {
           if (res) {
             // guardar token
             this.saveToken(res.dataUser.accessToken);
+            this.router.navigate(['login']);
           }
         }
     ));
@@ -36,6 +38,7 @@ export class AuthService implements AuthServiceI {
         if (res) {
           // guardar token
           this.saveToken(res.dataUser.accessToken);
+          this.router.navigate(['dashboard']);
         }
       }
     ));
@@ -58,5 +61,9 @@ export class AuthService implements AuthServiceI {
       this.token = localStorage.getItem('ACCESS_TOKEN');
     }
     return this.token as string;
+  }
+
+  isLogged(): boolean {
+    return this.getToken() !== null;
   }
 }

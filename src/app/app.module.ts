@@ -10,9 +10,11 @@ import { FooterComponent } from './components/layouts/footer/footer.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AboutusComponent } from './components/aboutus/aboutus.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ResultsComponent } from './components/results/results.component';
 import { SearcherComponent } from './components/layouts/searcher/searcher.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import {AuthGuard} from "./auth/auth.guard";
 
 
 @NgModule({
@@ -25,7 +27,8 @@ import { SearcherComponent } from './components/layouts/searcher/searcher.compon
     ContactComponent,
     AboutusComponent,
     ResultsComponent,
-    SearcherComponent
+    SearcherComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,7 @@ import { SearcherComponent } from './components/layouts/searcher/searcher.compon
     AuthModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
