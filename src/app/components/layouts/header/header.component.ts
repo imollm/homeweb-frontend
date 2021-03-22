@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {NavigationEnd, NavigationStart, Router} from '@angular/router';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   public title = 'HOMEWEB';
+  currentRoute: string;
+  @Output() activeUrl = new EventEmitter<string>();
+  private event$: Subscription;
 
-  constructor() { }
+  constructor(private router: Router) {
+    this.event$ = this.router.events
+      .subscribe((event) => {
+          if (event instanceof NavigationStart) {
+            this.currentRoute = event.url;
+            this.getActiveUrl();
+          }
+        });
+  }
 
   ngOnInit(): void {
   }
+
+  getActiveUrl(): void {
+    this.activeUrl.emit(this.currentRoute);
+  }
+
 }
