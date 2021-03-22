@@ -6,7 +6,6 @@ import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ResultsComponent } from './components/results/results.component';
 import { AuthGuard } from './auth/auth.guard';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
 const routes: Routes = [
@@ -17,7 +16,7 @@ const routes: Routes = [
   { path: 'aboutus', component:  AboutusComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'results', component: ResultsComponent },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule), canActivate: [AuthGuard] },
   { path: '**', component: NotFoundComponent }
 ];
 
