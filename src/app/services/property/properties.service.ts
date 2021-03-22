@@ -11,17 +11,18 @@ import { catchError, retry } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class PropertiesService {
-  private readonly resource: string;
-  private endpointMapper: EndPointMapper;
 
-  constructor(private httpClient: HttpClient) {
-    this.endpointMapper = new EndPointMapper();
+  private readonly resource: string;
+
+  constructor(private httpClient: HttpClient, private endPointMapper: EndPointMapper) {
     this.resource = 'properties';
   }
 
   getProperties(): Observable<ApiResponseI> {
     return this.httpClient
-      .get<ApiResponseI>(this.endpointMapper.getEndPointUrl(this.resource, 'all'), {headers: this.endpointMapper.getBaseHeaders('')});
+      .get<ApiResponseI>(this.endPointMapper.getEndPointUrl(this.resource, 'all'), {headers: this.endPointMapper.getBaseHeaders()});
   }
+
+
 
 }
