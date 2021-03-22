@@ -1,12 +1,12 @@
 import {Inject, Injectable} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { UserI } from '../models/user';
-import { JwtResponseI } from '../models/jwt-response';
+import { UserI } from '../../models/user';
+import { JwtResponseI } from '../../models/jwt-response';
 import { tap } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
 import {AuthServiceI} from './auth-service-interface';
-import { environment } from '../app.environment';
-import {Router} from "@angular/router";
+import { environment } from '../../app.environment';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthService implements AuthServiceI {
@@ -56,7 +56,7 @@ export class AuthService implements AuthServiceI {
     this.token = token;
   }
 
-  private getToken(): string {
+  getToken(): string {
     if (!this.token) {
       this.token = localStorage.getItem('ACCESS_TOKEN');
     }

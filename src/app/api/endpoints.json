@@ -8,31 +8,38 @@
     "properties": {
       "create": {
         "uri": "/properties/create",
-        "method": "POST"
+        "method": "POST",
+        "auth": true
       },
       "update": {
         "uri": "/properties/%(id)s/update",
-        "method": "PUT"
+        "method": "PUT",
+        "auth": true
       },
       "setStatus": {
         "uri": "/properties/%(id)s/setActive/%(status)s",
-        "method": "GET"
+        "method": "GET",
+        "auth": true
       },
       "owner": {
         "uri": "/properties/%(id)s/owner",
-        "method": "GET"
+        "method": "GET",
+        "auth": true
       },
       "all": {
         "uri": "/properties/all",
-        "method": "GET"
+        "method": "GET",
+        "auth": false
       },
       "showById": {
         "uri": "/properties/%(id)s/show",
-        "method": "GET"
+        "method": "GET",
+        "auth": false
       },
       "showByFilter": {
         "uri": "/properties/showByFilter",
-        "method": "POST"
+        "method": "POST",
+        "auth": false
       }
     },
     "roles": {

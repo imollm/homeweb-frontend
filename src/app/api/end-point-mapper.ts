@@ -2,7 +2,9 @@ import {isNil} from 'ramda';
 import * as apiConfig from './endpoints.json';
 import {sprintf} from 'sprintf-js';
 import {HttpHeaders} from '@angular/common/http';
+import {Injectable} from '@angular/core';
 
+@Injectable()
 export class EndPointMapper {
 
   private baseUrl: string;
@@ -43,5 +45,12 @@ export class EndPointMapper {
       headers.set('Authorization', this.baseHeaders.authorization);
     }
     return headers;
+  }
+
+  getIsAuthEndPoint(resource: string, action: string): boolean {
+    if (this.endpoints.hasOwnProperty(resource) && this.endpoints[resource].hasOwnProperty(action)) {
+      return this.endpoints[resource][action].auth;
+    }
+    return false;
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Property } from '../../models/property';
-import {PropertiesService} from '../../services/properties.service';
+import { PropertiesService } from '../../services/property/properties.service';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +19,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.propertiesService.getProperties().subscribe((res) => {
-      this.properties = res.data.map(item => new Property(item));
+      if (res.data) {
+        this.properties = res.data.map(item => new Property(item));
+      }
     });
   }
 

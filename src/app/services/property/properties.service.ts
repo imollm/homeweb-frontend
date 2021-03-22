@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {Property} from '../models/property';
-import {ApiResponseI} from '../models/api-response';
-import {EndPointMapper} from '../api/end-point-mapper';
+import {Property} from '../../models/property';
+import {ApiResponseI} from '../../models/api-response';
+import {EndPointMapper} from '../../api/end-point-mapper';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 

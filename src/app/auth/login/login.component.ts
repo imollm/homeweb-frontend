@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/auth/auth.service';
 import {EmailValidator, Form, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
   onLogin(): void {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe(res => {
-        this.router.navigateByUrl('/home');
+        this.router.navigate(['dashboard']);
       });
     }
   }
