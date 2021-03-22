@@ -13,7 +13,6 @@ import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ResultsComponent } from './components/results/results.component';
 import { SearcherComponent } from './components/layouts/searcher/searcher.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AuthGuard } from './auth/auth.guard';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthInterceptorService} from './services/auth/auth-interceptor.service';
@@ -31,7 +30,6 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     AboutusComponent,
     ResultsComponent,
     SearcherComponent,
-    DashboardComponent,
     NotFoundComponent
   ],
   imports: [
