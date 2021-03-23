@@ -48,12 +48,28 @@
       "all": "/roles/all"
     },
     "categories": {
-      "create": "/categories/create",
+      "index": {
+        "uri": "/categories/index",
+        "method": "GET",
+        "auth": false
+      },
+      "create": {
+        "uri": "/categories/create",
+        "method": "POST",
+        "auth": true
+      },
       "update": "/%(id)s/update"
     },
     "rangePrice": {
       "index": {
         "uri": "/rangePrice/index",
+        "method": "GET",
+        "auth": false
+      }
+    },
+    "cities": {
+      "index": {
+        "uri": "/cities/index",
         "method": "GET",
         "auth": false
       }
