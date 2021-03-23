@@ -1,5 +1,3 @@
-import { EnergeticCertificate } from './energeticCertificate';
-
 export class Property {
 
   constructor(obj?: any) {
@@ -7,7 +5,7 @@ export class Property {
   }
 
   id: number;
-  user_id: number;
+  user_id: string;
   category_id: number;
   city_id: number;
   title: string;
@@ -15,10 +13,10 @@ export class Property {
   plot_meters: number;
   built_meteres: number;
   address: string;
-  longitude: string;
-  latitude: string;
+  longitude: number;
+  latitude: number;
   description: string;
-  energetic_certificate: EnergeticCertificate;
+  energetic_certificate: string;
   sold: boolean;
   active: boolean;
   price: number;

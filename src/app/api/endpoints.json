@@ -50,6 +50,13 @@
     "categories": {
       "create": "/categories/create",
       "update": "/%(id)s/update"
+    },
+    "rangePrice": {
+      "index": {
+        "uri": "/rangePrice/index",
+        "method": "GET",
+        "auth": false
+      }
     }
   }
 }

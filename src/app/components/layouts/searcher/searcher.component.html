@@ -9,12 +9,10 @@
         <div class="col-12 col-md-3">
           <label class="text-white mb-2 mt-2 mt-md-0">Preu</label>
           <select class="form-control" formControlName="price">
-            <option value="" class="disabled">Tria</option>
-            <option value="0-100">menys de 100.000€</option>
-            <option value="100-200">entre 100.000€ i 200.000€</option>
-            <option value="200-300">entre 100.000€ i 200.000€</option>
-            <option value="300-400">entre 100.000€ i 200.000€</option>
-            <option value="500-">més de 500.000€</option>
+            <option [ngValue]="null" disabled>Tria un rang de preus</option>
+            <option *ngFor="let price of rangeOfPrices.data" [ngValue]="price">
+              {{ price.value }}
+            </option>
           </select>
         </div>
         <div class="col-12 col-md-3">
