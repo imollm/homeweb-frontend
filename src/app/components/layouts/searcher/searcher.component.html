@@ -1,6 +1,6 @@
 <section class="bg-dark">
   <div class="container">
-    <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+    <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
     <div class="row p-5">
         <div class="col-12 col-md-2">
           <label class="text-white mb-2 mt-2 mt-md-0">Referencia</label>
@@ -9,19 +9,29 @@
         <div class="col-12 col-md-3">
           <label class="text-white mb-2 mt-2 mt-md-0">Preu</label>
           <select class="form-control" formControlName="price">
-            <option [ngValue]="null" disabled>Tria un rang de preus</option>
-            <option *ngFor="let price of rangeOfPrices.data" [ngValue]="price">
+            <option disabled selected>Tria un rang de preus</option>
+            <option *ngFor="let price of rangeOfPrices" [ngValue]="price.id">
               {{ price.value }}
             </option>
           </select>
         </div>
         <div class="col-12 col-md-3">
           <label class="text-white mb-2 mt-2 mt-md-0">Localitat</label>
-          <input type="text" class="form-control" placeholder="Referencia">
+          <select class="form-control" formControlName="location">
+            <option disabled selected>Tria una ciutat</option>
+            <option *ngFor="let city of cities" [ngValue]="city.id">
+              {{ city.name }}
+            </option>
+          </select>
         </div>
         <div class="col-12 col-md-3">
           <label class="text-white mb-2 mt-2 mt-md-0">Categoria</label>
-          <input type="text" class="form-control" placeholder="Referencia">
+          <select class="form-control" formControlName="category">
+            <option [ngValue]="" disabled>Tria una categoria</option>
+            <option *ngFor="let category of categories" [ngValue]="category.id">
+              {{ category.name }}
+            </option>
+          </select>
         </div>
         <div class="col-12 col-md-1 mt-4 mt-md-0 d-flex align-items-end">
           <div>
