@@ -13,16 +13,23 @@ import { catchError, retry } from 'rxjs/operators';
 export class PropertiesService {
 
   private readonly resource: string;
+  properties: Property[];
 
   constructor(private httpClient: HttpClient, private endPointMapper: EndPointMapper) {
     this.resource = 'properties';
   }
 
   getProperties(): Observable<ApiResponseI> {
+    const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'all');
+
     return this.httpClient
-      .get<ApiResponseI>(this.endPointMapper.getEndPointUrl(this.resource, 'all'), {headers: this.endPointMapper.getBaseHeaders()});
+      .get<ApiResponseI>(endpoint);
   }
 
+  createProperty(property: Property): Observable<Property> {
+    const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'create');
 
-
+    return this.httpClient
+      .post<Property>(endpoint, property);
+  }
 }
