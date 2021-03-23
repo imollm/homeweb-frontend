@@ -15,7 +15,7 @@ export class RangePriceService {
     private endPointMapper: EndPointMapper
   ) { }
 
-  async getRangeOfPrices(): Promise<any> {
+  async getRangeOfPrices(): Promise<ApiResponseI> {
     const endpoint = this.endPointMapper.getEndPointUrl('rangePrice', 'index');
 
     return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
