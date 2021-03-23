@@ -15,8 +15,9 @@ import { ResultsComponent } from './components/results/results.component';
 import { SearcherComponent } from './components/layouts/searcher/searcher.component';
 import { AuthGuard } from './auth/auth.guard';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
-import {AuthInterceptorService} from './services/auth/auth-interceptor.service';
+import { AuthInterceptorService } from './services/auth/auth-interceptor.service';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     BrowserModule,
     AppRoutingModule,
     AuthModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule
   ],
   providers: [
     AuthGuard,
