@@ -1,3 +1,20 @@
 <app-searcher></app-searcher>
 
-
+<div class="container">
+  <div class="text-center p-4">
+    <h1>Resultats de la cerca</h1>
+  </div>
+  <div class="row">
+    <div *ngFor="let result of results" class="col-12 col-md-4 mb-3">
+      <div class="card">
+        <div class="card-header">{{result.title}}</div>
+        <div class="card-body">
+          <h5 class="card-title">Special title treatment</h5>
+          <p class="card-text">{{result.description}}</p>
+          <a href="#" class="btn btn-primary">Detalle</a>
+        </div>
+        <div class="card-footer">Preu {{result.price}}</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,13 +1,11 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {SearchI} from '../../../models/search';
+import {ISearch} from '../../../models/search';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {HttpClient} from '@angular/common/http';
-import {ApiResponseI} from '../../../models/api-response';
-import {EndPointMapper} from '../../../api/end-point-mapper';
-import {end} from '@popperjs/core';
 import {RangePriceService} from '../../../services/range-price/range-price.service';
 import {CitiesService} from '../../../services/city/cities.service';
 import {CategoriesService} from '../../../services/category/categories.service';
+import {MessageService} from '../../../services/message.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-searcher',
@@ -16,19 +14,19 @@ import {CategoriesService} from '../../../services/category/categories.service';
 })
 export class SearcherComponent implements OnInit {
 
-  @Output() searchParams = new EventEmitter<SearchI>();
-
   searchForm: FormGroup;
   rangeOfPrices = [];
   cities = [];
   categories = [];
-  params: SearchI;
+  params: ISearch = {};
 
   constructor(
     private fb: FormBuilder,
+    private router: Router,
     private rangeOfPricesService: RangePriceService,
     private citiesService: CitiesService,
-    private categoriesService: CategoriesService
+    private categoriesService: CategoriesService,
+    private messageService: MessageService
   ) {
     this.searchForm = this.fb.group({
       reference: [''],
@@ -52,42 +50,47 @@ export class SearcherComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.validateFormAndSetValues();
+    if (this.validateFormAndSetValues()) {
+      this.sendParams();
+      this.router.navigate(['results']);
+    }
   }
 
-  async getRangeOfPrices(): Promise<any> {
+  private async getRangeOfPrices(): Promise<any> {
     const prices = await this.rangeOfPricesService.getRangeOfPrices();
     this.rangeOfPrices = prices.data;
   }
 
-  async getCities(): Promise<any> {
+  private async getCities(): Promise<any> {
     const cities = await this.citiesService.getAllCities();
     this.cities = cities.data;
   }
 
-  async getCategories(): Promise<any> {
+  private async getCategories(): Promise<any> {
     const categories = await this.categoriesService.getAllCategories();
     this.categories = categories.data;
   }
 
-  setDefaultValues(): void {
+  private setDefaultValues(): void {
     this.searchForm.patchValue({price: this.rangeOfPrices, location: this.cities });
   }
 
-  validateFormAndSetValues(): void {
-    const reference = this.searchForm.controls.reference;
-    const price = this.searchForm.controls.price;
-    const location = this.searchForm.controls.location;
-    const category = this.searchForm.controls.category;
+  private validateFormAndSetValues(): boolean {
+    let navigate = false;
 
-    if (reference.touched || price.touched || location.touched || category.touched) {
-      this.params.reference = reference.value;
-      this.params.price = price.value;
-      this.params.location = location.value;
-      this.params.category = category.value;
+    Object.keys(this.searchForm.controls).forEach(key => {
+      if (this.searchForm.get(key).touched) {
+        this.params[key] = this.searchForm.get(key).value;
+        navigate = true;
+      } else {
+        this.params[key] = '';
+      }
+    });
+    return navigate;
+  }
 
-      this.searchParams.emit(this.params);
-    }
+  sendParams(): void {
+    this.messageService.changeMessage(this.params);
   }
 
 }
