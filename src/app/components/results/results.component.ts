@@ -1,5 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Subscription} from 'rxjs';
+import {Component, OnInit} from '@angular/core';
 import {MessageService} from '../../services/message.service';
 import {ISearch} from '../../models/search';
 import {ResultsService} from '../../services/results/results.service';
@@ -17,22 +16,27 @@ export class ResultsComponent implements OnInit {
 
   constructor(
     private messageService: MessageService,
-    private resultsService: ResultsService
-) { }
+    private resultsService: ResultsService,
+  ) { }
 
   ngOnInit(): void {
-    this.messageService.currentMessage.subscribe(params => {
-      this.searchParams = params;
-    });
-
-    this.getResults().then(r => {
-      console.log(this.results);
-    });
+    this.getSearchParamsThroughService().then(r => this.getResults().then(t => {}));
   }
 
   async getResults(): Promise<any> {
     const results = await this.resultsService.getShowByFilter(this.searchParams);
 
-    this.results = results.data;
+    this.results = (results !== null) ? results.data : [];
+  }
+
+  getSearchParams(params: ISearch): void {
+    this.searchParams = params;
+    this.getResults().then(r => {});
+  }
+
+  private async getSearchParamsThroughService(): Promise<void> {
+    this.messageService.currentMessage.subscribe(params => {
+      this.searchParams = params;
+    });
   }
 }

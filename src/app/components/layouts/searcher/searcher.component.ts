@@ -14,6 +14,8 @@ import {Router} from '@angular/router';
 })
 export class SearcherComponent implements OnInit {
 
+  @Output() searchParams = new EventEmitter<ISearch>();
+
   searchForm: FormGroup;
   rangeOfPrices = [];
   cities = [];
@@ -43,7 +45,6 @@ export class SearcherComponent implements OnInit {
           .then(c => {
           this.getCategories()
             .then(t => {
-            this.setDefaultValues();
           });
         });
       });
@@ -52,7 +53,12 @@ export class SearcherComponent implements OnInit {
   onSubmit(): void {
     if (this.validateFormAndSetValues()) {
       this.sendParams();
-      this.router.navigate(['results']);
+      this.searchForm.reset();
+      if (window.location.pathname === '/home') {
+        this.router.navigate(['results']);
+      } else {
+        this.searchParams.emit(this.params);
+      }
     }
   }
 
@@ -71,15 +77,11 @@ export class SearcherComponent implements OnInit {
     this.categories = categories.data;
   }
 
-  private setDefaultValues(): void {
-    this.searchForm.patchValue({price: this.rangeOfPrices, location: this.cities });
-  }
-
   private validateFormAndSetValues(): boolean {
     let navigate = false;
 
     Object.keys(this.searchForm.controls).forEach(key => {
-      if (this.searchForm.get(key).touched) {
+      if (this.searchForm.get(key).touched && this.searchForm.get(key).value !== null) {
         this.params[key] = this.searchForm.get(key).value;
         navigate = true;
       } else {
@@ -89,8 +91,7 @@ export class SearcherComponent implements OnInit {
     return navigate;
   }
 
-  sendParams(): void {
+  private sendParams(): void {
     this.messageService.changeMessage(this.params);
   }
-
 }

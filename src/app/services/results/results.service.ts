@@ -9,6 +9,8 @@ import {ApiResponseI} from '../../models/api-response';
 })
 export class ResultsService {
 
+  url: string;
+
   constructor(
     private httpClient: HttpClient,
     private endPointMapper: EndPointMapper
@@ -17,12 +19,12 @@ export class ResultsService {
   async getShowByFilter(searchParams: ISearch): Promise<any> {
     const endpoint = this.endPointMapper.getEndPointUrl('properties', 'showByFilter');
 
-    const url = await this.prepareUrlWithGetParams(endpoint, searchParams);
-    console.log(url);
-    return this.httpClient.get<ApiResponseI>(url).toPromise();
+    await this.prepareUrlWithGetParams(endpoint, searchParams);
+
+    return this.httpClient.get<ApiResponseI>(this.url).toPromise();
   }
 
-  private async prepareUrlWithGetParams(url: string, params: ISearch): Promise<string> {
+  private async prepareUrlWithGetParams(url: string, params: ISearch): Promise<void> {
     let urlModified = url;
 
     Object.keys(params).map((key, index) => {
@@ -32,6 +34,6 @@ export class ResultsService {
         urlModified += '&' + key + '=' + params[key];
       }
     });
-    return urlModified;
+    this.url = urlModified;
   }
 }

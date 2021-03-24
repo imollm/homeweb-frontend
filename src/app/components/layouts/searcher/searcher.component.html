@@ -9,7 +9,7 @@
         <div class="col-12 col-md-3">
           <label class="text-white mb-2 mt-2 mt-md-0">Preu</label>
           <select class="form-control" formControlName="price">
-            <option disabled selected>Tria un rang de preus</option>
+            <option [ngValue]="" disabled selected>Tria un rang de preus</option>
             <option *ngFor="let price of rangeOfPrices" [ngValue]="price.id">
               {{ price.value }}
             </option>
@@ -18,7 +18,7 @@
         <div class="col-12 col-md-3">
           <label class="text-white mb-2 mt-2 mt-md-0">Localitat</label>
           <select class="form-control" formControlName="location">
-            <option disabled selected>Tria una ciutat</option>
+            <option [ngValue]="" disabled selected>Tria una ciutat</option>
             <option *ngFor="let city of cities" [ngValue]="city.id">
               {{ city.name }}
             </option>
@@ -27,7 +27,7 @@
         <div class="col-12 col-md-3">
           <label class="text-white mb-2 mt-2 mt-md-0">Categoria</label>
           <select class="form-control" formControlName="category">
-            <option [ngValue]="" disabled>Tria una categoria</option>
+            <option [ngValue]="" disabled selected>Tria una categoria</option>
             <option *ngFor="let category of categories" [ngValue]="category.id">
               {{ category.name }}
             </option>
