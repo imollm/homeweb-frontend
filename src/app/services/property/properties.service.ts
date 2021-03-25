@@ -20,7 +20,7 @@ export class PropertiesService {
   }
 
   getProperties(): Observable<ApiResponseI> {
-    const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'all');
+    const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'index');
 
     return this.httpClient
       .get<ApiResponseI>(endpoint);

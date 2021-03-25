@@ -6,8 +6,8 @@
   },
   "endpoints": {
     "properties": {
-      "all": {
-        "uri": "/properties/all",
+      "index": {
+        "uri": "/properties/index",
         "method": "GET",
         "auth": false
       },
