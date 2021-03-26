@@ -73,6 +73,13 @@
         "method": "GET",
         "auth": false
       }
+    },
+    "contact": {
+      "send": {
+        "uri": "/contact/send",
+        "method": "GET",
+        "auth": false
+      }
     }
   }
 }

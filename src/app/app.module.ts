@@ -18,6 +18,7 @@ import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import { AuthInterceptorService } from './services/auth/auth-interceptor.service';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AlertModule } from './_alert/alert.module';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AppRoutingModule,
     AuthModule,
     ReactiveFormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    AlertModule
   ],
   providers: [
     AuthGuard,
