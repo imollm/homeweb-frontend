@@ -1,7 +1,7 @@
 {
   "baseUrl": "http://localhost/TFG_UOC/homeweb-backend/public/api",
   "headers": {
-    "authorization": "Bearer %(token)s",
+    "authorization": "Bearer %s",
     "accept": "application/json"
   },
   "endpoints": {
@@ -22,30 +22,42 @@
         "auth": false
       },
       "owner": {
-        "uri": "/properties/%(id)s/owner",
+        "uri": "/properties/%s/owner",
         "method": "GET",
         "auth": true
       },
       "setActive": {
-        "uri": "/properties/%(id)s/setActive",
+        "uri": "/properties/%s/setActive",
         "method": "GET",
         "auth": true
       },
       "showById": {
-        "uri": "/properties/%(id)s/show",
+        "uri": "/properties/%s/show",
         "method": "GET",
         "auth": false
       },
       "update": {
-        "uri": "/properties/%(id)s/update",
+        "uri": "/properties/%s/update",
         "method": "PUT",
         "auth": true
       }
     },
     "roles": {
-      "user": "/roles/%(id)s",
-      "myRole": "/roles/myRole",
-      "all": "/roles/all"
+      "user": {
+        "uri": "/roles/%s",
+        "method": "GET",
+        "auth": true
+      },
+      "myRole": {
+        "uri": "/roles/myRole",
+        "method": "GET",
+        "auth": true
+      },
+      "all": {
+        "uri": "/roles/all",
+        "method": "GET",
+        "auth": true
+      }
     },
     "categories": {
       "index": {
@@ -58,7 +70,11 @@
         "method": "POST",
         "auth": true
       },
-      "update": "/%(id)s/update"
+      "update": {
+        "uri": "/%s/update",
+        "method": "GET",
+        "auth": false
+      }
     },
     "rangePrice": {
       "index": {
@@ -77,6 +93,18 @@
     "contact": {
       "send": {
         "uri": "/contact/send",
+        "method": "GET",
+        "auth": false
+      }
+    },
+    "image": {
+      "categories": {
+        "uri": "/image/category/%s",
+        "method": "GET",
+        "auth": false
+      },
+      "properties": {
+        "uri": "/image/property/%s",
         "method": "GET",
         "auth": false
       }
