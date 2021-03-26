@@ -10,6 +10,7 @@ export class Property {
   city_id: number;
   title: string;
   reference: string;
+  image: string;
   plot_meters: number;
   built_meteres: number;
   address: string;
