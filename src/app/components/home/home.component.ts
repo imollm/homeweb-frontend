@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Property} from '../../models/property';
-import {PropertiesService} from '../../services/property/properties.service';
+import {PropertiesService} from '../../services/_property/properties.service';
 
 @Component({
   selector: 'app-home',

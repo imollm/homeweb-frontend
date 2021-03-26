@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Route, Router } from '@angular/router';
-import { AuthService } from '../../services/auth/auth.service';
-import {EmailValidator, Form, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { AuthService } from '../../services/_auth/auth.service';
+import {AbstractControl, EmailValidator, Form, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -34,8 +34,8 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  get email() { return this.loginForm.get('email'); }
+  get email(): AbstractControl { return this.loginForm.get('email'); }
 
-  get password() { return this.loginForm.get('password'); }
+  get password(): AbstractControl { return this.loginForm.get('password'); }
 
 }

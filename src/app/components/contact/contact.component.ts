@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { faUserAlt, faEnvelope, faAt, faPenSquare } from '@fortawesome/free-solid-svg-icons';
 import {IContact} from '../../models/contact';
-import {ContactService} from '../../services/contact/contact.service';
+import {ContactService} from '../../services/_contact/contact.service';
 import {AlertService} from '../../_alert/alert.service';
 
 @Component({
