@@ -1,9 +1,9 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ISearch} from '../../../models/search';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {RangePriceService} from '../../../services/range-price/range-price.service';
-import {CitiesService} from '../../../services/city/cities.service';
-import {CategoriesService} from '../../../services/category/categories.service';
+import {RangePriceService} from '../../../services/_range-price/range-price.service';
+import {CitiesService} from '../../../services/_city/cities.service';
+import {CategoriesService} from '../../../services/_category/categories.service';
 import {MessageService} from '../../../services/message.service';
 import {Router} from '@angular/router';
 

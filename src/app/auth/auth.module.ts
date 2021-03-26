@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthRoutingModule } from './auth-routing.module';
-import { AuthService } from '../services/auth/auth.service';
+import { AuthService } from '../services/_auth/auth.service';
 import { EndPointMapper } from '../api/end-point-mapper';
 
 @NgModule({

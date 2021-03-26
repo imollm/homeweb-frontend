@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MessageService} from '../../services/message.service';
 import {ISearch} from '../../models/search';
-import {ResultsService} from '../../services/results/results.service';
+import {ResultsService} from '../../services/_results/results.service';
 import {Property} from '../../models/property';
 
 @Component({
