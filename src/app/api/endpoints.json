@@ -1,5 +1,5 @@
 {
-  "baseUrl": "http://localhost/TFG_UOC/homeweb-backend/public/api",
+  "baseUrl": "http://localhost/homeweb-backend/public/api",
   "headers": {
     "authorization": "Bearer %s",
     "accept": "application/json"
