@@ -32,4 +32,10 @@ export class PropertiesService {
     return this.httpClient
       .post<Property>(endpoint, property);
   }
+
+  async getLastProperties(): Promise<ApiResponseI> {
+    const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'last');
+
+    return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
+  }
 }

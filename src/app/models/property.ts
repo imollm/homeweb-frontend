@@ -1,3 +1,5 @@
+import {SafeUrl} from '@angular/platform-browser';
+
 export class Property {
 
   constructor(obj?: any) {
@@ -23,5 +25,5 @@ export class Property {
   price: number;
   created_at: string;
   updated_at: string;
-
+  safeUrl: SafeUrl;
 }

@@ -40,6 +40,11 @@
         "uri": "/properties/%s/update",
         "method": "PUT",
         "auth": true
+      },
+      "last": {
+        "uri": "/properties/last",
+        "method": "GET",
+        "auth": false
       }
     },
     "roles": {
