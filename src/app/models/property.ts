@@ -1,10 +1,7 @@
 import {SafeUrl} from '@angular/platform-browser';
+import {ICategory} from './category';
 
 export class Property {
-
-  constructor(obj?: any) {
-    Object.assign(this, obj);
-  }
 
   id: number;
   user_id: string;
@@ -26,4 +23,10 @@ export class Property {
   created_at: string;
   updated_at: string;
   safeUrl: SafeUrl;
+  city: ICategory;
+
+  constructor(obj?: any) {
+    Object.assign(this, obj);
+  }
+
 }

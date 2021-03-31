@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Property} from '../../models/property';
 import {CategoriesService} from '../../services/_category/categories.service';
 import {MessageService} from '../../services/message.service';
+import {ImageService} from '../../services/_image/image.service';
 
 @Component({
   selector: 'app-category',
@@ -11,23 +12,32 @@ import {MessageService} from '../../services/message.service';
 export class CategoryComponent implements OnInit {
 
   properties: Property[] = [];
+  property: Property;
+  category: string;
 
   constructor(
     private messageService: MessageService,
-    private categoriesService: CategoriesService
+    private categoriesService: CategoriesService,
+    private imageService: ImageService
   ) { }
 
   ngOnInit(): void {
     this.getCategoryRequest().then((msg) => {
-      this.getPropertiesByCategory(msg).then(() => {  });
+      if (msg !== undefined && msg !== null && msg !== '') {
+        this.getPropertiesByCategory(msg).then(() => { this.category = msg; });
+      }
     });
   }
 
   private async getPropertiesByCategory(category: string): Promise<any> {
     const response = await this.categoriesService.getPropertiesByCategory(category);
     if (response.success) {
-      response.data.map((property) => {
-        this.properties.push(property);
+      this.properties = response.data;
+      this.properties.map((property) => {
+        this.imageService.sanitizeBase64EncodedImage(property.image, 'properties').then((imageDecoded) => {
+            property.safeUrl = imageDecoded;
+            property.price = this.formatPrice(property.price);
+        });
       });
     }
   }
@@ -38,5 +48,13 @@ export class CategoryComponent implements OnInit {
         resolve(msg);
       });
     });
+  }
+
+  private formatPrice(price: number): any {
+    const formatter = new Intl.NumberFormat('es-ES', {
+      style: 'currency',
+      currency: 'EUR',
+    });
+    return formatter.format(price);
   }
 }

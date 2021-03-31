@@ -20,14 +20,14 @@ export class ImageService {
     return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
   }
 
-  async getBase64ImageEncoded(id: string): Promise<any> {
-    const base64Encoded = await this.getImage('categories', id);
+  async getBase64ImageEncoded(id: string, resource: string): Promise<any> {
+    const base64Encoded = await this.getImage(resource, id);
     return base64Encoded.data;
   }
 
-  sanitizeBase64EncodedImage(fileName: string): any {
+  sanitizeBase64EncodedImage(fileName: string, resource: string): any {
     return new Promise((resolve, reject) => {
-      this.getBase64ImageEncoded(fileName).then((base64ImageEncoded) => {
+      this.getBase64ImageEncoded(fileName, resource).then((base64ImageEncoded) => {
         const objectUrl = 'data:image/' + this.getImageExtension(fileName) + ';base64,' + base64ImageEncoded;
         resolve(this.sanitizer.bypassSecurityTrustUrl(objectUrl));
       });

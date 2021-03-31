@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {CategoriesService} from '../../services/_category/categories.service';
 import {ICategory} from '../../models/category';
 import {AlertService} from '../../_alert/alert.service';
-import {EndPointMapper} from '../../api/end-point-mapper';
 import {ImageService} from '../../services/_image/image.service';
 import {MessageService} from '../../services/message.service';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-categories',
@@ -43,7 +42,7 @@ export class CategoriesComponent implements OnInit {
 
   private getCategoriesImages(): void {
     this.categories.map((category) => {
-      this.imageService.sanitizeBase64EncodedImage(category.image).then((imageDecoded) => {
+      this.imageService.sanitizeBase64EncodedImage(category.image, 'categories').then((imageDecoded) => {
         category.safeUrl = imageDecoded;
       });
     });
