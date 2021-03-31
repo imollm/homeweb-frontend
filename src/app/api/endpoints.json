@@ -99,12 +99,12 @@
     },
     "image": {
       "categories": {
-        "uri": "/image/category/%s",
+        "uri": "/image/categories/%s",
         "method": "GET",
         "auth": false
       },
       "properties": {
-        "uri": "/image/property/%s",
+        "uri": "/image/properties/%s",
         "method": "GET",
         "auth": false
       }
