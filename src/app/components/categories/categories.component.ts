@@ -4,6 +4,8 @@ import {ICategory} from '../../models/category';
 import {AlertService} from '../../_alert/alert.service';
 import {EndPointMapper} from '../../api/end-point-mapper';
 import {ImageService} from '../../services/_image/image.service';
+import {MessageService} from '../../services/message.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-categories',
@@ -18,8 +20,9 @@ export class CategoriesComponent implements OnInit {
   constructor(
     private categoriesService: CategoriesService,
     private alertService: AlertService,
-    private endPointMapper: EndPointMapper,
     private imageService: ImageService,
+    private messageService: MessageService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -44,5 +47,15 @@ export class CategoriesComponent implements OnInit {
         category.safeUrl = imageDecoded;
       });
     });
+  }
+
+  navigateToCategoryResults(evt: EventTarget): void {
+    const category = (evt as HTMLInputElement).getAttribute('datatype');
+    this.sendParams(category);
+    this.router.navigate(['category']);
+  }
+
+  private sendParams(category: string): void {
+    this.messageService.changeMessage(category);
   }
 }

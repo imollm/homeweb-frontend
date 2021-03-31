@@ -79,6 +79,11 @@
         "uri": "/%s/update",
         "method": "GET",
         "auth": false
+      },
+      "properties": {
+        "uri": "/categories/%s/properties",
+        "method": "GET",
+        "auth": false
       }
     },
     "rangePrice": {

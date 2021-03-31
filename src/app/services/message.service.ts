@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
-import {ISearch} from '../models/search';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
 
-  private messageSource = new BehaviorSubject<ISearch>({});
+  private messageSource = new BehaviorSubject<any>({});
   currentMessage = this.messageSource.asObservable();
 
   constructor() { }
 
-  changeMessage(message: ISearch): void {
+  changeMessage(message: any): void {
     this.messageSource.next(message);
   }
 }

@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="text-center p-4">
+    <div *ngIf="properties.length > 0; then withResults else noResults"></div>
+    <ng-template #withResults><h1>Resultats de la cerca</h1></ng-template>
+    <ng-template #noResults><h1>Sense resultats</h1></ng-template>
+  </div>
+  <div class="row">
+    <div *ngFor="let property of properties" class="col-12 col-md-4 mb-3">
+      <div class="card">
+        <div class="card-header"><em>Ciutat: </em>{{property.city_id}}</div>
+        <div class="card-body">
+          <h5 class="card-title">Special title treatment</h5>
+          <p class="card-text"><em>Categoria: </em>{{property.category_id}}</p>
+          <a href="#" class="btn btn-primary">Detalle</a>
+        </div>
+        <div class="card-footer">Preu {{property.price}}</div>
+      </div>
+    </div>
+  </div>
+</div>

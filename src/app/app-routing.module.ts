@@ -7,12 +7,14 @@ import { ContactComponent } from './components/contact/contact.component';
 import { ResultsComponent } from './components/results/results.component';
 import { AuthGuard } from './auth/auth.guard';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { CategoryComponent } from './components/category/category.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'auth', loadChildren: './auth/auth.module#AuthModule' },
   { path: 'home', component: HomeComponent },
   { path: 'categories', component: CategoriesComponent },
+  { path: 'category', component: CategoryComponent },
   { path: 'aboutus', component:  AboutusComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'results', component: ResultsComponent },

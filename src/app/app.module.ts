@@ -19,6 +19,7 @@ import { AuthInterceptorService } from './services/_auth/auth-interceptor.servic
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AlertModule } from './_alert/alert.module';
+import { CategoryComponent } from './components/category/category.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { AlertModule } from './_alert/alert.module';
     AboutusComponent,
     ResultsComponent,
     SearcherComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
