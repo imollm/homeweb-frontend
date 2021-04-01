@@ -3,6 +3,8 @@ import {Property} from '../../models/property';
 import {PropertiesService} from '../../services/_property/properties.service';
 import {AlertService} from '../../_alert/alert.service';
 import {ImageService} from '../../services/_image/image.service';
+import {HelpersService} from '../../services/_helpers/helpers.service';
+import {MessageService} from '../../services/message.service';
 
 @Component({
   selector: 'app-home',
@@ -12,21 +14,23 @@ import {ImageService} from '../../services/_image/image.service';
 export class HomeComponent implements OnInit {
 
   properties: Property[] = [];
-  property: Property[];
 
   constructor(
     private propertiesService: PropertiesService,
     private imageService: ImageService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private messageService: MessageService
   ) {
   }
 
   ngOnInit(): void {
-    this.getLastProperties().then((res) => {
-      if (res.length > 0) {
-        res.map((property) => {
-          this.properties.push(new Property(property));
-
+    this.getLastProperties().then(() => {
+      if (this.properties.length > 0) {
+        this.properties.map((property) => {
+          property.price = HelpersService.formatPrice(property.price);
+          this.imageService.sanitizeBase64EncodedImage(property.image, 'properties').then((base64ImageDecoded) => {
+            property.imageBase64 = base64ImageDecoded;
+          });
         });
       }
     });
@@ -37,6 +41,16 @@ export class HomeComponent implements OnInit {
     if (!res.success) {
       this.alertService.error(res.message);
     }
-    return res.data;
+    this.properties = res.data;
+  }
+
+  sendProperty(evt: EventTarget): void {
+    const propertyId = (evt as HTMLElement).getAttribute('datatype');
+    this.properties.map((p) => {
+      if (p.id === parseInt(propertyId, 10)) {
+        this.messageService.changeMessage(p);
+        return;
+      }
+    });
   }
 }
