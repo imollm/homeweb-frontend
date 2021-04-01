@@ -3,6 +3,7 @@ import {Property} from '../../models/property';
 import {CategoriesService} from '../../services/_category/categories.service';
 import {MessageService} from '../../services/message.service';
 import {ImageService} from '../../services/_image/image.service';
+import {HelpersService} from '../../services/_helpers/helpers.service';
 
 @Component({
   selector: 'app-category',
@@ -11,15 +12,15 @@ import {ImageService} from '../../services/_image/image.service';
 })
 export class CategoryComponent implements OnInit {
 
-  properties: Property[] = [];
-  property: Property;
-  category: string;
-
   constructor(
     private messageService: MessageService,
     private categoriesService: CategoriesService,
     private imageService: ImageService
   ) { }
+
+  properties: Property[] = [];
+  property: Property;
+  category: string;
 
   ngOnInit(): void {
     this.getCategoryRequest().then((msg) => {
@@ -36,7 +37,7 @@ export class CategoryComponent implements OnInit {
       this.properties.map((property) => {
         this.imageService.sanitizeBase64EncodedImage(property.image, 'properties').then((imageDecoded) => {
             property.safeUrl = imageDecoded;
-            property.price = this.formatPrice(property.price);
+            property.price = HelpersService.formatPrice(property.price);
         });
       });
     }
@@ -50,11 +51,17 @@ export class CategoryComponent implements OnInit {
     });
   }
 
-  private formatPrice(price: number): any {
-    const formatter = new Intl.NumberFormat('es-ES', {
-      style: 'currency',
-      currency: 'EUR',
+  sendProperty(evt: EventTarget): void {
+    const promise =  new Promise(resolve => {
+      const propertyId = (evt as HTMLElement).getAttribute('datatype');
+      this.properties.map(p => {
+        if (p.id === parseInt(propertyId, 10)) {
+          resolve(p);
+        }
+      });
     });
-    return formatter.format(price);
+    promise.then((property) => {
+      this.messageService.changeMessage(property);
+    });
   }
 }

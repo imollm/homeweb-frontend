@@ -12,7 +12,11 @@
           <img class="card-img-top" [src]="property.safeUrl" />
           <h5 class="card-title mt-2 text-center">{{property.title}}</h5>
           <p class="card-text"><em>Referencia: </em>{{property.reference}}</p>
-          <a href="#" class="btn btn-primary">Detalle</a>
+          <a class="btn btn-primary"
+             [routerLink]="['/property']"
+             (click)="sendProperty($event.target)"
+             [attr.datatype]="property.id"
+          >Detalle</a>
         </div>
         <div class="card-footer">Preu: {{property.price}}</div>
       </div>
