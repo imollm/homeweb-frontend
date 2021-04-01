@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MessageService} from '../../services/message.service';
 import {Property} from '../../models/property';
-import {HelpersService} from "../../services/_helpers/helpers.service";
+import {HelpersService} from '../../services/_helpers/helpers.service';
 
 @Component({
   selector: 'app-property',
