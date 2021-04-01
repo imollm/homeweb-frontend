@@ -11,7 +11,9 @@ export class Property {
   reference: string;
   image: string;
   plot_meters: number;
-  built_meteres: number;
+  built_meters: number;
+  rooms: number;
+  baths: number;
   address: string;
   longitude: number;
   latitude: number;
