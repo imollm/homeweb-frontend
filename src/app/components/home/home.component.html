@@ -13,16 +13,9 @@
   </div>
   <div class="row">
     <div *ngFor="let property of properties" class="col-12 col-md-4 mb-3">
-      <div class="card">
-        <div class="card-header">{{property.title}}</div>
-        <div class="card-body">
-          <img [src]="property.imageBase64" [alt]="property.title" class="card-img-top">
-          <h5 class="card-title mt-5">{{property.title}}</h5>
-          <p class="card-text">{{property.description}}</p>
-          <a [routerLink]="['/property']" class="btn btn-primary" (click)="sendProperty($event.target)" [attr.datatype]="property.id">Detalle</a>
-        </div>
-        <div class="card-footer">Preu {{property.price}}</div>
-      </div>
+      <app-card
+        [property]="property"
+      ></app-card>
     </div>
   </div>
 </div>
