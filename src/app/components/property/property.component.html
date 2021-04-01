@@ -1,0 +1,67 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 d-flex align-items-center justify-content-center">
+      <div class="w-100">
+        <img class="img-fluid w-100" [src]="property.safeUrl" alt="property-image-{{property.id}}" />
+      </div>
+    </div>
+  </div>
+  <div class="row mt-1">
+    <div class="col-3 d-flex justify-content-center align-items-center p-1 bg-dark">
+      <div class="text-white">
+        <div>Parcel·la</div>
+        <div>{{property.plot_meters}} m<sup>2</sup></div>
+      </div>
+    </div>
+    <div class="col-3 d-flex justify-content-center align-items-center p-1 bg-dark border-left-secondary">
+      <div class="text-white">
+        <div>Construïts</div>
+        <div>{{property.built_meters}} m<sup>2</sup></div>
+      </div>
+    </div>
+    <div class="col-3 d-flex justify-content-center align-items-center p-1 bg-dark border-left-secondary">
+      <div class="text-white">
+        <div>Banys</div>
+        <div>{{property.baths}}</div>
+      </div>
+    </div>
+    <div class="col-3 d-flex justify-content-center align-items-center p-1 bg-dark border-left-secondary">
+      <div class="text-white">
+        <div>Habitacions</div>
+        <div>{{property.rooms}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-12 bg-light">
+      <div class="container">
+        <h1 class="text-center">{{property.title}}</h1>
+        <p class="text-center">{{property.description}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <app-contact
+        [propertyRef]="property.reference"
+      ></app-contact>
+    </div>
+  </div>
+  <div class="row mt-3 bg-light">
+    <div class="col-12 col-md-4">
+      <div class="container p-5">
+        <div class="card">
+          <div class="card-body">
+            <img class="card-img-top img-fluid" src="./assets/img/energetic_certification.jpeg" alt="energetic-certification" />
+          </div>
+          <div class="card-footer">{{property.energetic_certificate}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-8">
+      <div>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12223.668368798582!2d3.8349986!3d40.01029944999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12be040f6758eb17%3A0x88516fc69792633d!2sCam%C3%AD%20de%20ses%20Tres%20Alqueries%2C%2036%2C%2007760%20Ciutadella%20de%20Menorca%2C%20Illes%20Balears!5e0!3m2!1ses!2ses!4v1617240487630!5m2!1ses!2ses" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
