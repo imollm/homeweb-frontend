@@ -21,6 +21,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AlertModule } from './_alert/alert.module';
 import { CategoryComponent } from './components/category/category.component';
 import { PropertyComponent } from './components/property/property.component';
+import { CardComponent } from './components/card/card.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { PropertyComponent } from './components/property/property.component';
     SearcherComponent,
     NotFoundComponent,
     CategoryComponent,
-    PropertyComponent
+    PropertyComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
