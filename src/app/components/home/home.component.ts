@@ -43,14 +43,4 @@ export class HomeComponent implements OnInit {
     }
     this.properties = res.data;
   }
-
-  sendProperty(evt: EventTarget): void {
-    const propertyId = (evt as HTMLElement).getAttribute('datatype');
-    this.properties.map((p) => {
-      if (p.id === parseInt(propertyId, 10)) {
-        this.messageService.changeMessage(p);
-        return;
-      }
-    });
-  }
 }

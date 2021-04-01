@@ -50,18 +50,4 @@ export class CategoryComponent implements OnInit {
       });
     });
   }
-
-  sendProperty(evt: EventTarget): void {
-    const promise =  new Promise(resolve => {
-      const propertyId = (evt as HTMLElement).getAttribute('datatype');
-      this.properties.map(p => {
-        if (p.id === parseInt(propertyId, 10)) {
-          resolve(p);
-        }
-      });
-    });
-    promise.then((property) => {
-      this.messageService.changeMessage(property);
-    });
-  }
 }
