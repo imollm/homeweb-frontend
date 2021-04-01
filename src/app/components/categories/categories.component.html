@@ -7,7 +7,7 @@
       <div (click)="navigateToCategoryResults($event.target)">
         <div class="d-flex justify-content-center align-items-center p-2 position-relative container-category-img">
           <div class="bg-dark wrap-category-img text-center" [attr.datatype]="category.name">
-            <span class="text-white" [attr.datatype]="category.name">{{category.name}}</span>
+            <span class="text-white" [attr.datatype]="category.name">{{category.name.toUpperCase()}}</span>
           </div>
           <img [src]="category.safeUrl" [attr.alt]="category.name" class="figure-img img-fluid" [attr.datatype]="category.name"/>
         </div>
