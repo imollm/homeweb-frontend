@@ -8,6 +8,7 @@ import { ResultsComponent } from './components/results/results.component';
 import { AuthGuard } from './auth/auth.guard';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { CategoryComponent } from './components/category/category.component';
+import {PropertyComponent} from './components/property/property.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'categories', component: CategoriesComponent },
   { path: 'category', component: CategoryComponent },
+  { path: 'property', component: PropertyComponent },
   { path: 'aboutus', component:  AboutusComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'results', component: ResultsComponent },

@@ -20,6 +20,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AlertModule } from './_alert/alert.module';
 import { CategoryComponent } from './components/category/category.component';
+import { PropertyComponent } from './components/property/property.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { CategoryComponent } from './components/category/category.component';
     ResultsComponent,
     SearcherComponent,
     NotFoundComponent,
-    CategoryComponent
+    CategoryComponent,
+    PropertyComponent
   ],
   imports: [
     BrowserModule,
