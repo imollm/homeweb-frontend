@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { faUserAlt, faEnvelope, faAt, faPenSquare } from '@fortawesome/free-solid-svg-icons';
 import {IContact} from '../../models/contact';
@@ -11,6 +11,8 @@ import {AlertService} from '../../_alert/alert.service';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
+
+  @Input() propertyRef: string;
 
   title = 'Contacte';
   contactForm: FormGroup;
@@ -32,6 +34,9 @@ export class ContactComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (this.propertyRef !== undefined) {
+      this.contactForm.get('subject').setValue('Me interessa, ref: ' + this.propertyRef);
+    }
   }
 
   onSubmit(): void {
