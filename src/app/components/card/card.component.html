@@ -1,15 +1,14 @@
 <div class="card">
   <div class="card-header">
-    <em>Ciutat: </em>{{property.city_id}}
+    <em>Ciutat: </em>{{property.city.name |titlecase}}
   </div>
   <div class="card-body">
-    <img [src]="property.imageBase64" class="card-img-top">
-    <h5 class="card-title">{{property.title}}</h5>
+    <img [src]="property.imageBase64" class="card-img-top"  alt="property-image-{{property.title}}"/>
+    <h5 class="card-title">{{property.title |titlecase}}</h5>
     <p class="card-text"><em>Categoria: </em>{{property.category_id}}</p>
     <a class="btn btn-primary"
       [routerLink]="['/property']"
-      [attr.datatype]="property.id"
-      (click)="sendProperty($event.target)"
+      (click)="sendProperty()"
     >Detall</a>
   </div>
   <div class="card-footer">Preu {{property.price}}</div>

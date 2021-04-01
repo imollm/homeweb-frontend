@@ -18,7 +18,7 @@ export class CardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  sendProperty(evt: EventTarget): void {
+  sendProperty(): void {
     this.messageService.changeMessage(this.property);
   }
 }

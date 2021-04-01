@@ -25,7 +25,8 @@ export class Property {
   created_at: string;
   updated_at: string;
   imageBase64: SafeUrl;
-  city: ICategory;
+  city: ICity;
+  category: ICategory;
 
   constructor(obj?: any) {
     Object.assign(this, obj);
