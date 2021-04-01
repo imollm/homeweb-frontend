@@ -36,7 +36,7 @@ export class CategoryComponent implements OnInit {
       this.properties = response.data;
       this.properties.map((property) => {
         this.imageService.sanitizeBase64EncodedImage(property.image, 'properties').then((imageDecoded) => {
-            property.safeUrl = imageDecoded;
+            property.imageBase64 = imageDecoded;
             property.price = HelpersService.formatPrice(property.price);
         });
       });

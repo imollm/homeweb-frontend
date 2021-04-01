@@ -24,7 +24,7 @@ export class Property {
   price: number;
   created_at: string;
   updated_at: string;
-  safeUrl: SafeUrl;
+  imageBase64: SafeUrl;
   city: ICategory;
 
   constructor(obj?: any) {
