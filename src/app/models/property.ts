@@ -1,5 +1,6 @@
 import {SafeUrl} from '@angular/platform-browser';
 import {ICategory} from './category';
+import {ICity} from './city';
 
 export class Property {
 
@@ -15,10 +16,10 @@ export class Property {
   rooms: number;
   baths: number;
   address: string;
-  longitude: number;
-  latitude: number;
+  longitude: string;
+  latitude: string;
   description: string;
-  energetic_certificate: string;
+  energetic_certification: string;
   sold: boolean;
   active: boolean;
   price: number;

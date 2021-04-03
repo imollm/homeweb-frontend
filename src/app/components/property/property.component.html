@@ -42,25 +42,27 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <app-contact
+      <app-contact-form
         [propertyRef]="property.reference"
-      ></app-contact>
+      ></app-contact-form>
     </div>
   </div>
-  <div class="row mt-3 bg-light">
-    <div class="col-12 col-md-4">
-      <div class="container p-5">
-        <div class="card">
-          <div class="card-body">
-            <img class="card-img-top img-fluid" src="./assets/img/energetic_certification.jpeg" alt="energetic-certification" />
-          </div>
-          <div class="card-footer">{{property.energetic_certificate}}</div>
-        </div>
+  <div class="container">
+    <div class="row mt-3 bg-light">
+      <div class="col-12 col-md-8">
+        <h3 class="text-center p-3">Ubicació</h3>
+        <app-map [property]="property"></app-map>
       </div>
-    </div>
-    <div class="col-12 col-md-8">
-      <div>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12223.668368798582!2d3.8349986!3d40.01029944999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12be040f6758eb17%3A0x88516fc69792633d!2sCam%C3%AD%20de%20ses%20Tres%20Alqueries%2C%2036%2C%2007760%20Ciutadella%20de%20Menorca%2C%20Illes%20Balears!5e0!3m2!1ses!2ses!4v1617240487630!5m2!1ses!2ses" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      <div class="col-12 col-md-4">
+        <div class="container p-5">
+          <h3 class="text-center">Certificat energètic</h3>
+          <div class="card">
+            <div class="card-body d-flex align-items-center justify-content-center">
+              <div><img class="card-img-top img-fluid energetic-image" src="./assets/img/energetic_certification.jpeg" alt="energetic-certification" /></div>
+            </div>
+            <div class="card-footer">{{property.energetic_certification}}</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

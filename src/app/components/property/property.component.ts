@@ -14,14 +14,12 @@ export class PropertyComponent implements OnInit {
 
   constructor(
     private messageService: MessageService
-  ) { }
+  ) {  }
 
   ngOnInit(): void {
     this.messageService.currentMessage.subscribe((msg) => {
       this.property = msg;
-      this.property.energetic_certificate = HelpersService.EnergeticCertificate(this.property.energetic_certificate);
-      console.log(this.property);
+      this.property.energetic_certification = HelpersService.EnergeticCertificate(this.property.energetic_certification);
     });
   }
-
 }
