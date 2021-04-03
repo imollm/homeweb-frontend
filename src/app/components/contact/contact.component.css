@@ -1,3 +1,18 @@
-form, .title {
-  color: white;
+.contact-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+.contact-form {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  opacity: .6;
+}
+@media (max-width: 970px) {
+  .contact-form {
+    top: -25px;
+  }
+  form {
+
+  }
 }
