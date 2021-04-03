@@ -9,6 +9,7 @@ import { HeaderComponent } from './components/layouts/header/header.component';
 import { FooterComponent } from './components/layouts/footer/footer.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { ContactFormComponent } from './components/layouts/contact-form/contact-form.component';
 import { AboutusComponent } from './components/aboutus/aboutus.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ResultsComponent } from './components/results/results.component';
@@ -21,7 +22,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AlertModule } from './_alert/alert.module';
 import { CategoryComponent } from './components/category/category.component';
 import { PropertyComponent } from './components/property/property.component';
-import { CardComponent } from './components/card/card.component';
+import { CardComponent } from './components/layouts/card/card.component';
+import { AgmCoreModule } from '@agm/core';
+import { MapsComponent } from './components/maps/maps.component';
 
 
 @NgModule({
@@ -32,13 +35,15 @@ import { CardComponent } from './components/card/card.component';
     FooterComponent,
     CategoriesComponent,
     ContactComponent,
+    ContactFormComponent,
     AboutusComponent,
     ResultsComponent,
     SearcherComponent,
     NotFoundComponent,
     CategoryComponent,
     PropertyComponent,
-    CardComponent
+    CardComponent,
+    MapsComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +51,10 @@ import { CardComponent } from './components/card/card.component';
     AuthModule,
     ReactiveFormsModule,
     FontAwesomeModule,
-    AlertModule
+    AlertModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCNwaQTFTIunXT6r9Ugdk5GowFReVaMdAY'
+    })
   ],
   providers: [
     AuthGuard,
