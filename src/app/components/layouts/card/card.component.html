@@ -5,7 +5,7 @@
   <div class="card-body">
     <img [src]="property.imageBase64" class="card-img-top"  alt="property-image-{{property.title}}"/>
     <h5 class="card-title mt-4">{{property.title |titlecase}}</h5>
-    <p class="card-text"><em>Categoria: </em>{{property.category.name}}</p>
+    <p *ngIf="property.category" class="card-text"><em>Categoria: </em>{{property.category.name}}</p>
     <a class="btn btn-primary"
       [routerLink]="['/property']"
       (click)="sendProperty()"
