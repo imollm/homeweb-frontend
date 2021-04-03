@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Property} from '../../models/property';
-import {MessageService} from '../../services/message.service';
+import {Property} from '../../../models/property';
+import {MessageService} from '../../../services/message.service';
 
 @Component({
   selector: 'app-card',
