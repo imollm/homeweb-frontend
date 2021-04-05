@@ -80,8 +80,13 @@
         "method": "GET",
         "auth": false
       },
-      "properties": {
-        "uri": "/categories/%s/properties",
+      "propertiesByCategoryName": {
+        "uri": "/categories/name/%s/properties",
+        "method": "GET",
+        "auth": false
+      },
+      "propertiesByCategoryId": {
+        "uri": "/categories/id/%s/properties",
         "method": "GET",
         "auth": false
       }
