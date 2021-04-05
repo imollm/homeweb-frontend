@@ -25,6 +25,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@popperjs/core": "^2.8.6",
+    "@types/googlemaps": "3.39.12",
     "bootstrap": "^4.6.0",
     "jquery": "^3.5.1",
     "ramda": "^0.27.1",
