@@ -15,16 +15,6 @@ export class ImageService {
     private sanitizer: DomSanitizer
   ) { }
 
-  async getImage(resource: string, id: string): Promise<ApiResponseI> {
-    const endpoint = this.endPointMapper.getEndPointUrl('image', resource, id);
-    return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
-  }
-
-  async getBase64ImageEncoded(id: string, resource: string): Promise<any> {
-    const base64Encoded = await this.getImage(resource, id);
-    return base64Encoded.data;
-  }
-
   sanitizeBase64EncodedImage(fileName: string, resource: string): any {
     return new Promise((resolve, reject) => {
       this.getBase64ImageEncoded(fileName, resource).then((base64ImageEncoded) => {
@@ -34,7 +24,17 @@ export class ImageService {
     });
   }
 
-  getImageExtension(fileName: string): string {
+  private async getBase64ImageEncoded(id: string, resource: string): Promise<any> {
+    const base64Encoded = await this.getImage(resource, id);
+    return base64Encoded.data;
+  }
+
+  private getImageExtension(fileName: string): string {
     return fileName.split('.')[1];
+  }
+
+  private async getImage(resource: string, id: string): Promise<ApiResponseI> {
+    const endpoint = this.endPointMapper.getEndPointUrl('image', resource, id);
+    return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
   }
 }

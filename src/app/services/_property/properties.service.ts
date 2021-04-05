@@ -19,30 +19,21 @@ export class PropertiesService {
 
   getProperties(): Observable<ApiResponseI> {
     const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'index');
-
-    return this.httpClient
-      .get<ApiResponseI>(endpoint);
+    return this.httpClient.get<ApiResponseI>(endpoint);
   }
 
   createProperty(property: Property): Observable<Property> {
     const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'create');
-
-    return this.httpClient
-      .post<Property>(endpoint, property);
+    return this.httpClient.post<Property>(endpoint, property);
   }
 
   async getLastProperties(): Promise<ApiResponseI> {
     const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'last');
-
     return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
   }
 
   async getPropertyById(propertyId: string): Promise<ApiResponseI> {
     const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'showById', propertyId);
     return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
-  }
-
-  private getImageBase64Decoded(): void {
-
   }
 }
