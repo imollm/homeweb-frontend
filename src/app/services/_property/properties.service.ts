@@ -3,9 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import {Property} from '../../models/property';
 import {ApiResponseI} from '../../models/api-response';
 import {EndPointMapper} from '../../api/end-point-mapper';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
-
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -37,5 +35,14 @@ export class PropertiesService {
     const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'last');
 
     return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
+  }
+
+  async getPropertyById(propertyId: string): Promise<ApiResponseI> {
+    const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'showById', propertyId);
+    return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
+  }
+
+  private getImageBase64Decoded(): void {
+
   }
 }

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {MessageService} from '../../services/message.service';
+import {Component, OnInit} from '@angular/core';
 import {Property} from '../../models/property';
-import {HelpersService} from '../../services/_helpers/helpers.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {PropertiesService} from '../../services/_property/properties.service';
+import {ApiResponseI} from '../../models/api-response';
 
 @Component({
   selector: 'app-property',
@@ -11,15 +12,28 @@ import {HelpersService} from '../../services/_helpers/helpers.service';
 export class PropertyComponent implements OnInit {
 
   property: Property;
+  propertyId: string;
 
   constructor(
-    private messageService: MessageService
+    private activatedRoute: ActivatedRoute,
+    private propertiesService: PropertiesService,
+    private router: Router
   ) {  }
 
   ngOnInit(): void {
-    this.messageService.currentMessage.subscribe((msg) => {
-      this.property = msg;
-      this.property.energetic_certification = HelpersService.EnergeticCertificate(this.property.energetic_certification);
+    this.propertyId = this.activatedRoute.snapshot.params.id;
+    this.getPropertyById().then((res) => {
+      if (!res.success) {
+        this.router.navigate(['**']);
+      } else {
+        this.property = res.data;
+        console.log(this.property);
+      }
     });
   }
+
+  private async getPropertyById(): Promise<ApiResponseI> {
+    return await this.propertiesService.getPropertyById(this.propertyId);
+  }
+
 }

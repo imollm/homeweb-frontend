@@ -7,7 +7,7 @@
     <h5 class="card-title mt-4">{{property.title |titlecase}}</h5>
     <p *ngIf="property.category" class="card-text"><em>Categoria: </em>{{property.category.name}}</p>
     <a class="btn btn-primary"
-      [routerLink]="['/property']"
+      [routerLink]="['/property', property.id]"
       (click)="sendProperty()"
     >Detall</a>
   </div>
