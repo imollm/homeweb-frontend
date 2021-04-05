@@ -4,6 +4,8 @@ import {CategoriesService} from '../../services/_category/categories.service';
 import {MessageService} from '../../services/message.service';
 import {ImageService} from '../../services/_image/image.service';
 import {HelpersService} from '../../services/_helpers/helpers.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ICategory} from '../../models/category';
 
 @Component({
   selector: 'app-category',
@@ -12,42 +14,35 @@ import {HelpersService} from '../../services/_helpers/helpers.service';
 })
 export class CategoryComponent implements OnInit {
 
+  category: ICategory = {} as ICategory;
+  categoryId: string;
+  properties: Property[] = [] as Property[];
+
   constructor(
-    private messageService: MessageService,
+    private activateRoute: ActivatedRoute,
     private categoriesService: CategoriesService,
-    private imageService: ImageService
+    private imageService: ImageService,
+    private router: Router
   ) { }
 
-  properties: Property[] = [];
-  property: Property;
-  category: string;
-
   ngOnInit(): void {
-    this.getCategoryRequest().then((msg) => {
-      if (msg !== undefined && msg !== null && msg !== '') {
-        this.getPropertiesByCategory(msg).then(() => { this.category = msg; });
-      }
-    });
+    this.categoryId = this.activateRoute.snapshot.params.id;
+    this.getPropertiesByCategoryId().then(() => { console.log(this.properties); console.log(this.category); });
   }
 
-  private async getPropertiesByCategory(category: string): Promise<any> {
-    const response = await this.categoriesService.getPropertiesByCategory(category);
-    if (response.success) {
-      this.properties = response.data;
+  private async getPropertiesByCategoryId(): Promise<any> {
+    const response = await this.categoriesService.getPropertiesByCategoryId(this.categoryId);
+    if (!response.success) {
+      this.router.navigate(['**']);
+    } else {
+      this.category = response.data[0].category;
+      this.properties = response.data[0].category.properties;
       this.properties.map((property) => {
         this.imageService.sanitizeBase64EncodedImage(property.image, 'properties').then((imageDecoded) => {
-            property.imageBase64 = imageDecoded;
-            property.price = HelpersService.formatPrice(property.price);
+          property.imageBase64 = imageDecoded;
+          property.price = HelpersService.formatPrice(property.price);
         });
       });
     }
-  }
-
-  private getCategoryRequest(): Promise<string> {
-    return new Promise((resolve, reject) => {
-      this.messageService.currentMessage.subscribe((msg) => {
-        resolve(msg);
-      });
-    });
   }
 }

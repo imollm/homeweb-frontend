@@ -1,7 +1,7 @@
 <div class="container">
   <div class="text-center p-4">
-    <div *ngIf="properties.length > 0; then withResults else noResults"></div>
-    <ng-template #withResults><h1>Categoria {{category.toUpperCase()}}</h1></ng-template>
+    <div *ngIf="properties && properties.length > 0; then withResults else noResults"></div>
+    <ng-template #withResults><h1>Categoria {{category.name.toUpperCase()}}</h1></ng-template>
     <ng-template #noResults><h1>Sense resultats</h1></ng-template>
   </div>
   <div class="row">
