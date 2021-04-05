@@ -17,19 +17,6 @@ export class HelpersService {
     return formatter.format(price);
   }
 
-  static EnergeticCertificate(status: string): string {
-    switch (status) {
-      case 'in process':
-        return 'En procés';
-      case 'obtained':
-        return 'Obtingut';
-      case 'pending':
-        return 'Pendent';
-      default:
-        return 'Desconegut';
-    }
-  }
-
   static mapsUbication(property: Property): Maps {
     const mapData: Maps = {} as Maps;
     mapData.lat = parseFloat(property.latitude);
