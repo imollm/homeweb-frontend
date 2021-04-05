@@ -8,7 +8,6 @@
     <p *ngIf="property.category" class="card-text"><em>Categoria: </em>{{property.category.name}}</p>
     <a class="btn btn-primary"
       [routerLink]="['/property', property.id]"
-      (click)="sendProperty()"
     >Detall</a>
   </div>
   <div class="card-footer">Preu: {{property.price}}</div>
