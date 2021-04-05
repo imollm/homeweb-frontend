@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'auth', loadChildren: './auth/auth.module#AuthModule' },
   { path: 'home', component: HomeComponent },
   { path: 'categories', component: CategoriesComponent },
-  { path: 'category', component: CategoryComponent },
+  { path: 'category/:id', component: CategoryComponent },
   { path: 'property/:id', component: PropertyComponent },
   { path: 'aboutus', component:  AboutusComponent },
   { path: 'contact', component: ContactComponent },
