@@ -22,8 +22,8 @@ export class CategoriesService {
     return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
   }
 
-  async getPropertiesByCategory(category: string): Promise<ApiResponseI> {
-    const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'properties', category);
+  async getPropertiesByCategoryId(categoryId: string): Promise<ApiResponseI> {
+    const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'propertiesByCategoryId', categoryId);
     return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
   }
 }
