@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Property} from '../../models/property';
+import {IProperty} from '../../models/property';
 import {CategoriesService} from '../../services/_category/categories.service';
 import {MessageService} from '../../services/message.service';
 import {ImageService} from '../../services/_image/image.service';
@@ -16,7 +16,7 @@ export class CategoryComponent implements OnInit {
 
   category: ICategory = {} as ICategory;
   categoryId: string;
-  properties: Property[] = [] as Property[];
+  properties: IProperty[] = [] as IProperty[];
 
   constructor(
     private activateRoute: ActivatedRoute,
@@ -27,7 +27,7 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.categoryId = this.activateRoute.snapshot.params.id;
-    this.getPropertiesByCategoryId().then(() => { console.log(this.properties); console.log(this.category); });
+    this.getPropertiesByCategoryId().then(() => { });
   }
 
   private async getPropertiesByCategoryId(): Promise<any> {

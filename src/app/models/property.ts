@@ -2,8 +2,7 @@ import {SafeUrl} from '@angular/platform-browser';
 import {ICategory} from './category';
 import {ICity} from './city';
 
-export class Property {
-
+export interface IProperty {
   id: number;
   user_id: string;
   category_id: number;
@@ -28,9 +27,4 @@ export class Property {
   imageBase64: SafeUrl;
   city: ICity;
   category: ICategory;
-
-  constructor(obj?: any) {
-    Object.assign(this, obj);
-  }
-
 }

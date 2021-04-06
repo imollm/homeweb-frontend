@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MessageService} from '../../services/message.service';
 import {ISearch} from '../../models/search';
 import {ResultsService} from '../../services/_results/results.service';
-import {Property} from '../../models/property';
+import {IProperty} from '../../models/property';
 
 @Component({
   selector: 'app-results',
@@ -11,8 +11,8 @@ import {Property} from '../../models/property';
 })
 export class ResultsComponent implements OnInit {
 
-  searchParams: ISearch = {};
-  results: Property[] = [];
+  searchParams: ISearch = {} as ISearch;
+  results: IProperty[] = [] as IProperty[];
 
   constructor(
     private messageService: MessageService,

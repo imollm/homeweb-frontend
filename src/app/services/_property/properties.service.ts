@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {Property} from '../../models/property';
+import {IProperty} from '../../models/property';
 import {ApiResponseI} from '../../models/api-response';
 import {EndPointMapper} from '../../api/end-point-mapper';
 import { Observable } from 'rxjs';
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 export class PropertiesService {
 
   private readonly resource: string;
-  properties: Property[];
+  properties: IProperty[] = [] as IProperty[];
 
   constructor(private httpClient: HttpClient, private endPointMapper: EndPointMapper) {
     this.resource = 'properties';
@@ -22,9 +22,9 @@ export class PropertiesService {
     return this.httpClient.get<ApiResponseI>(endpoint);
   }
 
-  createProperty(property: Property): Observable<Property> {
+  createProperty(property: IProperty): Observable<IProperty> {
     const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'create');
-    return this.httpClient.post<Property>(endpoint, property);
+    return this.httpClient.post<IProperty>(endpoint, property);
   }
 
   async getLastProperties(): Promise<ApiResponseI> {

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Property} from '../../models/property';
+import {IProperty} from '../../models/property';
 import {PropertiesService} from '../../services/_property/properties.service';
 import {AlertService} from '../../_alert/alert.service';
 import {ImageService} from '../../services/_image/image.service';
@@ -13,7 +13,7 @@ import {MessageService} from '../../services/message.service';
 })
 export class HomeComponent implements OnInit {
 
-  properties: Property[] = [];
+  properties: IProperty[] = [] as IProperty[];
 
   constructor(
     private propertiesService: PropertiesService,
