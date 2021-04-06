@@ -1,7 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { Maps } from '../../models/maps';
-import {Property} from '../../models/property';
-import {HelpersService} from '../../services/_helpers/helpers.service';
+import { IMaps } from '../../models/maps';
 
 @Component({
   selector: 'app-map',
@@ -10,14 +8,11 @@ import {HelpersService} from '../../services/_helpers/helpers.service';
 })
 export class MapsComponent implements OnInit {
 
-  @Input() property: Property;
-  mapData: Maps = {} as Maps;
+  @Input() mapData: IMaps;
 
   constructor() {
   }
 
   ngOnInit(): void {
-    this.mapData = HelpersService.mapsUbication(this.property);
   }
-
 }

@@ -1,4 +1,4 @@
-export interface Maps {
+export interface IMaps {
   lat: number;
   lng: number;
   zoom: number;
