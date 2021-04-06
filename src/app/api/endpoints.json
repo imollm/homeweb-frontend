@@ -5,6 +5,28 @@
     "accept": "application/json"
   },
   "endpoints": {
+    "auth": {
+      "register": {
+        "uri": "/auth/register",
+        "method": "POST",
+        "auth": false
+      },
+      "login": {
+        "uri": "/auth/login",
+        "method": "POST",
+        "auth": false
+      },
+      "logout": {
+        "uri": "/auth/logout",
+        "method": "GET",
+        "auth": false
+      },
+      "user": {
+        "uri": "/auth/user",
+        "method": "GET",
+        "auth": false
+      }
+    },
     "properties": {
       "index": {
         "uri": "/properties/index",
