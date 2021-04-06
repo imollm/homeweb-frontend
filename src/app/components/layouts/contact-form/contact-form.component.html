@@ -12,56 +12,56 @@
               <sup>*</sup>
             </span>
             <input type="text" class="form-control" placeholder="Nom" aria-label="Nom" aria-describedby="contact-name" formControlName="name">
-            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
-              <div *ngIf="name.errors.required">
-                El nom es requerit.
-              </div>
+          </div>
+          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+            <div *ngIf="name.errors.required">
+              El nom es requerit.
             </div>
           </div>
 
-          <div class="input-group my-5">
+          <div class="input-group mt-5">
             <span class="input-group-text" id="contact-email">
               <fa-icon [icon]="faEmail"></fa-icon>
               <sup>*</sup>
             </span>
             <input type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="contact-email" formControlName="email">
-            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
-              <div *ngIf="email.errors.required">
-                Email es requerit.
-              </div>
-              <div *ngIf="email.errors.email">
-                Format email erroni.
-              </div>
+          </div>
+          <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+            <div *ngIf="email.errors.required">
+              Email es requerit.
+            </div>
+            <div *ngIf="email.errors.email">
+              Format email erroni.
             </div>
           </div>
 
-          <div class="input-group my-5">
+          <div class="input-group mt-5">
             <span class="input-group-text" id="contact-subject">
               <fa-icon [icon]="faSubject"></fa-icon>
               <sup>*</sup>
             </span>
             <input type="text" class="form-control" placeholder="Assumpte" aria-label="Assumpte" aria-describedby="contact-subject" formControlName="subject">
-            <div *ngIf="subject.invalid && (subject.dirty || subject.touched)" class="alert alert-danger">
-              <div *ngIf="subject.errors.required">
-                L'assumpte es requerit.
-              </div>
+          </div>
+          <div *ngIf="subject.invalid && (subject.dirty || subject.touched)" class="alert alert-danger">
+            <div *ngIf="subject.errors.required">
+              L'assumpte es requerit.
             </div>
           </div>
 
-          <div class="input-group my-5">
+          <div class="input-group mt-5">
           <span class="input-group-text" id="contact-message">
             <fa-icon [icon]="faSubject"></fa-icon>
             <sup>*</sup>
           </span>
             <textarea class="form-control" formControlName="message" placeholder="Missatge..." aria-label="Missatge" aria-describedby="contact-message" cols="40" rows="5"></textarea>
-            <div *ngIf="message.invalid && (message.dirty || message.touched)" class="alert alert-danger">
-              <div *ngIf="message.errors.required">
-                El missatge es requerit.
-              </div>
+          </div>
+          <div *ngIf="message.invalid && (message.dirty || message.touched)" class="alert alert-danger">
+            <div *ngIf="message.errors.required">
+              El missatge es requerit.
             </div>
           </div>
 
-          <div class="input-group mb-5 d-flex justify-content-center">
+          <div class="input-group my-5 d-flex justify-content-center">
             <button type="submit" class="btn btn-secondary">Enviar</button>
           </div>
 
