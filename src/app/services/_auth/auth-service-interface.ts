@@ -1,10 +1,10 @@
-import {UserI} from '../../models/user';
+import {IUser} from '../../models/user';
 import {Observable} from 'rxjs';
-import {JwtResponseI} from '../../models/jwt-response';
+import {IJwtResponse} from '../../models/jwt-response';
 
-export interface AuthServiceI {
-  login(user: UserI): Observable<JwtResponseI>;
-  register(user: UserI): Observable<JwtResponseI>;
+export interface IAuthService {
+  login(user: IUser): Observable<IJwtResponse>;
+  register(user: IUser): Observable<IJwtResponse>;
   getToken(): string;
   logout(): void;
   isLogged(): boolean;
