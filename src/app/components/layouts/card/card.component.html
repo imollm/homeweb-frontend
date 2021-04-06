@@ -1,6 +1,12 @@
 <div class="card">
   <div class="card-header">
-    <em>Ciutat: </em>{{property.city.name |titlecase}}
+    <div *ngIf="property.city; then withCity; else withRef"></div>
+      <ng-template #withCity>
+        <em>Ciutat: </em>{{property.city.name |titlecase}}
+      </ng-template>
+      <ng-template #withRef>
+        <em>Ref: </em>{{property.reference}}
+      </ng-template>
   </div>
   <div class="card-body">
     <img [src]="property.imageBase64" class="card-img-top"  alt="property-image-{{property.title}}"/>
