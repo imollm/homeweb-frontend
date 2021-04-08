@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
   <!-- Sidebar - Brand -->
-  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" [routerLink]="['home']">
     <div class="sidebar-brand-icon">
       <fa-icon [icon]="faHome"></fa-icon>
     </div>
@@ -13,7 +13,7 @@
 
   <!-- Nav Item - Dashboard -->
   <li class="nav-item active">
-    <a class="nav-link" href="index.html">
+    <a class="nav-link" [routerLink]="['home']">
       <fa-icon [icon]="faTachometerAlt"></fa-icon>
       <span> Dashboard</span></a>
   </li>
@@ -23,7 +23,7 @@
 
   <!-- Heading -->
   <div class="sidebar-heading">
-    Interface
+    Gestiona
   </div>
 
   <!-- Nav Item - Pages Collapse Menu -->
@@ -109,7 +109,9 @@
 
   <!-- Sidebar Toggler (Sidebar) -->
   <div class="text-center d-none d-md-inline">
-    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    <button class="rounded-circle border-0" id="sidebarToggle">
+      <fa-icon [icon]="faAngleLeft"></fa-icon>
+    </button>
   </div>
 
   <!-- Sidebar Message -->
