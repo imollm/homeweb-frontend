@@ -1,11 +1,10 @@
 <app-header
   *ngIf="isDashBoard()"
-  (activeUrl)="getActiveUrl($event)"
 ></app-header>
 
 <router-outlet></router-outlet>
 
-<app-alert class="alert"></app-alert>
+<app-alert class="custom-alert"></app-alert>
 
 <app-footer
   *ngIf="isDashBoard()"
