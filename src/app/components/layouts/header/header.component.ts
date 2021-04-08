@@ -1,6 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {NavigationEnd, NavigationStart, Router} from '@angular/router';
-import {Subscription} from 'rxjs';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../../services/_auth/auth.service';
 
 @Component({
@@ -10,29 +8,14 @@ import {AuthService} from '../../../services/_auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
-  @Output() activeUrl = new EventEmitter<string>();
-  private event$: Subscription;
-
   title = 'HOMEWEB';
   currentRoute: string;
   isLogged: boolean;
 
-  constructor(private router: Router, private authService: AuthService) {
-    this.event$ = this.router.events
-      .subscribe((event) => {
-          if (event instanceof NavigationStart) {
-            this.currentRoute = event.url;
-            this.getActiveUrl();
-          }
-        });
-  }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     this.isLogged = this.authService.isLogged();
-  }
-
-  getActiveUrl(): void {
-    this.activeUrl.emit(this.currentRoute);
   }
 
   logOut(): void {

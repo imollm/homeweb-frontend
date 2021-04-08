@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,18 +9,12 @@ import {Component, OnInit} from '@angular/core';
 export class AppComponent implements OnInit {
 
   title = 'HOMEWEB';
-  activeUrl: string;
 
-  public constructor() { }
+  public constructor(private router: Router) {}
 
-  ngOnInit(): void {
-  }
-
-  getActiveUrl(activeUrl: string): void {
-    this.activeUrl = activeUrl;
-  }
+  ngOnInit(): void {}
 
   isDashBoard(): boolean {
-    return this.activeUrl !== '/dashboard';
+    return this.router.url.indexOf('dashboard') === -1;
   }
 }

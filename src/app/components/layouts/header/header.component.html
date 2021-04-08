@@ -7,25 +7,25 @@
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" [routerLink]="[ '/home' ]" [routerLinkActive]="[ 'active' ]" (click)="getActiveUrl()">Home</a>
+        <a class="nav-link" [routerLink]="[ '/home' ]" [routerLinkActive]="[ 'active' ]">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="[ '/categories' ]" [routerLinkActive]="[ 'active' ]" (click)="getActiveUrl()">Categories</a>
+        <a class="nav-link" [routerLink]="[ '/categories' ]" [routerLinkActive]="[ 'active' ]">Categories</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="[ '/aboutus' ]" [routerLinkActive]="[ 'active' ]" (click)="getActiveUrl()">Empresa</a>
+        <a class="nav-link" [routerLink]="[ '/aboutus' ]" [routerLinkActive]="[ 'active' ]">Empresa</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [routerLink]="[ '/contact' ]" [routerLinkActive]="[ 'active' ]" (click)="getActiveUrl()">Contacte</a>
+        <a class="nav-link" [routerLink]="[ '/contact' ]" [routerLinkActive]="[ 'active' ]">Contacte</a>
       </li>
     </ul>
     <div class="form-inline my-2 my-md-3">
       <div *ngIf="!isLogged; else elseBlock">
-        <button class="btn btn-light mr-2" [routerLink]="['auth/login']" (click)="getActiveUrl()">Inicia sessió</button>
-        <button class="btn btn-light" [routerLink]="['auth/register']" (click)="getActiveUrl()">Crea un compte</button>
+        <button class="btn btn-light mr-2" [routerLink]="['auth/login']">Inicia sessió</button>
+        <button class="btn btn-light" [routerLink]="['auth/register']">Crea un compte</button>
       </div>
       <ng-template #elseBlock>
-        <button class="btn btn-light mr-2" [routerLink]="['dashboard']">Dashboard</button>
+        <button class="btn btn-light mr-2" [routerLink]="['dashboard/home']">Dashboard</button>
         <button class="btn btn-light mr-2" (click)="logOut()">Logout</button>
       </ng-template>
     </div>
