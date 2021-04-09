@@ -6,6 +6,6 @@ export interface IAuthService {
   login(user: IUser): Observable<IJwtResponse>;
   register(user: IUser): Observable<IJwtResponse>;
   getToken(): string;
-  logout(): void;
+  logout(from: string): void;
   isLogged(): boolean;
 }

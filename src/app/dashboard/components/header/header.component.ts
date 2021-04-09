@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faUser } from '@fortawesome/free-solid-svg-icons';
+import {AuthService} from '../../../services/_auth/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-header',
@@ -9,10 +11,15 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 export class HeaderComponent implements OnInit {
 
   faBars = faBars;
+  faUser = faUser;
 
-  constructor() { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  logout(): void {
+    const from = 'dashboard';
+    this.authService.logout(from);
+  }
 }

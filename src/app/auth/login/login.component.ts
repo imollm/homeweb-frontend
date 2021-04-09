@@ -18,8 +18,8 @@ export class LoginComponent implements OnInit {
     private router: Router)
   {
     this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required], )
+      email: new FormControl('admin@homeweb.com', [Validators.required, Validators.email]),
+      password: new FormControl('12345678', [Validators.required], )
     });
   }
 

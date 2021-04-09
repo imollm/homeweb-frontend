@@ -18,8 +18,8 @@ export class HeaderComponent implements OnInit {
     this.isLogged = this.authService.isLogged();
   }
 
-  logOut(): void {
-    this.authService.logout();
-    window.location.reload();
+  logout(): void {
+    const from = 'home';
+    this.authService.logout(from);
   }
 }

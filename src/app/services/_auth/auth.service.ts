@@ -54,18 +54,27 @@ export class AuthService implements IAuthService {
     ));
   }
 
-  logout(): Observable<IJwtResponse> {
-    return this.httpClient.get<IJwtResponse>(this.logoutEndPoint)
-      .pipe(tap(
-        (res: IJwtResponse) => {
-          if (res.success) {
-            this.token = '';
-            localStorage.removeItem('ACCESS_TOKEN');
-            localStorage.removeItem('EXPIRES_IN');
-            this.router.navigate(['home']);
-          }
+  logout(from: string): void {
+      this.httpClient.get<IJwtResponse>(this.logoutEndPoint).subscribe((res) => {
+        if (res.success) {
+          this.removeToken().then((removed) => {
+            if (removed) {
+              from === 'dashboard'
+                ? this.router.navigate(['../home'])
+                : window.location.reload();
+            }
+          });
         }
-      ));
+      });
+  }
+
+  private removeToken(): Promise<boolean> {
+    return new Promise<boolean>(resolve => {
+      this.token = '';
+      localStorage.removeItem('ACCESS_TOKEN');
+      localStorage.removeItem('EXPIRES_IN');
+      resolve(true);
+    });
   }
 
   private saveToken(token: string): void {
