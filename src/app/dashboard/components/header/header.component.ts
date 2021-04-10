@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import { faBars, faUser } from '@fortawesome/free-solid-svg-icons';
 import {AuthService} from '../../../services/_auth/auth.service';
 import {IAuthUser} from '../../../models/auth-user';
@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit, OnChanges {
   faBars = faBars;
   faUser = faUser;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
   }
