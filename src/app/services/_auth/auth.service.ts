@@ -7,15 +7,16 @@ import {Observable, BehaviorSubject} from 'rxjs';
 import {IAuthService} from './auth-service-interface';
 import {Router} from '@angular/router';
 import {EndPointMapper} from '../../api/end-point-mapper';
+import {ApiResponseI} from '../../models/api-response';
 
 @Injectable()
 export class AuthService implements IAuthService {
 
-  registerEndPoint: string;
-  loginEndPoint: string;
-  logoutEndPoint: string;
-  resource = 'auth';
-  authSubject = new BehaviorSubject(false);
+  private registerEndPoint: string;
+  private loginEndPoint: string;
+  private logoutEndPoint: string;
+  private userEndPoint: string;
+  private resource = 'auth';
   private token: string | null | undefined;
 
   constructor(
@@ -26,6 +27,7 @@ export class AuthService implements IAuthService {
     this.registerEndPoint = this.endPointMapper.getEndPointUrl(this.resource, 'register');
     this.loginEndPoint = this.endPointMapper.getEndPointUrl(this.resource, 'login');
     this.logoutEndPoint = this.endPointMapper.getEndPointUrl(this.resource, 'logout');
+    this.userEndPoint = this.endPointMapper.getEndPointUrl(this.resource, 'user');
   }
 
   register(user: IUser): Observable<IJwtResponse> {
@@ -92,5 +94,9 @@ export class AuthService implements IAuthService {
 
   isLogged(): boolean {
     return this.getToken() !== null;
+  }
+
+  async getAuthUser(): Promise<any> {
+    return this.httpClient.get<ApiResponseI>(this.userEndPoint).toPromise();
   }
 }
