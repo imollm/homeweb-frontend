@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { faTachometerAlt, faHome, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
+import {Component, Input, OnInit} from '@angular/core';
+import { faTachometerAlt, faHome, faAngleLeft, faFlag, faGlobeEurope, faCity, faMoneyCheckAlt, faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons';
+import {IAuthUser} from '../../../models/auth-user';
 
 @Component({
   selector: 'app-dashboard-sidebar',
@@ -8,9 +9,17 @@ import { faTachometerAlt, faHome, faAngleLeft } from '@fortawesome/free-solid-sv
 })
 export class SidebarComponent implements OnInit {
 
+  @Input() authUser: IAuthUser = {} as IAuthUser;
+
   faTachometerAlt = faTachometerAlt;
   faHome = faHome;
   faAngleLeft = faAngleLeft;
+  faCountry = faGlobeEurope;
+  faCity = faCity;
+  faCategory = faFlag;
+  faSale = faMoneyCheckAlt;
+  faTour = faMapMarkerAlt;
+
 
   constructor() { }
 
