@@ -2,7 +2,9 @@
 <div id="wrapper">
 
   <!-- Sidebar -->
-  <app-dashboard-sidebar></app-dashboard-sidebar>
+  <app-dashboard-sidebar
+    [authUser]="authUser"
+  ></app-dashboard-sidebar>
   <!-- End of Sidebar -->
 
   <!-- Content Wrapper -->
@@ -12,7 +14,9 @@
     <div id="content">
 
       <!-- Topbar -->
-      <app-dashboard-header></app-dashboard-header>
+      <app-dashboard-header
+        [authUser]="authUser"
+      ></app-dashboard-header>
       <!-- End of Topbar -->
 
       <router-outlet></router-outlet>
