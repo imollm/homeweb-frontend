@@ -1,0 +1,42 @@
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary" *ngIf="dataTable">
+      {{dataTable.title}}
+    </h6>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table *ngIf="dataTable" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+        <tr>
+          <th *ngFor="let colName of dataTable.colsName">
+            {{colName.text}}
+          </th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+          <th *ngFor="let colName of dataTable.colsName">
+            {{colName.text}}
+          </th>
+        </tr>
+        </tfoot>
+        <tbody>
+        <tr *ngFor="let element of dataTable.data">
+          <td *ngFor="let row of dataTable.colsName">
+            <div [ngSwitch]="row.colName">
+              <div *ngSwitchCase="'price'">
+                {{formatPrice(element[row.colName])}}
+              </div>
+              <div *ngSwitchCase="'built_meters'" [innerHTML]="formatMeters(element[row.colName])"></div>
+              <div *ngSwitchDefault>
+                {{element[row.colName]}}
+              </div>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
