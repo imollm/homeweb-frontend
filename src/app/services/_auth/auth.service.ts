@@ -96,7 +96,7 @@ export class AuthService implements IAuthService {
     return this.getToken() !== null;
   }
 
-  async getAuthUser(): Promise<any> {
+  getAuthUser(): Promise<ApiResponseI> {
     return this.httpClient.get<ApiResponseI>(this.userEndPoint).toPromise();
   }
 }
