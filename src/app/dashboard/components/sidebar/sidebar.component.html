@@ -27,42 +27,42 @@
   </div>
 
   <!-- Nav Item - Pages Collapse Menu -->
-  <li class="nav-item">
+  <li class="nav-item" *ngIf="properties">
     <a class="nav-link collapsed">
       <fa-icon [icon]="faHome"></fa-icon>
       <span class="ml-3">Propietats</span>
     </a>
   </li>
 
-  <li class="nav-item">
+  <li class="nav-item" *ngIf="categories">
     <a class="nav-link collapsed" href="#">
       <fa-icon [icon]="faCategory"></fa-icon>
       <span class="ml-3">Categories</span>
     </a>
   </li>
 
-  <li class="nav-item">
+  <li class="nav-item" *ngIf="sales">
     <a class="nav-link collapsed" href="#">
       <fa-icon [icon]="faSale"></fa-icon>
       <span class="ml-3">Vendes</span>
     </a>
   </li>
 
-  <li class="nav-item">
+  <li class="nav-item" *ngIf="tours">
     <a class="nav-link collapsed" href="#">
       <fa-icon [icon]="faTour"></fa-icon>
       <span class="ml-3">Visites</span>
     </a>
   </li>
 
-  <li class="nav-item">
+  <li class="nav-item" *ngIf="countries">
     <a class="nav-link collapsed" href="#">
       <fa-icon [icon]="faCountry"></fa-icon>
       <span class="ml-3">Països</span>
     </a>
   </li>
 
-  <li class="nav-item">
+  <li class="nav-item" *ngIf="cities">
     <a class="nav-link collapsed" href="#">
       <fa-icon [icon]="faCity"></fa-icon>
       <span class="ml-3">Ciutats</span>
@@ -71,12 +71,5 @@
 
   <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block">
-
-  <!-- Sidebar Toggler (Sidebar) -->
-  <div class="text-center d-none d-md-inline">
-    <button class="rounded-circle border-0" id="sidebarToggle">
-      <fa-icon [icon]="faAngleLeft"></fa-icon>
-    </button>
-  </div>
 
 </ul>
