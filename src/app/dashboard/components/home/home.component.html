@@ -1,1 +1,13 @@
+<div class="container-fluid">
+  <div [ngSwitch]="role">
 
+    <app-dashboard-home-admin *ngSwitchCase="'admin'"></app-dashboard-home-admin>
+
+    <app-dashboard-home-employee *ngSwitchCase="'employee'"></app-dashboard-home-employee>
+
+    <app-dashboard-home-customer *ngSwitchCase="'customer'"></app-dashboard-home-customer>
+
+    <app-dashboard-home-owner *ngSwitchCase="'owner'"></app-dashboard-home-owner>
+
+  </div>
+</div>

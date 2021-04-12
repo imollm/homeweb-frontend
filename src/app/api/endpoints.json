@@ -145,6 +145,13 @@
         "method": "GET",
         "auth": false
       }
+    },
+    "sales": {
+      "index": {
+        "uri": "/sales/index",
+        "method": "GET",
+        "auth": true
+      }
     }
   }
 }

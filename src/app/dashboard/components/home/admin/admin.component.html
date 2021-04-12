@@ -1,0 +1,30 @@
+<h1 class="px-2 py-4 text-center">Panell de control Administrador</h1>
+<div class="row d-flex justify-content-between">
+  <div class="col-xl-3 col-md-6 mb-4">
+    <app-dashboard-card
+      [toShow]="totalProperties"
+    ></app-dashboard-card>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <app-dashboard-card
+      [toShow]="totalSales"
+    ></app-dashboard-card>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <app-dashboard-card
+      [toShow]="totalAmountOfSales"
+    ></app-dashboard-card>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <app-dashboard-card
+      [toShow]="totalSalesLastMonth"
+    ></app-dashboard-card>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xl-12">
+    <app-dashboard-table
+      [toShow]="dataTable"
+    ></app-dashboard-table>
+  </div>
+</div>

@@ -8,6 +8,12 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import { HomeComponent } from './components/home/home.component';
+import { TableComponent } from './components/table/table.component';
+import { CardComponent } from './components/card/card.component';
+import { AdminComponent } from './components/home/admin/admin.component';
+import { EmployeeComponent } from './components/home/employee/employee.component';
+import { CustomerComponent } from './components/home/customer/customer.component';
+import { OwnerComponent } from './components/home/owner/owner.component';
 
 
 @NgModule({
@@ -16,7 +22,13 @@ import { HomeComponent } from './components/home/home.component';
     HeaderComponent,
     SidebarComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    TableComponent,
+    CardComponent,
+    AdminComponent,
+    EmployeeComponent,
+    CustomerComponent,
+    OwnerComponent
   ],
   imports: [
     CommonModule,

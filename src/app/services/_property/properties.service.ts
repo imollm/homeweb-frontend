@@ -17,9 +17,9 @@ export class PropertiesService {
     this.resource = 'properties';
   }
 
-  getProperties(): Observable<ApiResponseI> {
+  async getProperties(): Promise<ApiResponseI> {
     const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'index');
-    return this.httpClient.get<ApiResponseI>(endpoint);
+    return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
   }
 
   createProperty(property: IProperty): Observable<IProperty> {

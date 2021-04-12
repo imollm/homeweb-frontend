@@ -14,4 +14,8 @@ export class HelpersService {
     });
     return formatter.format(price);
   }
+
+  static formatMeters(meters: string): string {
+    return meters + ' m<sup>2</sup>';
+  }
 }
