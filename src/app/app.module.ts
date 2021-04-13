@@ -25,6 +25,7 @@ import { PropertyComponent } from './components/property/property.component';
 import { CardComponent } from './components/layouts/card/card.component';
 import { AgmCoreModule } from '@agm/core';
 import { MapsComponent } from './components/maps/maps.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { MapsComponent } from './components/maps/maps.component';
     AlertModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCNwaQTFTIunXT6r9Ugdk5GowFReVaMdAY'
-    })
+    }),
+    NgbModule
   ],
   providers: [
     AuthGuard,
