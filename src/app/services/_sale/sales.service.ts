@@ -21,4 +21,9 @@ export class SalesService {
     const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'index');
     return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
   }
+
+  async getLastYear(): Promise<ApiResponseI> {
+    const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'actualYear');
+    return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
+  }
 }

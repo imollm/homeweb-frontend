@@ -151,6 +151,11 @@
         "uri": "/sales/index",
         "method": "GET",
         "auth": true
+      },
+      "actualYear": {
+        "uri": "/sales/actualYear",
+        "method": "GET",
+        "auth": true
       }
     }
   }
