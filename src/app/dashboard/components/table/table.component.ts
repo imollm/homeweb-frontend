@@ -28,4 +28,8 @@ export class TableComponent implements OnInit, OnChanges {
   formatMeters(meters: any): string {
     return HelpersService.formatMeters(meters);
   }
+
+  formatDate(timestamp: string): string {
+    return HelpersService.formatDate(timestamp);
+  }
 }

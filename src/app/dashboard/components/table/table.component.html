@@ -29,6 +29,9 @@
                 {{formatPrice(element[row.colName])}}
               </div>
               <div *ngSwitchCase="'built_meters'" [innerHTML]="formatMeters(element[row.colName])"></div>
+              <div *ngSwitchCase="'created_at'">
+                {{formatDate(element[row.colName])}}
+              </div>
               <div *ngSwitchDefault>
                 {{element[row.colName]}}
               </div>

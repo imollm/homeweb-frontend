@@ -18,4 +18,8 @@ export class HelpersService {
   static formatMeters(meters: string): string {
     return meters + ' m<sup>2</sup>';
   }
+
+  static formatDate(timestamp: string): string {
+    return new Date(timestamp).toLocaleDateString('es-ES');
+  }
 }
