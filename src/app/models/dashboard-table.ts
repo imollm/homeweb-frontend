@@ -1,9 +1,9 @@
-interface ITableRow {
+interface ITableCol {
   colName: string;
   text: string;
 }
 export interface IDashboardTable {
   title: string;
-  colsName: ITableRow[];
+  colsName: ITableCol[];
   data: any[];
 }
