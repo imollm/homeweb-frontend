@@ -37,6 +37,9 @@ import { SalesAdminComponent } from './components/resources/sales/admin/sales-ad
 import { SalesEmployeeComponent } from './components/resources/sales/employee/sales-employee.component';
 
 import { ToursComponent } from './components/resources/tours/tours.component';
+import { ToursAdminComponent } from './components/resources/tours/admin/tours-admin.component';
+import { ToursCustomerComponent } from './components/resources/tours/customer/tours-customer.component';
+import { ToursEmployeeComponent } from './components/resources/tours/employee/tours-employee.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +69,10 @@ import { ToursComponent } from './components/resources/tours/tours.component';
     SalesComponent,
     SalesAdminComponent,
     SalesEmployeeComponent,
-    ToursComponent
+    ToursComponent,
+    ToursAdminComponent,
+    ToursCustomerComponent,
+    ToursEmployeeComponent
   ],
   imports: [
     CommonModule,
