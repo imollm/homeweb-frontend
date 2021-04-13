@@ -14,7 +14,7 @@ import { AdminComponent } from './components/home/admin/admin.component';
 import { EmployeeComponent } from './components/home/employee/employee.component';
 import { CustomerComponent } from './components/home/customer/customer.component';
 import { OwnerComponent } from './components/home/owner/owner.component';
-
+import {ChartsModule} from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,8 @@ import { OwnerComponent } from './components/home/owner/owner.component';
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ChartsModule
   ]
 })
 export class DashboardModule { }
