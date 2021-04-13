@@ -9,6 +9,7 @@ import {CategoriesComponent} from './components/resources/categories/categories.
 import {CitiesComponent} from './components/resources/cities/cities.component';
 import {CountriesComponent} from './components/resources/countries/countries.component';
 import {SalesComponent} from './components/resources/sales/sales.component';
+import {ToursComponent} from './components/resources/tours/tours.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
       {path: 'cities', component: CitiesComponent},
       {path: 'countries', component: CountriesComponent},
       {path: 'sales', component: SalesComponent},
+      {path: 'tours', component: ToursComponent},
       {path: '**', component: NotFoundComponent}
     ]
   }
