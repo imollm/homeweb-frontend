@@ -30,6 +30,8 @@ import { CitiesComponent } from './components/resources/cities/cities.component'
 import { CitiesAdminComponent } from './components/resources/cities/admin/cities-admin.component';
 
 import { CountriesComponent } from './components/resources/countries/countries.component';
+import { CountriesAdminComponent } from './components/resources/countries/admin/countries-admin.component';
+
 import { SalesComponent } from './components/resources/sales/sales.component';
 import { ToursComponent } from './components/resources/tours/tours.component';
 
@@ -57,6 +59,7 @@ import { ToursComponent } from './components/resources/tours/tours.component';
     CitiesComponent,
     CitiesAdminComponent,
     CountriesComponent,
+    CountriesAdminComponent,
     SalesComponent,
     ToursComponent
   ],
