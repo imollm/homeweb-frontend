@@ -27,6 +27,8 @@ import { CategoriesAdminComponent } from './components/resources/categories/admi
 import { CategoriesEmployeeComponent } from './components/resources/categories/employee/categories-employee.component';
 
 import { CitiesComponent } from './components/resources/cities/cities.component';
+import { CitiesAdminComponent } from './components/resources/cities/admin/cities-admin.component';
+
 import { CountriesComponent } from './components/resources/countries/countries.component';
 import { SalesComponent } from './components/resources/sales/sales.component';
 import { ToursComponent } from './components/resources/tours/tours.component';
@@ -53,6 +55,7 @@ import { ToursComponent } from './components/resources/tours/tours.component';
     CategoriesAdminComponent,
     CategoriesEmployeeComponent,
     CitiesComponent,
+    CitiesAdminComponent,
     CountriesComponent,
     SalesComponent,
     ToursComponent
