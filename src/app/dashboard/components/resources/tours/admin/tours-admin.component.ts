@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard-tours-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  templateUrl: './tours-admin.component.html',
+  styleUrls: ['./tours-admin.component.css']
 })
 export class ToursAdminComponent implements OnInit {
 

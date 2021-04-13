@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard-tours-employee',
-  templateUrl: './employee.component.html',
-  styleUrls: ['./employee.component.css']
+  templateUrl: './tours-employee.component.html',
+  styleUrls: ['./tours-employee.component.css']
 })
 export class ToursEmployeeComponent implements OnInit {
 
