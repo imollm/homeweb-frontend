@@ -28,7 +28,7 @@
 
   <!-- Nav Item - Pages Collapse Menu -->
   <li class="nav-item" *ngIf="properties">
-    <a class="nav-link collapsed">
+    <a class="nav-link collapsed" [routerLink]="['/dashboard/properties']">
       <fa-icon [icon]="faHome"></fa-icon>
       <span class="ml-3">Propietats</span>
     </a>

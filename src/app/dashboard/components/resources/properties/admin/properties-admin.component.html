@@ -1,1 +1,9 @@
-<p>admin works!</p>
+<h1 class="px-2 py-4 text-center">{{title}}</h1>
+<h3>{{subTitle}}</h3>
+<hr class="topbar-divider">
+<div class="container-fluid">
+  <app-dashboard-table
+    [toShow]="propertiesTable"
+    [actionButtons]="propertiesTableActions"
+  ></app-dashboard-table>
+</div>

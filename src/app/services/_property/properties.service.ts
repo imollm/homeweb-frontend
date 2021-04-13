@@ -36,4 +36,9 @@ export class PropertiesService {
     const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'showById', propertyId);
     return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
   }
+
+  async getActiveProperties(): Promise<ApiResponseI> {
+    const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'active');
+    return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
+  }
 }

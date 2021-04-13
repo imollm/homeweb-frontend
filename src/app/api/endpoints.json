@@ -67,6 +67,11 @@
         "uri": "/properties/last",
         "method": "GET",
         "auth": false
+      },
+      "active": {
+        "uri": "/properties/active",
+        "method": "GET",
+        "auth": false
       }
     },
     "roles": {
