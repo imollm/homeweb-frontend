@@ -12,12 +12,18 @@
           <th *ngFor="let colName of dataTable.colsName">
             {{colName.text}}
           </th>
+          <th *ngIf="actionButtons">
+            Accions
+          </th>
         </tr>
         </thead>
         <tfoot>
         <tr>
           <th *ngFor="let colName of dataTable.colsName">
             {{colName.text}}
+          </th>
+          <th *ngIf="actionButtons">
+            Accions
           </th>
         </tr>
         </tfoot>
@@ -32,8 +38,22 @@
               <div *ngSwitchCase="'created_at'">
                 {{formatDate(element[row.colName])}}
               </div>
+              <div *ngSwitchCase="'plot_meters'" [innerHTML]="formatMeters(element[row.colName])"></div>
               <div *ngSwitchDefault>
                 {{element[row.colName]}}
+              </div>
+            </div>
+          </td>
+          <td *ngIf="actionButtons">
+            <div class="d-flex flex-row justify-content-between">
+              <div>
+                <fa-icon [icon]="faView" class="icon-view"></fa-icon>
+              </div>
+              <div>
+                <fa-icon [icon]="faEdit" class="icon-edit"></fa-icon>
+              </div>
+              <div>
+                <fa-icon [icon]="faDelete" class="icon-delete"></fa-icon>
               </div>
             </div>
           </td>
