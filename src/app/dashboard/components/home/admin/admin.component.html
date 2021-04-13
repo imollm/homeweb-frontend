@@ -1,4 +1,4 @@
-<h1 class="px-2 py-4 text-center">Panell de control Administrador</h1>
+<h1 class="px-2 py-4 text-center">{{title}}</h1>
 <div class="row d-flex justify-content-between">
   <div class="col-xl-3 col-md-6 mb-4">
     <app-dashboard-card
@@ -26,5 +26,21 @@
     <app-dashboard-table
       [toShow]="dataTable"
     ></app-dashboard-table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xl-12">
+    <div class="d-block">
+      <h4 class="text-center">
+        Vendes {{actualYear}}
+      </h4>
+      <canvas baseChart
+        [data]="chartData"
+        [labels]="chartLabels"
+        [colors]="chartColors"
+        [legend]="chartLegend"
+        [chartType]="'line'"
+      ></canvas>
+    </div>
   </div>
 </div>
