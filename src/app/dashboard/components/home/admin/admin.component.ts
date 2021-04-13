@@ -14,6 +14,7 @@ import {Color, Label, SingleDataSet} from 'ng2-charts';
 export class AdminComponent implements OnInit {
 
   title = 'Admin Dashboard';
+  subTitle = 'Home';
   actualYear: number;
 
   totalProperties: IDashboardCard = {} as IDashboardCard;
