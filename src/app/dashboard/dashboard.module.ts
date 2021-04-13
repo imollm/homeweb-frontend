@@ -16,6 +16,17 @@ import { CustomerComponent } from './components/home/customer/customer.component
 import { OwnerComponent } from './components/home/owner/owner.component';
 import {ChartsModule} from 'ng2-charts';
 
+import { PropertiesComponent } from './components/resources/properties/properties.component';
+import { PropertiesAdminComponent } from './components/resources/properties/admin/properties-admin.component';
+import { PropertiesCustomerComponent } from './components/resources/properties/customer/properties-customer.component';
+import { PropertiesEmployeeComponent } from './components/resources/properties/employee/properties-employee.component';
+import { PropertiesOwnerComponent } from './components/resources/properties/owner/properties-owner.component';
+
+import { CitiesComponent } from './components/resources/cities/cities.component';
+import { CountriesComponent } from './components/resources/countries/countries.component';
+import { SalesComponent } from './components/resources/sales/sales.component';
+import { ToursComponent } from './components/resources/tours/tours.component';
+
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -28,7 +39,16 @@ import {ChartsModule} from 'ng2-charts';
     AdminComponent,
     EmployeeComponent,
     CustomerComponent,
-    OwnerComponent
+    OwnerComponent,
+    PropertiesComponent,
+    PropertiesAdminComponent,
+    PropertiesCustomerComponent,
+    PropertiesEmployeeComponent,
+    PropertiesOwnerComponent,
+    CitiesComponent,
+    CountriesComponent,
+    SalesComponent,
+    ToursComponent
   ],
   imports: [
     CommonModule,
