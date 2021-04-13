@@ -33,6 +33,9 @@ import { CountriesComponent } from './components/resources/countries/countries.c
 import { CountriesAdminComponent } from './components/resources/countries/admin/countries-admin.component';
 
 import { SalesComponent } from './components/resources/sales/sales.component';
+import { SalesAdminComponent } from './components/resources/sales/admin/sales-admin.component';
+import { SalesEmployeeComponent } from './components/resources/sales/employee/sales-employee.component';
+
 import { ToursComponent } from './components/resources/tours/tours.component';
 
 @NgModule({
@@ -61,6 +64,8 @@ import { ToursComponent } from './components/resources/tours/tours.component';
     CountriesComponent,
     CountriesAdminComponent,
     SalesComponent,
+    SalesAdminComponent,
+    SalesEmployeeComponent,
     ToursComponent
   ],
   imports: [
