@@ -132,6 +132,13 @@
         "auth": false
       }
     },
+    "countries": {
+      "index": {
+        "uri": "/countries/index",
+        "method": "GET",
+        "auth": false
+      }
+    },
     "contact": {
       "send": {
         "uri": "/contact/send",
@@ -161,6 +168,13 @@
         "uri": "/sales/actualYear",
         "method": "GET",
         "auth": true
+      }
+    },
+    "users": {
+      "owners": {
+        "uri": "/users/owners",
+        "method": "GET",
+        "auth": false
       }
     }
   }
