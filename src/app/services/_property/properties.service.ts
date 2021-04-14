@@ -22,9 +22,9 @@ export class PropertiesService {
     return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
   }
 
-  createProperty(property: IProperty): Observable<IProperty> {
+  createProperty(property: IProperty): Promise<ApiResponseI> {
     const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'create');
-    return this.httpClient.post<IProperty>(endpoint, property);
+    return this.httpClient.post<ApiResponseI>(endpoint, property).toPromise();
   }
 
   async getLastProperties(): Promise<ApiResponseI> {

@@ -20,13 +20,13 @@
       <!-- PLOT METERS -->
       <div class="input-group mb-3">
         <span class="input-group-text" id="property-plot-meters">Metres solar</span>
-        <input type="number" class="form-control" aria-describedby="property-plot-meters" formControlName="plotMeters">
+        <input type="number" class="form-control" aria-describedby="property-plot-meters" formControlName="plot_meters">
       </div>
 
       <!-- BUILT METERS -->
       <div class="input-group mb-3">
         <span class="input-group-text" id="property-built-meters">Metres construïts</span>
-        <input type="number" class="form-control" aria-describedby="property-built-meters" formControlName="builtMeters">
+        <input type="number" class="form-control" aria-describedby="property-built-meters" formControlName="built_meters">
       </div>
 
       <!-- ROOMS -->
@@ -50,9 +50,9 @@
       <!-- CITIES -->
       <div class="input-group mb-3">
         <span class="input-group-text" id="property-cities">Ciutat</span>
-        <select class="form-control" formControlName="city">
+        <select class="form-control" formControlName="city_id">
           <option [ngValue]="" disabled selected>Tria una ciutat</option>
-          <option *ngFor="let city of cities" [ngValue]="city">
+          <option *ngFor="let city of cities" [ngValue]="city.id">
             {{ city.name | titlecase }}
           </option>
         </select>
@@ -71,10 +71,9 @@
         <label class="input-group-text">
           <input
             type="radio"
-            [formControlName]="'energeticCertificate'"
-            [name]="'energeticCertificate'"
+            [formControlName]="'energetic_certification'"
+            [name]="'energetic_certification'"
             [value]="certificate.value"
-            (change)="onEnergeticCertificateChecked($event.target)"
           >
           <span class="ml-2">{{certificate.value}}</span>
         </label>
@@ -84,9 +83,9 @@
       <!-- CATEGORY -->
       <div class="input-group mb-3">
         <span class="input-group-text" id="property-category">Categoria</span>
-        <select class="form-control" formControlName="category">
+        <select class="form-control" formControlName="category_id">
           <option [ngValue]="" disabled selected>Tria una categoria</option>
-          <option *ngFor="let category of categories" [ngValue]="category">
+          <option *ngFor="let category of categories" [ngValue]="category.id">
             {{ category.name }}
           </option>
         </select>
@@ -96,11 +95,11 @@
       <div class="input-group mb-3">
         <span class="input-group-text" id="property-active">Actiu</span>
         <label class="input-group-text">
-          <input type="radio" name="active" value="1" formControlName="active" [checked]="true" />
+          <input type="radio" name="active" [value]="true" formControlName="active" />
           <span class="ml-2">Si</span>
         </label>
         <label class="input-group-text">
-          <input type="radio" name="active" value="0" formControlName="active" />
+          <input type="radio" name="active" [value]="false" formControlName="active" />
           <span class="ml-2">No</span>
         </label>
       </div>
@@ -114,9 +113,9 @@
       <!-- OWNER -->
       <div class="input-group mb-3">
         <span class="input-group-text" id="property-owner">Té propietari? Qui?</span>
-        <select class="form-control" formControlName="owner">
+        <select class="form-control" formControlName="user_id">
           <option [ngValue]="" disabled selected>-</option>
-          <option *ngFor="let owner of owners" [ngValue]="owner">
+          <option *ngFor="let owner of owners" [ngValue]="owner.id">
             {{ owner.name }}
           </option>
         </select>
