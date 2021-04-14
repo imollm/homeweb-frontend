@@ -16,6 +16,7 @@ import { CustomerComponent } from './components/home/customer/customer.component
 import { OwnerComponent } from './components/home/owner/owner.component';
 import { ChartsModule } from 'ng2-charts';
 import {ReactiveFormsModule} from '@angular/forms';
+import {AlertModule} from '../_alert/alert.module';
 
 import { PropertiesComponent } from './components/resources/properties/properties.component';
 import { PropertiesAdminComponent } from './components/resources/properties/admin/properties-admin.component';
@@ -42,6 +43,7 @@ import { ToursAdminComponent } from './components/resources/tours/admin/tours-ad
 import { ToursCustomerComponent } from './components/resources/tours/customer/tours-customer.component';
 import { ToursEmployeeComponent } from './components/resources/tours/employee/tours-employee.component';
 import { PropertiesCreateComponent } from './components/resources/properties/forms/create/properties-create.component';
+
 
 @NgModule({
   declarations: [
@@ -82,7 +84,8 @@ import { PropertiesCreateComponent } from './components/resources/properties/for
     DashboardRoutingModule,
     FontAwesomeModule,
     ChartsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AlertModule
   ]
 })
 export class DashboardModule { }
