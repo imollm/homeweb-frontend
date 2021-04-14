@@ -40,6 +40,7 @@ import { ToursComponent } from './components/resources/tours/tours.component';
 import { ToursAdminComponent } from './components/resources/tours/admin/tours-admin.component';
 import { ToursCustomerComponent } from './components/resources/tours/customer/tours-customer.component';
 import { ToursEmployeeComponent } from './components/resources/tours/employee/tours-employee.component';
+import { PropertiesCreateComponent } from './components/resources/properties/forms/create/properties-create.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { ToursEmployeeComponent } from './components/resources/tours/employee/to
     PropertiesCustomerComponent,
     PropertiesEmployeeComponent,
     PropertiesOwnerComponent,
+    PropertiesCreateComponent,
     CategoriesComponent,
     CategoriesAdminComponent,
     CategoriesEmployeeComponent,

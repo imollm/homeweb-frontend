@@ -10,6 +10,7 @@ import {CitiesComponent} from './components/resources/cities/cities.component';
 import {CountriesComponent} from './components/resources/countries/countries.component';
 import {SalesComponent} from './components/resources/sales/sales.component';
 import {ToursComponent} from './components/resources/tours/tours.component';
+import {PropertiesCreateComponent} from './components/resources/properties/forms/create/properties-create.component';
 
 const routes: Routes = [
   {
@@ -17,7 +18,11 @@ const routes: Routes = [
     children: [
       {path: '', component: HomeComponent},
       {path: 'home', component: HomeComponent},
-      {path: 'properties', component: PropertiesComponent},
+      {path: 'properties', component: PropertiesComponent,
+        children: [
+          {path: 'create', component: PropertiesCreateComponent}
+        ]
+      },
       {path: 'categories', component: CategoriesComponent},
       {path: 'cities', component: CitiesComponent},
       {path: 'countries', component: CountriesComponent},
