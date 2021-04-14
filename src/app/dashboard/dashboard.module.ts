@@ -15,6 +15,7 @@ import { EmployeeComponent } from './components/home/employee/employee.component
 import { CustomerComponent } from './components/home/customer/customer.component';
 import { OwnerComponent } from './components/home/owner/owner.component';
 import { ChartsModule } from 'ng2-charts';
+import {ReactiveFormsModule} from '@angular/forms';
 
 import { PropertiesComponent } from './components/resources/properties/properties.component';
 import { PropertiesAdminComponent } from './components/resources/properties/admin/properties-admin.component';
@@ -80,7 +81,8 @@ import { PropertiesCreateComponent } from './components/resources/properties/for
     CommonModule,
     DashboardRoutingModule,
     FontAwesomeModule,
-    ChartsModule
+    ChartsModule,
+    ReactiveFormsModule
   ]
 })
 export class DashboardModule { }

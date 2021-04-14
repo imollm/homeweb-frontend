@@ -1,1 +1,133 @@
-<p>create works!</p>
+<div class="container-fluid">
+
+  <h1 class="text-center my-5">{{title}}</h1>
+
+  <div class="mt-4 border-dark d-flex flex-column justify-content-center align-items-center">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+      <!-- REFERENCE -->
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="property-reference">Referència</span>
+        <input type="text" class="form-control" aria-describedby="property-reference" formControlName="reference">
+      </div>
+
+      <!-- TITLE -->
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="property-title">Títol</span>
+        <input type="text" class="form-control" aria-describedby="property-title" formControlName="title">
+      </div>
+
+      <!-- PLOT METERS -->
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="property-plot-meters">Metres solar</span>
+        <input type="number" class="form-control" aria-describedby="property-plot-meters" formControlName="plotMeters">
+      </div>
+
+      <!-- BUILT METERS -->
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="property-built-meters">Metres construïts</span>
+        <input type="number" class="form-control" aria-describedby="property-built-meters" formControlName="builtMeters">
+      </div>
+
+      <!-- ROOMS -->
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="property-rooms">Habitacions</span>
+        <input type="number" class="form-control" aria-describedby="property-rooms" formControlName="rooms"/>
+      </div>
+
+      <!-- BATHS -->
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="property-baths">Banys</span>
+        <input type="number" class="form-control" aria-describedby="property-baths" formControlName="baths"/>
+      </div>
+
+      <!-- ADDRESS -->
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="property-address">Adreça</span>
+        <input type="text" class="form-control" aria-describedby="property-address" formControlName="address">
+      </div>
+
+      <!-- CITIES -->
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="property-cities">Ciutat</span>
+        <select class="form-control" formControlName="city">
+          <option [ngValue]="" disabled selected>Tria una ciutat</option>
+          <option *ngFor="let city of cities" [ngValue]="city">
+            {{ city.name | titlecase }}
+          </option>
+        </select>
+      </div>
+
+      <!-- DESCRIPTION -->
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="property-description">Descripció</span>
+        <textarea class="form-control" aria-describedby="property-description" formControlName="description"></textarea>
+      </div>
+
+      <!-- ENERGETIC CERTIFICATE -->
+      <div class="input-group mb-3">
+        <span class="input-group-text">Certificat energètic</span>
+        <div *ngFor="let certificate of certificates | keyvalue">
+        <label class="input-group-text">
+          <input
+            type="radio"
+            [formControlName]="'energeticCertificate'"
+            [name]="'energeticCertificate'"
+            [value]="certificate.value"
+            (change)="onEnergeticCertificateChecked($event.target)"
+          >
+          <span class="ml-2">{{certificate.value}}</span>
+        </label>
+        </div>
+      </div>
+
+      <!-- CATEGORY -->
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="property-category">Categoria</span>
+        <select class="form-control" formControlName="category">
+          <option [ngValue]="" disabled selected>Tria una categoria</option>
+          <option *ngFor="let category of categories" [ngValue]="category">
+            {{ category.name }}
+          </option>
+        </select>
+      </div>
+
+      <!-- ACTIVE -->
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="property-active">Actiu</span>
+        <label class="input-group-text">
+          <input type="radio" name="active" value="1" formControlName="active" [checked]="true" />
+          <span class="ml-2">Si</span>
+        </label>
+        <label class="input-group-text">
+          <input type="radio" name="active" value="0" formControlName="active" />
+          <span class="ml-2">No</span>
+        </label>
+      </div>
+
+      <!-- PRICE -->
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="property-price">Preu</span>
+        <input type="number" class="form-control" aria-describedby="property-price" formControlName="price">
+      </div>
+
+      <!-- OWNER -->
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="property-owner">Té propietari? Qui?</span>
+        <select class="form-control" formControlName="owner">
+          <option [ngValue]="" disabled selected>-</option>
+          <option *ngFor="let owner of owners" [ngValue]="owner">
+            {{ owner.name }}
+          </option>
+        </select>
+      </div>
+
+      <!-- SUBMIT -->
+      <div class="input-group my-5 d-flex justify-content-center">
+        <button type="submit" class="btn btn-secondary">Crear</button>
+      </div>
+
+    </form>
+  </div>
+
+</div>

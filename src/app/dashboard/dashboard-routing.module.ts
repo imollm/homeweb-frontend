@@ -18,11 +18,8 @@ const routes: Routes = [
     children: [
       {path: '', component: HomeComponent},
       {path: 'home', component: HomeComponent},
-      {path: 'properties', component: PropertiesComponent,
-        children: [
-          {path: 'create', component: PropertiesCreateComponent}
-        ]
-      },
+      {path: 'properties', component: PropertiesComponent},
+      {path: 'properties/create', component: PropertiesCreateComponent},
       {path: 'categories', component: CategoriesComponent},
       {path: 'cities', component: CitiesComponent},
       {path: 'countries', component: CountriesComponent},
