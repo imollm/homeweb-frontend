@@ -38,11 +38,7 @@ export class PropertiesAdminComponent implements OnInit {
           {colName: 'rooms', text: 'Habitacions'},
           {colName: 'baths', text: 'Banys'}
         ];
-        console.log(response.data);
       }
     });
   }
 }
-// view:   {icon: faEye, color: 'green'},
-// edit:   {icon: faPencilAlt, color: 'yellow'},
-// delete: {icon: faCross, color: 'red'}
