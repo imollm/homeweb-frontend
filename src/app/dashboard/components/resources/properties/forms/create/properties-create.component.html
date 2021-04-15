@@ -1,20 +1,27 @@
 <div class="container-fluid">
 
-  <h1 class="text-center my-5">{{title}}</h1>
+  <h1 class="text-center my-5">{{pageTitle}}</h1>
 
   <div class="mt-4 border-dark d-flex flex-column justify-content-center align-items-center">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
       <!-- REFERENCE -->
       <div class="input-group mb-3">
-        <span class="input-group-text" id="property-reference">Referència</span>
+        <span class="input-group-text" id="property-reference">Referència*</span>
         <input type="text" class="form-control" aria-describedby="property-reference" formControlName="reference">
       </div>
+      <div *ngIf="reference.invalid && (reference.dirty || reference.touched) && reference.errors.required || (isSubmitted && form.invalid)" class="text-danger mt-0 mb-2">
+        La referència es requerida
+      </div>
+      <!-- END REFERENCE -->
 
       <!-- TITLE -->
       <div class="input-group mb-3">
-        <span class="input-group-text" id="property-title">Títol</span>
+        <span class="input-group-text" id="property-title">Títol*</span>
         <input type="text" class="form-control" aria-describedby="property-title" formControlName="title">
+      </div>
+      <div *ngIf="title.invalid && (title.dirty || title.touched) && title.errors.required || (isSubmitted && form.invalid)" class="text-danger mt-0 mb-2">
+        El títol es requerit
       </div>
 
       <!-- PLOT METERS -->
@@ -49,7 +56,7 @@
 
       <!-- CITIES -->
       <div class="input-group mb-3">
-        <span class="input-group-text" id="property-cities">Ciutat</span>
+        <span class="input-group-text" id="property-cities">Ciutat*</span>
         <select class="form-control" formControlName="city_id">
           <option [ngValue]="" disabled selected>Tria una ciutat</option>
           <option *ngFor="let city of cities" [ngValue]="city.id">
@@ -57,6 +64,11 @@
           </option>
         </select>
       </div>
+      <div *ngIf="cityId.invalid && (cityId.dirty || cityId.touched) && cityId.errors.required || (isSubmitted && form.invalid)" class="text-danger mt-0 mb-2">
+          Has de escollir una ciutat
+      </div>
+      <!-- END CITIES -->
+
 
       <!-- DESCRIPTION -->
       <div class="input-group mb-3">
@@ -82,14 +94,18 @@
 
       <!-- CATEGORY -->
       <div class="input-group mb-3">
-        <span class="input-group-text" id="property-category">Categoria</span>
+        <span class="input-group-text" id="property-category">Categoria*</span>
         <select class="form-control" formControlName="category_id">
           <option [ngValue]="" disabled selected>Tria una categoria</option>
           <option *ngFor="let category of categories" [ngValue]="category.id">
-            {{ category.name }}
+            {{ category.name | titlecase}}
           </option>
         </select>
       </div>
+      <div *ngIf="categoryId.invalid && (categoryId.dirty || categoryId.touched) && categoryId.errors.required || (isSubmitted && form.invalid)" class="text-danger mt-0 mb-2">
+        Has de escollir una categoria
+      </div>
+      <!-- END CATEGORY -->
 
       <!-- ACTIVE -->
       <div class="input-group mb-3">
