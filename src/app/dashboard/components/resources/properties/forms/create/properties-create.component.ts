@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {PropertiesService} from '../../../../../../services/_property/properties.service';
 import {AlertService} from '../../../../../../_alert/alert.service';
 import {CategoriesService} from '../../../../../../services/_category/categories.service';
@@ -17,9 +17,10 @@ import {CitiesService} from '../../../../../../services/_city/cities.service';
 })
 export class PropertiesCreateComponent implements OnInit {
 
-  title = 'Crear propietat';
+  pageTitle = 'Crear propietat';
 
   form: FormGroup;
+  isSubmitted = false;
   cities: ICity[] = [];
   categories: ICategory[] = [];
   owners: IUser[] = [];
@@ -35,24 +36,24 @@ export class PropertiesCreateComponent implements OnInit {
     private alertService: AlertService
   ) {
     this.form = this.fb.group({
-      user_id: new FormControl(3),
-      category_id: new FormControl(1, Validators.required),
-      city_id: new FormControl(1, Validators.required),
-      title: new FormControl('asdfasdf', Validators.required),
-      reference: new FormControl('asdfasdf', Validators.required),
-      image: new FormControl('image.jpg'),
-      plot_meters: new FormControl(222, Validators.required),
-      built_meters: new FormControl(222, Validators.required),
-      rooms: new FormControl(2, Validators.required),
-      baths: new FormControl(3, Validators.required),
-      address: new FormControl('asdfasdfasdf', Validators.required),
+      user_id: new FormControl(''),
+      category_id: new FormControl('', Validators.required),
+      city_id: new FormControl('', Validators.required),
+      title: new FormControl('', Validators.required),
+      reference: new FormControl('', Validators.required),
+      image: new FormControl(''),
+      plot_meters: new FormControl(0),
+      built_meters: new FormControl(0),
+      rooms: new FormControl(0),
+      baths: new FormControl(0),
+      address: new FormControl(''),
       longitude: new FormControl(0),
       latitude: new FormControl(0),
-      description: new FormControl('salkjdflaskhjdf', Validators.required),
-      energetic_certification: new FormControl('obtingut', Validators.required),
+      description: new FormControl(''),
+      energetic_certification: new FormControl('obtingut'),
       sold: new FormControl(0),
-      active: new FormControl(true, Validators.required),
-      price: new FormControl(234234, Validators.required),
+      active: new FormControl(true),
+      price: new FormControl(0),
     });
   }
 
@@ -61,14 +62,21 @@ export class PropertiesCreateComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log(this.form.value);
-    this.propertiesService.createProperty(this.form.value).then((response) => {
-      if (response.success) {
-        this.alertService.success(response.message);
-      } else {
-        this.alertService.error(response.message);
-      }
-    });
+    this.isSubmitted = true;
+    if (this.form.valid) {
+      this.propertiesService.createProperty(this.form.value).then((response) => {
+        if (response.success) {
+          this.alertService.success(response.message);
+          this.resetForm();
+        } else {
+          this.alertService.warn(response.message);
+        }
+      }).catch((error) => {
+        console.log(error);
+        if (error.status === 500) { this.alertService.error(error.statusText); }
+        this.alertService.error(error.error.errors.reference[0]);
+      });
+    }
   }
 
   private getValues(): void {
@@ -90,4 +98,26 @@ export class PropertiesCreateComponent implements OnInit {
       });
     });
   }
+
+  private resetForm(): void {
+    this.form.reset();
+    this.isSubmitted = false;
+    this.form.get('plot_meters').setValue(0);
+    this.form.get('built_meters').setValue(0);
+    this.form.get('rooms').setValue(0);
+    this.form.get('baths').setValue(0);
+    this.form.get('longitude').setValue(0);
+    this.form.get('latitude').setValue(0);
+    this.form.get('sold').setValue(0);
+    this.form.get('active').setValue(true);
+    this.form.get('price').setValue(0);
+  }
+
+  get categoryId(): AbstractControl { return this.form.get('category_id'); }
+
+  get cityId(): AbstractControl { return this.form.get('city_id'); }
+
+  get title(): AbstractControl { return this.form.get('title'); }
+
+  get reference(): AbstractControl { return this.form.get('reference'); }
 }
