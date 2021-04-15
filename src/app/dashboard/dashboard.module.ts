@@ -17,6 +17,7 @@ import { OwnerComponent } from './components/home/owner/owner.component';
 import { ChartsModule } from 'ng2-charts';
 import {ReactiveFormsModule} from '@angular/forms';
 import {AlertModule} from '../_alert/alert.module';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { PropertiesComponent } from './components/resources/properties/properties.component';
 import { PropertiesAdminComponent } from './components/resources/properties/admin/properties-admin.component';
@@ -79,13 +80,14 @@ import { PropertiesCreateComponent } from './components/resources/properties/for
     ToursCustomerComponent,
     ToursEmployeeComponent
   ],
-  imports: [
-    CommonModule,
-    DashboardRoutingModule,
-    FontAwesomeModule,
-    ChartsModule,
-    ReactiveFormsModule,
-    AlertModule
-  ]
+    imports: [
+        CommonModule,
+        DashboardRoutingModule,
+        FontAwesomeModule,
+        ChartsModule,
+        ReactiveFormsModule,
+        AlertModule,
+        NgbModule
+    ]
 })
 export class DashboardModule { }
