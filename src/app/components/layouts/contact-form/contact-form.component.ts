@@ -16,8 +16,7 @@ export class ContactFormComponent implements OnInit {
 
   title = 'Contacte';
   contactForm: FormGroup;
-  // @ts-ignore
-  contact: IContact = {};
+  contact: IContact = {} as IContact;
 
   faUserName = faUserAlt;
   faEmail = faAt;
