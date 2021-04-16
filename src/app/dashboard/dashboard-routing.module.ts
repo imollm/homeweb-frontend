@@ -11,6 +11,7 @@ import {CountriesComponent} from './components/resources/countries/countries.com
 import {SalesComponent} from './components/resources/sales/sales.component';
 import {ToursComponent} from './components/resources/tours/tours.component';
 import {PropertiesCreateComponent} from './components/resources/properties/forms/create/properties-create.component';
+import {PropertyDetailsComponent} from './components/resources/properties/details/property-details.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
       {path: 'home', component: HomeComponent},
       {path: 'properties', component: PropertiesComponent},
       {path: 'properties/create', component: PropertiesCreateComponent},
+      {path: 'properties/details/:id', component: PropertyDetailsComponent},
       {path: 'categories', component: CategoriesComponent},
       {path: 'cities', component: CitiesComponent},
       {path: 'countries', component: CountriesComponent},
