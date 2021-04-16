@@ -64,7 +64,7 @@ export class AdminComponent implements OnInit {
         this.dataTable.inverse = false;
       }
     });
-    this.propertiesService.getProperties().then((response) => {
+    this.propertiesService.getActiveProperties().then((response) => {
       if (response.success) {
         this.totalProperties.title      = 'Propietats visibles';
         this.totalProperties.value      = response.data.length;
