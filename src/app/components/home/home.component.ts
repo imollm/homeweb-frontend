@@ -4,7 +4,6 @@ import {PropertiesService} from '../../services/_property/properties.service';
 import {AlertService} from '../../_alert/alert.service';
 import {ImageService} from '../../services/_image/image.service';
 import {HelpersService} from '../../services/_helpers/helpers.service';
-import {MessageService} from '../../services/message.service';
 
 @Component({
   selector: 'app-home',
@@ -18,13 +17,18 @@ export class HomeComponent implements OnInit {
   constructor(
     private propertiesService: PropertiesService,
     private imageService: ImageService,
-    private alertService: AlertService,
-    private messageService: MessageService
+    private alertService: AlertService
   ) {
   }
 
   ngOnInit(): void {
-    this.getLastProperties().then(() => {
+    this.propertiesService.getLastActiveProperties().then((response) => {
+      if (response.success) {
+        this.properties = response.data;
+      } else {
+        this.alertService.warn(response.message);
+      }
+    }).then(() => {
       if (this.properties.length > 0) {
         this.properties.map((property) => {
           property.price = HelpersService.formatPrice(property.price);
@@ -36,13 +40,5 @@ export class HomeComponent implements OnInit {
         });
       }
     });
-  }
-
-  private async getLastProperties(): Promise<any> {
-    const res = await this.propertiesService.getLastProperties();
-    if (!res.success) {
-      this.alertService.error(res.message);
-    }
-    this.properties = res.data;
   }
 }
