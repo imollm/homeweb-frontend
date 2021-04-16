@@ -2,7 +2,13 @@
   <div class="row">
     <div class="col-12 d-flex align-items-center justify-content-center">
       <div class="w-100">
-        <img class="img-fluid w-100" [src]="property.imageBase64" [alt]="property.title" />
+        <div *ngIf="property.image; then withImage else defaultImage"></div>
+        <ng-template #withImage>
+          <img [src]="property.imageBase64" class="card-img-top"  alt="property-image-{{property.title}}"/>
+        </ng-template>
+        <ng-template #defaultImage>
+          <img src="assets/img/default-house.jpg" class="card-img-top" alt="default-property-image">
+        </ng-template>
       </div>
     </div>
   </div>

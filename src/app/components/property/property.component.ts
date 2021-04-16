@@ -31,7 +31,9 @@ export class PropertyComponent implements OnInit {
         this.router.navigate(['**']);
       } else {
         this.property = res.data;
-        this.getBase64Image();
+        if (this.property.image) {
+          this.getBase64Image();
+        }
         this.setLocation();
       }
     });
