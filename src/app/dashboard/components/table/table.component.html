@@ -1,4 +1,4 @@
-<div class="card shadow mb-4">
+<div class="card shadow my-4">
   <div class="card-header py-3">
     <h6 class="m-0 font-weight-bold text-primary" *ngIf="dataTable">
       {{dataTable.title}}
@@ -6,7 +6,7 @@
   </div>
   <div class="card-body">
     <div class="table-responsive">
-      <table *ngIf="dataTable" class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+      <table *ngIf="dataTable" class="table table-bordered" id="dataTable">
         <thead>
         <tr>
           <th *ngFor="let colName of dataTable.colsName">
@@ -17,48 +17,137 @@
           </th>
         </tr>
         </thead>
-        <tfoot>
-        <tr>
-          <th *ngFor="let colName of dataTable.colsName">
-            {{colName.text}}
-          </th>
-          <th *ngIf="actionButtons">
-            Accions
-          </th>
-        </tr>
-        </tfoot>
-        <tbody>
-        <tr *ngFor="let element of dataTable.data">
-          <td *ngFor="let row of dataTable.colsName">
-            <div [ngSwitch]="row.colName">
-              <div *ngSwitchCase="'price'">
-                {{formatPrice(element[row.colName])}}
+        <div *ngIf="dataTable.inverse; then inverse else normal"></div>
+        <ng-template #normal>
+          <tfoot>
+          <tr>
+            <th *ngFor="let colName of dataTable.colsName">
+              {{colName.text}}
+            </th>
+            <th *ngIf="actionButtons">
+              Accions
+            </th>
+          </tr>
+          </tfoot>
+          <tbody>
+          <tr *ngFor="let element of dataTable.data">
+            <td *ngFor="let row of dataTable.colsName">
+              <div [ngSwitch]="row.colName">
+                <div *ngSwitchCase="'price'">
+                  {{formatPrice(element[row.colName])}}
+                </div>
+                <div *ngSwitchCase="'built_meters'" [innerHTML]="formatMeters(element[row.colName])"></div>
+                <div *ngSwitchCase="'created_at'">
+                  {{formatDate(element[row.colName])}}
+                </div>
+                <div *ngSwitchCase="'plot_meters'" [innerHTML]="formatMeters(element[row.colName])"></div>
+                <div *ngSwitchDefault>
+                  {{element[row.colName]}}
+                </div>
               </div>
-              <div *ngSwitchCase="'built_meters'" [innerHTML]="formatMeters(element[row.colName])"></div>
-              <div *ngSwitchCase="'created_at'">
-                {{formatDate(element[row.colName])}}
+            </td>
+            <td *ngIf="actionButtons">
+              <div class="d-flex flex-row justify-content-between">
+                <div>
+                  <a [routerLink]="['/dashboard/properties/details', element.id]">
+                    <fa-icon [icon]="faView" class="icon-view"></fa-icon>
+                  </a>
+                </div>
+                <div>
+                  <fa-icon [icon]="faEdit" class="icon-edit"></fa-icon>
+                </div>
+                <div>
+                  <fa-icon [icon]="faDelete" class="icon-delete"></fa-icon>
+                </div>
               </div>
-              <div *ngSwitchCase="'plot_meters'" [innerHTML]="formatMeters(element[row.colName])"></div>
-              <div *ngSwitchDefault>
-                {{element[row.colName]}}
-              </div>
-            </div>
-          </td>
-          <td *ngIf="actionButtons">
-            <div class="d-flex flex-row justify-content-between">
-              <div>
-                <fa-icon [icon]="faView" class="icon-view"></fa-icon>
-              </div>
-              <div>
-                <fa-icon [icon]="faEdit" class="icon-edit"></fa-icon>
-              </div>
-              <div>
-                <fa-icon [icon]="faDelete" class="icon-delete"></fa-icon>
-              </div>
-            </div>
-          </td>
-        </tr>
-        </tbody>
+            </td>
+          </tr>
+          </tbody>
+        </ng-template>
+        <ng-template #inverse>
+          <tbody>
+            <tr *ngIf="dataTable.data.id">
+              <td>
+                <span class="font-weight-bold">ID</span>
+              </td>
+              <td>{{dataTable.data.id}}</td>
+            </tr>
+            <tr *ngIf="dataTable.data.reference">
+              <td>
+                <span class="font-weight-bold">Referència</span>
+              </td>
+              <td>{{dataTable.data.reference}}</td>
+            </tr>
+            <tr *ngIf="dataTable.data.category.name">
+              <td>
+                <span class="font-weight-bold">Categoria</span>
+              </td>
+              <td>{{dataTable.data.category.name | titlecase}}</td>
+            </tr>
+            <tr *ngIf="dataTable.data.city.name">
+            <td>
+              <span class="font-weight-bold">Ciutat</span>
+            </td>
+            <td>{{dataTable.data.city.name}}</td>
+          </tr>
+            <tr *ngIf="dataTable.data.title">
+              <td>
+                <span class="font-weight-bold">Títol</span>
+              </td>
+              <td>{{dataTable.data.title}}</td>
+            </tr>
+            <tr *ngIf="dataTable.data.plot_meters">
+              <td>
+                <span class="font-weight-bold">Metres solar</span>
+              </td>
+              <td>{{dataTable.data.plot_meters}}</td>
+            </tr>
+            <tr *ngIf="dataTable.data.built_meters">
+              <td>
+                <span class="font-weight-bold">Metres construïts</span>
+              </td>
+              <td>{{dataTable.data.built_meters}}</td>
+            </tr>
+            <tr *ngIf="dataTable.data.rooms">
+              <td>
+                <span class="font-weight-bold">Habitacions</span>
+              </td>
+              <td>{{dataTable.data.rooms}}</td>
+            </tr>
+            <tr *ngIf="dataTable.data.baths">
+              <td>
+                <span class="font-weight-bold">Banys</span>
+              </td>
+              <td>{{dataTable.data.baths}}</td>
+            </tr>
+            <tr *ngIf="dataTable.data.energetic_certification">
+              <td>
+                <span class="font-weight-bold">Certificat energètic</span>
+              </td>
+              <td>{{dataTable.data.energetic_certification}}</td>
+            </tr>
+            <tr *ngIf="dataTable.data.sold==0 || dataTable.data.sold==1">
+              <td>
+                <span class="font-weight-bold">Venut?</span>
+              </td>
+              <td>{{dataTable.data.sold==0 ? 'No' : 'Sí'}}</td>
+            </tr>
+            <tr *ngIf="dataTable.data.price >= 0">
+              <td>
+                <span class="font-weight-bold">Preu</span>
+              </td>
+              <td>{{dataTable.data.price}} €</td>
+            </tr>
+            <tr *ngIf="dataTable.data.active==true || dataTable.data.active==false">
+              <td>
+                <span class="font-weight-bold">Es visible a la web?</span>
+              </td>
+              <td>
+                {{dataTable.data.active==1 ? 'Si' : 'No'}}
+              </td>
+            </tr>
+          </tbody>
+        </ng-template>
       </table>
     </div>
   </div>

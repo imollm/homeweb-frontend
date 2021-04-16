@@ -5,5 +5,6 @@ interface ITableCol {
 export interface IDashboardTable {
   title: string;
   colsName: ITableCol[];
-  data: any[];
+  data: any;
+  inverse?: boolean;
 }
