@@ -28,9 +28,11 @@ export class HomeComponent implements OnInit {
       if (this.properties.length > 0) {
         this.properties.map((property) => {
           property.price = HelpersService.formatPrice(property.price);
-          this.imageService.sanitizeBase64EncodedImage(property.image, 'properties').then((base64ImageDecoded) => {
-            property.imageBase64 = base64ImageDecoded;
-          });
+          if (property.image) {
+            this.imageService.sanitizeBase64EncodedImage(property.image, 'properties').then((base64ImageDecoded) => {
+              property.imageBase64 = base64ImageDecoded;
+            });
+          }
         });
       }
     });
