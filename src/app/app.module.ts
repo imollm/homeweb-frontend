@@ -23,9 +23,8 @@ import { AlertModule } from './_alert/alert.module';
 import { CategoryComponent } from './components/category/category.component';
 import { PropertyComponent } from './components/property/property.component';
 import { CardComponent } from './components/layouts/card/card.component';
-import { AgmCoreModule } from '@agm/core';
-import { MapsComponent } from './components/maps/maps.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -43,8 +42,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NotFoundComponent,
     CategoryComponent,
     PropertyComponent,
-    CardComponent,
-    MapsComponent
+    CardComponent
   ],
   imports: [
     BrowserModule,
@@ -53,10 +51,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     FontAwesomeModule,
     AlertModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCNwaQTFTIunXT6r9Ugdk5GowFReVaMdAY'
-    }),
-    NgbModule
+    NgbModule,
+    SharedModule
   ],
   providers: [
     AuthGuard,

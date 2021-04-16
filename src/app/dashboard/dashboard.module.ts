@@ -18,7 +18,9 @@ import { ChartsModule } from 'ng2-charts';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AlertModule } from '../_alert/alert.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AgmCoreModule } from '@agm/core';
+
+// Common components of AppModule and DashboardModule
+import { SharedModule } from '../shared/shared.module';
 
 import { PropertiesComponent } from './components/resources/properties/properties.component';
 import { PropertiesAdminComponent } from './components/resources/properties/admin/properties-admin.component';
@@ -90,9 +92,7 @@ import { PropertyDetailsComponent } from './components/resources/properties/deta
         ReactiveFormsModule,
         AlertModule,
         NgbModule,
-        AgmCoreModule.forRoot({
-          apiKey: 'AIzaSyCNwaQTFTIunXT6r9Ugdk5GowFReVaMdAY'
-        })
+        SharedModule
     ]
 })
 export class DashboardModule { }
