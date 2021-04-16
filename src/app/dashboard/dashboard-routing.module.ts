@@ -10,7 +10,7 @@ import {CitiesComponent} from './components/resources/cities/cities.component';
 import {CountriesComponent} from './components/resources/countries/countries.component';
 import {SalesComponent} from './components/resources/sales/sales.component';
 import {ToursComponent} from './components/resources/tours/tours.component';
-import {PropertiesCreateComponent} from './components/resources/properties/forms/create/properties-create.component';
+import {PropertiesCreateComponent} from './components/resources/properties/forms/createdit/properties-create.component';
 import {PropertyDetailsComponent} from './components/resources/properties/details/property-details.component';
 
 const routes: Routes = [

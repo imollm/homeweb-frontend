@@ -19,6 +19,8 @@ import {IProperty} from '../../../../../../models/property';
 })
 export class PropertiesCreateComponent implements OnInit {
 
+  // This component can create or edit a property
+
   form: FormGroup;
   isSubmitted = false;
   property: IProperty = {} as IProperty;
