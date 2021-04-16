@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import {IProperty} from '../../models/property';
 import {ApiResponseI} from '../../models/api-response';
 import {EndPointMapper} from '../../api/end-point-mapper';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +38,12 @@ export class PropertiesService {
 
   async getActiveProperties(): Promise<ApiResponseI> {
     const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'active');
+    return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
+  }
+
+  async setVisibilityOnWeb(propertyId: string, status: string): Promise<ApiResponseI> {
+    let endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'setActive', propertyId);
+    endpoint += `/${status}`;
     return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
   }
 }

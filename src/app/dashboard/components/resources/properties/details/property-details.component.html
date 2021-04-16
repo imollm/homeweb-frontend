@@ -22,9 +22,21 @@
   </div>
   <hr class="topbar-divider"/>
   <div class="d-flex justify-content-center align-items-center">
-    <div>Vols que es vegi al públic?</div>
-    <div>
-      <input type="checkbox" name="active-property" checked>
+    <div class="h5">Vols que sigui visible a la web?</div>
+    <div class="ml-2">
+      <ng-toggle
+        [value]="visibleOnWeb"
+        [width]="55"
+        [color]="{
+          unchecked: '#f62d51',
+          checked: '#5bd049'
+        }"
+        [labels]="{
+          checked: 'On',
+          unchecked: 'Off'
+        }"
+        (change)="setVisibleOnWeb($event)"
+      ></ng-toggle>
     </div>
   </div>
   <hr class="topbar-divider"/>
@@ -41,7 +53,7 @@
       <div class="row">
         <div class="col-12 col-md-8">
           <h3 class="text-center p-3">Ubicació</h3>
-          <!--          <app-map [mapData]="mapData"></app-map>-->
+          <app-map [mapData]="mapData"></app-map>
         </div>
         <div class="col-12 col-md-4">
           <div class="container p-5">

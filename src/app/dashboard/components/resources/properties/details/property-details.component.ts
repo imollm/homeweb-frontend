@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {IProperty} from '../../../../../models/property';
 import {ActivatedRoute} from '@angular/router';
 import {ImageService} from '../../../../../services/_image/image.service';
 import {PropertiesService} from '../../../../../services/_property/properties.service';
 import {IMaps} from '../../../../../models/maps';
 import {IDashboardTable} from '../../../../../models/dashboard-table';
+import {AlertService} from '../../../../../_alert/alert.service';
 
 @Component({
   selector: 'app-dashboard-property-details',
@@ -17,11 +18,13 @@ export class PropertyDetailsComponent implements OnInit {
   property: IProperty = {} as IProperty;
   mapData: IMaps = {} as IMaps;
   dataTable: IDashboardTable = {} as IDashboardTable;
+  visibleOnWeb: boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private propertiesService: PropertiesService,
-    private imageService: ImageService
+    private imageService: ImageService,
+    private alertService: AlertService
   ) { }
 
   ngOnInit(): void {
@@ -29,6 +32,7 @@ export class PropertyDetailsComponent implements OnInit {
     this.propertiesService.getPropertyById(this.propertyId).then((response) => {
       if (response.success) {
         this.property = response.data;
+        this.visibleOnWeb = this.property.active;
       }
     }).then(() => { this.getImage(); })
       .then(() => { this.getMapLocation(); })
@@ -61,5 +65,21 @@ export class PropertyDetailsComponent implements OnInit {
     ];
     this.dataTable.inverse = true;
     this.dataTable.data = this.property;
+  }
+
+  setVisibleOnWeb(evt: boolean): void {
+    let active: string;
+
+    active = String(evt === true ? 1 : 0);
+
+    this.propertiesService.setVisibilityOnWeb(this.propertyId, active).then((response) => {
+      if (response.success) {
+        this.alertService.success(response.message);
+      } else {
+        this.alertService.warn(response.message);
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
   }
 }

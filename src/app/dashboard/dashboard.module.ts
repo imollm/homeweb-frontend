@@ -18,6 +18,7 @@ import { ChartsModule } from 'ng2-charts';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AlertModule } from '../_alert/alert.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgToggleModule } from 'ngx-toggle-button';
 
 // Common components of AppModule and DashboardModule
 import { SharedModule } from '../shared/shared.module';
@@ -92,7 +93,8 @@ import { PropertyDetailsComponent } from './components/resources/properties/deta
         ReactiveFormsModule,
         AlertModule,
         NgbModule,
-        SharedModule
+        SharedModule,
+        NgToggleModule
     ]
 })
 export class DashboardModule { }
