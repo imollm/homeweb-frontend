@@ -15,9 +15,10 @@ import { EmployeeComponent } from './components/home/employee/employee.component
 import { CustomerComponent } from './components/home/customer/customer.component';
 import { OwnerComponent } from './components/home/owner/owner.component';
 import { ChartsModule } from 'ng2-charts';
-import {ReactiveFormsModule} from '@angular/forms';
-import {AlertModule} from '../_alert/alert.module';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AlertModule } from '../_alert/alert.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AgmCoreModule } from '@agm/core';
 
 import { PropertiesComponent } from './components/resources/properties/properties.component';
 import { PropertiesAdminComponent } from './components/resources/properties/admin/properties-admin.component';
@@ -44,7 +45,7 @@ import { ToursAdminComponent } from './components/resources/tours/admin/tours-ad
 import { ToursCustomerComponent } from './components/resources/tours/customer/tours-customer.component';
 import { ToursEmployeeComponent } from './components/resources/tours/employee/tours-employee.component';
 import { PropertiesCreateComponent } from './components/resources/properties/forms/create/properties-create.component';
-
+import { PropertyDetailsComponent } from './components/resources/properties/details/property-details.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { PropertiesCreateComponent } from './components/resources/properties/for
     ToursComponent,
     ToursAdminComponent,
     ToursCustomerComponent,
-    ToursEmployeeComponent
+    ToursEmployeeComponent,
+    PropertyDetailsComponent
   ],
     imports: [
         CommonModule,
@@ -87,7 +89,10 @@ import { PropertiesCreateComponent } from './components/resources/properties/for
         ChartsModule,
         ReactiveFormsModule,
         AlertModule,
-        NgbModule
+        NgbModule,
+        AgmCoreModule.forRoot({
+          apiKey: 'AIzaSyCNwaQTFTIunXT6r9Ugdk5GowFReVaMdAY'
+        })
     ]
 })
 export class DashboardModule { }
