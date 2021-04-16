@@ -1,0 +1,61 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 d-flex align-items-center justify-content-center">
+      <div class="w-100">
+        <div *ngIf="property.image; then withImage else defaultImage"></div>
+        <ng-template #withImage>
+          <img [src]="property.imageBase64" class="card-img-top" alt="property-image-{{property.title}}"/>
+        </ng-template>
+        <ng-template #defaultImage>
+          <img src="assets/img/default-house.jpg" class="card-img-top" alt="default-property-image">
+        </ng-template>
+      </div>
+    </div>
+  </div>
+  <hr class="topbar-divider"/>
+  <div class="row mt-1">
+    <div class="col-12 col-lg-6 offset-lg-3 col-md-8 offset-md-2">
+      <app-dashboard-table
+        [toShow]="dataTable"
+      ></app-dashboard-table>
+    </div>
+  </div>
+  <hr class="topbar-divider"/>
+  <div class="d-flex justify-content-center align-items-center">
+    <div>Vols que es vegi al públic?</div>
+    <div>
+      <input type="checkbox" name="active-property" checked>
+    </div>
+  </div>
+  <hr class="topbar-divider"/>
+  <div class="row mt-3">
+    <div class="col-12 bg-light">
+      <div class="container">
+        <h1 class="text-center p-5">{{property.title}}</h1>
+        <p class="text-center mb-5">{{property.description}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-3 bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-md-8">
+          <h3 class="text-center p-3">Ubicació</h3>
+          <!--          <app-map [mapData]="mapData"></app-map>-->
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="container p-5">
+            <h3 class="text-center">Certificat energètic</h3>
+            <div class="card">
+              <div class="card-body d-flex align-items-center justify-content-center">
+                <div><img class="card-img-top img-fluid energetic-image" src="./assets/img/energetic_certification.jpeg"
+                          alt="energetic-certification"/></div>
+              </div>
+              <div class="card-footer">{{property.energetic_certification}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
