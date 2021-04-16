@@ -59,7 +59,7 @@
         "auth": false
       },
       "update": {
-        "uri": "/properties/%s/update",
+        "uri": "/properties/update",
         "method": "PUT",
         "auth": true
       },

@@ -54,7 +54,9 @@
                   </a>
                 </div>
                 <div>
-                  <fa-icon [icon]="faEdit" class="icon-edit"></fa-icon>
+                  <a [routerLink]="['/dashboard/properties/edit', element.id]">
+                    <fa-icon [icon]="faEdit" class="icon-edit"></fa-icon>
+                  </a>
                 </div>
                 <div>
                   <fa-icon [icon]="faDelete" class="icon-delete"></fa-icon>

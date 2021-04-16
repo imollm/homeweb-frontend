@@ -22,6 +22,7 @@ const routes: Routes = [
       {path: 'properties', component: PropertiesComponent},
       {path: 'properties/create', component: PropertiesCreateComponent},
       {path: 'properties/details/:id', component: PropertyDetailsComponent},
+      {path: 'properties/edit/:id', component: PropertiesCreateComponent},
       {path: 'categories', component: CategoriesComponent},
       {path: 'cities', component: CitiesComponent},
       {path: 'countries', component: CountriesComponent},

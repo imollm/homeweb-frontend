@@ -1,9 +1,12 @@
 <div class="container-fluid">
 
-  <h1 class="text-center my-5">{{pageTitle}}</h1>
+  <h1 class="text-center my-5">{{modeTitle | titlecase}} propietat</h1>
 
   <div class="mt-4 border-dark d-flex flex-column justify-content-center align-items-center">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+      <!-- ID -->
+      <input type="text" class="form-control" aria-describedby="property-id" formControlName="id" hidden>
 
       <!-- REFERENCE -->
       <div class="input-group mb-3">
@@ -139,7 +142,7 @@
 
       <!-- SUBMIT -->
       <div class="input-group my-5 d-flex justify-content-center">
-        <button type="submit" class="btn btn-secondary">Crear</button>
+        <button type="submit" class="btn btn-secondary">{{modeTitle}}</button>
       </div>
 
     </form>

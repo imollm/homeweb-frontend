@@ -9,6 +9,8 @@ import {ICategory} from '../../../../../../models/category';
 import {UsersService} from '../../../../../../services/_user/users.service';
 import {IUser} from '../../../../../../models/user';
 import {CitiesService} from '../../../../../../services/_city/cities.service';
+import {ActivatedRoute} from '@angular/router';
+import {IProperty} from '../../../../../../models/property';
 
 @Component({
   selector: 'app-properties-create-form',
@@ -17,15 +19,17 @@ import {CitiesService} from '../../../../../../services/_city/cities.service';
 })
 export class PropertiesCreateComponent implements OnInit {
 
-  pageTitle = 'Crear propietat';
-
   form: FormGroup;
   isSubmitted = false;
+  property: IProperty = {} as IProperty;
   cities: ICity[] = [];
   categories: ICategory[] = [];
   owners: IUser[] = [];
   isCountrySelected = false;
   certificates: any = IEnergeticCertificate;
+  mode: string;
+  propertyId: string;
+  modeTitle = 'Crear';
 
   constructor(
     private fb: FormBuilder,
@@ -33,9 +37,11 @@ export class PropertiesCreateComponent implements OnInit {
     private citiesService: CitiesService,
     private categoriesService: CategoriesService,
     private usersService: UsersService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private activateRoute: ActivatedRoute
   ) {
     this.form = this.fb.group({
+      id: new FormControl({value: null, readonly: true}),
       user_id: new FormControl(''),
       category_id: new FormControl('', Validators.required),
       city_id: new FormControl('', Validators.required),
@@ -59,23 +65,41 @@ export class PropertiesCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.getValues();
+    this.mode = this.activateRoute.snapshot.url[1].path;
+    this.propertyId = this.activateRoute.snapshot.params.id;
+    if (this.mode === 'edit') {
+      this.editMode();
+      this.modeTitle = 'Actualitza';
+    }
   }
 
   onSubmit(): void {
     this.isSubmitted = true;
     if (this.form.valid) {
-      this.propertiesService.createProperty(this.form.value).then((response) => {
-        if (response.success) {
-          this.alertService.success(response.message);
-          this.resetForm();
-        } else {
-          this.alertService.warn(response.message);
-        }
-      }).catch((error) => {
-        console.log(error);
-        if (error.status === 500) { this.alertService.error(error.statusText); }
-        this.alertService.error(error.error.errors.reference[0]);
-      });
+      if (this.mode === 'edit') {
+        this.propertiesService.updateProperty(this.form.value).then((response) => {
+          if (response.success) {
+            this.alertService.success(response.message);
+          } else {
+            this.alertService.warn(response.message);
+          }
+        }).catch((error) => {
+          if (error.status === 500) { this.alertService.error(error.statusText); }
+          console.error(error);
+        });
+      } else if (this.mode === 'create') {
+        this.propertiesService.createProperty(this.form.value).then((response) => {
+          if (response.success) {
+            this.alertService.success(response.message);
+            this.resetForm();
+          } else {
+            this.alertService.warn(response.message);
+          }
+        }).catch((error) => {
+          if (error.status === 500) { this.alertService.error(error.statusText); }
+          this.alertService.error(error.error.errors.reference[0]);
+        });
+      }
     }
   }
 
@@ -111,6 +135,26 @@ export class PropertiesCreateComponent implements OnInit {
     this.form.get('sold').setValue(0);
     this.form.get('active').setValue(true);
     this.form.get('price').setValue(0);
+  }
+
+  private editMode(): void {
+    this.propertiesService.getPropertyById(this.propertyId).then((response) => {
+      if (response.success) {
+        this.property = response.data;
+        this.preparePropertyValuesToEditForm();
+      }
+    });
+  }
+
+  private preparePropertyValuesToEditForm(): void {
+    const formValues = {};
+    Object.keys(this.form.controls).map((key) => {
+      formValues[key] =
+        key === 'active'
+          ? Boolean(this.property[key])
+          : this.property[key];
+    });
+    this.form.setValue(formValues);
   }
 
   get categoryId(): AbstractControl { return this.form.get('category_id'); }

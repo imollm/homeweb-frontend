@@ -21,9 +21,14 @@ export class PropertiesService {
     return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
   }
 
-  createProperty(property: IProperty): Promise<ApiResponseI> {
+  async createProperty(property: IProperty): Promise<ApiResponseI> {
     const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'create');
     return this.httpClient.post<ApiResponseI>(endpoint, property).toPromise();
+  }
+
+  async updateProperty(property: IProperty): Promise<ApiResponseI> {
+    const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'update', String(property.id));
+    return this.httpClient.put<ApiResponseI>(endpoint, property).toPromise();
   }
 
   async getLastProperties(): Promise<ApiResponseI> {
@@ -47,8 +52,7 @@ export class PropertiesService {
   }
 
   async setVisibilityOnWeb(propertyId: string, status: string): Promise<ApiResponseI> {
-    let endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'setActive', propertyId);
-    endpoint += `/${status}`;
+    const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'setActive', propertyId);
     return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
   }
 }
