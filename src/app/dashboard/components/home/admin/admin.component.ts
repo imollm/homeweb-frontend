@@ -61,6 +61,7 @@ export class AdminComponent implements OnInit {
           {colName: 'built_meters', text: 'Metres edificats'},
           {colName: 'created_at', text: 'Creat dia'}
         ];
+        this.dataTable.inverse = false;
       }
     });
     this.propertiesService.getProperties().then((response) => {
