@@ -59,7 +59,9 @@
                   </a>
                 </div>
                 <div>
-                  <fa-icon [icon]="faDelete" class="icon-delete"></fa-icon>
+                  <a [routerLink]="['/dashboard/properties/delete', element.id]">
+                    <fa-icon [icon]="faDelete" class="icon-delete"></fa-icon>
+                  </a>
                 </div>
               </div>
             </td>

@@ -55,4 +55,9 @@ export class PropertiesService {
     const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'setActive', propertyId);
     return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
   }
+
+  async deleteProperty(propertyId: string): Promise<ApiResponseI> {
+    const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'delete', propertyId);
+    return this.httpClient.delete<ApiResponseI>(endpoint).toPromise();
+  }
 }

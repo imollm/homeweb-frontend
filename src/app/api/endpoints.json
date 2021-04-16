@@ -77,6 +77,11 @@
         "uri": "/properties/lastActive",
         "method": "GET",
         "auth": false
+      },
+      "delete": {
+        "uri": "/properties/%s/delete",
+        "method": "DELETE",
+        "auth": true
       }
     },
     "roles": {
