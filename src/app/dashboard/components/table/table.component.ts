@@ -38,4 +38,12 @@ export class TableComponent implements OnInit, OnChanges {
   formatDate(timestamp: string): string {
     return HelpersService.formatDate(timestamp);
   }
+
+  _isNumber(value: any): boolean {
+    return HelpersService.isNumber(value);
+  }
+
+  _isString(value: any): boolean {
+    return HelpersService.isString(value);
+  }
 }

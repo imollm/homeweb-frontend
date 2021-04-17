@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PropertiesService} from '../../../../../services/_property/properties.service';
 import {IDashboardTable} from '../../../../../models/dashboard-table';
+import {AlertService} from '../../../../../_alert/alert.service';
 
 @Component({
   selector: 'app-dashboard-properties-admin',
@@ -16,7 +17,8 @@ export class PropertiesAdminComponent implements OnInit {
   propertiesTableActions = true;
 
   constructor(
-    private propertiesService: PropertiesService
+    private propertiesService: PropertiesService,
+    private alertService: AlertService
   ) { }
 
   ngOnInit(): void {
@@ -39,6 +41,9 @@ export class PropertiesAdminComponent implements OnInit {
           {colName: 'baths', text: 'Banys'}
         ];
       }
+    }).catch((error) => {
+      this.alertService.error('Something went wrong');
+      console.error(error);
     });
   }
 }

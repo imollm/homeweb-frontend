@@ -22,4 +22,12 @@ export class HelpersService {
   static formatDate(timestamp: string): string {
     return new Date(timestamp).toLocaleDateString('es-ES');
   }
+
+  static isNumber(value: any): boolean {
+    return typeof value === 'number';
+  }
+
+  static isString(value: any): boolean {
+    return typeof value === 'string';
+  }
 }

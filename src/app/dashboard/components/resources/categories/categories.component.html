@@ -1,1 +1,9 @@
-<p>categories works!</p>
+<div class="container-fluid">
+  <div [ngSwitch]="role">
+
+    <app-dashboard-categories-admin *ngSwitchCase="'admin'"></app-dashboard-categories-admin>
+
+    <app-dashboard-categories-employee *ngSwitchCase="'employee'"></app-dashboard-categories-employee>
+
+  </div>
+</div>

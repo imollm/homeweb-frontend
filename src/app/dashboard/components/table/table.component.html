@@ -22,7 +22,7 @@
           <tfoot>
           <tr>
             <th *ngFor="let colName of dataTable.colsName">
-              {{colName.text}}
+              {{colName.text | titlecase}}
             </th>
             <th *ngIf="actionButtons">
               Accions
@@ -42,7 +42,9 @@
                 </div>
                 <div *ngSwitchCase="'plot_meters'" [innerHTML]="formatMeters(element[row.colName])"></div>
                 <div *ngSwitchDefault>
-                  {{element[row.colName]}}
+                  <div *ngIf="_isNumber(element[row.colName]); then isNumber else isString"></div>
+                  <ng-template #isString>{{element[row.colName] | titlecase}}</ng-template>
+                  <ng-template #isNumber>{{element[row.colName]}}</ng-template>
                 </div>
               </div>
             </td>
