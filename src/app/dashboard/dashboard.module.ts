@@ -50,6 +50,7 @@ import { ToursEmployeeComponent } from './components/resources/tours/employee/to
 import { PropertiesCreateComponent } from './components/resources/properties/forms/createdit/properties-create.component';
 import { PropertyDetailsComponent } from './components/resources/properties/details/property-details.component';
 import { CategoriesCreateComponent } from './components/resources/categories/forms/createdit/categories-create.component';
+import { CategoryDetailsComponent } from './components/resources/categories/details/category-details.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { CategoriesCreateComponent } from './components/resources/categories/for
     ToursCustomerComponent,
     ToursEmployeeComponent,
     PropertyDetailsComponent,
-    CategoriesCreateComponent
+    CategoriesCreateComponent,
+    CategoryDetailsComponent
   ],
     imports: [
         CommonModule,

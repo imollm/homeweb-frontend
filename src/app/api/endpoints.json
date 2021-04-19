@@ -131,6 +131,16 @@
         "uri": "/categories/id/%s/properties",
         "method": "GET",
         "auth": false
+      },
+      "propertiesGroupByPrice": {
+        "uri": "/categories/%s/properties/groupByPrice",
+        "method": "GET",
+        "auth": false
+      },
+      "delete": {
+        "uri": "/categories/%s/delete",
+        "method": "GET",
+        "auth": true
       }
     },
     "rangePrice": {

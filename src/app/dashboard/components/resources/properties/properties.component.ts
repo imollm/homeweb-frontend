@@ -3,6 +3,7 @@ import {AuthService} from '../../../../services/_auth/auth.service';
 import {PropertiesService} from '../../../../services/_property/properties.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AlertService} from '../../../../_alert/alert.service';
+import {ResponseStatus} from '../../../../api/response-status';
 
 @Component({
   selector: 'app-properties',
@@ -40,9 +41,8 @@ export class PropertiesComponent implements OnInit {
             this.alertService.warn(response.message);
           }
         }).catch((error) => {
-          if (error.status === 500) {
-            this.alertService.error('Property can not be deleted');
-          }
+          this.alertService.error(ResponseStatus.displayErrorMessage(error));
+          console.error(error);
         });
         this.router.navigate(['/dashboard/properties']);
       }

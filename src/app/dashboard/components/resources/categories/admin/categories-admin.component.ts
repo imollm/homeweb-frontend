@@ -4,6 +4,7 @@ import {CategoriesService} from '../../../../../services/_category/categories.se
 import {AlertService} from '../../../../../_alert/alert.service';
 import {Color, Label, SingleDataSet} from 'ng2-charts';
 import {IActionButtons} from '../../../../../models/action-buttons';
+import {HelpersService} from '../../../../../services/_helpers/helpers.service';
 
 @Component({
   selector: 'app-dashboard-categories-admin',
@@ -61,7 +62,6 @@ export class CategoriesAdminComponent implements OnInit {
 
   private formatPropertiesCountAndSetChartData(data: any): void {
     const colorsOfChart = [];
-    let randomColor = '';
     data.map((category) => {
       if (category.hasOwnProperty('properties_count')) {
         if (category.properties_count.length > 0) {
@@ -71,8 +71,7 @@ export class CategoriesAdminComponent implements OnInit {
         }
         this.chartLabels.push(category.name);
         this.chartData.push(category.num_properties);
-        randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
-        colorsOfChart.push(randomColor);
+        colorsOfChart.push(HelpersService.randomColor());
       }
     });
     this.categoriesTable.data = data;

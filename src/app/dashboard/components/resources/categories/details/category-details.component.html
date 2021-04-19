@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <h3 class="text-center p-3" *ngIf="category">
+    Categoria {{category.name | titlecase}}
+  </h3>
+  <hr class="topbar-divider">
+  <div class="d-flex flex-column justify-content-center align-items-center">
+    <div>
+      <app-dashboard-card
+        [toShow]="totalPropertiesCard"
+      ></app-dashboard-card>
+    </div>
+
+    <div class="w-100 mt-5" *ngIf="properties.length > 0">
+      <h5 class="p-3">Propietats per preu</h5>
+      <canvas baseChart
+        [data]="chartData"
+        [labels]="chartLabels"
+        [colors]="chartColors"
+        [legend]="chartLegend"
+        [chartType]="'bar'"
+      ></canvas>
+    </div>
+  </div>
+</div>

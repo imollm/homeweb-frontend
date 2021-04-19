@@ -30,4 +30,8 @@ export class HelpersService {
   static isString(value: any): boolean {
     return typeof value === 'string';
   }
+
+  static randomColor(): string {
+    return '#' + Math.floor(Math.random() * 16777215).toString(16);
+  }
 }

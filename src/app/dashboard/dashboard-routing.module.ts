@@ -13,6 +13,7 @@ import {ToursComponent} from './components/resources/tours/tours.component';
 import {PropertiesCreateComponent} from './components/resources/properties/forms/createdit/properties-create.component';
 import {PropertyDetailsComponent} from './components/resources/properties/details/property-details.component';
 import {CategoriesCreateComponent} from './components/resources/categories/forms/createdit/categories-create.component';
+import {CategoryDetailsComponent} from './components/resources/categories/details/category-details.component';
 
 const routes: Routes = [
   {
@@ -27,7 +28,9 @@ const routes: Routes = [
       {path: 'properties/delete/:id', component: PropertiesComponent},
       {path: 'categories', component: CategoriesComponent},
       {path: 'categories/create', component: CategoriesCreateComponent},
+      {path: 'categories/details/:id', component: CategoryDetailsComponent},
       {path: 'categories/edit/:id', component: CategoriesCreateComponent},
+      {path: 'categories/delete/:id', component: CategoriesComponent},
       {path: 'cities', component: CitiesComponent},
       {path: 'countries', component: CountriesComponent},
       {path: 'sales', component: SalesComponent},

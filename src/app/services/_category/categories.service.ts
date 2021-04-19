@@ -40,4 +40,14 @@ export class CategoriesService {
     const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'update');
     return this.httpClient.post<ApiResponseI>(endpoint, category).toPromise();
   }
+
+  async getPropertiesGroupByPrice(categoryId: string): Promise<ApiResponseI> {
+    const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'propertiesGroupByPrice', categoryId);
+    return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
+  }
+
+  async deleteCategory(categoryId: string): Promise<ApiResponseI> {
+    const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'delete', categoryId);
+    return this.httpClient.delete<ApiResponseI>(endpoint).toPromise();
+  }
 }

@@ -9,6 +9,8 @@ export class ResponseStatus {
         return this.unauthorized(httpError);
       case StatusCodes.HTTP_NOT_FOUND:
         return this.notFound(httpError);
+      case StatusCodes.HTTP_CONFLICT:
+        return this.conflict(httpError);
       case StatusCodes.HTTP_UNPROCESSABLE_ENTITY:
         return this.unprocessableEntity(httpError);
       case StatusCodes.HTTP_INTERNAL_SERVER_ERROR:
@@ -18,6 +20,7 @@ export class ResponseStatus {
     }
   }
 
+  // HTTP ERROR 401
   private static unauthorized(httpError: HttpErrorResponse): string {
     if (httpError.error) {
       return httpError.error.message;
@@ -25,6 +28,7 @@ export class ResponseStatus {
     return httpError.error.statusText;
   }
 
+  // HTTP ERROR 404
   private static notFound(httpError: HttpErrorResponse): string {
     if (httpError.error) {
       return httpError.error.message;
@@ -32,13 +36,30 @@ export class ResponseStatus {
     return httpError.error.statusText;
   }
 
-  private static unprocessableEntity(httpError: HttpErrorResponse): string {
-    if (httpError.error.errors.name[0]) {
-      return httpError.error.errors.name[0];
+  // HTTP ERROR 409
+  private static conflict(httpError: HttpErrorResponse): string {
+    if (httpError.error.message) {
+      return httpError.error.message;
     }
     return httpError.error.statusText;
   }
 
+  // HTTP ERROR 422
+  private static unprocessableEntity(httpError: HttpErrorResponse): string {
+    if (httpError.error.errors.name && httpError.error.errors.name.length > 0) {
+      let message = '';
+      const errors = httpError.error.errors.name;
+      for (let i = 0; i <= errors.length; i++) {
+        if (typeof errors[i] !== 'undefined') {
+          message += i === 0 ? errors[i] : "\n" + errors[i];
+        }
+      }
+      return message;
+    }
+    return httpError.error.statusText;
+  }
+
+  // HTTP ERROR 500
   private static internalServerError(httpError: HttpErrorResponse): string {
     if (httpError.error) {
       return httpError.error;
