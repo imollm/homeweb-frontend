@@ -49,6 +49,7 @@ import { ToursCustomerComponent } from './components/resources/tours/customer/to
 import { ToursEmployeeComponent } from './components/resources/tours/employee/tours-employee.component';
 import { PropertiesCreateComponent } from './components/resources/properties/forms/createdit/properties-create.component';
 import { PropertyDetailsComponent } from './components/resources/properties/details/property-details.component';
+import { CategoriesCreateComponent } from './components/resources/categories/forms/createdit/categories-create.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { PropertyDetailsComponent } from './components/resources/properties/deta
     ToursAdminComponent,
     ToursCustomerComponent,
     ToursEmployeeComponent,
-    PropertyDetailsComponent
+    PropertyDetailsComponent,
+    CategoriesCreateComponent
   ],
     imports: [
         CommonModule,

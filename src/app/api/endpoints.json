@@ -113,7 +113,12 @@
         "auth": true
       },
       "update": {
-        "uri": "/%s/update",
+        "uri": "/categories/update",
+        "method": "PUT",
+        "auth": false
+      },
+      "getById": {
+        "uri": "/categories/%s/show",
         "method": "GET",
         "auth": false
       },

@@ -1,0 +1,44 @@
+<div class="container-fluid">
+
+  <h1 class="text-center my-5">{{modeTitle | titlecase}} categoria</h1>
+
+  <div class="mt-4 border-dark d-flex flex-column justify-content-center align-items-center">
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+      <!-- ID -->
+      <input type="text" class="form-control" aria-describedby="property-id" formControlName="id" hidden>
+
+      <!-- NAME -->
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="property-reference">Nom*</span>
+        <input type="text" class="form-control" aria-describedby="property-reference" formControlName="name">
+      </div>
+      <div *ngIf="name.invalid && (name.dirty || name.touched) && name.errors.required || (isSubmitted && form.invalid)" class="text-danger mt-0 mb-2">
+        El nom es requerit
+      </div>
+
+      <!-- IMAGE -->
+      <div class="imb-3">
+        <label for="image" class="form-label">Selecciona una imatge</label>
+        <input class="form-control" accept="image/*" type="file" id="image" (change)="previewImage($event)" />
+      </div>
+      <div *ngIf="mode=='create'">
+        <div *ngIf="(image.invalid && (image.dirty || image.touched) && image.errors.required || (isSubmitted && form.invalid))" class="text-danger mt-0 mb-2">
+          Selecciona una imatge vàlida.
+        </div>
+      </div>
+
+      <!-- IMAGE PREVIEW -->
+      <img [src]="imgPreview" *ngIf="imgPreview" style="height: 200px; width:400px">
+
+      <!-- SUBMIT -->
+      <div class="input-group my-5 d-flex justify-content-center">
+        <button type="submit" class="btn btn-secondary">{{modeTitle}}</button>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
