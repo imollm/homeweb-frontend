@@ -11,6 +11,7 @@ import {IUser} from '../../../../../../models/user';
 import {CitiesService} from '../../../../../../services/_city/cities.service';
 import {ActivatedRoute} from '@angular/router';
 import {IProperty} from '../../../../../../models/property';
+import {ResponseStatus} from '../../../../../../api/response-status';
 
 @Component({
   selector: 'app-properties-create-form',
@@ -86,7 +87,7 @@ export class PropertiesCreateComponent implements OnInit {
             this.alertService.warn(response.message);
           }
         }).catch((error) => {
-          if (error.status === 500) { this.alertService.error(error.statusText); }
+          this.alertService.error(ResponseStatus.displayErrorMessage(error));
           console.error(error);
         });
       } else if (this.mode === 'create') {
@@ -98,8 +99,8 @@ export class PropertiesCreateComponent implements OnInit {
             this.alertService.warn(response.message);
           }
         }).catch((error) => {
-          if (error.status === 500) { this.alertService.error(error.statusText); }
-          this.alertService.error(error.error.errors.reference[0]);
+          this.alertService.error(ResponseStatus.displayErrorMessage(error));
+          console.error(error);
         });
       }
     }
