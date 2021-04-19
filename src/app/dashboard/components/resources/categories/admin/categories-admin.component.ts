@@ -3,6 +3,7 @@ import {IDashboardTable} from '../../../../../models/dashboard-table';
 import {CategoriesService} from '../../../../../services/_category/categories.service';
 import {AlertService} from '../../../../../_alert/alert.service';
 import {Color, Label, SingleDataSet} from 'ng2-charts';
+import {IActionButtons} from '../../../../../models/action-buttons';
 
 @Component({
   selector: 'app-dashboard-categories-admin',
@@ -15,7 +16,15 @@ export class CategoriesAdminComponent implements OnInit {
   subTitle = 'Categories';
 
   categoriesTable: IDashboardTable = {} as IDashboardTable;
-  categoriesTableActions = true;
+  categoriesTableActions: IActionButtons = {
+    active: true,
+    resource: 'categories',
+    actions: {
+      view: true,
+      edit: true,
+      delete: true
+    }
+  } as IActionButtons;
 
   chartData: SingleDataSet[] = [];
   chartLabels: Label[] = [];

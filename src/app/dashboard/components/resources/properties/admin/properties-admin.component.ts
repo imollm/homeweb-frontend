@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {PropertiesService} from '../../../../../services/_property/properties.service';
 import {IDashboardTable} from '../../../../../models/dashboard-table';
 import {AlertService} from '../../../../../_alert/alert.service';
+import {IActionButtons} from '../../../../../models/action-buttons';
 
 @Component({
   selector: 'app-dashboard-properties-admin',
@@ -14,7 +15,15 @@ export class PropertiesAdminComponent implements OnInit {
   subTitle = 'Propietats';
 
   propertiesTable: IDashboardTable = {} as IDashboardTable;
-  propertiesTableActions = true;
+  propertiesTableActions: IActionButtons = {
+    active: true,
+    resource: 'properties',
+    actions: {
+      view: true,
+      edit: true,
+      delete: true
+    }
+  } as IActionButtons;
 
   constructor(
     private propertiesService: PropertiesService,

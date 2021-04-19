@@ -48,20 +48,20 @@
                 </div>
               </div>
             </td>
-            <td *ngIf="actionButtons">
+            <td *ngIf="actionButtons && actionButtons.active">
               <div class="d-flex flex-row justify-content-between">
-                <div>
-                  <a [routerLink]="['/dashboard/properties/details', element.id]">
+                <div *ngIf="actionButtons.actions.view">
+                  <a [routerLink]="['/dashboard/'+actionButtons.resource+'/details', element.id]">
                     <fa-icon [icon]="faView" class="icon-view"></fa-icon>
                   </a>
                 </div>
-                <div>
-                  <a [routerLink]="['/dashboard/properties/edit', element.id]">
+                <div *ngIf="actionButtons.actions.edit">
+                  <a [routerLink]="['/dashboard/'+actionButtons.resource+'/edit', element.id]">
                     <fa-icon [icon]="faEdit" class="icon-edit"></fa-icon>
                   </a>
                 </div>
-                <div>
-                  <a [routerLink]="['/dashboard/properties/delete', element.id]">
+                <div *ngIf="actionButtons.actions.delete">
+                  <a [routerLink]="['/dashboard/'+actionButtons.resource+'/delete', element.id]">
                     <fa-icon [icon]="faDelete" class="icon-delete"></fa-icon>
                   </a>
                 </div>
