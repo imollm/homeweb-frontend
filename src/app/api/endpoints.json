@@ -162,6 +162,16 @@
         "uri": "/countries/index",
         "method": "GET",
         "auth": false
+      },
+      "getProperties": {
+        "uri": "/countries/%s/properties",
+        "method": "GET",
+        "auth": false
+      },
+      "getCities": {
+        "uri": "/countries/%s/cities",
+        "method": "GET",
+        "auth": false
       }
     },
     "contact": {

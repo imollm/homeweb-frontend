@@ -1,1 +1,40 @@
-<p>admin works!</p>
+<div class="container-fluid">
+
+  <h1 class="px-2 py-4 text-center">{{title}}</h1>
+  <h3>{{subTitle}}</h3>
+
+  <hr class="topbar-divider">
+
+  <div class="p-4">
+    <button [routerLink]="['/dashboard/countries/create']" class="btn btn-outline-primary">Crear país</button>
+  </div>
+
+  <hr class="topbar-divider">
+
+    <div class="w-100">
+      <div class="">
+        <app-dashboard-table
+          [toShow]="countriesTable"
+          [actionButtons]="countriesTableActions"
+        ></app-dashboard-table>
+      </div>
+    </div>
+
+  <div class="row">
+    <div class="col-12 d-flex flex-column justify-content-center align-items-center">
+      <div class="d-block w-100">
+        <h5 class="text-center p-3">
+          Ciutats per país
+        </h5>
+        <canvas baseChart
+          [datasets]="chartData"
+          [labels]="chartLabels"
+          [colors]="chartColors"
+          [legend]="chartLegend"
+          [chartType]="'bar'"
+        ></canvas>
+      </div>
+    </div>
+  </div>
+
+</div>

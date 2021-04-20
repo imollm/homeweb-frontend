@@ -1,1 +1,9 @@
-<p>countries works!</p>
+<div class="container-fluid">
+  <div [ngSwitch]="role">
+
+    <app-dashboard-countries-admin *ngSwitchCase="'admin'"></app-dashboard-countries-admin>
+
+    <app-dashboard-countries-employee *ngSwitchCase="'employee'"></app-dashboard-countries-employee>
+
+  </div>
+</div>
