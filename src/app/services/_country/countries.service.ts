@@ -20,13 +20,8 @@ export class CountriesService {
     return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
   }
 
-  getProperties(countryId: string): Promise<ApiResponseI> {
-    const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'getProperties', countryId);
-    return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
-  }
-
-  getCities(countryId: string): Promise<ApiResponseI> {
-    const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'getCities', countryId);
+  getCitiesAndProperties(countryId: string): Promise<ApiResponseI> {
+    const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'getCitiesAndProperties', countryId);
     return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
   }
 }

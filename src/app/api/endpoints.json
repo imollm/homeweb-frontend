@@ -163,13 +163,8 @@
         "method": "GET",
         "auth": false
       },
-      "getProperties": {
-        "uri": "/countries/%s/properties",
-        "method": "GET",
-        "auth": false
-      },
-      "getCities": {
-        "uri": "/countries/%s/cities",
+      "getCitiesAndProperties": {
+        "uri": "/countries/%s/citiesAndProperties",
         "method": "GET",
         "auth": false
       }

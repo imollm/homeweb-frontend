@@ -37,16 +37,11 @@ export class CountriesAdminComponent implements OnInit {
   } as IActionButtons;
 
   chartData: ChartDataSets[] = [
-    {data: [], label: 'Ciutats'},
-    {data: [], label: 'Propietats'}
+    {data: [], label: 'Ciutats', backgroundColor: HelpersService.randomColor()},
+    {data: [], label: 'Propietats', backgroundColor: HelpersService.randomColor()}
   ];
   chartLabels: Label[] = [];
-  chartColors: Color[] = [{
-    backgroundColor: [
-      HelpersService.randomColor(),
-      HelpersService.randomColor()
-    ]
-  }];
+  chartColors: Color[] = [];
   chartLegend = true;
 
   constructor(
@@ -62,6 +57,7 @@ export class CountriesAdminComponent implements OnInit {
     this.countriesService.getCountries().then((response) => {
       if (response.success) {
         this.countries = response.data;
+        console.log(this.countries);
       }
     }).then(() => {
       this.getCitiesAndPropertiesAndPrepareChart();
@@ -80,29 +76,30 @@ export class CountriesAdminComponent implements OnInit {
   }
 
   private getCitiesAndPropertiesAndPrepareChart(): void {
-    this.countries.map((country) => {
-      this.countriesService.getCities(String(country.id)).then((response) => {
+    for (const country of this.countries) {
+      this.countriesService.getCitiesAndProperties(String(country.id)).then((response) => {
         if (response.success) {
+          this.chartLabels.push(country.name);
+          console.log(response.data);
           country.cities = response.data.cities;
-          country.numCities = country.cities.length;
-          this.chartData[0].data.push(country.numCities);
+          country.numCities = response.data.cities_count;
+          this.chartData[0].data.push(response.data.cities_count);
+
+          country.properties = response.data.properties;
+          country.numProperties = response.data.properties_count;
+          this.chartData[1].data.push(response.data.properties_count);
         }
-      }).then(() => {
-        this.countriesService.getProperties(String(country.id)).then((response) => {
-          if (response.success) {
-            country.properties = response.data.properties;
-            country.numProperties = country.properties.length;
-            this.chartData[1].data.push(country.numProperties);
-            this.chartLabels.push(country.name);
-          }
-        }).catch((error) => {
-          this.alertService.error(ResponseStatus.displayErrorMessage(error));
-          console.error(error);
-        });
       }).catch((error) => {
         this.alertService.error(ResponseStatus.displayErrorMessage(error));
         console.error(error);
       });
-    });
+    }
   }
+
+  // private setColorsOfChart(): void {
+  //   const colors = [HelpersService.randomColor(), HelpersService.randomColor()];
+  //   this.chartColors[0].backgroundColor = colors;
+  //   this.chartData[0].backgroundColor[0].push(colors[0]);
+  //   this.chartData[1].backgroundColor[0].push(colors[1]);
+  // }
 }
