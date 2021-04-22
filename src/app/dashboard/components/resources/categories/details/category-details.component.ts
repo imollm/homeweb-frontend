@@ -14,7 +14,6 @@ import {HelpersService} from '../../../../../services/_helpers/helpers.service';
 })
 export class CategoryDetailsComponent implements OnInit {
 
-  title: string;
   categoryId: string;
   category: ICategory;
   properties: IProperty[] = {} as IProperty[];

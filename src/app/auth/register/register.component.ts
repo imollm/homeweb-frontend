@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/_auth/auth.service';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -39,18 +39,18 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  get name() { return this.registerForm.get('name'); }
+  get name(): AbstractControl { return this.registerForm.get('name'); }
 
-  get email() { return this.registerForm.get('email'); }
+  get email(): AbstractControl { return this.registerForm.get('email'); }
 
-  get password() { return this.registerForm.get('password'); }
+  get password(): AbstractControl { return this.registerForm.get('password'); }
 
-  get phone() { return this.registerForm.get('phone'); }
+  get phone(): AbstractControl { return this.registerForm.get('phone'); }
 
-  get address() { return this.registerForm.get('address'); }
+  get address(): AbstractControl { return this.registerForm.get('address'); }
 
-  get fiscalId() { return this.registerForm.get('fiscal_id'); }
+  get fiscalId(): AbstractControl { return this.registerForm.get('fiscal_id'); }
 
-  get role() { return this.registerForm.get('role'); }
+  get role(): AbstractControl { return this.registerForm.get('role'); }
 
 }

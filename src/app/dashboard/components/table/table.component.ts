@@ -2,7 +2,7 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
 import {IDashboardTable} from '../../../models/dashboard-table';
 import {HelpersService} from '../../../services/_helpers/helpers.service';
 import {faTimes, faEye, faPencilAlt} from '@fortawesome/free-solid-svg-icons';
-import {IActionButtons} from "../../../models/action-buttons";
+import {IActionButtons} from '../../../models/action-buttons';
 
 @Component({
   selector: 'app-dashboard-table',
