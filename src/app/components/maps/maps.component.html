@@ -1,3 +1,32 @@
-<agm-map [latitude]="mapData.lat" [longitude]="mapData.lng" [zoom]="mapData.zoom">
-  <agm-marker [latitude]="mapData.lat" [longitude]="mapData.lng"></agm-marker>
-</agm-map>
+<div *ngIf="mapData && mapData.getLocation; then toCreateLocation else toShowLocations"></div>
+<ng-template #toShowLocations>
+  <agm-map
+    [latitude]="mapData.location.lat"
+    [longitude]="mapData.location.lng"
+    [zoom]="mapData.zoom"
+  >
+    <div *ngIf="mapData.markers && mapData.markers.length > 0">
+      <agm-marker
+        *ngFor="let marker of mapData.markers"
+        [latitude]="marker.lat"
+        [longitude]="marker.lng"
+      ></agm-marker>
+    </div>
+  </agm-map>
+</ng-template>
+<ng-template #toCreateLocation>
+  <agm-map
+    [latitude]="mapData.location.lat"
+    [longitude]="mapData.location.lng"
+    [zoom]="mapData.zoom"
+  >
+    <div *ngIf="mapData.markers && mapData.markers.length > 0">
+      <agm-marker
+        [markerDraggable]="mapData.getLocation"
+        (dragEnd)="getLocation($event)"
+        [latitude]="mapData.markers[0].lat"
+        [longitude]="mapData.markers[0].lng"
+      ></agm-marker>
+    </div>
+  </agm-map>
+</ng-template>
