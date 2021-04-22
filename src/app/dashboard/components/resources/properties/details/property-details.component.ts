@@ -3,9 +3,10 @@ import {IProperty} from '../../../../../models/property';
 import {ActivatedRoute} from '@angular/router';
 import {ImageService} from '../../../../../services/_image/image.service';
 import {PropertiesService} from '../../../../../services/_property/properties.service';
-import {IMaps} from '../../../../../models/maps';
+import {ILocation, IMaps} from '../../../../../models/maps';
 import {IDashboardTable} from '../../../../../models/dashboard-table';
 import {AlertService} from '../../../../../_alert/alert.service';
+import {ResponseStatus} from '../../../../../api/response-status';
 
 @Component({
   selector: 'app-dashboard-property-details',
@@ -16,7 +17,15 @@ export class PropertyDetailsComponent implements OnInit {
 
   propertyId: string;
   property: IProperty = {} as IProperty;
-  mapData: IMaps = {} as IMaps;
+
+  mapData: IMaps = {
+    location: {} as ILocation,
+    markers: [],
+    zoom: 6,
+    mapType: 'ROADMAP',
+    getLocation: false
+  } as IMaps;
+
   dataTable: IDashboardTable = {} as IDashboardTable;
   visibleOnWeb: boolean;
 
@@ -35,9 +44,12 @@ export class PropertyDetailsComponent implements OnInit {
         this.visibleOnWeb = this.property.active;
       }
     }).then(() => { this.getImage(); })
-      .then(() => { this.getMapLocation(); })
+      .then(() => { this.setLocation(); })
       .then(() => { this.setPropertyTableInfo(); })
-      .catch((error) => { if (error) { console.error(error); } });
+      .catch((error) => {
+        this.alertService.error(ResponseStatus.displayErrorMessage(error));
+        console.error(error);
+      });
   }
 
   private getImage(): void {
@@ -48,10 +60,14 @@ export class PropertyDetailsComponent implements OnInit {
     }
   }
 
-  private getMapLocation(): void {
+  private setLocation(): void {
     if (this.property.latitude && this.property.longitude) {
-      this.mapData.lng = Number(this.property.longitude);
-      this.mapData.lat = Number(this.property.latitude);
+      this.mapData.location.lng = Number(this.property.longitude);
+      this.mapData.location.lat = Number(this.property.latitude);
+      this.mapData.markers.push({
+        lat: Number(this.property.latitude),
+        lng: Number(this.property.longitude)
+      } as ILocation);
       this.mapData.zoom = 6;
       this.mapData.mapType = 'ROADMAP';
     }

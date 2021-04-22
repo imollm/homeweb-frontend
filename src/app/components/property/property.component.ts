@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {PropertiesService} from '../../services/_property/properties.service';
 import {ApiResponseI} from '../../models/api-response';
 import {ImageService} from '../../services/_image/image.service';
-import {IMaps} from '../../models/maps';
+import {ILocation, IMaps} from '../../models/maps';
 
 @Component({
   selector: 'app-property',
@@ -15,7 +15,13 @@ export class PropertyComponent implements OnInit {
 
   property: IProperty = {} as IProperty;
   propertyId: string;
-  mapData: IMaps = {} as IMaps;
+  mapData: IMaps = {
+    location: {} as ILocation,
+    markers: [],
+    zoom: 6,
+    mapType: 'ROADMAP',
+    getLocation: false
+  } as IMaps;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -50,10 +56,17 @@ export class PropertyComponent implements OnInit {
   }
 
   private setLocation(): void {
-    this.mapData.lat = parseFloat(this.property.latitude);
-    this.mapData.lng = parseFloat(this.property.longitude);
-    this.mapData.zoom = 6;
-    this.mapData.mapType = 'ROADMAP';
+    if (this.property.latitude && this.property.longitude) {
+      this.mapData.location.lat = Number(this.property.latitude);
+      this.mapData.location.lng = Number(this.property.longitude);
+      this.mapData.markers.push({
+        lat: Number(this.property.latitude),
+        lng: Number(this.property.longitude)
+      } as ILocation);
+      this.mapData.zoom = 6;
+      this.mapData.mapType = 'ROADMAP';
+      console.log(this.mapData);
+    }
   }
 
 }
