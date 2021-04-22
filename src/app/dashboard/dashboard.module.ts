@@ -51,7 +51,6 @@ import { PropertiesCreateComponent } from './components/resources/properties/for
 import { PropertyDetailsComponent } from './components/resources/properties/details/property-details.component';
 import { CategoriesCreateComponent } from './components/resources/categories/forms/createdit/categories-create.component';
 import { CategoryDetailsComponent } from './components/resources/categories/details/category-details.component';
-import { CountriesEmployeeComponent } from './components/resources/countries/employee/countries-employee.component';
 import { CountryDetailsComponent } from './components/resources/countries/details/country-details.component';
 
 @NgModule({
@@ -90,7 +89,6 @@ import { CountryDetailsComponent } from './components/resources/countries/detail
     PropertyDetailsComponent,
     CategoriesCreateComponent,
     CategoryDetailsComponent,
-    CountriesEmployeeComponent,
     CountryDetailsComponent
   ],
     imports: [
