@@ -42,7 +42,6 @@ export class ContactFormComponent implements OnInit {
     if (this.contactForm.valid) {
       this.setValues();
       this.contactService.sendEmail(this.contact).subscribe((res) => {
-        console.log(res);
         if (res.success) {
           this.alertService.success(res.message);
         } else{
@@ -51,7 +50,6 @@ export class ContactFormComponent implements OnInit {
       });
       this.clearForm();
     }
-    console.log(this.contactForm.get('name').valid);
   }
 
   private setValues(): void {

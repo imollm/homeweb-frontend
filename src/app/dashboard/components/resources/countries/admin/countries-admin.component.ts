@@ -57,13 +57,10 @@ export class CountriesAdminComponent implements OnInit {
     this.countriesService.getCountries().then((response) => {
       if (response.success) {
         this.countries = response.data;
-        console.log(this.countries);
       }
     }).then(() => {
       this.getCitiesAndPropertiesAndPrepareChart();
     }).then(() => {
-      console.log(this.chartData);
-      console.log(this.chartLabels);
       this.countriesTable.title = 'Llistat de tots els països';
       this.countriesTable.colsName = [
         {colName: 'id', text: 'ID'},
@@ -80,7 +77,6 @@ export class CountriesAdminComponent implements OnInit {
       this.countriesService.getCitiesAndProperties(String(country.id)).then((response) => {
         if (response.success) {
           this.chartLabels.push(country.name);
-          console.log(response.data);
           country.cities = response.data.cities;
           country.numCities = response.data.cities_count;
           this.chartData[0].data.push(response.data.cities_count);
