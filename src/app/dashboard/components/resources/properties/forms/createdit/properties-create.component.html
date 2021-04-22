@@ -13,8 +13,10 @@
         <span class="input-group-text" id="property-reference">Referència*</span>
         <input type="text" class="form-control" aria-describedby="property-reference" formControlName="reference">
       </div>
-      <div *ngIf="reference.invalid && (reference.dirty || reference.touched) && reference.errors.required || (isSubmitted && form.invalid)" class="text-danger mt-0 mb-2">
-        La referència es requerida
+      <div *ngIf="reference.invalid && (reference.dirty || reference.touched)" class="text-danger mt-0 mb-2">
+        <div *ngIf="reference.errors.required">
+          La referència es requerida
+        </div>
       </div>
       <!-- END REFERENCE -->
 
@@ -23,8 +25,10 @@
         <span class="input-group-text" id="property-title">Títol*</span>
         <input type="text" class="form-control" aria-describedby="property-title" formControlName="title">
       </div>
-      <div *ngIf="title.invalid && (title.dirty || title.touched) && title.errors.required || (isSubmitted && form.invalid)" class="text-danger mt-0 mb-2">
-        El títol es requerit
+      <div *ngIf="title.invalid && (title.dirty || title.touched)" class="text-danger mt-0 mb-2">
+        <div *ngIf="title.errors.required">
+          El títol es requerit
+        </div>
       </div>
 
       <!-- PLOT METERS -->
@@ -67,8 +71,10 @@
           </option>
         </select>
       </div>
-      <div *ngIf="cityId.invalid && (cityId.dirty || cityId.touched) && cityId.errors.required || (isSubmitted && form.invalid)" class="text-danger mt-0 mb-2">
+      <div *ngIf="cityId.invalid && (cityId.dirty || cityId.touched)" class="text-danger mt-0 mb-2">
+        <div *ngIf="cityId.errors.required">
           Has de escollir una ciutat
+        </div>
       </div>
       <!-- END CITIES -->
 
@@ -105,8 +111,10 @@
           </option>
         </select>
       </div>
-      <div *ngIf="categoryId.invalid && (categoryId.dirty || categoryId.touched) && categoryId.errors.required || (isSubmitted && form.invalid)" class="text-danger mt-0 mb-2">
-        Has de escollir una categoria
+      <div *ngIf="categoryId.invalid && (categoryId.dirty || categoryId.touched)" class="text-danger mt-0 mb-2">
+        <div *ngIf="categoryId.errors.required">
+          Has de escollir una categoria
+        </div>
       </div>
       <!-- END CATEGORY -->
 
