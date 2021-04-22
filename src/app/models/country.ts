@@ -8,4 +8,6 @@ export interface ICountry {
   properties?: IProperty[];
   numCities?: number;
   numProperties?: number;
+  latitude: number;
+  longitude: number;
 }

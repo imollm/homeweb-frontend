@@ -167,6 +167,21 @@
         "uri": "/countries/%s/citiesAndProperties",
         "method": "GET",
         "auth": false
+      },
+      "create": {
+        "uri": "/countries/create",
+        "method": "POST",
+        "auth": true
+      },
+      "update": {
+        "uri": "/countries/update",
+        "method": "POST",
+        "auth": true
+      },
+      "getById": {
+        "uri": "/countries/%s/show",
+        "method": "GET",
+        "auth": false
       }
     },
     "contact": {

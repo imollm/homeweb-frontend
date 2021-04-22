@@ -1,0 +1,48 @@
+<div class="container-fluid">
+  <h3 class="text-center p-3" *ngIf="country">
+    País {{country.name | titlecase}}
+  </h3>
+  <hr class="topbar-divider">
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <app-dashboard-card
+        [toShow]="citiesCard"
+      ></app-dashboard-card>
+    </div>
+    <div class="col-12 col-md-6">
+      <app-dashboard-card
+        [toShow]="propertiesCard"
+      ></app-dashboard-card>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="propertiesTable.data && propertiesTable.data.length > 0">
+    <div class="col-12">
+      <app-dashboard-table
+        [toShow]="propertiesTable"
+        [actionButtons]="propertiesActionButtons"
+      ></app-dashboard-table>
+    </div>
+  </div>
+
+  <hr class="topbar-divider">
+
+  <div class="row" *ngIf="citiesTable.data && citiesTable.data.length > 0">
+    <div class="col-12">
+      <app-dashboard-table
+        [toShow]="citiesTable"
+        [actionButtons]="citiesActionButtons"
+      ></app-dashboard-table>
+    </div>
+  </div>
+
+  <hr class="topbar-divider">
+
+  <div *ngIf="properties && properties.length > 0">
+    <h5 class="text-center p-3">Ubicacions de les propietats</h5>
+    <app-map
+      [mapData]="propertiesLocations"
+    ></app-map>
+  </div>
+
+</div>
