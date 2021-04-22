@@ -12,6 +12,7 @@ import {CitiesService} from '../../../../../../services/_city/cities.service';
 import {ActivatedRoute} from '@angular/router';
 import {IProperty} from '../../../../../../models/property';
 import {ResponseStatus} from '../../../../../../api/response-status';
+import {ILocation, IMaps} from '../../../../../../models/maps';
 
 @Component({
   selector: 'app-properties-create-form',
@@ -33,6 +34,13 @@ export class PropertiesCreateComponent implements OnInit {
   mode: string;
   propertyId: string;
   modeTitle = 'Crear';
+  mapData: IMaps = {
+    location: {lat: -0.268549, lng: -9.782616} as ILocation,
+    markers: [{lat: -0.268549, lng: -9.782616} as ILocation],
+    zoom: 1,
+    mapType: 'ROADMAP',
+    getLocation: true
+  } as IMaps;
 
   constructor(
     private fb: FormBuilder,
@@ -56,8 +64,8 @@ export class PropertiesCreateComponent implements OnInit {
       rooms: new FormControl(0),
       baths: new FormControl(0),
       address: new FormControl(''),
-      longitude: new FormControl(0),
-      latitude: new FormControl(0),
+      latitude: new FormControl(this.mapData.location.lat, [Validators.required, Validators.max(90), Validators.min(-90)]),
+      longitude: new FormControl(this.mapData.location.lng, [Validators.required, Validators.max(180), Validators.min(-180)]),
       description: new FormControl(''),
       energetic_certification: new FormControl('obtingut'),
       sold: new FormControl(0),
@@ -133,8 +141,6 @@ export class PropertiesCreateComponent implements OnInit {
     this.form.get('built_meters').setValue(0);
     this.form.get('rooms').setValue(0);
     this.form.get('baths').setValue(0);
-    this.form.get('longitude').setValue(0);
-    this.form.get('latitude').setValue(0);
     this.form.get('sold').setValue(0);
     this.form.get('active').setValue(true);
     this.form.get('price').setValue(0);
@@ -160,6 +166,11 @@ export class PropertiesCreateComponent implements OnInit {
     this.form.setValue(formValues);
   }
 
+  getMarkerLocation(location: ILocation): void {
+    this.latitude.setValue(location.lat);
+    this.longitude.setValue(location.lng);
+  }
+
   get categoryId(): AbstractControl { return this.form.get('category_id'); }
 
   get cityId(): AbstractControl { return this.form.get('city_id'); }
@@ -167,4 +178,8 @@ export class PropertiesCreateComponent implements OnInit {
   get title(): AbstractControl { return this.form.get('title'); }
 
   get reference(): AbstractControl { return this.form.get('reference'); }
+
+  get latitude(): AbstractControl { return this.form.get('latitude'); }
+
+  get longitude(): AbstractControl { return this.form.get('longitude'); }
 }
