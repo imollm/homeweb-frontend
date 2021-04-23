@@ -7,12 +7,12 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
       <!-- ID -->
-      <input type="text" class="form-control" aria-describedby="property-id" formControlName="id" hidden>
+      <input type="text" class="form-control" aria-describedby="category-id" formControlName="id" hidden>
 
       <!-- NAME -->
       <div class="input-group mb-3">
-        <span class="input-group-text" id="property-reference">Nom*</span>
-        <input type="text" class="form-control" aria-describedby="property-reference" formControlName="name">
+        <span class="input-group-text" id="category-reference">Nom*</span>
+        <input type="text" class="form-control" aria-describedby="category-reference" formControlName="name">
       </div>
       <div *ngIf="name.invalid && (name.dirty || name.touched) && name.errors.required || (isSubmitted && form.invalid)" class="text-danger mt-0 mb-2">
         El nom es requerit
