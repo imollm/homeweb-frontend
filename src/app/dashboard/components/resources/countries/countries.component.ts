@@ -42,18 +42,18 @@ export class CountriesComponent implements OnInit {
   }
 
   private deleteCountry(): void {
-    // const countryId = this.activateRoute.snapshot.params.id;
-    // this.categoriesService.deleteCountry(countryId).then((response) => {
-    //   if (response.success) {
-    //     this.alertService.success(response.message);
-    //   } else {
-    //     this.alertService.warn(response.message);
-    //   }
-    // }).catch((error) => {
-    //   this.alertService.error(ResponseStatus.displayErrorMessage(error));
-    //   console.error(error);
-    // });
-    // this.router.navigate(['/dashboard/categories']);
+    const countryId = this.activateRoute.snapshot.params.id;
+    this.countriesService.deleteCountry(countryId).then((response) => {
+      if (response.success) {
+        this.alertService.success(response.message);
+      } else {
+        this.alertService.warn(response.message);
+      }
+    }).catch((error) => {
+      this.alertService.error(ResponseStatus.displayErrorMessage(error));
+      console.error(error);
+    });
+    this.router.navigate(['/dashboard/countries']);
   }
 
 }

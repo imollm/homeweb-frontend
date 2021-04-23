@@ -38,6 +38,7 @@ const routes: Routes = [
       {path: 'countries/create', component: CountriesCreateComponent},
       {path: 'countries/details/:id', component: CountryDetailsComponent},
       {path: 'countries/edit/:id', component: CountriesCreateComponent},
+      {path: 'countries/delete/:id', component: CountriesComponent},
       {path: 'sales', component: SalesComponent},
       {path: 'tours', component: ToursComponent},
       {path: '**', component: NotFoundComponent}
