@@ -32,7 +32,7 @@ export class EndPointMapper {
       }
       return url;
     } else {
-      throw new Error('Endpoint have no resource or resource have no action');
+      throw new Error(sprintf('Endpoint have no resource or resource have no action, [%s - %s]', resource, action));
     }
   }
 
