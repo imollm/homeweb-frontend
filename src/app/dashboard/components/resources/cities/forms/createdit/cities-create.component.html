@@ -1,0 +1,86 @@
+<div class="container">
+
+  <h1 class="text-center my-5">{{modeTitle | titlecase}} país</h1>
+
+  <div class="row">
+
+    <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <!-- ID -->
+        <input type="text" class="form-control" aria-describedby="city-id" formControlName="id" hidden>
+
+        <!-- NAME -->
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="city-reference">Nom*</span>
+          <input type="text" class="form-control" aria-describedby="city-reference" formControlName="name">
+        </div>
+        <div *ngIf="name.invalid && (name.dirty || name.touched) && name.errors.required || (isSubmitted && form.invalid)" class="text-danger mt-0 mb-2">
+          El nom es requerit
+        </div>
+
+        <!-- COUNTRY -->
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="city-code">País*</span>
+          <select class="form-control" formControlName="country_id">
+            <option [ngValue]="" disabled selected>Tria un país</option>
+            <option *ngFor="let country of countries" [ngValue]="country.id">
+              {{ country.name }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="countryId.invalid && (countryId.dirty || countryId.touched)" class="text-danger mt-0 mb-2">
+          <div *ngIf="countryId.errors.required">
+            El país es requerit
+          </div>
+        </div>
+
+        <!-- MAP -->
+        <h5 class="p-3 text-center">Tria la localització</h5>
+        <app-map
+          [mapData]="mapData"
+          (markerLocation)="getMarkerLocation($event)"
+        ></app-map>
+
+        <!-- LATITUDE -->
+        <div class="input-group my-3">
+          <span class="input-group-text" id="city-latitude">Lat*</span>
+          <input type="number" class="form-control" aria-describedby="city-latitude" formControlName="latitude">
+        </div>
+        <div *ngIf="latitude.invalid && (latitude.dirty || latitude.touched)" class="text-danger mt-0 mb-2">
+          <div *ngIf="latitude.errors.required">
+            Tria la localització
+          </div>
+          <div *ngIf="latitude.errors.max || latitude.errors.min">
+            Localització incorrecte, latitud entre 90 i -90
+          </div>
+        </div>
+
+        <!-- LONGITUDE -->
+        <div class="input-group">
+          <span class="input-group-text" id="city-longitude">Lng*</span>
+          <input type="number" class="form-control" aria-describedby="city-longitude" formControlName="longitude">
+        </div>
+        <div *ngIf="longitude.invalid && (longitude.dirty || longitude.touched)" class="text-danger mt-0 mb-2">
+          <div *ngIf="longitude.errors.required">
+            Tria la localització
+          </div>
+          <div *ngIf="longitude.errors.max || longitude.errors.min">
+            Localització incorrecte, longitud entre 180 i -180
+          </div>
+        </div>
+
+
+        <!-- SUBMIT -->
+        <div class="input-group my-5 d-flex justify-content-center">
+          <button type="submit" class="btn btn-secondary">{{modeTitle}}</button>
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>

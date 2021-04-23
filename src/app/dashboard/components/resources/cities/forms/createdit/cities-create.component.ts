@@ -1,25 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {ICountry} from '../../../../../../models/country';
+import {ILocation, IMaps} from '../../../../../../models/maps';
+import {CountriesService} from '../../../../../../services/_country/countries.service';
 import {AlertService} from '../../../../../../_alert/alert.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ILocation, IMaps} from '../../../../../../models/maps';
+import {CitiesService} from '../../../../../../services/_city/cities.service';
+import {ICountry} from '../../../../../../models/country';
 import {ResponseStatus} from '../../../../../../api/response-status';
-import {CountriesService} from '../../../../../../services/_country/countries.service';
 
 @Component({
-  selector: 'app-countries-create',
-  templateUrl: './countries-create.component.html',
-  styleUrls: ['./countries-create.component.css']
+  selector: 'app-cities-create',
+  templateUrl: './cities-create.component.html',
+  styleUrls: ['./cities-create.component.css']
 })
-export class CountriesCreateComponent implements OnInit {
+export class CitiesCreateComponent implements OnInit {
 
   modeTitle = 'Crear';
   form: FormGroup;
   isSubmitted = false;
   mode: string;
-  countryId: string;
-  country: ICountry = {} as ICountry;
+  cityId: string;
+  countries: ICountry[] = [];
 
   mapData: IMaps = {
     location: {lat: -0.268549, lng: -9.782616} as ILocation,
@@ -31,6 +32,7 @@ export class CountriesCreateComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private citiesService: CitiesService,
     private countriesService: CountriesService,
     private alertService: AlertService,
     private activateRoute: ActivatedRoute,
@@ -39,7 +41,7 @@ export class CountriesCreateComponent implements OnInit {
     this.form = this.fb.group({
       id: new FormControl({value: null, readonly: true}),
       name: new FormControl('', Validators.required),
-      code: new FormControl('', [Validators.required, Validators.pattern('[A-Z]{3}')]),
+      country_id: new FormControl('', Validators.required),
       latitude: new FormControl(this.mapData.location.lat, [Validators.required, Validators.max(90), Validators.min(-90)]),
       longitude: new FormControl(this.mapData.location.lng, [Validators.required, Validators.max(180), Validators.min(-180)]),
     });
@@ -48,17 +50,17 @@ export class CountriesCreateComponent implements OnInit {
   ngOnInit(): void {
     this.mode = this.activateRoute.snapshot.url[1].path;
     if (this.mode === 'edit') {
-      this.countryId = this.activateRoute.snapshot.params.id;
+      this.cityId = this.activateRoute.snapshot.params.id;
       this.modeTitle = 'Actualitza';
       this.editMode();
     }
+    this.getCountries();
   }
 
   onSubmit(): void {
-    console.log(this.form.value);
     if (this.form.valid) {
       if (this.mode === 'edit') {
-        this.countriesService.updateCountry(this.form.value).then((response) => {
+        this.citiesService.updateCity(this.form.value).then((response) => {
           if (response.success) {
             this.alertService.success(response.message);
           } else {
@@ -69,7 +71,7 @@ export class CountriesCreateComponent implements OnInit {
           console.error(error);
         });
       } else if (this.mode === 'create') {
-        this.countriesService.createCountry(this.form.value).then((response) => {
+        this.citiesService.createCity(this.form.value).then((response) => {
           if (response.success) {
             this.alertService.success(response.message);
           } else {
@@ -80,20 +82,32 @@ export class CountriesCreateComponent implements OnInit {
           console.error(error);
         });
       }
-      this.router.navigate(['dashboard/countries']);
+      this.router.navigate(['dashboard/cities']);
     }
   }
 
-  private editMode(): void {
-    this.countriesService.getCountryById(this.countryId).then((response) => {
+  private getCountries(): void {
+    this.countriesService.getCountries().then((response) => {
       if (response.success) {
-        this.country = response.data;
+        this.countries = response.data;
+      } else {
+        this.alertService.warn(response.message);
+      }
+    }).catch((error) => {
+      this.alertService.error(ResponseStatus.displayErrorMessage(error));
+      console.error(error);
+    });
+  }
+
+  private editMode(): void {
+    this.citiesService.getCityById(this.cityId).then((response) => {
+      if (response.success) {
         this.form.setValue({
-          id: this.country.id,
-          name: this.country.name,
-          code: this.country.code,
-          latitude: this.country.latitude,
-          longitude: this.country.longitude
+          id: response.data.id,
+          name: response.data.name,
+          country_id: response.data.country_id,
+          latitude: response.data.latitude,
+          longitude: response.data.longitude
         });
       } else {
         this.alertService.warn(response.message);
@@ -111,7 +125,7 @@ export class CountriesCreateComponent implements OnInit {
 
   get name(): AbstractControl { return this.form.get('name'); }
 
-  get code(): AbstractControl { return this.form.get('code'); }
+  get countryId(): AbstractControl { return this.form.get('country_id'); }
 
   get latitude(): AbstractControl { return this.form.get('latitude'); }
 

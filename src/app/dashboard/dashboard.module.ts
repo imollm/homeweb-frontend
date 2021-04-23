@@ -47,12 +47,18 @@ import { ToursComponent } from './components/resources/tours/tours.component';
 import { ToursAdminComponent } from './components/resources/tours/admin/tours-admin.component';
 import { ToursCustomerComponent } from './components/resources/tours/customer/tours-customer.component';
 import { ToursEmployeeComponent } from './components/resources/tours/employee/tours-employee.component';
+
 import { PropertiesCreateComponent } from './components/resources/properties/forms/createdit/properties-create.component';
 import { PropertyDetailsComponent } from './components/resources/properties/details/property-details.component';
+
 import { CategoriesCreateComponent } from './components/resources/categories/forms/createdit/categories-create.component';
 import { CategoryDetailsComponent } from './components/resources/categories/details/category-details.component';
+
 import { CountryDetailsComponent } from './components/resources/countries/details/country-details.component';
 import { CountriesCreateComponent } from './components/resources/countries/forms/createdit/countries-create.component';
+
+import { CityDetailsComponent } from './components/resources/cities/details/city-details.component';
+import { CitiesCreateComponent } from './components/resources/cities/forms/createdit/cities-create.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +97,9 @@ import { CountriesCreateComponent } from './components/resources/countries/forms
     CategoriesCreateComponent,
     CategoryDetailsComponent,
     CountryDetailsComponent,
-    CountriesCreateComponent
+    CountriesCreateComponent,
+    CityDetailsComponent,
+    CitiesCreateComponent
   ],
     imports: [
         CommonModule,

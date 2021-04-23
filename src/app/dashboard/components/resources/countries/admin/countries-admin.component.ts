@@ -69,6 +69,9 @@ export class CountriesAdminComponent implements OnInit {
         {colName: 'numProperties', text: 'Propietats'}
       ];
       this.countriesTable.data = this.countries;
+    }).catch((error) => {
+      this.alertService.error(ResponseStatus.displayErrorMessage(error));
+      console.error(error);
     });
   }
 

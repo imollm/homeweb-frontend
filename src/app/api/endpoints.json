@@ -155,6 +155,26 @@
         "uri": "/cities/index",
         "method": "GET",
         "auth": false
+      },
+      "create": {
+        "uri": "/cities/create",
+        "method": "POST",
+        "auth": true
+      },
+      "update": {
+        "uri": "/cities/update",
+        "method": "POST",
+        "auth": true
+      },
+      "getById": {
+        "uri": "/cities/%s/show",
+        "method": "GET",
+        "auth": false
+      },
+      "delete": {
+        "uri": "/cities/%s/delete",
+        "method": "DELETE",
+        "auth": true
       }
     },
     "countries": {

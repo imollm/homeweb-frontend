@@ -63,7 +63,7 @@
   </li>
 
   <li class="nav-item" *ngIf="cities">
-    <a class="nav-link collapsed" href="#">
+    <a class="nav-link collapsed" [routerLink]="['/dashboard/cities']">
       <fa-icon [icon]="faCity"></fa-icon>
       <span class="ml-3">Ciutats</span>
     </a>

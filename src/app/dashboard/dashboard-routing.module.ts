@@ -16,6 +16,8 @@ import {CategoriesCreateComponent} from './components/resources/categories/forms
 import {CategoryDetailsComponent} from './components/resources/categories/details/category-details.component';
 import {CountryDetailsComponent} from './components/resources/countries/details/country-details.component';
 import {CountriesCreateComponent} from './components/resources/countries/forms/createdit/countries-create.component';
+import {CityDetailsComponent} from './components/resources/cities/details/city-details.component';
+import { CitiesCreateComponent } from './components/resources/cities/forms/createdit/cities-create.component';
 
 const routes: Routes = [
   {
@@ -34,6 +36,10 @@ const routes: Routes = [
       {path: 'categories/edit/:id', component: CategoriesCreateComponent},
       {path: 'categories/delete/:id', component: CategoriesComponent},
       {path: 'cities', component: CitiesComponent},
+      {path: 'cities/create', component: CitiesCreateComponent},
+      {path: 'cities/details/:id', component: CityDetailsComponent},
+      {path: 'cities/edit/:id', component: CitiesCreateComponent},
+      {path: 'cities/delete/:id', component: CitiesComponent},
       {path: 'countries', component: CountriesComponent},
       {path: 'countries/create', component: CountriesCreateComponent},
       {path: 'countries/details/:id', component: CountryDetailsComponent},
