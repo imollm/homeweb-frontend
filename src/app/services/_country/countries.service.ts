@@ -31,8 +31,18 @@ export class CountriesService {
     return this.httpClient.post<ApiResponseI>(endpoint, country).toPromise();
   }
 
+  updateCountry(country: ICountry): Promise<ApiResponseI> {
+    const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'update');
+    return this.httpClient.put<ApiResponseI>(endpoint, country).toPromise();
+  }
+
   getCountryById(countryId: string): Promise<ApiResponseI> {
     const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'getById', countryId);
     return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
+  }
+
+  deleteCountry(countryId: string): Promise<ApiResponseI> {
+    const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'delete', countryId);
+    return this.httpClient.delete<ApiResponseI>(endpoint).toPromise();
   }
 }

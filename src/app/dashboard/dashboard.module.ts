@@ -52,6 +52,7 @@ import { PropertyDetailsComponent } from './components/resources/properties/deta
 import { CategoriesCreateComponent } from './components/resources/categories/forms/createdit/categories-create.component';
 import { CategoryDetailsComponent } from './components/resources/categories/details/category-details.component';
 import { CountryDetailsComponent } from './components/resources/countries/details/country-details.component';
+import { CountriesCreateComponent } from './components/resources/countries/forms/createdit/countries-create.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,8 @@ import { CountryDetailsComponent } from './components/resources/countries/detail
     PropertyDetailsComponent,
     CategoriesCreateComponent,
     CategoryDetailsComponent,
-    CountryDetailsComponent
+    CountryDetailsComponent,
+    CountriesCreateComponent
   ],
     imports: [
         CommonModule,

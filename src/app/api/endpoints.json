@@ -139,7 +139,7 @@
       },
       "delete": {
         "uri": "/categories/%s/delete",
-        "method": "GET",
+        "method": "DELETE",
         "auth": true
       }
     },
@@ -182,6 +182,11 @@
         "uri": "/countries/%s/show",
         "method": "GET",
         "auth": false
+      },
+      "delete": {
+        "uri": "/countries/%s/delete",
+        "method": "DELETE",
+        "auth": true
       }
     },
     "contact": {
