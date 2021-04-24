@@ -4,15 +4,19 @@
   </h3>
   <hr class="topbar-divider">
   <div class="row">
-    <div class="col-12 col-md-6">
-      <app-dashboard-card
-        [toShow]="citiesCard"
-      ></app-dashboard-card>
+    <div class="d-flex justify-content-center align-items-center col-12 col-md-6">
+      <div class="w-50">
+        <app-dashboard-card
+          [toShow]="citiesCard"
+        ></app-dashboard-card>
+      </div>
     </div>
-    <div class="col-12 col-md-6">
-      <app-dashboard-card
-        [toShow]="propertiesCard"
-      ></app-dashboard-card>
+    <div class="d-flex justify-content-center align-items-center col-12 col-md-6">
+      <div class="w-50">
+        <app-dashboard-card
+          [toShow]="propertiesCard"
+        ></app-dashboard-card>
+      </div>
     </div>
   </div>
 

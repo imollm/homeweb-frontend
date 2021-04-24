@@ -1,1 +1,50 @@
-<p>details works!</p>
+<div class="container-fluid">
+
+  <h3 class="text-center p-3" *ngIf="city">
+    {{city.name | titlecase}}
+  </h3>
+
+  <hr class="topbar-divider">
+
+  <div class="row">
+    <div class="d-flex justify-content-center align-items-center col-12 col-md-6">
+      <div class="w-50">
+        <app-dashboard-card
+          [toShow]="countryCard"
+        ></app-dashboard-card>
+      </div>
+    </div>
+    <div class="d-flex justify-content-center align-items-center col-12 col-md-6">
+      <div class="w-50">
+        <app-dashboard-card
+          [toShow]="propertiesCard"
+        ></app-dashboard-card>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="city.properties.length > 0">
+    <div class="col-12 mt-5 d-flex flex-column justify-content-center align-items-center">
+      <div>
+        <h5 class="text-center p-3">
+          Ubicació propietats
+        </h5>
+      </div>
+      <div class="w-50">
+        <app-map
+          [mapData]="propertiesLocations"
+        ></app-map>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <app-dashboard-table
+        [toShow]="propertiesTable"
+        [actionButtons]="propertiesTableActionButtons"
+      ></app-dashboard-table>
+    </div>
+  </div>
+
+</div>
