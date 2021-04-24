@@ -246,6 +246,43 @@
         "method": "GET",
         "auth": false
       }
+    },
+    "tours": {
+      "index": {
+        "uri": "/tours/index",
+        "method": "GET",
+        "auth": true
+      },
+      "getByPropertyId": {
+        "uri": "/tours/property/%s/show",
+        "method": "GET",
+        "auth": true
+      },
+      "show": {
+        "uri": "/tours/show/%s",
+        "method": "GET",
+        "auth": true
+      },
+      "create": {
+        "uri": "/tours/create",
+        "method": "POST",
+        "auth": true
+      },
+      "update": {
+        "uri": "/tours/update",
+        "method": "PUT",
+        "auth": true
+      },
+      "delete": {
+        "uri": "/tours/%s/delete",
+        "method": "DELETE",
+        "auth": true
+      },
+      "showByHashId": {
+        "uri": "/tours/%s/showByHashId",
+        "method": "GET",
+        "auth": true
+      }
     }
   }
 }

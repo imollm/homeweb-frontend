@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from "../../../../services/_auth/auth.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {AlertService} from "../../../../_alert/alert.service";
-import {ResponseStatus} from "../../../../api/response-status";
-import {CitiesService} from "../../../../services/_city/cities.service";
+import {AuthService} from '../../../../services/_auth/auth.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AlertService} from '../../../../_alert/alert.service';
+import {ResponseStatus} from '../../../../api/response-status';
+import {CitiesService} from '../../../../services/_city/cities.service';
 
 @Component({
   selector: 'app-cities',

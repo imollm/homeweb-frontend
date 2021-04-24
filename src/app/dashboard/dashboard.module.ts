@@ -59,6 +59,8 @@ import { CountriesCreateComponent } from './components/resources/countries/forms
 
 import { CityDetailsComponent } from './components/resources/cities/details/city-details.component';
 import { CitiesCreateComponent } from './components/resources/cities/forms/createdit/cities-create.component';
+import { ToursOwnerComponent } from './components/resources/tours/owner/tours-owner.component';
+import { ToursCreateComponent } from './components/resources/tours/forms/createdit/tours-create.component';
 
 @NgModule({
   declarations: [
@@ -99,7 +101,9 @@ import { CitiesCreateComponent } from './components/resources/cities/forms/creat
     CountryDetailsComponent,
     CountriesCreateComponent,
     CityDetailsComponent,
-    CitiesCreateComponent
+    CitiesCreateComponent,
+    ToursOwnerComponent,
+    ToursCreateComponent
   ],
     imports: [
         CommonModule,

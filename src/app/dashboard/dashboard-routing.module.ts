@@ -18,6 +18,7 @@ import {CountryDetailsComponent} from './components/resources/countries/details/
 import {CountriesCreateComponent} from './components/resources/countries/forms/createdit/countries-create.component';
 import {CityDetailsComponent} from './components/resources/cities/details/city-details.component';
 import { CitiesCreateComponent } from './components/resources/cities/forms/createdit/cities-create.component';
+import {ToursCreateComponent} from './components/resources/tours/forms/createdit/tours-create.component';
 
 const routes: Routes = [
   {
@@ -47,6 +48,7 @@ const routes: Routes = [
       {path: 'countries/delete/:id', component: CountriesComponent},
       {path: 'sales', component: SalesComponent},
       {path: 'tours', component: ToursComponent},
+      {path: 'tours/create', component: ToursCreateComponent},
       {path: '**', component: NotFoundComponent}
     ]
   }
