@@ -245,6 +245,16 @@
         "uri": "/users/owners",
         "method": "GET",
         "auth": false
+      },
+      "customers": {
+        "uri": "/users/customers",
+        "method": "GET",
+        "auth": false
+      },
+      "employees": {
+        "uri": "/users/employees",
+        "method": "GET",
+        "auth": false
       }
     },
     "tours": {

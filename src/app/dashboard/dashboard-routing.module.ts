@@ -49,6 +49,7 @@ const routes: Routes = [
       {path: 'sales', component: SalesComponent},
       {path: 'tours', component: ToursComponent},
       {path: 'tours/create', component: ToursCreateComponent},
+      {path: 'tours/edit/:id', component: ToursCreateComponent},
       {path: '**', component: NotFoundComponent}
     ]
   }

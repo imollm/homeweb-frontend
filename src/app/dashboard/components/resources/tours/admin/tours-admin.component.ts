@@ -20,6 +20,7 @@ export class ToursAdminComponent implements OnInit {
   lastToursTable: IDashboardTable = {} as IDashboardTable;
   lastToursTableActions: IActionButtons = {
     active: true,
+    resource: 'tours',
     actions: {
       view: true,
       edit: true,
@@ -72,6 +73,7 @@ export class ToursAdminComponent implements OnInit {
     const data = [];
     for (const tour of this.lastTours) {
       data.push({
+        id: tour.hash_id,
         reference: tour.property.reference,
         employee: tour.employee.name,
         customer: tour.customer.name,

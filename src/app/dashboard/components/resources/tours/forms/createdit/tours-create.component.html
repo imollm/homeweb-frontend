@@ -1,1 +1,108 @@
-<p>tours-create works!</p>
+<div class="container-fluid">
+
+  <h1 class="text-center my-5">{{modeTitle | titlecase}} visita</h1>
+
+  <div class="row">
+
+    <div class="col-12 col-md-6 offset-md-3 col-lg-4 offset-lg-4 d-flex flex-column align-items-center">
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <!-- HASH_ID -->
+        <input type="text" class="form-control" aria-describedby="tour-hash-id" formControlName="hash_id" hidden>
+
+        <!-- CUSTOMER -->
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="customer-id">Client*</span>
+          <select class="form-control" formControlName="customer_id">
+            <option [ngValue]="" disabled selected>Tria un client</option>
+            <option *ngFor="let customer of customers" [ngValue]="customer.id">
+              {{ customer.name }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="customer.invalid && (customer.dirty || customer.touched)" class="text-danger mt-0 mb-2">
+          <div *ngIf="customer.errors.required">
+            El client es requerit
+          </div>
+        </div>
+
+        <!-- EMPLOYEE -->
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="employee-id">Empleat*</span>
+          <select class="form-control" formControlName="employee_id">
+            <option [ngValue]="" disabled selected>Tria un empleat</option>
+            <option *ngFor="let employee of employees" [ngValue]="employee.id">
+              {{ employee.name }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="employee.invalid && (employee.dirty || employee.touched)" class="text-danger mt-0 mb-2">
+          <div *ngIf="employee.errors.required">
+            L'empleat es requerit
+          </div>
+        </div>
+
+        <!-- PROPERTY -->
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="property-id">Propietat*</span>
+          <select class="form-control" formControlName="property_id">
+            <option [ngValue]="" disabled selected>Tria una referència</option>
+            <option *ngFor="let property of properties" [ngValue]="property.id">
+              {{ property.reference }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="property.invalid && (property.dirty || property.touched)" class="text-danger mt-0 mb-2">
+          <div *ngIf="property.errors.required">
+            La propietat es requerida
+          </div>
+        </div>
+
+        <!-- DATE -->
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="date">Data*</span>
+          <ngb-datepicker
+            (dateSelect)="onDateSelect($event)"
+            formControlName="date"
+          ></ngb-datepicker>
+        </div>
+        <div *ngIf="date.invalid && (date.dirty || date.touched)" class="text-danger mt-0 mb-2">
+          <div *ngIf="date.errors.required">
+            Tria una data
+          </div>
+          <div *ngIf="date.errors.pattern">
+            El format de la data no es correcte
+          </div>
+        </div>
+
+        <!-- TIME -->
+        <div class="input-group my-3">
+          <span class="input-group-text" id="time">Hora*</span>
+          <ngb-timepicker
+            formControlName="time"
+            [minuteStep]="60"
+          ></ngb-timepicker>
+        </div>
+        <div *ngIf="time.invalid && (time.dirty || time.touched)" class="text-danger mt-0 mb-2">
+          <div *ngIf="time.errors.required">
+            Tria una hora
+          </div>
+          <div *ngIf="time.errors.pattern">
+            El format de la hora no es correcte
+          </div>
+        </div>
+
+        <!-- SUBMIT -->
+        <div class="input-group my-5 d-flex justify-content-center">
+          <button type="submit" class="btn btn-secondary">{{modeTitle}}</button>
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+

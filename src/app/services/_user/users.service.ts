@@ -19,4 +19,14 @@ export class UsersService {
     const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'owners');
     return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
   }
+
+  getCustomers(): Promise<ApiResponseI> {
+    const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'customers');
+    return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
+  }
+
+  getEmployees(): Promise<ApiResponseI> {
+    const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'employees');
+    return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
+  }
 }
