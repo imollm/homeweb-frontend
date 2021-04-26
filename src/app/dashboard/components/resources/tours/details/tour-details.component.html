@@ -1,0 +1,69 @@
+<div class="container-fluid">
+
+  <h3 class="text-center p-3">
+    Detalls visita
+  </h3>
+
+  <hr class="topbar-divider">
+
+  <div class="row">
+
+    <div class="d-flex justify-content-center align-items-center col-12 col-lg-6">
+      <div class="w-50">
+        <app-dashboard-card
+          [toShow]="dateCard"
+        ></app-dashboard-card>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center align-items-center col-12 col-lg-6">
+      <div class="w-50">
+        <app-dashboard-card
+          [toShow]="timeCard"
+        ></app-dashboard-card>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row mt-5">
+
+    <div class="col-12 col-lg-4">
+      <app-dashboard-table
+        [toShow]="tourDetailsTable"
+        [actionButtons]="actionButtons"
+      ></app-dashboard-table>
+    </div>
+
+    <div class="col-12 col-lg-4">
+      <app-dashboard-table
+        [toShow]="customerDetailsTable"
+        [actionButtons]="actionButtons"
+      ></app-dashboard-table>
+    </div>
+
+    <div class="col-12 col-lg-4">
+      <app-dashboard-table
+        [toShow]="employeeDetailsTable"
+        [actionButtons]="actionButtons"
+      ></app-dashboard-table>
+    </div>
+
+  </div>
+
+  <div class="row mt-5">
+
+    <div class="d-flex flex-row justify-content-center align-items-center col-12">
+
+      <div class="w-50">
+        <h5 class="text-center font-weight-bold p-3">Ubicació de la visita</h5>
+        <app-map
+          [mapData]="mapData"
+        ></app-map>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

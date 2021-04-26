@@ -19,6 +19,7 @@ import {CountriesCreateComponent} from './components/resources/countries/forms/c
 import {CityDetailsComponent} from './components/resources/cities/details/city-details.component';
 import { CitiesCreateComponent } from './components/resources/cities/forms/createdit/cities-create.component';
 import {ToursCreateComponent} from './components/resources/tours/forms/createdit/tours-create.component';
+import {TourDetailsComponent} from './components/resources/tours/details/tour-details.component';
 
 const routes: Routes = [
   {
@@ -31,25 +32,32 @@ const routes: Routes = [
       {path: 'properties/details/:id', component: PropertyDetailsComponent},
       {path: 'properties/edit/:id', component: PropertiesCreateComponent},
       {path: 'properties/delete/:id', component: PropertiesComponent},
+
       {path: 'categories', component: CategoriesComponent},
       {path: 'categories/create', component: CategoriesCreateComponent},
       {path: 'categories/details/:id', component: CategoryDetailsComponent},
       {path: 'categories/edit/:id', component: CategoriesCreateComponent},
       {path: 'categories/delete/:id', component: CategoriesComponent},
+
       {path: 'cities', component: CitiesComponent},
       {path: 'cities/create', component: CitiesCreateComponent},
       {path: 'cities/details/:id', component: CityDetailsComponent},
       {path: 'cities/edit/:id', component: CitiesCreateComponent},
       {path: 'cities/delete/:id', component: CitiesComponent},
+
       {path: 'countries', component: CountriesComponent},
       {path: 'countries/create', component: CountriesCreateComponent},
       {path: 'countries/details/:id', component: CountryDetailsComponent},
       {path: 'countries/edit/:id', component: CountriesCreateComponent},
       {path: 'countries/delete/:id', component: CountriesComponent},
+
       {path: 'sales', component: SalesComponent},
+
       {path: 'tours', component: ToursComponent},
       {path: 'tours/create', component: ToursCreateComponent},
+      {path: 'tours/details/:id', component: TourDetailsComponent},
       {path: 'tours/edit/:id', component: ToursCreateComponent},
+      {path: 'tours/delete/:id', component: ToursComponent},
       {path: '**', component: NotFoundComponent}
     ]
   }

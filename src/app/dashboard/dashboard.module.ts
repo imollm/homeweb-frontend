@@ -47,6 +47,9 @@ import { ToursComponent } from './components/resources/tours/tours.component';
 import { ToursAdminComponent } from './components/resources/tours/admin/tours-admin.component';
 import { ToursCustomerComponent } from './components/resources/tours/customer/tours-customer.component';
 import { ToursEmployeeComponent } from './components/resources/tours/employee/tours-employee.component';
+import { ToursOwnerComponent } from './components/resources/tours/owner/tours-owner.component';
+import { ToursCreateComponent } from './components/resources/tours/forms/createdit/tours-create.component';
+import { TourDetailsComponent } from './components/resources/tours/details/tour-details.component';
 
 import { PropertiesCreateComponent } from './components/resources/properties/forms/createdit/properties-create.component';
 import { PropertyDetailsComponent } from './components/resources/properties/details/property-details.component';
@@ -59,8 +62,7 @@ import { CountriesCreateComponent } from './components/resources/countries/forms
 
 import { CityDetailsComponent } from './components/resources/cities/details/city-details.component';
 import { CitiesCreateComponent } from './components/resources/cities/forms/createdit/cities-create.component';
-import { ToursOwnerComponent } from './components/resources/tours/owner/tours-owner.component';
-import { ToursCreateComponent } from './components/resources/tours/forms/createdit/tours-create.component';
+import { SalesCreateComponent } from './components/resources/sales/forms/createdit/sales-create.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +105,9 @@ import { ToursCreateComponent } from './components/resources/tours/forms/created
     CityDetailsComponent,
     CitiesCreateComponent,
     ToursOwnerComponent,
-    ToursCreateComponent
+    ToursCreateComponent,
+    TourDetailsComponent,
+    SalesCreateComponent
   ],
     imports: [
         CommonModule,

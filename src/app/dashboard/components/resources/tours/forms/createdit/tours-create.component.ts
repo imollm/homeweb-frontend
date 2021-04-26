@@ -63,9 +63,7 @@ export class ToursCreateComponent implements OnInit {
       if (this.mode === 'create') {
         this.toursService.createTour(this.form.value).then((response) => {
           if (response.success) {
-            this.router.navigate(['dashboard/tours']).then(() => {
-              this.alertService.success(response.message);
-            });
+            this.alertService.success(response.message);
           } else {
             this.alertService.warn(response.message);
           }
@@ -76,9 +74,7 @@ export class ToursCreateComponent implements OnInit {
       } else if (this.mode === 'edit') {
         this.toursService.updateTour(this.form.value).then((response) => {
           if (response.success) {
-            this.router.navigate(['dashboard/tours']).then(() => {
-              this.alertService.success(response.message);
-            });
+            this.alertService.success(response.message);
           } else {
             this.alertService.warn(response.message);
           }
@@ -87,6 +83,7 @@ export class ToursCreateComponent implements OnInit {
           console.error(error);
         });
       }
+      this.router.navigate(['dashboard/tours']);
     }
   }
 
