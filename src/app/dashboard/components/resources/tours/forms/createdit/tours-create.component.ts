@@ -10,6 +10,7 @@ import {NgbDate} from '@ng-bootstrap/ng-bootstrap';
 import {PropertiesService} from '../../../../../../services/_property/properties.service';
 import {IProperty} from '../../../../../../models/property';
 import {ActivatedRoute, Router} from '@angular/router';
+import {HelpersService} from '../../../../../../services/_helpers/helpers.service';
 
 @Component({
   selector: 'app-tours-create-form',
@@ -125,37 +126,8 @@ export class ToursCreateComponent implements OnInit {
   }
 
   private formatDateAndTime(): void {
-    let time = '';
-    let day = String(this.day.year) + '-';
-    if (this.time.value.hour < 10) {
-      time = '0' + String(this.time.value.hour);
-    } else {
-      time = String(this.time.value.hour);
-    }
-    time += ':';
-    if (this.time.value.minute < 10) {
-      time += '0' + String(this.time.value.minute);
-    } else {
-      time += String(this.time.value.minute);
-    }
-    time += ':';
-    if (this.time.value.second < 10) {
-      time += '0' + String(this.time.value.second);
-    } else {
-      time += String(this.time.value.second);
-    }
-    if (this.day.month < 10) {
-      day += '0' + String(this.day.month) + '-';
-    } else {
-      day += String(this.day.month) + '-';
-    }
-    if (this.day.day < 10) {
-      day += '0' + String(this.day.day);
-    } else {
-      day += String(this.day.day);
-    }
-    this.time.setValue(time);
-    this.date.setValue(day);
+    this.time.setValue(HelpersService.timeFromJsonToTime(this.time.value));
+    this.date.setValue(HelpersService.dateFromJsonToDate(this.day));
   }
 
   private editMode(): void {
