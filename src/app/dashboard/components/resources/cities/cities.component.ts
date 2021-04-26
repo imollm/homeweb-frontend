@@ -37,6 +37,9 @@ export class CitiesComponent implements OnInit {
       if (this.mode === 'delete') {
         this.deleteCity();
       }
+    }).catch((error) => {
+      this.alertService.error(ResponseStatus.displayErrorMessage(error));
+      console.error(error);
     });
   }
 
