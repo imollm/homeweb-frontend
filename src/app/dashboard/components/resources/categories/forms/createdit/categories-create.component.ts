@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {CategoriesService} from '../../../../../../services/_category/categories.service';
 import {AlertService} from '../../../../../../_alert/alert.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ICategory} from '../../../../../../models/category';
 import {ImageService} from '../../../../../../services/_image/image.service';
 import {ResponseStatus} from '../../../../../../api/response-status';
@@ -28,7 +28,8 @@ export class CategoriesCreateComponent implements OnInit {
     private categoriesService: CategoriesService,
     private alertService: AlertService,
     private activateRoute: ActivatedRoute,
-    private imageService: ImageService
+    private imageService: ImageService,
+    private router: Router
   ) {
     this.form = this.fb.group({
       id: new FormControl({value: null, readonly: true}),
@@ -78,7 +79,6 @@ export class CategoriesCreateComponent implements OnInit {
       this.categoriesService.createCategory(categoryFormData).then((response) => {
         if (response.success) {
           this.alertService.success(response.message);
-          this.resetForm();
         } else {
           this.alertService.warn(response.message);
         }
@@ -87,6 +87,7 @@ export class CategoriesCreateComponent implements OnInit {
         console.error(error);
       });
     }
+    this.router.navigate(['/dashboard/categories']);
   }
 
   private editMode(): void {
@@ -109,15 +110,6 @@ export class CategoriesCreateComponent implements OnInit {
       this.alertService.error(ResponseStatus.displayErrorMessage(error));
       console.error(error);
     });
-  }
-
-  private resetForm(): void {
-    this.form.reset();
-    this.isSubmitted = false;
-    this.form.get('name').setValue('');
-    this.form.get('image').setValue(null);
-    this.imgPreview = '';
-    (document.getElementById('image') as HTMLInputElement).value = '';
   }
 
   previewImage(evt: any): void {

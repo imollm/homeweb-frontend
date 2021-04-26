@@ -9,7 +9,7 @@ import {ICategory} from '../../../../../../models/category';
 import {UsersService} from '../../../../../../services/_user/users.service';
 import {IUser} from '../../../../../../models/user';
 import {CitiesService} from '../../../../../../services/_city/cities.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {IProperty} from '../../../../../../models/property';
 import {ResponseStatus} from '../../../../../../api/response-status';
 import {ILocation, IMaps} from '../../../../../../models/maps';
@@ -49,7 +49,8 @@ export class PropertiesCreateComponent implements OnInit {
     private categoriesService: CategoriesService,
     private usersService: UsersService,
     private alertService: AlertService,
-    private activateRoute: ActivatedRoute
+    private activateRoute: ActivatedRoute,
+    private router: Router
   ) {
     this.form = this.fb.group({
       id: new FormControl({value: null, readonly: true}),
@@ -90,7 +91,7 @@ export class PropertiesCreateComponent implements OnInit {
       if (this.mode === 'edit') {
         this.propertiesService.updateProperty(this.form.value).then((response) => {
           if (response.success) {
-            this.alertService.success(response.message);
+              this.alertService.success(response.message);
           } else {
             this.alertService.warn(response.message);
           }
@@ -102,7 +103,6 @@ export class PropertiesCreateComponent implements OnInit {
         this.propertiesService.createProperty(this.form.value).then((response) => {
           if (response.success) {
             this.alertService.success(response.message);
-            this.resetForm();
           } else {
             this.alertService.warn(response.message);
           }
@@ -111,6 +111,7 @@ export class PropertiesCreateComponent implements OnInit {
           console.error(error);
         });
       }
+      this.router.navigate(['/dashboard/properties']);
     }
   }
 
@@ -132,18 +133,6 @@ export class PropertiesCreateComponent implements OnInit {
         }
       });
     });
-  }
-
-  private resetForm(): void {
-    this.form.reset();
-    this.isSubmitted = false;
-    this.form.get('plot_meters').setValue(0);
-    this.form.get('built_meters').setValue(0);
-    this.form.get('rooms').setValue(0);
-    this.form.get('baths').setValue(0);
-    this.form.get('sold').setValue(0);
-    this.form.get('active').setValue(true);
-    this.form.get('price').setValue(0);
   }
 
   private editMode(): void {
