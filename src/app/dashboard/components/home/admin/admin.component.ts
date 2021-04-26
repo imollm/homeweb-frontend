@@ -5,6 +5,7 @@ import {SalesService} from '../../../../services/_sale/sales.service';
 import {IDashboardTable} from '../../../../models/dashboard-table';
 import {PropertiesService} from '../../../../services/_property/properties.service';
 import {Color, Label, SingleDataSet} from 'ng2-charts';
+import {IActionButtons} from "../../../../models/action-buttons";
 
 @Component({
   selector: 'app-dashboard-home-admin',
@@ -23,6 +24,9 @@ export class AdminComponent implements OnInit {
   totalSalesLastMonth: IDashboardCard = {} as IDashboardCard;
 
   dataTable: IDashboardTable = {} as IDashboardTable;
+  actionButtons: IActionButtons = {
+    active: false
+  } as IActionButtons;
 
   chartData: SingleDataSet[] = [];
   chartLabels: Label[] = [];
