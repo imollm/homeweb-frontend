@@ -52,7 +52,7 @@
               </div>
             </td>
             <td *ngIf="actionButtons && actionButtons.active">
-              <div class="d-flex flex-row justify-content-between">
+              <div class="d-flex flex-row justify-content-around">
                 <div *ngIf="actionButtons.actions.view">
                   <a [routerLink]="['/dashboard/'+actionButtons.resource+'/details', element.id]">
                     <fa-icon [icon]="faView" class="icon-view"></fa-icon>
@@ -85,84 +85,3 @@
     </div>
   </div>
 </div>
-
-<!--<tr *ngIf="dataTable.data.id">-->
-<!--  <td>-->
-<!--    <span class="font-weight-bold">ID</span>-->
-<!--  </td>-->
-<!--  <td>{{dataTable.data.id}}</td>-->
-<!--</tr>-->
-<!--<tr *ngIf="dataTable.data.reference">-->
-<!--  <td>-->
-<!--    <span class="font-weight-bold">Referència</span>-->
-<!--  </td>-->
-<!--  <td>{{dataTable.data.reference}}</td>-->
-<!--</tr>-->
-<!--<tr *ngIf="dataTable.data.category.name">-->
-<!--  <td>-->
-<!--    <span class="font-weight-bold">Categoria</span>-->
-<!--  </td>-->
-<!--  <td>{{dataTable.data.category.name | titlecase}}</td>-->
-<!--</tr>-->
-<!--<tr *ngIf="dataTable.data.city.name">-->
-<!--  <td>-->
-<!--    <span class="font-weight-bold">Ciutat</span>-->
-<!--  </td>-->
-<!--  <td>{{dataTable.data.city.name}}</td>-->
-<!--</tr>-->
-<!--<tr *ngIf="dataTable.data.title">-->
-<!--  <td>-->
-<!--    <span class="font-weight-bold">Títol</span>-->
-<!--  </td>-->
-<!--  <td>{{dataTable.data.title}}</td>-->
-<!--</tr>-->
-<!--<tr *ngIf="dataTable.data.plot_meters">-->
-<!--  <td>-->
-<!--    <span class="font-weight-bold">Metres solar</span>-->
-<!--  </td>-->
-<!--  <td>{{dataTable.data.plot_meters}}</td>-->
-<!--</tr>-->
-<!--<tr *ngIf="dataTable.data.built_meters">-->
-<!--  <td>-->
-<!--    <span class="font-weight-bold">Metres construïts</span>-->
-<!--  </td>-->
-<!--  <td>{{dataTable.data.built_meters}}</td>-->
-<!--</tr>-->
-<!--<tr *ngIf="dataTable.data.rooms">-->
-<!--  <td>-->
-<!--    <span class="font-weight-bold">Habitacions</span>-->
-<!--  </td>-->
-<!--  <td>{{dataTable.data.rooms}}</td>-->
-<!--</tr>-->
-<!--<tr *ngIf="dataTable.data.baths">-->
-<!--  <td>-->
-<!--    <span class="font-weight-bold">Banys</span>-->
-<!--  </td>-->
-<!--  <td>{{dataTable.data.baths}}</td>-->
-<!--</tr>-->
-<!--<tr *ngIf="dataTable.data.energetic_certification">-->
-<!--  <td>-->
-<!--    <span class="font-weight-bold">Certificat energètic</span>-->
-<!--  </td>-->
-<!--  <td>{{dataTable.data.energetic_certification}}</td>-->
-<!--</tr>-->
-<!--<tr *ngIf="dataTable.data.sold==0 || dataTable.data.sold==1">-->
-<!--  <td>-->
-<!--    <span class="font-weight-bold">Venut?</span>-->
-<!--  </td>-->
-<!--  <td>{{dataTable.data.sold==0 ? 'No' : 'Sí'}}</td>-->
-<!--</tr>-->
-<!--<tr *ngIf="dataTable.data.price >= 0">-->
-<!--  <td>-->
-<!--    <span class="font-weight-bold">Preu</span>-->
-<!--  </td>-->
-<!--  <td>{{dataTable.data.price}} €</td>-->
-<!--</tr>-->
-<!--<tr *ngIf="dataTable.data.active==true || dataTable.data.active==false">-->
-<!--  <td>-->
-<!--    <span class="font-weight-bold">Es visible a la web?</span>-->
-<!--  </td>-->
-<!--  <td>-->
-<!--    {{dataTable.data.active==1 ? 'Si' : 'No'}}-->
-<!--  </td>-->
-<!--</tr>-->

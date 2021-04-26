@@ -230,12 +230,32 @@
     },
     "sales": {
       "index": {
-        "uri": "/sales/index",
+        "uri": "/sales/%s/index",
         "method": "GET",
         "auth": true
       },
       "actualYear": {
         "uri": "/sales/actualYear",
+        "method": "GET",
+        "auth": true
+      },
+      "create": {
+        "uri": "/sales/create",
+        "method": "POST",
+        "auth": true
+      },
+      "showByHashId": {
+        "uri": "/sales/%s/showByHashId",
+        "method": "GET",
+        "auth": true
+      },
+      "update": {
+        "uri": "/sales/update",
+        "method": "PUT",
+        "auth": true
+      },
+      "salesBy": {
+        "uri": "/sales/salesBy",
         "method": "GET",
         "auth": true
       }

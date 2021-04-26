@@ -1,1 +1,100 @@
-<p>admin works!</p>
+<div class="container-fluid">
+
+  <h1 class="px-2 py-4 text-center">{{title}}</h1>
+  <h3>{{subTitle}}</h3>
+
+  <hr class="topbar-divider">
+
+  <div class="p-4">
+    <button [routerLink]="['/dashboard/tours/create']" class="btn btn-outline-primary">Crear venda</button>
+  </div>
+
+  <hr class="topbar-divider">
+
+  <div class="row" *ngIf="lastSales.length > 0">
+
+    <div class="col-12">
+
+      <div class="d-flex flex-row">
+        <div class="p-2">Limit:</div>
+        <div class="p-2">
+          <select (change)="limitSales($event.target)">
+            <option [ngValue]="3">3</option>
+            <option [ngValue]="5">5</option>
+            <option [ngValue]="10">10</option>
+            <option [ngValue]="50">50</option>
+            <option [ngValue]="100">100</option>
+          </select>
+        </div>
+      </div>
+
+      <app-dashboard-table
+        [toShow]="lastSalesTable"
+        [actionButtons]="lastSalesTableActions"
+      ></app-dashboard-table>
+
+    </div>
+
+  </div>
+
+  <div class="row my-5" *ngIf="true">
+
+    <div class="col-12 col-lg-6">
+      <div class="d-block border shadow">
+        <h5 class="text-center p-2 text-primary">Vendes per països</h5>
+        <canvas baseChart
+          [data]="salesByCountriesChartData"
+          [labels]="salesByCountriesChartLabels"
+          [legend]="true"
+          [chartType]="'pie'"
+          [colors]="salesByCountriesChartDataColors"
+        ></canvas>
+      </div>
+    </div>
+
+    <div class="col-12 col-lg-6">
+      <div class="d-block border shadow">
+        <h5 class="text-center p-2 text-primary">Vendes per ciutats</h5>
+        <canvas baseChart
+                [data]="salesByCitiesChartData"
+                [labels]="salesByCitiesChartLabels"
+                [legend]="false"
+                [chartType]="'radar'"
+                [colors]="salesByCitiesChartDataColors"
+        ></canvas>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row" *ngIf="true">
+
+    <div class="col-12 col-lg-6">
+      <div class="d-block border shadow">
+        <h5 class="text-center p-2 text-primary">Vendes per categories</h5>
+        <canvas baseChart
+          [data]="salesByCategoriesChartData"
+          [labels]="salesByCategoriesChartLabels"
+          [legend]="true"
+          [chartType]="'polarArea'"
+          [colors]="salesByCategoriesChartDataColors"
+        ></canvas>
+      </div>
+    </div>
+
+    <div class="col-12 col-lg-6">
+      <div class="d-block border shadow">
+        <h5 class="text-center p-2 text-primary">Vendes per venedor</h5>
+        <canvas baseChart
+                [data]="salesBySellersChartData"
+                [labels]="salesBySellersChartLabels"
+                [legend]="false"
+                [chartType]="'bar'"
+                [colors]="salesBySellersChartDataColors"
+        ></canvas>
+      </div>
+    </div>
+
+  </div>
+
+</div>

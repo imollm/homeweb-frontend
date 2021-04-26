@@ -42,7 +42,7 @@
   </li>
 
   <li class="nav-item" *ngIf="sales">
-    <a class="nav-link collapsed" href="#">
+    <a class="nav-link collapsed" [routerLink]="['/dashboard/sales']">
       <fa-icon [icon]="faSale"></fa-icon>
       <span class="ml-3">Vendes</span>
     </a>

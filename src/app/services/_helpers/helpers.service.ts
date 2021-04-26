@@ -34,4 +34,9 @@ export class HelpersService {
   static randomColor(): string {
     return '#' + Math.floor(Math.random() * 16777215).toString(16);
   }
+
+  static randomColorWithTransparency(transparency: string): string {
+    const r = () => Math.random() * 256 >> 0;
+    return `rgba(${r()}, ${r()}, ${r()}, ${transparency})`;
+  }
 }
