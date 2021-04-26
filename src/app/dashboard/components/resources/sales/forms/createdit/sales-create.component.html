@@ -1,0 +1,144 @@
+
+<div class="container-fluid">
+
+  <h1 class="text-center my-5">{{modeTitle | titlecase}} venda</h1>
+
+  <div class="row">
+
+    <div class="col-12 col-md-6 offset-md-3 col-lg-4 offset-lg-4 d-flex flex-column align-items-center">
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <!-- HASH_ID -->
+        <input type="text" class="form-control" aria-describedby="tour-hash-id" formControlName="hash_id" hidden>
+
+        <!-- BUYER -->
+        <div *ngIf="mode=='create'; then droppingBuyerList else selectedSeller"></div>
+        <ng-template #droppingBuyerList>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="customer-id">Comprador*</span>
+            <select class="form-control" formControlName="buyer_id">
+              <option [ngValue]="" disabled selected>Tria un comprador</option>
+              <option *ngFor="let buyer of buyers" [ngValue]="buyer.id">
+                {{ buyer.name }}
+              </option>
+            </select>
+          </div>
+          <div *ngIf="buyer.invalid && (buyer.dirty || buyer.touched)" class="text-danger mt-0 mb-2">
+            <div *ngIf="buyer.errors.required">
+              El comprador es requerit
+            </div>
+          </div>
+        </ng-template>
+        <ng-template #selectedSeller>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="buyer-id-edit">Comprador</span>
+            <input type="text" class="form-control" aria-describedby="buyer-id-edit" value="{{sale.buyer.name}}" readonly>
+          </div>
+        </ng-template>
+
+        <!-- SELLER -->
+        <div *ngIf="mode=='create'; then droppingSellerList else selectedSeller"></div>
+        <ng-template #droppingSellerList>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="employee-id">Venedor*</span>
+            <select class="form-control" formControlName="seller_id">
+              <option [ngValue]="" disabled selected>Tria un venedor</option>
+              <option *ngFor="let seller of sellers" [ngValue]="seller.id">
+                {{ seller.name }}
+              </option>
+            </select>
+          </div>
+          <div *ngIf="seller.invalid && (seller.dirty || seller.touched)" class="text-danger mt-0 mb-2">
+            <div *ngIf="seller.errors.required">
+              El venedor es requerit
+            </div>
+          </div>
+        </ng-template>
+        <ng-template #selectedSeller>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="seller-id-edit">Venedor</span>
+            <input type="text" class="form-control" aria-describedby="seller-id-edit" value="{{sale.seller.name}}" readonly>
+          </div>
+        </ng-template>
+
+        <!-- PROPERTY -->
+        <div *ngIf="mode=='create'; then droppingPropertyList else selectedProperty"></div>
+        <ng-template #droppingPropertyList>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="property-id-new">Propietat*</span>
+            <select class="form-control" formControlName="property_id" (change)="onPropertySelect($event.target)">
+              <option [ngValue]="" disabled selected>Tria una referència</option>
+              <option *ngFor="let property of properties" value="{{property.id}}">
+                {{ property.reference }}
+              </option>
+            </select>
+          </div>
+          <div *ngIf="property.invalid && (property.dirty || property.touched)" class="text-danger mt-0 mb-2">
+            <div *ngIf="property.errors.required">
+              La propietat es requerida
+            </div>
+          </div>
+        </ng-template>
+        <ng-template #selectedProperty>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="property-id-edit">Propietat</span>
+            <input type="text" class="form-control" aria-describedby="property-id-edit" value="{{sale.property.reference}}" readonly>
+          </div>
+        </ng-template>
+
+        <!-- PROPERTY SELL PRICE -->
+        <div class="input-group mb-3" *ngIf="propertySelected || mode=='edit'">
+          <span class="input-group-text" id="property-actual-price">Preu actual</span>
+          <input type="text" class="form-control" aria-describedby="property-actual-price" [value]="propertySelectedPrice" readonly>
+        </div>
+
+        <!-- ACTUAL DATE -->
+        <div *ngIf="mode=='edit'">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="actual-date">Data actual*</span>
+            <input type="text" class="form-control" aria-describedby="actual-date" [value]="sale.date" readonly>
+          </div>
+        </div>
+
+        <!-- DATE -->
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="date">Data*</span>
+          <ngb-datepicker
+            (dateSelect)="onDateSelect($event)"
+            formControlName="date"
+          ></ngb-datepicker>
+        </div>
+        <div *ngIf="date.invalid && (date.dirty || date.touched)" class="text-danger mt-0 mb-2">
+          <div *ngIf="date.errors.required">
+            Tria una data
+          </div>
+          <div *ngIf="date.errors.pattern">
+            El format de la data no es correcte
+          </div>
+        </div>
+
+        <!-- AMOUNT -->
+        <div class="input-group my-3">
+          <span class="input-group-text" id="amount">Quantitat*</span>
+          <input type="number" class="form-control" aria-describedby="amount" formControlName="amount">
+        </div>
+        <div *ngIf="amount.invalid && (amount.dirty || amount.touched)" class="text-danger mt-0 mb-2">
+          <div *ngIf="amount.errors.required">
+            Posa preu final
+          </div>
+        </div>
+
+        <!-- SUBMIT -->
+        <div class="input-group my-5 d-flex justify-content-center">
+          <button type="submit" class="btn btn-secondary">{{modeTitle}}</button>
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
+
