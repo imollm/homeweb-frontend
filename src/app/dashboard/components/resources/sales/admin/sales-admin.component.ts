@@ -123,9 +123,9 @@ export class SalesAdminComponent implements OnInit {
       for (const element of this.salesChartData.byCountries) {
         this.salesByCountriesChartLabels.push(element.country);
         this.salesByCountriesChartData.push(element.amount);
-        colorsOfChart.push(HelpersService.randomColorWithTransparency('.7'));
+        colorsOfChart.push(HelpersService.randomColor());
       }
-      this.salesByCitiesChartDataColors[0].backgroundColor = colorsOfChart;
+      this.salesByCountriesChartDataColors[0].backgroundColor = colorsOfChart;
     }
   }
 
@@ -135,9 +135,9 @@ export class SalesAdminComponent implements OnInit {
       for (const element of this.salesChartData.byCities) {
         this.salesByCitiesChartLabels.push(element.city);
         this.salesByCitiesChartData.push(element.amount);
-        colorsOfChart.push(HelpersService.randomColorWithTransparency('.4'));
+        colorsOfChart.push(HelpersService.randomColor());
       }
-      this.salesByCategoriesChartDataColors[0].backgroundColor = colorsOfChart;
+      this.salesByCitiesChartDataColors[0].backgroundColor = colorsOfChart;
     }
   }
 
@@ -147,7 +147,7 @@ export class SalesAdminComponent implements OnInit {
       for (const element of this.salesChartData.byCategories) {
         this.salesByCategoriesChartLabels.push(element.category);
         this.salesByCategoriesChartData.push(element.amount);
-        colorsOfChart.push(HelpersService.randomColorWithTransparency('.4'));
+        colorsOfChart.push(HelpersService.randomColorWithTransparency('.7'));
       }
       this.salesByCategoriesChartDataColors[0].backgroundColor = colorsOfChart;
     }
@@ -159,7 +159,7 @@ export class SalesAdminComponent implements OnInit {
       for (const element of this.salesChartData.bySellers) {
         this.salesBySellersChartLabels.push(element.employee);
         this.salesBySellersChartData.push(element.amount);
-        colorsOfChart.push(HelpersService.randomColorWithTransparency('.7'));
+        colorsOfChart.push(HelpersService.randomColor());
       }
       this.salesBySellersChartDataColors[0].backgroundColor = colorsOfChart;
     }

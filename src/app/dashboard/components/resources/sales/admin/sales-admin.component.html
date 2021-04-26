@@ -6,7 +6,7 @@
   <hr class="topbar-divider">
 
   <div class="p-4">
-    <button [routerLink]="['/dashboard/tours/create']" class="btn btn-outline-primary">Crear venda</button>
+    <button [routerLink]="['/dashboard/sales/create']" class="btn btn-outline-primary">Crear venda</button>
   </div>
 
   <hr class="topbar-divider">
@@ -56,11 +56,11 @@
       <div class="d-block border shadow">
         <h5 class="text-center p-2 text-primary">Vendes per ciutats</h5>
         <canvas baseChart
-                [data]="salesByCitiesChartData"
-                [labels]="salesByCitiesChartLabels"
-                [legend]="false"
-                [chartType]="'radar'"
-                [colors]="salesByCitiesChartDataColors"
+          [data]="salesByCitiesChartData"
+          [labels]="salesByCitiesChartLabels"
+          [legend]="false"
+          [chartType]="'doughnut'"
+          [colors]="salesByCitiesChartDataColors"
         ></canvas>
       </div>
     </div>
@@ -86,11 +86,11 @@
       <div class="d-block border shadow">
         <h5 class="text-center p-2 text-primary">Vendes per venedor</h5>
         <canvas baseChart
-                [data]="salesBySellersChartData"
-                [labels]="salesBySellersChartLabels"
-                [legend]="false"
-                [chartType]="'bar'"
-                [colors]="salesBySellersChartDataColors"
+          [data]="salesBySellersChartData"
+          [labels]="salesBySellersChartLabels"
+          [legend]="false"
+          [chartType]="'bar'"
+          [colors]="salesBySellersChartDataColors"
         ></canvas>
       </div>
     </div>
