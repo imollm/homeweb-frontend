@@ -16,48 +16,53 @@ export class PropertiesService {
     this.resource = 'properties';
   }
 
-  async getProperties(): Promise<ApiResponseI> {
+  getProperties(): Promise<ApiResponseI> {
     const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'index');
     return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
   }
 
-  async createProperty(property: IProperty): Promise<ApiResponseI> {
+  createProperty(property: IProperty): Promise<ApiResponseI> {
     const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'create');
     return this.httpClient.post<ApiResponseI>(endpoint, property).toPromise();
   }
 
-  async updateProperty(property: IProperty): Promise<ApiResponseI> {
+  updateProperty(property: IProperty): Promise<ApiResponseI> {
     const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'update', String(property.id));
     return this.httpClient.put<ApiResponseI>(endpoint, property).toPromise();
   }
 
-  async getLastProperties(): Promise<ApiResponseI> {
+  getLastProperties(): Promise<ApiResponseI> {
     const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'last');
     return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
   }
 
-  async getLastActiveProperties(): Promise<ApiResponseI> {
+  getLastActiveProperties(): Promise<ApiResponseI> {
     const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'lastActive');
     return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
   }
 
-  async getPropertyById(propertyId: string): Promise<ApiResponseI> {
+  getPropertyById(propertyId: string): Promise<ApiResponseI> {
     const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'showById', propertyId);
     return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
   }
 
-  async getActiveProperties(): Promise<ApiResponseI> {
+  getActiveProperties(): Promise<ApiResponseI> {
     const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'active');
     return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
   }
 
-  async setVisibilityOnWeb(propertyId: string, status: string): Promise<ApiResponseI> {
+  setVisibilityOnWeb(propertyId: string, status: string): Promise<ApiResponseI> {
     const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'setActive', propertyId);
     return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
   }
 
-  async deleteProperty(propertyId: string): Promise<ApiResponseI> {
+  deleteProperty(propertyId: string): Promise<ApiResponseI> {
     const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'delete', propertyId);
     return this.httpClient.delete<ApiResponseI>(endpoint).toPromise();
+  }
+
+  getForSaleProperties(): Promise<ApiResponseI> {
+    const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'forSale');
+    return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
   }
 }
