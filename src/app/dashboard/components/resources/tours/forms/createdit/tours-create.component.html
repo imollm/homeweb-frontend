@@ -72,9 +72,6 @@
           <div *ngIf="date.errors.required">
             Tria una data
           </div>
-          <div *ngIf="date.errors.pattern">
-            El format de la data no es correcte
-          </div>
         </div>
 
         <!-- TIME -->
@@ -88,9 +85,6 @@
         <div *ngIf="time.invalid && (time.dirty || time.touched)" class="text-danger mt-0 mb-2">
           <div *ngIf="time.errors.required">
             Tria una hora
-          </div>
-          <div *ngIf="time.errors.pattern">
-            El format de la hora no es correcte
           </div>
         </div>
 
