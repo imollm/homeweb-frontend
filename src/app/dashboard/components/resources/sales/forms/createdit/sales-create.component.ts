@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ISale} from '../../../../../../models/sale';
 import {AlertService} from '../../../../../../_alert/alert.service';
@@ -9,7 +9,7 @@ import {UsersService} from '../../../../../../services/_user/users.service';
 import {PropertiesService} from '../../../../../../services/_property/properties.service';
 import {ResponseStatus} from '../../../../../../api/response-status';
 import {SalesService} from '../../../../../../services/_sale/sales.service';
-import {NgbDate} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDate, NgbDatepicker} from '@ng-bootstrap/ng-bootstrap';
 import {HelpersService} from '../../../../../../services/_helpers/helpers.service';
 
 @Component({
@@ -18,6 +18,8 @@ import {HelpersService} from '../../../../../../services/_helpers/helpers.servic
   styleUrls: ['./sales-create.component.css']
 })
 export class SalesCreateComponent implements OnInit {
+
+  @ViewChild('dp') dp: NgbDatepicker;
 
   modeTitle = 'Crear';
   form: FormGroup;
@@ -94,6 +96,8 @@ export class SalesCreateComponent implements OnInit {
     }).catch((error) => {
       this.alertService.error(ResponseStatus.displayErrorMessage(error));
       console.error(error);
+    }).finally(() => {
+      this.setDayOfCalendar();
     });
   }
 
@@ -154,7 +158,11 @@ export class SalesCreateComponent implements OnInit {
       if (response.success) {
         this.sale = response.data;
         this.prepareSaleValuesToEditForm();
+        this.setDayOfCalendar();
       }
+    }).catch((error) => {
+      ResponseStatus.displayErrorMessage(error);
+      console.error(error);
     });
   }
 
@@ -173,21 +181,20 @@ export class SalesCreateComponent implements OnInit {
       }
     });
     this.propertySelectedPrice = HelpersService.formatPrice(this.sale.property.price);
-    this.setDayOfCalendar();
   }
 
   private setDayOfCalendar(): void {
     let date: Date;
-    if (this.mode==='create') {
+    if (this.mode === 'create') {
       date = new Date();
     } else {
       date = new Date(this.sale.date);
     }
-    this.sellDate = new NgbDate(
-      date.getFullYear(),
-      date.getMonth() + 1,
-      date.getDate()
-    );
+    this.dp.navigateTo({
+      year: date.getFullYear(),
+      month: date.getMonth() + 1,
+      day: date.getDate()
+    });
   }
 
   get buyer(): AbstractControl { return this.form.get('buyer_id'); }

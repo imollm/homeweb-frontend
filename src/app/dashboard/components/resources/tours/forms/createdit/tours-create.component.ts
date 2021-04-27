@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ITour} from '../../../../../../models/tour';
 import {ToursService} from '../../../../../../services/_tour/tours.service';
@@ -6,7 +6,7 @@ import {AlertService} from '../../../../../../_alert/alert.service';
 import {UsersService} from '../../../../../../services/_user/users.service';
 import {IUser} from '../../../../../../models/user';
 import {ResponseStatus} from '../../../../../../api/response-status';
-import {NgbDate} from '@ng-bootstrap/ng-bootstrap';
+import {NgbDate, NgbDatepicker} from '@ng-bootstrap/ng-bootstrap';
 import {PropertiesService} from '../../../../../../services/_property/properties.service';
 import {IProperty} from '../../../../../../models/property';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -18,6 +18,8 @@ import {HelpersService} from '../../../../../../services/_helpers/helpers.servic
   styleUrls: ['./tours-create.component.css']
 })
 export class ToursCreateComponent implements OnInit {
+
+  @ViewChild('dp') dp: NgbDatepicker;
 
   modeTitle = 'Crear';
   form: FormGroup;
@@ -142,8 +144,8 @@ export class ToursCreateComponent implements OnInit {
           property_id: this.tour.property_id,
           date: {
             year: date.getFullYear(),
-            month: date.getMonth(),
-            day: date.getDay()
+            month: date.getMonth() + 1,
+            day: date.getDate()
           },
           time: {
             hour: date.getHours(),
@@ -156,6 +158,22 @@ export class ToursCreateComponent implements OnInit {
     }).catch((error) => {
       ResponseStatus.displayErrorMessage(error);
       console.error(error);
+    }).finally(() => {
+      this.setDayOfCalendar();
+    });
+  }
+
+  private setDayOfCalendar(): void {
+    let date: Date;
+    if (this.mode === 'create') {
+      date = new Date();
+    } else {
+      date = new Date(this.tour.date);
+    }
+    this.dp.navigateTo({
+      year: date.getFullYear(),
+      month: date.getMonth() + 1,
+      day: date.getDate()
     });
   }
 

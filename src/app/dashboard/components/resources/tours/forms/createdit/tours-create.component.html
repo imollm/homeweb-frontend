@@ -63,6 +63,7 @@
         <div class="input-group mb-3">
           <span class="input-group-text" id="date">Data*</span>
           <ngb-datepicker
+            #dp
             (dateSelect)="onDateSelect($event)"
             formControlName="date"
           ></ngb-datepicker>
