@@ -22,6 +22,7 @@ export class SalesAdminComponent implements OnInit {
   lastSalesTable: IDashboardTable = {} as IDashboardTable;
   lastSalesTableActions: IActionButtons = {
     active: true,
+    resource: 'sales',
     actions: {
       view: true,
       edit: true,
@@ -102,6 +103,7 @@ export class SalesAdminComponent implements OnInit {
     ];
     for (const sale of this.lastSales) {
       data.push({
+        id: sale.hash_id,
         reference: sale.property.reference,
         seller: sale.seller.name,
         buyer: sale.buyer.name,
