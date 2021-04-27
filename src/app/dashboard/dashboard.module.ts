@@ -63,6 +63,10 @@ import { CountriesCreateComponent } from './components/resources/countries/forms
 import { CityDetailsComponent } from './components/resources/cities/details/city-details.component';
 import { CitiesCreateComponent } from './components/resources/cities/forms/createdit/cities-create.component';
 import { SalesCreateComponent } from './components/resources/sales/forms/createdit/sales-create.component';
+import { SaleDetailsComponent } from './components/resources/sales/details/sale-details.component';
+import { FeaturesComponent } from './components/resources/features/features.component';
+import { FeaturesAdminComponent } from './components/resources/features/admin/features-admin.component';
+import { FeaturesCreateComponent } from './components/resources/features/forms/createdit/features-create.component';
 
 @NgModule({
   declarations: [
@@ -107,7 +111,11 @@ import { SalesCreateComponent } from './components/resources/sales/forms/created
     ToursOwnerComponent,
     ToursCreateComponent,
     TourDetailsComponent,
-    SalesCreateComponent
+    SalesCreateComponent,
+    SaleDetailsComponent,
+    FeaturesComponent,
+    FeaturesAdminComponent,
+    FeaturesCreateComponent
   ],
     imports: [
         CommonModule,

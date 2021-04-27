@@ -318,6 +318,33 @@
         "method": "GET",
         "auth": true
       }
+    },
+    "features": {
+      "index": {
+        "uri": "/features/index",
+        "method": "GET",
+        "auth": true
+      },
+      "create": {
+        "uri": "/features/create",
+        "method": "POST",
+        "auth": true
+      },
+      "update": {
+        "uri": "/features/update",
+        "method": "PUT",
+        "auth": true
+      },
+      "delete": {
+        "uri": "/features/%s/delete",
+        "method": "DELETE",
+        "auth": true
+      },
+      "getById": {
+        "uri": "/features/%s/show",
+        "method": "GET",
+        "auth": true
+      }
     }
   }
 }

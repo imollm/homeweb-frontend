@@ -69,6 +69,13 @@
     </a>
   </li>
 
+  <li class="nav-item" *ngIf="features">
+    <a class="nav-link collapsed" [routerLink]="['/dashboard/features']">
+      <fa-icon [icon]="faFeature"></fa-icon>
+      <span class="ml-3">Característiques</span>
+    </a>
+  </li>
+
   <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block">
 

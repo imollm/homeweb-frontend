@@ -1,0 +1,85 @@
+<div class="container-fluid">
+
+  <h3 class="text-center p-3" *ngIf="sale">
+    Detalls venda
+  </h3>
+
+  <hr class="topbar-divider">
+
+  <div class="row">
+
+    <div class="d-flex justify-content-center align-items-center col-12 col-lg-6">
+      <div class="w-50">
+        <app-dashboard-card
+          [toShow]="dateCard"
+        ></app-dashboard-card>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center align-items-center col-12 col-lg-6">
+      <div class="w-50">
+        <app-dashboard-card
+          [toShow]="propertyCard"
+        ></app-dashboard-card>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row mt-5">
+
+    <div class="d-flex justify-content-center align-items-center col-12 col-lg-6">
+      <div class="w-50">
+        <app-dashboard-card
+          [toShow]="buyerCard"
+        ></app-dashboard-card>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center align-items-center col-12 col-lg-6">
+      <div class="w-50">
+        <app-dashboard-card
+          [toShow]="sellerCard"
+        ></app-dashboard-card>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row mt-5">
+
+    <div class="col-12 col-lg-6">
+      <app-dashboard-table
+        [toShow]="saleTable"
+        [actionButtons]="actionButtons"
+      ></app-dashboard-table>
+    </div>
+
+    <div class="col-12 col-lg-6">
+      <app-dashboard-table
+        [toShow]="propertyTable"
+        [actionButtons]="actionButtons"
+      ></app-dashboard-table>
+    </div>
+
+  </div>
+
+  <div class="row mt-5">
+
+    <div class="col-12 col-lg-6">
+      <app-dashboard-table
+        [toShow]="sellerTable"
+        [actionButtons]="actionButtons"
+      ></app-dashboard-table>
+    </div>
+
+    <div class="col-12 col-lg-6">
+      <app-dashboard-table
+        [toShow]="buyerTable"
+        [actionButtons]="actionButtons"
+      ></app-dashboard-table>
+    </div>
+
+  </div>
+
+</div>

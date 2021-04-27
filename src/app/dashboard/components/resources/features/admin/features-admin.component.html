@@ -1,0 +1,19 @@
+<div class="container-fluid">
+
+  <h1 class="px-2 py-4 text-center">{{title}}</h1>
+  <h3>{{subTitle}}</h3>
+
+  <hr class="topbar-divider">
+
+  <div class="p-4">
+    <button [routerLink]="['/dashboard/features/create']" class="btn btn-outline-primary">Crear característica</button>
+  </div>
+
+  <hr class="topbar-divider">
+
+  <app-dashboard-table
+    [toShow]="featuresTable"
+    [actionButtons]="actionButtons"
+  ></app-dashboard-table>
+
+</div>

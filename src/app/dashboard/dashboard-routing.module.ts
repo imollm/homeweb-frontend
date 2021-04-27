@@ -20,6 +20,10 @@ import {CityDetailsComponent} from './components/resources/cities/details/city-d
 import { CitiesCreateComponent } from './components/resources/cities/forms/createdit/cities-create.component';
 import {ToursCreateComponent} from './components/resources/tours/forms/createdit/tours-create.component';
 import {TourDetailsComponent} from './components/resources/tours/details/tour-details.component';
+import {SalesCreateComponent} from './components/resources/sales/forms/createdit/sales-create.component';
+import {SaleDetailsComponent} from './components/resources/sales/details/sale-details.component';
+import {FeaturesComponent} from './components/resources/features/features.component';
+import {FeaturesCreateComponent} from './components/resources/features/forms/createdit/features-create.component';
 
 const routes: Routes = [
   {
@@ -52,12 +56,21 @@ const routes: Routes = [
       {path: 'countries/delete/:id', component: CountriesComponent},
 
       {path: 'sales', component: SalesComponent},
+      {path: 'sales/create', component: SalesCreateComponent},
+      {path: 'sales/details/:id', component: SaleDetailsComponent},
+      {path: 'sales/edit/:id', component: SalesCreateComponent},
 
       {path: 'tours', component: ToursComponent},
       {path: 'tours/create', component: ToursCreateComponent},
       {path: 'tours/details/:id', component: TourDetailsComponent},
       {path: 'tours/edit/:id', component: ToursCreateComponent},
       {path: 'tours/delete/:id', component: ToursComponent},
+
+      {path: 'features', component: FeaturesComponent},
+      {path: 'features/create', component: FeaturesCreateComponent},
+      {path: 'features/edit/:id', component: FeaturesCreateComponent},
+      {path: 'features/delete/:id', component: FeaturesComponent},
+
       {path: '**', component: NotFoundComponent}
     ]
   }
