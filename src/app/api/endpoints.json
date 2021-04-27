@@ -82,6 +82,11 @@
         "uri": "/properties/%s/delete",
         "method": "DELETE",
         "auth": true
+      },
+      "forSale": {
+        "uri": "/properties/forSale",
+        "method": "GET",
+        "auth": false
       }
     },
     "roles": {
