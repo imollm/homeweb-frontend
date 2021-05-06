@@ -7,6 +7,7 @@ import {ILocation, IMaps} from '../../../../../models/maps';
 import {IDashboardTable} from '../../../../../models/dashboard-table';
 import {AlertService} from '../../../../../_alert/alert.service';
 import {ResponseStatus} from '../../../../../api/response-status';
+import {IActionButtons} from "../../../../../models/action-buttons";
 
 @Component({
   selector: 'app-dashboard-property-details',
@@ -27,6 +28,9 @@ export class PropertyDetailsComponent implements OnInit {
   } as IMaps;
 
   dataTable: IDashboardTable = {} as IDashboardTable;
+  actionButtons: IActionButtons = {
+    active: false
+  } as IActionButtons;
   visibleOnWeb: boolean;
 
   constructor(
