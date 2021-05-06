@@ -5,4 +5,5 @@ export interface IFeature {
   name: string;
   properties_count?: any[];
   properties?: IProperty[];
+  checked?: boolean;
 }

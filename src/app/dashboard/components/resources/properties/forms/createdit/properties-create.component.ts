@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Component, ElementRef, OnInit} from '@angular/core';
+import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {PropertiesService} from '../../../../../../services/_property/properties.service';
 import {AlertService} from '../../../../../../_alert/alert.service';
 import {CategoriesService} from '../../../../../../services/_category/categories.service';
@@ -13,6 +13,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {IProperty} from '../../../../../../models/property';
 import {ResponseStatus} from '../../../../../../api/response-status';
 import {ILocation, IMaps} from '../../../../../../models/maps';
+import {IFeature} from '../../../../../../models/feature';
+import {FeaturesService} from '../../../../../../services/_feature/features.service';
 
 @Component({
   selector: 'app-properties-create-form',
@@ -25,7 +27,10 @@ export class PropertiesCreateComponent implements OnInit {
 
   form: FormGroup;
   isSubmitted = false;
-  property: IProperty = {} as IProperty;
+  property: IProperty = {
+    features: []
+  } as IProperty;
+  features: IFeature[] = [];
   cities: ICity[] = [];
   categories: ICategory[] = [];
   owners: IUser[] = [];
@@ -47,6 +52,7 @@ export class PropertiesCreateComponent implements OnInit {
     private propertiesService: PropertiesService,
     private citiesService: CitiesService,
     private categoriesService: CategoriesService,
+    private featuresService: FeaturesService,
     private usersService: UsersService,
     private alertService: AlertService,
     private activateRoute: ActivatedRoute,
@@ -55,10 +61,10 @@ export class PropertiesCreateComponent implements OnInit {
     this.form = this.fb.group({
       id: new FormControl({value: null, readonly: true}),
       user_id: new FormControl(''),
-      category_id: new FormControl('', Validators.required),
-      city_id: new FormControl('', Validators.required),
-      title: new FormControl('', Validators.required),
-      reference: new FormControl('', Validators.required),
+      category_id: new FormControl(1, Validators.required),
+      city_id: new FormControl(1, Validators.required),
+      title: new FormControl('guyfcuyc', Validators.required),
+      reference: new FormControl('gufgfg', Validators.required),
       image: new FormControl(''),
       plot_meters: new FormControl(0),
       built_meters: new FormControl(0),
@@ -72,6 +78,7 @@ export class PropertiesCreateComponent implements OnInit {
       sold: new FormControl(0),
       active: new FormControl(true),
       price: new FormControl(0),
+      features: new FormArray([])
     });
   }
 
@@ -87,6 +94,7 @@ export class PropertiesCreateComponent implements OnInit {
 
   onSubmit(): void {
     this.isSubmitted = true;
+    console.log(this.form.value);
     if (this.form.valid) {
       if (this.mode === 'edit') {
         this.propertiesService.updateProperty(this.form.value).then((response) => {
@@ -125,13 +133,35 @@ export class PropertiesCreateComponent implements OnInit {
         if (response.success) {
           this.cities = response.data;
         }
+      }).catch((error) => {
+        this.alertService.error(ResponseStatus.displayErrorMessage(error));
+        console.error(error);
       });
     }).then(() => {
       this.usersService.getOwners().then((response) => {
         if (response.success) {
           this.owners = response.data[0].users;
         }
+      }).catch((error) => {
+        this.alertService.error(ResponseStatus.displayErrorMessage(error));
+        console.error(error);
       });
+    }).then(() => {
+      this.featuresService.getFeatures().then((response) => {
+        if (response.success) {
+          this.features = response.data;
+        } else {
+          this.alertService.warn(response.message);
+        }
+      }).then(() => {
+        this.addFeaturesCheckboxes();
+      }).catch((error) => {
+        this.alertService.error(ResponseStatus.displayErrorMessage(error));
+        console.error(error);
+      });
+    }).catch((error) => {
+      this.alertService.error(ResponseStatus.displayErrorMessage(error));
+      console.error(error);
     });
   }
 
@@ -147,10 +177,13 @@ export class PropertiesCreateComponent implements OnInit {
   private preparePropertyValuesToEditForm(): void {
     const formValues = {};
     Object.keys(this.form.controls).map((key) => {
-      formValues[key] =
-        key === 'active'
-          ? Boolean(this.property[key])
-          : this.property[key];
+      if (key === 'features') {
+        formValues[key] = [];
+      } else if (key === 'active') {
+        formValues[key] = Boolean(this.property[key]);
+      } else {
+        formValues[key] = this.property[key];
+      }
     });
     this.form.setValue(formValues);
   }
@@ -158,6 +191,30 @@ export class PropertiesCreateComponent implements OnInit {
   getMarkerLocation(location: ILocation): void {
     this.latitude.setValue(location.lat);
     this.longitude.setValue(location.lng);
+  }
+
+  get featuresFormArray(): FormArray {
+    return this.form.controls.features as FormArray;
+  }
+
+  private addFeaturesCheckboxes(): void {
+    let flag = false;
+    this.features.forEach((feature) => {
+      if (this.mode === 'edit') {
+        flag = false;
+        this.property.features.forEach((pFeature) => {
+          if (feature.id === pFeature.id) {
+            this.featuresFormArray.push(new FormControl(true));
+            flag = true;
+          }
+        });
+        if (!flag) {
+          this.featuresFormArray.push(new FormControl(false));
+        }
+      } else {
+        this.featuresFormArray.push(new FormControl(false));
+      }
+    });
   }
 
   get categoryId(): AbstractControl { return this.form.get('category_id'); }

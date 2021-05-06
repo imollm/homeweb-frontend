@@ -1,6 +1,7 @@
 import {SafeUrl} from '@angular/platform-browser';
 import {ICategory} from './category';
 import {ICity} from './city';
+import {IFeature} from './feature';
 
 export interface IProperty {
   id: number;
@@ -27,4 +28,5 @@ export interface IProperty {
   imageBase64: SafeUrl;
   city: ICity;
   category: ICategory;
+  features: IFeature[];
 }

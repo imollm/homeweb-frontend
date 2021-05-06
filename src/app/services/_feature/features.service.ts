@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {EndPointMapper} from "../../api/end-point-mapper";
-import {ApiResponseI} from "../../models/api-response";
+import {HttpClient} from '@angular/common/http';
+import {EndPointMapper} from '../../api/end-point-mapper';
+import {ApiResponseI} from '../../models/api-response';
 import {IFeature} from '../../models/feature';
 
 @Injectable({
