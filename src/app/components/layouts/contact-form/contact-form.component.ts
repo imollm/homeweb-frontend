@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import { faUserAlt, faEnvelope, faAt, faPenSquare } from '@fortawesome/free-solid-svg-icons';
 import {IContact} from '../../../models/contact';
@@ -10,11 +10,12 @@ import {AlertService} from '../../../_alert/alert.service';
   templateUrl: './contact-form.component.html',
   styleUrls: ['./contact-form.component.css']
 })
-export class ContactFormComponent implements OnInit {
+export class ContactFormComponent implements OnInit, OnChanges {
 
   @Input() propertyRef: string;
 
   title = 'Contacte';
+  reference: string;
   contactForm: FormGroup;
   contact: IContact = {} as IContact;
 
@@ -33,9 +34,11 @@ export class ContactFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.propertyRef !== undefined) {
-      this.contactForm.get('subject').setValue('Me interessa, ref: ' + this.propertyRef);
-    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.reference = changes.propertyRef.currentValue;
+    this.contactForm.get('subject').setValue('Me interessa, ref: ' + this.reference);
   }
 
   onSubmit(): void {
