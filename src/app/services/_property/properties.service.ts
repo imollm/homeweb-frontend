@@ -52,7 +52,8 @@ export class PropertiesService {
   }
 
   setVisibilityOnWeb(propertyId: string, status: string): Promise<ApiResponseI> {
-    const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'setActive', propertyId);
+    let endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'setActive', propertyId);
+    endpoint += '/' + status;
     return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
   }
 
