@@ -94,7 +94,6 @@ export class PropertiesCreateComponent implements OnInit {
 
   onSubmit(): void {
     this.isSubmitted = true;
-    console.log(this.form.value);
     if (this.form.valid) {
       if (this.mode === 'edit') {
         this.propertiesService.updateProperty(this.form.value).then((response) => {

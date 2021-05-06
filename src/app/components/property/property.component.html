@@ -46,6 +46,24 @@
       </div>
     </div>
   </div>
+  <div class="row mt-1">
+    <div class="col-12 col-lg-6 offset-lg-3 col-md-8 offset-md-2">
+      <app-dashboard-table
+        [toShow]="dataTable"
+        [actionButtons]="actionButtons"
+      ></app-dashboard-table>
+    </div>
+  </div>
+  <div class="row mt-3" *ngIf="property.features.length > 0">
+    <div class="col-12">
+      <h5 class="p-3 input-group-text">Característiques</h5>
+      <div class="text-center border d-flex justify-content-around p-4">
+        <span *ngFor="let feature of property.features">
+          {{feature.name}}
+        </span>
+      </div>
+    </div>
+  </div>
   <div class="row">
     <div class="col-12">
       <app-contact-form

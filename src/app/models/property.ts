@@ -2,6 +2,7 @@ import {SafeUrl} from '@angular/platform-browser';
 import {ICategory} from './category';
 import {ICity} from './city';
 import {IFeature} from './feature';
+import {IUser} from './user';
 
 export interface IProperty {
   id: number;
@@ -29,4 +30,5 @@ export interface IProperty {
   city: ICity;
   category: ICategory;
   features: IFeature[];
+  owner: IUser;
 }

@@ -7,7 +7,8 @@ import {ILocation, IMaps} from '../../../../../models/maps';
 import {IDashboardTable} from '../../../../../models/dashboard-table';
 import {AlertService} from '../../../../../_alert/alert.service';
 import {ResponseStatus} from '../../../../../api/response-status';
-import {IActionButtons} from "../../../../../models/action-buttons";
+import {IActionButtons} from '../../../../../models/action-buttons';
+import {HelpersService} from '../../../../../services/_helpers/helpers.service';
 
 @Component({
   selector: 'app-dashboard-property-details',
@@ -27,7 +28,9 @@ export class PropertyDetailsComponent implements OnInit {
     getLocation: false
   } as IMaps;
 
-  dataTable: IDashboardTable = {} as IDashboardTable;
+  dataTable: IDashboardTable = {
+    inverse: true
+  } as IDashboardTable;
   actionButtons: IActionButtons = {
     active: false
   } as IActionButtons;
@@ -80,11 +83,26 @@ export class PropertyDetailsComponent implements OnInit {
   private setPropertyTableInfo(): void {
     this.dataTable.title = 'Detalls de la propietat';
     this.dataTable.colsName = [
-      { colName: 'characteristic', text: 'Característica' },
-      { colName: 'value', text: 'Valor' }
+      { colName: 'reference', text: 'Referència' },
+      { colName: 'category', text: 'Categoria'},
+      { colName: 'city', text: 'Ciutat'},
+      { colName: 'address', text: 'Adreça' },
+      { colName: 'sold', text: 'Venuda?' },
+      { colName: 'price', text: 'Preu'},
+      { colName: 'created_at', text: 'Creada'}
     ];
     this.dataTable.inverse = true;
     this.dataTable.data = this.property;
+    this.dataTable.data.sold = this.property.sold ? 'Si' : 'No';
+    this.dataTable.data.price = HelpersService.formatPrice(this.property.price);
+    this.dataTable.data.created_at = HelpersService.formatDate(this.property.created_at);
+    this.dataTable.data.category = this.property.category.name;
+    this.dataTable.data.city = this.property.city.name;
+
+    if (this.property.user_id !== null) {
+      this.dataTable.colsName.push({colName: 'owner', text: 'Propietari'});
+      this.dataTable.data.owner = this.property.owner.name;
+    }
   }
 
   setVisibleOnWeb(evt: boolean): void {

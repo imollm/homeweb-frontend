@@ -12,6 +12,32 @@
       </div>
     </div>
   </div>
+  <div class="row mt-1">
+    <div class="col-3 d-flex justify-content-center align-items-center p-1 bg-dark">
+      <div class="text-white p-5">
+        <div>Parcel·la</div>
+        <div class="text-center">{{property.plot_meters}} m<sup>2</sup></div>
+      </div>
+    </div>
+    <div class="col-3 d-flex justify-content-center align-items-center p-1 bg-dark border-left-secondary">
+      <div class="text-white">
+        <div>Construïts</div>
+        <div class="text-center">{{property.built_meters}} m<sup>2</sup></div>
+      </div>
+    </div>
+    <div class="col-3 d-flex justify-content-center align-items-center p-1 bg-dark border-left-secondary">
+      <div class="text-white">
+        <div>Banys</div>
+        <div class="text-center">{{property.baths}}</div>
+      </div>
+    </div>
+    <div class="col-3 d-flex justify-content-center align-items-center p-1 bg-dark border-left-secondary">
+      <div class="text-white">
+        <div>Habitacions</div>
+        <div class="text-center">{{property.rooms}}</div>
+      </div>
+    </div>
+  </div>
   <hr class="topbar-divider"/>
   <div class="row mt-1">
     <div class="col-12 col-lg-6 offset-lg-3 col-md-8 offset-md-2">
@@ -50,10 +76,13 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-12 d-flex justify-content-around">
-      <span *ngFor="let feature of property.features">
-        {{feature.name}}
-      </span>
+    <div class="col-12">
+      <h5 class="p-3 input-group-text">Característiques</h5>
+      <div class="text-center border d-flex justify-content-around p-4">
+        <span *ngFor="let feature of property.features">
+          {{feature.name}}
+        </span>
+      </div>
     </div>
   </div>
   <div class="row mt-3 bg-light">
