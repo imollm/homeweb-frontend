@@ -8,7 +8,6 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HomeComponent } from './components/home/home.component';
-import { TableComponent } from './components/table/table.component';
 import { CardComponent } from './components/card/card.component';
 import { AdminComponent } from './components/home/admin/admin.component';
 import { EmployeeComponent } from './components/home/employee/employee.component';
@@ -75,7 +74,6 @@ import { FeaturesCreateComponent } from './components/resources/features/forms/c
     SidebarComponent,
     FooterComponent,
     HomeComponent,
-    TableComponent,
     CardComponent,
     AdminComponent,
     EmployeeComponent,
