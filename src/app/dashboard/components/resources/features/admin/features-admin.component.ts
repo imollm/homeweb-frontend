@@ -56,11 +56,14 @@ export class FeaturesAdminComponent implements OnInit {
       {colName: 'name', text: 'Nom'},
       {colName: 'num_properties', text: 'Num. propietats'}
     ];
+
+    let aggregate;
     this.features.map(feature => {
+      aggregate = feature.properties_count[0] ? feature.properties_count[0].aggregate : 0;
       this.featuresTable.data.push({
         id: feature.id,
         name: feature.name,
-        num_properties: feature.properties_count[0].aggregate,
+        num_properties: aggregate
       });
     });
   }
