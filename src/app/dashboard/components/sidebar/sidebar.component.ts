@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import { faTachometerAlt, faHome, faAngleLeft, faFlag, faGlobeEurope, faCity, faMoneyCheckAlt, faMapMarkerAlt, faCogs } from '@fortawesome/free-solid-svg-icons';
+import { faTachometerAlt, faHome, faAngleLeft, faFlag, faGlobeEurope, faCity, faMoneyCheckAlt, faMapMarkerAlt, faCogs, faExchangeAlt } from '@fortawesome/free-solid-svg-icons';
 import {IAuthUser} from '../../../models/auth-user';
 
 @Component({
@@ -21,6 +21,7 @@ export class SidebarComponent implements OnInit, OnChanges {
   faSale            = faMoneyCheckAlt;
   faTour            = faMapMarkerAlt;
   faFeature         = faCogs;
+  faPriceChange     = faExchangeAlt;
 
   properties        = false;
   categories        = false;
@@ -29,6 +30,7 @@ export class SidebarComponent implements OnInit, OnChanges {
   countries         = false;
   cities            = false;
   features          = false;
+  priceChange       = false;
 
   constructor() { }
 
@@ -69,6 +71,7 @@ export class SidebarComponent implements OnInit, OnChanges {
     this.countries = true;
     this.cities = true;
     this.features = true;
+    this.priceChange = true;
   }
 
   private isEmployee(): void {
@@ -76,6 +79,7 @@ export class SidebarComponent implements OnInit, OnChanges {
     this.categories = true;
     this.sales = true;
     this.tours = true;
+    this.priceChange = true;
   }
 
   private isCustomer(): void {
@@ -86,5 +90,6 @@ export class SidebarComponent implements OnInit, OnChanges {
   private isOwner(): void {
     this.properties = true;
     this.sales = true;
+    this.priceChange = true;
   }
 }

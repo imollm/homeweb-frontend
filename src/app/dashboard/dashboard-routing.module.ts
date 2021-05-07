@@ -24,6 +24,7 @@ import {SalesCreateComponent} from './components/resources/sales/forms/createdit
 import {SaleDetailsComponent} from './components/resources/sales/details/sale-details.component';
 import {FeaturesComponent} from './components/resources/features/features.component';
 import {FeaturesCreateComponent} from './components/resources/features/forms/createdit/features-create.component';
+import {PricesComponent} from './components/resources/prices/prices.component';
 
 const routes: Routes = [
   {
@@ -70,6 +71,8 @@ const routes: Routes = [
       {path: 'features/create', component: FeaturesCreateComponent},
       {path: 'features/edit/:id', component: FeaturesCreateComponent},
       {path: 'features/delete/:id', component: FeaturesComponent},
+
+      {path: 'prices', component: PricesComponent},
 
       {path: '**', component: NotFoundComponent}
     ]

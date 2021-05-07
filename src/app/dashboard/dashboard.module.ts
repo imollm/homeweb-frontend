@@ -66,6 +66,10 @@ import { SaleDetailsComponent } from './components/resources/sales/details/sale-
 import { FeaturesComponent } from './components/resources/features/features.component';
 import { FeaturesAdminComponent } from './components/resources/features/admin/features-admin.component';
 import { FeaturesCreateComponent } from './components/resources/features/forms/createdit/features-create.component';
+import { PricesComponent } from './components/resources/prices/prices.component';
+import { PricesAdminComponent } from './components/resources/prices/admin/prices-admin.component';
+import { PricesEmployeeComponent } from './components/resources/prices/employee/prices-employee.component';
+import { PricesOwnerComponent } from './components/resources/prices/owner/prices-owner.component';
 
 @NgModule({
   declarations: [
@@ -113,7 +117,11 @@ import { FeaturesCreateComponent } from './components/resources/features/forms/c
     SaleDetailsComponent,
     FeaturesComponent,
     FeaturesAdminComponent,
-    FeaturesCreateComponent
+    FeaturesCreateComponent,
+    PricesComponent,
+    PricesAdminComponent,
+    PricesEmployeeComponent,
+    PricesOwnerComponent
   ],
     imports: [
         CommonModule,

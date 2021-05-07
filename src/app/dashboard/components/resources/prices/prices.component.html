@@ -1,0 +1,13 @@
+<div class="container-fluid">
+  <div [ngSwitch]="role">
+    <div *ngSwitchCase="'admin'">
+      <app-dashboard-prices-admin></app-dashboard-prices-admin>
+    </div>
+    <div *ngSwitchCase="'employee'">
+      <app-dashboard-prices-employee></app-dashboard-prices-employee>
+    </div>
+    <div *ngSwitchCase="'owner'">
+      <app-dashboard-prices-owner></app-dashboard-prices-owner>
+    </div>
+  </div>
+</div>

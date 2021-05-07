@@ -345,6 +345,23 @@
         "method": "GET",
         "auth": true
       }
+    },
+    "prices": {
+      "index": {
+        "uri": "/priceHistory/index",
+        "method": "GET",
+        "auth": true
+      },
+      "create": {
+        "uri": "/priceHistory/create",
+        "method": "POST",
+        "auth": true
+      },
+      "show": {
+        "uri": "/priceHistory/%s/show",
+        "method": "GET",
+        "auth": true
+      }
     }
   }
 }

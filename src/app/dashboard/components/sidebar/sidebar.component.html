@@ -76,6 +76,13 @@
     </a>
   </li>
 
+  <li class="nav-item" *ngIf="features">
+    <a class="nav-link collapsed" [routerLink]="['/dashboard/prices']">
+      <fa-icon [icon]="faPriceChange"></fa-icon>
+      <span class="ml-3">Canvis de preu</span>
+    </a>
+  </li>
+
   <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block">
 
