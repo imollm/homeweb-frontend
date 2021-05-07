@@ -70,6 +70,7 @@ import { PricesComponent } from './components/resources/prices/prices.component'
 import { PricesAdminComponent } from './components/resources/prices/admin/prices-admin.component';
 import { PricesEmployeeComponent } from './components/resources/prices/employee/prices-employee.component';
 import { PricesOwnerComponent } from './components/resources/prices/owner/prices-owner.component';
+import { PricesCreateComponent } from './components/resources/prices/forms/create/prices-create.component';
 
 @NgModule({
   declarations: [
@@ -121,7 +122,8 @@ import { PricesOwnerComponent } from './components/resources/prices/owner/prices
     PricesComponent,
     PricesAdminComponent,
     PricesEmployeeComponent,
-    PricesOwnerComponent
+    PricesOwnerComponent,
+    PricesCreateComponent
   ],
     imports: [
         CommonModule,

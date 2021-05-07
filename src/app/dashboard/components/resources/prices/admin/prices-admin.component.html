@@ -1,1 +1,19 @@
-<p>prices-admin works!</p>
+<div class="container-fluid">
+
+  <h1 class="px-2 py-4 text-center">{{title}}</h1>
+  <h3>{{subTitle}}</h3>
+
+  <hr class="topbar-divider">
+
+  <div class="p-4">
+    <button [routerLink]="['/dashboard/prices/create']" class="btn btn-outline-primary">Crear canvi de preu</button>
+  </div>
+
+  <hr class="topbar-divider">
+
+  <app-dashboard-table
+    [toShow]="pricesTable"
+    [actionButtons]="actionButtons"
+  ></app-dashboard-table>
+
+</div>

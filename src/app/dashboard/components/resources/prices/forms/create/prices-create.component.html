@@ -1,0 +1,88 @@
+<div class="container-fluid">
+
+  <h1 class="text-center my-5">Crear canvi de preu</h1>
+
+  <div class="row">
+
+    <div class="col-12 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <!-- PROPERTY -->
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="property-id">Selecciona propietat*</span>
+          <select class="form-control" formControlName="property_id" (change)="onPropertySelect($event.target)">
+            <option [ngValue]="" disabled selected>Tria una referència</option>
+            <option *ngFor="let property of properties" [ngValue]="property.id">
+              {{ property.reference }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="property.invalid && (property.dirty || property.touched)" class="text-danger mt-0 mb-2">
+          <div *ngIf="property.errors.required">
+            La propietat es requerida
+          </div>
+        </div>
+
+        <input type="text" class="form-control" aria-describedby="property-id" formControlName="property_id" hidden>
+
+        <!-- PROPERTY INFO -->
+        <div #propertyInfo class="mt-5">
+          <h6>Informació darrer canvi de preu</h6>
+          <ul class="list-group" *ngIf="propertyToMakePriceChange">
+            <li class="list-group-item">
+              Referència propietat: {{propertyToMakePriceChange.reference}}
+            </li>
+            <li class="list-group-item">
+              Preu inicial: {{formatPrice(propertyToMakePriceChange.price)}}
+            </li>
+            <li class="list-group-item" *ngIf="lastPriceChangesOfSelectedProperty.length > 0">
+              Data inici darrera canvi: {{lastPriceChangesOfSelectedProperty[lastPriceChangesOfSelectedProperty.length - 1].start}}
+            </li>
+            <li class="list-group-item" *ngIf="lastPriceChangesOfSelectedProperty.length > 0">
+              Preu actual: {{formatPrice(lastPriceChangesOfSelectedProperty[lastPriceChangesOfSelectedProperty.length - 1].amount)}}
+            </li>
+          </ul>
+        </div>
+
+        <!-- NEW CHANGE PRICE DATA -->
+        <div #newChangePrice class="mt-5">
+
+          <!-- AMOUNT -->
+          <div class="input-group">
+            <span class="input-group-text" id="property-price">Nou preu*</span>
+            <input type="number" class="form-control" aria-describedby="property-price" formControlName="amount">
+          </div>
+          <div *ngIf="amount.invalid && (amount.dirty || amount.touched)" class="text-danger mt-0 mb-2">
+            <div *ngIf="amount.errors.required">
+              La quantitat es requerida
+            </div>
+            <div *ngIf="amount.errors.min">
+              La quantitat ha de ser mínim 0
+            </div>
+          </div>
+
+          <!-- START DATE -->
+          <div class="d-flex justify-content-around bg-gray-200 border p-4 mt-3">
+            <div class="bg-white p-2">
+              <strong>Data inici:</strong> {{today()}}
+            </div>
+            <div class="bg-white p-2">
+              <strong>Data fi:</strong> No establerta
+            </div>
+          </div>
+
+          <!-- SUBMIT -->
+          <div class="input-group my-5 d-flex justify-content-center">
+            <button type="submit" class="btn btn-secondary">Crear</button>
+          </div>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>

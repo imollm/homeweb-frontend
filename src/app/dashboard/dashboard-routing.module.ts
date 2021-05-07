@@ -25,6 +25,7 @@ import {SaleDetailsComponent} from './components/resources/sales/details/sale-de
 import {FeaturesComponent} from './components/resources/features/features.component';
 import {FeaturesCreateComponent} from './components/resources/features/forms/createdit/features-create.component';
 import {PricesComponent} from './components/resources/prices/prices.component';
+import {PricesCreateComponent} from './components/resources/prices/forms/create/prices-create.component';
 
 const routes: Routes = [
   {
@@ -73,6 +74,7 @@ const routes: Routes = [
       {path: 'features/delete/:id', component: FeaturesComponent},
 
       {path: 'prices', component: PricesComponent},
+      {path: 'prices/create', component: PricesCreateComponent},
 
       {path: '**', component: NotFoundComponent}
     ]
