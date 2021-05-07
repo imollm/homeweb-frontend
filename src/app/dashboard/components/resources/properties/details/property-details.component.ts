@@ -87,8 +87,8 @@ export class PropertyDetailsComponent implements OnInit {
       { colName: 'category', text: 'Categoria'},
       { colName: 'city', text: 'Ciutat'},
       { colName: 'address', text: 'Adreça' },
+      { colName: 'price', text: 'Preu inicial'},
       { colName: 'sold', text: 'Venuda?' },
-      { colName: 'price', text: 'Preu'},
       { colName: 'created_at', text: 'Creada'}
     ];
     this.dataTable.inverse = true;
@@ -102,6 +102,10 @@ export class PropertyDetailsComponent implements OnInit {
     if (this.property.user_id !== null) {
       this.dataTable.colsName.push({colName: 'owner', text: 'Propietari'});
       this.dataTable.data.owner = this.property.owner.name;
+    }
+    if (this.property.sold && this.property.sales[0]) {
+      this.dataTable.colsName.push({ colName: 'sale', text: 'Preu venda'});
+      this.dataTable.data.sale = HelpersService.formatPrice(this.property.sales[0].amount);
     }
   }
 

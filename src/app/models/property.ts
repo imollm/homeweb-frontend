@@ -3,6 +3,7 @@ import {ICategory} from './category';
 import {ICity} from './city';
 import {IFeature} from './feature';
 import {IUser} from './user';
+import {ISale} from './sale';
 
 export interface IProperty {
   id: number;
@@ -31,4 +32,5 @@ export interface IProperty {
   category: ICategory;
   features: IFeature[];
   owner: IUser;
+  sales: ISale;
 }
