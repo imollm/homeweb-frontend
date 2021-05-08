@@ -1,28 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {PropertiesService} from '../../../../../services/_property/properties.service';
 import {IDashboardTable} from '../../../../../models/dashboard-table';
 import {AlertService} from '../../../../../services/_alert/alert.service';
 import {IActionButtons} from '../../../../../models/action-buttons';
+import {ResponseStatus} from '../../../../../api/response-status';
 
 @Component({
-  selector: 'app-dashboard-properties-admin',
-  templateUrl: './properties-admin.component.html',
-  styleUrls: ['./properties-admin.component.css']
+  selector: 'app-dashboard-properties-admin-employee',
+  templateUrl: './properties-admin-employee.component.html',
+  styleUrls: ['./properties-admin-employee.component.css']
 })
-export class PropertiesAdminComponent implements OnInit {
+export class PropertiesAdminEmployeeComponent implements OnInit {
 
-  title = 'Admin Dashboard';
+  @Input() role: string;
+
+  title: string;
   subTitle = 'Propietats';
 
   propertiesTable: IDashboardTable = {} as IDashboardTable;
   propertiesTableActions: IActionButtons = {
-    active: true,
-    resource: 'properties',
-    actions: {
-      view: true,
-      edit: true,
-      delete: true
-    }
+    actions: {}
   } as IActionButtons;
 
   constructor(
@@ -32,6 +29,8 @@ export class PropertiesAdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllProperties();
+    this.title = this.role === 'admin' ? 'Admin' : 'Employee';
+    this.title += ' Dashboard';
   }
 
   private getAllProperties(): void {
@@ -50,9 +49,19 @@ export class PropertiesAdminComponent implements OnInit {
           {colName: 'baths', text: 'Banys'}
         ];
       }
+    }).then(() => {
+      this.setActionButtonsByRole();
     }).catch((error) => {
-      this.alertService.error('Something went wrong');
+      this.alertService.error(ResponseStatus.displayErrorMessage(error));
       console.error(error);
     });
+  }
+
+  private setActionButtonsByRole(): void {
+    this.propertiesTableActions.active = true;
+    this.propertiesTableActions.resource = 'properties';
+    this.propertiesTableActions.actions.view = true;
+    this.propertiesTableActions.actions.edit = true;
+    this.propertiesTableActions.actions.delete = this.role === 'admin';
   }
 }
