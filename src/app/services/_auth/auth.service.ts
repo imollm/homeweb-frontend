@@ -35,7 +35,6 @@ export class AuthService implements IAuthService {
       user).pipe(tap(
       (res: IJwtResponse) => {
         if (res.success) {
-          // guardar token
           this.saveToken(res.dataUser.accessToken);
           this.router.navigate(['login']);
         }
@@ -48,7 +47,6 @@ export class AuthService implements IAuthService {
       user).pipe(tap(
       (res: IJwtResponse) => {
         if (res.success) {
-          // guardar token
           this.saveToken(res.dataUser.accessToken);
           this.router.navigate(['dashboard']);
         }

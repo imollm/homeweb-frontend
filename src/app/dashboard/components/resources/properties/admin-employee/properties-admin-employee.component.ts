@@ -4,6 +4,7 @@ import {IDashboardTable} from '../../../../../models/dashboard-table';
 import {AlertService} from '../../../../../services/_alert/alert.service';
 import {IActionButtons} from '../../../../../models/action-buttons';
 import {ResponseStatus} from '../../../../../api/response-status';
+import {IProperty} from '../../../../../models/property';
 
 @Component({
   selector: 'app-dashboard-properties-admin-employee',
@@ -22,6 +23,9 @@ export class PropertiesAdminEmployeeComponent implements OnInit {
     actions: {}
   } as IActionButtons;
 
+  properties: IProperty[] = [];
+  limit: string;
+
   constructor(
     private propertiesService: PropertiesService,
     private alertService: AlertService
@@ -36,20 +40,23 @@ export class PropertiesAdminEmployeeComponent implements OnInit {
   private getAllProperties(): void {
     this.propertiesService.getProperties().then((response) => {
       if (response.success) {
-        this.propertiesTable.title    = 'Llistat de totes les propietats';
-        this.propertiesTable.data     = response.data;
-        this.propertiesTable.colsName = [
-          {colName: 'id', text: 'ID'},
-          {colName: 'reference', text: 'Referència'},
-          {colName: 'title', text: 'Títol'},
-          {colName: 'price', text: 'Preu'},
-          {colName: 'plot_meters', text: 'Mts. solar'},
-          {colName: 'built_meters', text: 'Mts. const.'},
-          {colName: 'rooms', text: 'Habitacions'},
-          {colName: 'baths', text: 'Banys'}
-        ];
+        this.properties = response.data;
+      } else {
+        this.alertService.warn(response.message);
       }
     }).then(() => {
+      this.propertiesTable.title    = 'Llistat de totes les propietats';
+      this.propertiesTable.data     = this.properties;
+      this.propertiesTable.colsName = [
+        {colName: 'id', text: 'ID'},
+        {colName: 'reference', text: 'Referència'},
+        {colName: 'title', text: 'Títol'},
+        {colName: 'price', text: 'Preu'},
+        {colName: 'plot_meters', text: 'Mts. solar'},
+        {colName: 'built_meters', text: 'Mts. const.'},
+        {colName: 'rooms', text: 'Habitacions'},
+        {colName: 'baths', text: 'Banys'}
+      ];
       this.setActionButtonsByRole();
     }).catch((error) => {
       this.alertService.error(ResponseStatus.displayErrorMessage(error));
