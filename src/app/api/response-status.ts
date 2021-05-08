@@ -51,7 +51,7 @@ export class ResponseStatus {
       const errors = httpError.error.errors.name;
       for (let i = 0; i <= errors.length; i++) {
         if (typeof errors[i] !== 'undefined') {
-          message += i === 0 ? errors[i] : "\n" + errors[i];
+          message += i === 0 ? errors[i] : '\n' + errors[i];
         }
       }
       return message;
@@ -62,7 +62,11 @@ export class ResponseStatus {
   // HTTP ERROR 500
   private static internalServerError(httpError: HttpErrorResponse): string {
     if (httpError.error) {
-      return httpError.error;
+      if (typeof httpError.error === 'string') {
+        return httpError.error;
+      } else if (httpError.error.message && typeof httpError.error.message === 'string') {
+        return httpError.error.message;
+      }
     }
     return httpError.error.statusText;
   }

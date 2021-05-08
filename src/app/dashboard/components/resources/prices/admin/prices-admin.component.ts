@@ -19,9 +19,7 @@ export class PricesAdminComponent implements OnInit {
   changes: IPriceChange[] = [];
   pricesTable: IDashboardTable = {} as IDashboardTable;
   actionButtons: IActionButtons = {
-    active: true,
-    resource: 'prices',
-    actions: { view: false, edit: true, delete: false }
+    active: false
   } as IActionButtons;
 
   constructor(

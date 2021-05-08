@@ -7,6 +7,7 @@ import {IProperty} from '../../../../../../models/property';
 import {ResponseStatus} from '../../../../../../api/response-status';
 import {IPriceChange} from '../../../../../../models/price-change';
 import {HelpersService} from '../../../../../../services/_helpers/helpers.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-prices-create',
@@ -21,12 +22,14 @@ export class PricesCreateComponent implements OnInit, AfterViewInit {
   lastPriceChangesOfSelectedProperty: IPriceChange[] = [];
   @ViewChild('propertyInfo') propertyInfo: ElementRef;
   @ViewChild('newChangePrice') newChangePrice: ElementRef;
+  @ViewChild('acceptChange') acceptChange: ElementRef;
 
   constructor(
     private fb: FormBuilder,
     private pricesService: PricesService,
     private alertService: AlertService,
-    private propertiesService: PropertiesService
+    private propertiesService: PropertiesService,
+    private router: Router
   ) {
     this.form = this.fb.group({
       property_id: new FormControl(''),
@@ -47,6 +50,19 @@ export class PricesCreateComponent implements OnInit, AfterViewInit {
 
   onSubmit(): void {
     console.log(this.form.value);
+    if (this.form.valid && this.acceptChange.nativeElement.checked) {
+      this.pricesService.createPriceChange(this.form.value).then((response) => {
+        if (response.success) {
+          this.alertService.success(response.message);
+        } else {
+          this.alertService.warn(response.message);
+        }
+      }).catch((error) => {
+        this.alertService.error(ResponseStatus.displayErrorMessage(error));
+        console.error(error);
+      });
+      this.router.navigate(['/dashboard/prices']);
+    }
   }
 
   private getProperties(): void {
@@ -63,7 +79,6 @@ export class PricesCreateComponent implements OnInit, AfterViewInit {
   }
 
   onPropertySelect(evt: EventTarget): void {
-    this.form.get('property_id').disable();
     this.propertyInfo.nativeElement.style.display = 'block';
     this.newChangePrice.nativeElement.style.display = 'block';
     const propertySelectedId = ((evt as HTMLInputElement).value).charAt(0);
