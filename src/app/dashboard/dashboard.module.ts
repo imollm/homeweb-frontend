@@ -28,8 +28,7 @@ import { PropertiesCustomerComponent } from './components/resources/properties/c
 import { PropertiesOwnerComponent } from './components/resources/properties/owner/properties-owner.component';
 
 import { CategoriesComponent } from './components/resources/categories/categories.component';
-import { CategoriesAdminComponent } from './components/resources/categories/admin/categories-admin.component';
-import { CategoriesEmployeeComponent } from './components/resources/categories/employee/categories-employee.component';
+import { CategoriesAdminEmployeeComponent } from './components/resources/categories/admin-employee/categories-admin-employee.component';
 
 import { CitiesComponent } from './components/resources/cities/cities.component';
 import { CitiesAdminComponent } from './components/resources/cities/admin/cities-admin.component';
@@ -89,8 +88,7 @@ import { PricesCreateComponent } from './components/resources/prices/forms/creat
     PropertiesOwnerComponent,
     PropertiesCreateComponent,
     CategoriesComponent,
-    CategoriesAdminComponent,
-    CategoriesEmployeeComponent,
+    CategoriesAdminEmployeeComponent,
     CitiesComponent,
     CitiesAdminComponent,
     CountriesComponent,

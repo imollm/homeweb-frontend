@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {IDashboardTable} from '../../../../../models/dashboard-table';
 import {CategoriesService} from '../../../../../services/_category/categories.service';
 import {AlertService} from '../../../../../services/_alert/alert.service';
@@ -7,13 +7,15 @@ import {IActionButtons} from '../../../../../models/action-buttons';
 import {HelpersService} from '../../../../../services/_helpers/helpers.service';
 
 @Component({
-  selector: 'app-dashboard-categories-admin',
-  templateUrl: './categories-admin.component.html',
-  styleUrls: ['./categories-admin.component.css']
+  selector: 'app-dashboard-categories-admin-employee',
+  templateUrl: './categories-admin-employee.component.html',
+  styleUrls: ['./categories-admin-employee.component.css']
 })
-export class CategoriesAdminComponent implements OnInit {
+export class CategoriesAdminEmployeeComponent implements OnInit {
 
-  title = 'Admin Dashboard';
+  @Input() role: string;
+
+  title: string;
   subTitle = 'Categories';
 
   categoriesTable: IDashboardTable = {} as IDashboardTable;
@@ -22,8 +24,7 @@ export class CategoriesAdminComponent implements OnInit {
     resource: 'categories',
     actions: {
       view: true,
-      edit: true,
-      delete: true
+      edit: true
     }
   } as IActionButtons;
 
@@ -41,6 +42,9 @@ export class CategoriesAdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCategories();
+    this.title = this.role === 'admin' ? 'Admin' : 'Employee';
+    this.title += ' Dashboard';
+    this.categoriesTableActions.actions.delete = this.role === 'admin';
   }
 
   private getCategories(): void {
