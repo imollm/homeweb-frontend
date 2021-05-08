@@ -25,7 +25,6 @@ import { SharedModule } from '../shared/shared.module';
 import { PropertiesComponent } from './components/resources/properties/properties.component';
 import { PropertiesAdminEmployeeComponent } from './components/resources/properties/admin-employee/properties-admin-employee.component';
 import { PropertiesCustomerComponent } from './components/resources/properties/customer/properties-customer.component';
-import { PropertiesEmployeeComponent } from './components/resources/properties/employee/properties-employee.component';
 import { PropertiesOwnerComponent } from './components/resources/properties/owner/properties-owner.component';
 
 import { CategoriesComponent } from './components/resources/categories/categories.component';
@@ -87,7 +86,6 @@ import { PricesCreateComponent } from './components/resources/prices/forms/creat
     PropertiesComponent,
     PropertiesAdminEmployeeComponent,
     PropertiesCustomerComponent,
-    PropertiesEmployeeComponent,
     PropertiesOwnerComponent,
     PropertiesCreateComponent,
     CategoriesComponent,
