@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {SalesService} from '../../../../../services/_sale/sales.service';
 import {ISale} from '../../../../../models/sale';
 import {IDashboardTable} from '../../../../../models/dashboard-table';
@@ -9,13 +9,15 @@ import {HelpersService} from '../../../../../services/_helpers/helpers.service';
 import {Color, Label, SingleDataSet} from 'ng2-charts';
 
 @Component({
-  selector: 'app-dashboard-sales-admin',
-  templateUrl: './sales-admin.component.html',
-  styleUrls: ['./sales-admin.component.css']
+  selector: 'app-dashboard-sales-admin-employee',
+  templateUrl: './sales-admin-employee.component.html',
+  styleUrls: ['./sales-admin-employee.component.css']
 })
-export class SalesAdminComponent implements OnInit {
+export class SalesAdminEmployeeComponent implements OnInit {
 
-  title = 'Admin Dashboard';
+  @Input() role: string;
+
+  title: string;
   subTitle = 'Vendes';
 
   lastSales: ISale[] = [];
@@ -54,6 +56,8 @@ export class SalesAdminComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.title = this.role === 'admin' ? 'Admin' : 'Employee';
+    this.title += ' Dashboard';
     this.getLastSales();
     this.getChartData();
   }
@@ -61,7 +65,7 @@ export class SalesAdminComponent implements OnInit {
   private getLastSales(): void {
     this.salesService.getIndex(this.limit).then((response) => {
       if (response.success) {
-        this.lastSales = response.data.last;
+        this.lastSales = this.role === 'admin' ? response.data.last : response.data;
       }
     }).then(() => {
       this.prepareSalesDataTable();
@@ -92,31 +96,67 @@ export class SalesAdminComponent implements OnInit {
   private prepareSalesDataTable(): void {
     const data = [];
 
-    this.lastSalesTable.title = 'Darreres vendes';
+    this.lastSalesTable.title = this.role === 'admin' ? 'Darreres vendes' : 'Les teves vendes';
     this.lastSalesTable.inverse = false;
-    this.lastSalesTable.colsName = [
-      {colName: 'reference', text: 'Ref. propietat'},
-      {colName: 'seller', text: 'Venedor'},
-      {colName: 'buyer', text: 'Comprador'},
-      {colName: 'date', text: 'Data venda'},
-      {colName: 'amount', text: 'Preu venda'}
-    ];
-    for (const sale of this.lastSales) {
-      data.push({
-        id: sale.hash_id,
-        reference: sale.property.reference,
-        seller: sale.seller.name,
-        buyer: sale.buyer.name,
-        date: sale.date,
-        amount: HelpersService.formatPrice(sale.amount)
-      });
+
+    if (this.role === 'admin') {
+      this.lastSalesTable.colsName = [
+        {colName: 'reference', text: 'Ref. propietat'},
+        {colName: 'seller', text: 'Venedor'},
+        {colName: 'buyer', text: 'Comprador'},
+        {colName: 'date', text: 'Data venda'},
+        {colName: 'amount', text: 'Preu venda'}
+      ];
+      for (const sale of this.lastSales) {
+        data.push({
+          id: sale.hash_id,
+          reference: sale.property.reference,
+          seller: sale.seller.name,
+          buyer: sale.buyer.name,
+          date: sale.date,
+          amount: HelpersService.formatPrice(sale.amount)
+        });
+      }
+      this.lastSalesTable.data = data;
+    } else if (this.role === 'employee') {
+      this.lastSalesTable.colsName = [
+        {colName: 'reference', text: 'Ref. propietat'},
+        {colName: 'buyer', text: 'Comprador'},
+        {colName: 'date', text: 'Data venda'},
+        {colName: 'amount', text: 'Preu venda'}
+      ];
+      for (const sale of this.lastSales) {
+        data.push({
+          id: sale.hash_id,
+          reference: sale.property.reference,
+          buyer: sale.buyer.name,
+          date: sale.date,
+          amount: HelpersService.formatPrice(sale.amount)
+        });
+      }
+      this.lastSalesTable.data = data;
     }
-    this.lastSalesTable.data = data;
   }
 
   limitSales(evt: EventTarget): void {
     this.limit = (evt as HTMLInputElement).value;
-    this.ngOnInit();
+    this.resetChartDataAndLabels().then(() => {
+      this.ngOnInit();
+    });
+  }
+
+  private resetChartDataAndLabels(): Promise<boolean> {
+    return new Promise<boolean>(resolve => {
+      this.salesByCategoriesChartData.splice(0, this.salesByCategoriesChartData.length);
+      this.salesByCitiesChartData.splice(0, this.salesByCitiesChartData.length);
+      this.salesByCountriesChartData.splice(0, this.salesByCountriesChartData.length);
+      this.salesBySellersChartData.splice(0, this.salesBySellersChartData.length);
+      this.salesByCategoriesChartLabels.splice(0, this.salesByCategoriesChartLabels.length);
+      this.salesByCitiesChartLabels.splice(0, this.salesByCitiesChartLabels.length);
+      this.salesByCountriesChartLabels.splice(0, this.salesByCountriesChartLabels.length);
+      this.salesBySellersChartLabels.splice(0, this.salesBySellersChartLabels.length);
+      resolve(true);
+    });
   }
 
   private salesByCountriesChart(): void {
@@ -165,5 +205,9 @@ export class SalesAdminComponent implements OnInit {
       }
       this.salesBySellersChartDataColors[0].backgroundColor = colorsOfChart;
     }
+  }
+
+  haveSystemSales(): boolean {
+    return this.salesByCategoriesChartData.length > 0 || this.salesByCitiesChartData.length > 0 || this.salesByCountriesChartData.length > 0 || this.salesBySellersChartData.length > 0;
   }
 }

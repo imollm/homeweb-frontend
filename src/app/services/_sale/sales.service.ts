@@ -18,7 +18,7 @@ export class SalesService {
     this.resource = 'sales';
   }
 
-  getIndex(limit: string = '5'): Promise<ApiResponseI> {
+  getIndex(limit: string = '3'): Promise<ApiResponseI> {
     const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'index', limit);
     return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
   }

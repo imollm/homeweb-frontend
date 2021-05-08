@@ -1,10 +1,7 @@
 <div class="container-fluid">
-  <div [ngSwitch]="role">
-    <div *ngSwitchCase="'admin'">
-      <app-dashboard-sales-admin></app-dashboard-sales-admin>
-    </div>
-    <div *ngSwitchCase="'employee'">
-      <app-dashboard-sales-employee></app-dashboard-sales-employee>
-    </div>
+  <div *ngIf="role==='admin'||role==='employee'">
+    <app-dashboard-sales-admin-employee
+      [role]="role"
+    ></app-dashboard-sales-admin-employee>
   </div>
 </div>

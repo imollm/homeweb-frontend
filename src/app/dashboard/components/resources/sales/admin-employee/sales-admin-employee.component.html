@@ -37,9 +37,15 @@
 
   </div>
 
-  <div class="row my-5" *ngIf="true">
+  <div class="row" *ngIf="haveSystemSales()">
+    <div class="col-12 my-4 text-center">
+      <h4 class="">Gràfiques vendes</h4>
+    </div>
+  </div>
 
-    <div class="col-12 col-lg-6">
+  <div class="row my-5" *ngIf="haveSystemSales()">
+
+    <div class="col-12 col-lg-6" *ngIf="salesByCountriesChartData.length > 0">
       <div class="d-block border shadow">
         <h5 class="text-center p-2 text-primary">Vendes per països</h5>
         <canvas baseChart
@@ -52,7 +58,7 @@
       </div>
     </div>
 
-    <div class="col-12 col-lg-6">
+    <div class="col-12 col-lg-6" *ngIf="salesByCitiesChartData.length > 0">
       <div class="d-block border shadow">
         <h5 class="text-center p-2 text-primary">Vendes per ciutats</h5>
         <canvas baseChart
@@ -69,7 +75,7 @@
 
   <div class="row" *ngIf="true">
 
-    <div class="col-12 col-lg-6">
+    <div class="col-12 col-lg-6" *ngIf="salesByCategoriesChartData.length > 0">
       <div class="d-block border shadow">
         <h5 class="text-center p-2 text-primary">Vendes per categories</h5>
         <canvas baseChart
@@ -82,7 +88,7 @@
       </div>
     </div>
 
-    <div class="col-12 col-lg-6">
+    <div class="col-12 col-lg-6" *ngIf="salesBySellersChartData.length > 0">
       <div class="d-block border shadow">
         <h5 class="text-center p-2 text-primary">Vendes per venedor</h5>
         <canvas baseChart

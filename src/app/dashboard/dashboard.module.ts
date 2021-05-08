@@ -37,8 +37,7 @@ import { CountriesComponent } from './components/resources/countries/countries.c
 import { CountriesAdminComponent } from './components/resources/countries/admin/countries-admin.component';
 
 import { SalesComponent } from './components/resources/sales/sales.component';
-import { SalesAdminComponent } from './components/resources/sales/admin/sales-admin.component';
-import { SalesEmployeeComponent } from './components/resources/sales/employee/sales-employee.component';
+import { SalesAdminEmployeeComponent } from './components/resources/sales/admin-employee/sales-admin-employee.component';
 
 import { ToursComponent } from './components/resources/tours/tours.component';
 import { ToursAdminComponent } from './components/resources/tours/admin/tours-admin.component';
@@ -94,8 +93,7 @@ import { PricesCreateComponent } from './components/resources/prices/forms/creat
     CountriesComponent,
     CountriesAdminComponent,
     SalesComponent,
-    SalesAdminComponent,
-    SalesEmployeeComponent,
+    SalesAdminEmployeeComponent,
     ToursComponent,
     ToursAdminComponent,
     ToursCustomerComponent,
