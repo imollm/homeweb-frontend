@@ -47,4 +47,9 @@ export class SalesService {
     const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'salesBy');
     return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
   }
+
+  salesOfSeller(): Promise<ApiResponseI> {
+    const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'salesOfSeller');
+    return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
+  }
 }

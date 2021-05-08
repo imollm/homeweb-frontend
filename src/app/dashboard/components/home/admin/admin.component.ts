@@ -5,7 +5,9 @@ import {SalesService} from '../../../../services/_sale/sales.service';
 import {IDashboardTable} from '../../../../models/dashboard-table';
 import {PropertiesService} from '../../../../services/_property/properties.service';
 import {Color, Label, SingleDataSet} from 'ng2-charts';
-import {IActionButtons} from "../../../../models/action-buttons";
+import {IActionButtons} from '../../../../models/action-buttons';
+import {ResponseStatus} from '../../../../api/response-status';
+import {AlertService} from '../../../../services/_alert/alert.service';
 
 @Component({
   selector: 'app-dashboard-home-admin',
@@ -35,7 +37,8 @@ export class AdminComponent implements OnInit {
 
   constructor(
     private salesService: SalesService,
-    private propertiesService: PropertiesService
+    private propertiesService: PropertiesService,
+    private alertService: AlertService
   ) { }
 
   ngOnInit(): void {
@@ -53,7 +56,11 @@ export class AdminComponent implements OnInit {
         this.totalSalesLastMonth.title  = 'Total vendes darrer mes';
         this.totalSalesLastMonth.value  = HelpersService.formatPrice(response.data.month);
       }
+    }).catch((error) => {
+      this.alertService.error(ResponseStatus.displayErrorMessage(error));
+      console.error(error);
     });
+
     this.propertiesService.getLastProperties().then((response) => {
       if (response.success) {
         this.dataTable.title            = 'Darreres propietats afegides';
@@ -67,13 +74,21 @@ export class AdminComponent implements OnInit {
         ];
         this.dataTable.inverse = false;
       }
+    }).catch((error) => {
+      this.alertService.error(ResponseStatus.displayErrorMessage(error));
+      console.error(error);
     });
+
     this.propertiesService.getActiveProperties().then((response) => {
       if (response.success) {
         this.totalProperties.title      = 'Propietats visibles';
         this.totalProperties.value      = response.data.length;
       }
+    }).catch((error) => {
+      this.alertService.error(ResponseStatus.displayErrorMessage(error));
+      console.error(error);
     });
+
     this.salesService.getLastYear().then((response) => {
       if (response.success) {
         const sales = response.data;
@@ -84,6 +99,9 @@ export class AdminComponent implements OnInit {
       }
     }).then(() => {
       this.setSalesChartConfig();
+    }).catch((error) => {
+      this.alertService.error(ResponseStatus.displayErrorMessage(error));
+      console.error(error);
     });
   }
 

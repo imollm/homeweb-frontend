@@ -50,4 +50,9 @@ export class ToursService {
     const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'showByHashId', hashId);
     return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
   }
+
+  getToursByEmployee(): Promise<ApiResponseI> {
+    const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'toursOfEmployee');
+    return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
+  }
 }

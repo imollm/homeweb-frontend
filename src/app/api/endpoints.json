@@ -263,6 +263,11 @@
         "uri": "/sales/salesBy",
         "method": "GET",
         "auth": true
+      },
+      "salesOfSeller": {
+        "uri": "/sales/seller",
+        "method": "GET",
+        "auth": true
       }
     },
     "users": {
@@ -315,6 +320,11 @@
       },
       "showByHashId": {
         "uri": "/tours/%s/showByHashId",
+        "method": "GET",
+        "auth": true
+      },
+      "toursOfEmployee": {
+        "uri": "/tours/byEmployee",
         "method": "GET",
         "auth": true
       }

@@ -1,1 +1,43 @@
-<h1>Home Employee</h1>
+<h1 class="px-2 py-4 text-center">{{title}}</h1>
+<h3>{{subTitle}}</h3>
+<hr class="topbar-divider">
+<div class="row d-flex justify-content-between">
+  <div class="col-xl-3 col-md-6 mb-4">
+    <app-dashboard-card
+      [toShow]="totalProperties"
+    ></app-dashboard-card>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <app-dashboard-card
+      [toShow]="totalSales"
+    ></app-dashboard-card>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <app-dashboard-card
+      [toShow]="totalAmountOfSales"
+    ></app-dashboard-card>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <app-dashboard-card
+      [toShow]="totalSalesLastMonth"
+    ></app-dashboard-card>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xl-12">
+    <app-dashboard-table
+      [toShow]="dataTable"
+      [actionButtons]="actionButtons"
+    ></app-dashboard-table>
+  </div>
+</div>
+<hr class="topbar-divider">
+<div class="row">
+  <div class="col-xl-12">
+    <app-dashboard-table
+      [toShow]="toursTable"
+      [actionButtons]="actionButtons"
+    ></app-dashboard-table>
+  </div>
+</div>
+

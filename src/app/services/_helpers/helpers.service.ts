@@ -76,4 +76,14 @@ export class HelpersService {
     }
     return timeFormatted;
   }
+
+  static getActualMonth(): number {
+    const date = new Date();
+    return Number(date.getMonth() + 1);
+  }
+
+  static extractMonthOfStringDate(date: string): number {
+    const dateSplit = date.split('-');
+    return Number(dateSplit[1]);
+  }
 }
