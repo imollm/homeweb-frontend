@@ -39,10 +39,7 @@ import { CountriesAdminComponent } from './components/resources/countries/admin/
 import { SalesComponent } from './components/resources/sales/sales.component';
 import { SalesAdminEmployeeComponent } from './components/resources/sales/admin-employee/sales-admin-employee.component';
 
-import { ToursComponent } from './components/resources/tours/tours.component';
-import { ToursAdminComponent } from './components/resources/tours/admin/tours-admin.component';
-import { ToursCustomerComponent } from './components/resources/tours/customer/tours-customer.component';
-import { ToursEmployeeComponent } from './components/resources/tours/employee/tours-employee.component';
+import { ToursAdminEmployeeCustomerComponent } from './components/resources/tours/admin-employee-customer/tours-admin-employee-customer.component';
 import { ToursOwnerComponent } from './components/resources/tours/owner/tours-owner.component';
 import { ToursCreateComponent } from './components/resources/tours/forms/createdit/tours-create.component';
 import { TourDetailsComponent } from './components/resources/tours/details/tour-details.component';
@@ -68,6 +65,7 @@ import { PricesAdminComponent } from './components/resources/prices/admin/prices
 import { PricesEmployeeComponent } from './components/resources/prices/employee/prices-employee.component';
 import { PricesOwnerComponent } from './components/resources/prices/owner/prices-owner.component';
 import { PricesCreateComponent } from './components/resources/prices/forms/create/prices-create.component';
+import {ToursComponent} from './components/resources/tours/tours.component';
 
 @NgModule({
   declarations: [
@@ -95,9 +93,7 @@ import { PricesCreateComponent } from './components/resources/prices/forms/creat
     SalesComponent,
     SalesAdminEmployeeComponent,
     ToursComponent,
-    ToursAdminComponent,
-    ToursCustomerComponent,
-    ToursEmployeeComponent,
+    ToursAdminEmployeeCustomerComponent,
     PropertyDetailsComponent,
     CategoriesCreateComponent,
     CategoryDetailsComponent,

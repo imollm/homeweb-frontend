@@ -1,16 +1,7 @@
 <div class="container-fluid">
-  <div [ngSwitch]="role">
-    <div *ngSwitchCase="'admin'">
-      <app-dashboard-tours-admin></app-dashboard-tours-admin>
-    </div>
-    <div *ngSwitchCase="'employee'">
-      <app-dashboard-tours-employee></app-dashboard-tours-employee>
-    </div>
-    <div *ngSwitchCase="'customer'">
-      <app-dashboard-tours-customer></app-dashboard-tours-customer>
-    </div>
-    <div *ngSwitchCase="'owner'">
-      <app-dashboard-tours-owner></app-dashboard-tours-owner>
-    </div>
+  <div *ngIf="role==='admin'||role==='employee'||role==='customer'">
+    <app-dashboard-tours-admin-employee-customer
+      [role]="role"
+    ></app-dashboard-tours-admin-employee-customer>
   </div>
 </div>
