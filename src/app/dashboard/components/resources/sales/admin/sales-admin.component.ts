@@ -3,7 +3,7 @@ import {SalesService} from '../../../../../services/_sale/sales.service';
 import {ISale} from '../../../../../models/sale';
 import {IDashboardTable} from '../../../../../models/dashboard-table';
 import {ResponseStatus} from '../../../../../api/response-status';
-import {AlertService} from '../../../../../_alert/alert.service';
+import {AlertService} from '../../../../../services/_alert/alert.service';
 import {IActionButtons} from '../../../../../models/action-buttons';
 import {HelpersService} from '../../../../../services/_helpers/helpers.service';
 import {Color, Label, SingleDataSet} from 'ng2-charts';

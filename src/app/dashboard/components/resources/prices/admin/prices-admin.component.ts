@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {IPriceChange} from '../../../../../models/price-change';
 import {PricesService} from '../../../../../services/_price/prices.service';
-import {AlertService} from '../../../../../_alert/alert.service';
+import {AlertService} from '../../../../../services/_alert/alert.service';
 import {ResponseStatus} from '../../../../../api/response-status';
 import {IDashboardTable} from '../../../../../models/dashboard-table';
 import {HelpersService} from '../../../../../services/_helpers/helpers.service';

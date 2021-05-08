@@ -3,7 +3,7 @@ import {ICity} from '../../../../../models/city';
 import {IProperty} from '../../../../../models/property';
 import {IDashboardTable} from '../../../../../models/dashboard-table';
 import {IActionButtons} from '../../../../../models/action-buttons';
-import {AlertService} from '../../../../../_alert/alert.service';
+import {AlertService} from '../../../../../services/_alert/alert.service';
 import {ResponseStatus} from '../../../../../api/response-status';
 import {CitiesService} from '../../../../../services/_city/cities.service';
 

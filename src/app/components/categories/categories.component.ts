@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {CategoriesService} from '../../services/_category/categories.service';
 import {ICategory} from '../../models/category';
-import {AlertService} from '../../_alert/alert.service';
+import {AlertService} from '../../services/_alert/alert.service';
 import {ImageService} from '../../services/_image/image.service';
 import {MessageService} from '../../services/message.service';
 import {Router} from '@angular/router';

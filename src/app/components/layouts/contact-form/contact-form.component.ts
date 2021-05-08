@@ -3,7 +3,7 @@ import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '
 import { faUserAlt, faEnvelope, faAt, faPenSquare } from '@fortawesome/free-solid-svg-icons';
 import {IContact} from '../../../models/contact';
 import {ContactService} from '../../../services/_contact/contact.service';
-import {AlertService} from '../../../_alert/alert.service';
+import {AlertService} from '../../../services/_alert/alert.service';
 
 @Component({
   selector: 'app-contact-form',

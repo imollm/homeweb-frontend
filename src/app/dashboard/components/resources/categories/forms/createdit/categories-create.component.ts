@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {CategoriesService} from '../../../../../../services/_category/categories.service';
-import {AlertService} from '../../../../../../_alert/alert.service';
+import {AlertService} from '../../../../../../services/_alert/alert.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ICategory} from '../../../../../../models/category';
 import {ImageService} from '../../../../../../services/_image/image.service';

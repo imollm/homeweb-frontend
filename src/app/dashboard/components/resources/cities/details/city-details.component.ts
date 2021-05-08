@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {AlertService} from '../../../../../_alert/alert.service';
+import {AlertService} from '../../../../../services/_alert/alert.service';
 import {CitiesService} from '../../../../../services/_city/cities.service';
 import {ICity} from '../../../../../models/city';
 import {IDashboardCard} from '../../../../../models/dashboard-card';

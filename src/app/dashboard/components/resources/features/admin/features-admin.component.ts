@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FeaturesService} from '../../../../../services/_feature/features.service';
-import {AlertService} from '../../../../../_alert/alert.service';
+import {AlertService} from '../../../../../services/_alert/alert.service';
 import {IFeature} from '../../../../../models/feature';
 import {IDashboardTable} from '../../../../../models/dashboard-table';
 import {IActionButtons} from '../../../../../models/action-buttons';

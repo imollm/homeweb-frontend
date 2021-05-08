@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PropertiesService} from '../../../../../services/_property/properties.service';
 import {IDashboardTable} from '../../../../../models/dashboard-table';
-import {AlertService} from '../../../../../_alert/alert.service';
+import {AlertService} from '../../../../../services/_alert/alert.service';
 import {IActionButtons} from '../../../../../models/action-buttons';
 
 @Component({

@@ -5,7 +5,7 @@ import {ImageService} from '../../../../../services/_image/image.service';
 import {PropertiesService} from '../../../../../services/_property/properties.service';
 import {ILocation, IMaps} from '../../../../../models/maps';
 import {IDashboardTable} from '../../../../../models/dashboard-table';
-import {AlertService} from '../../../../../_alert/alert.service';
+import {AlertService} from '../../../../../services/_alert/alert.service';
 import {ResponseStatus} from '../../../../../api/response-status';
 import {IActionButtons} from '../../../../../models/action-buttons';
 import {HelpersService} from '../../../../../services/_helpers/helpers.service';

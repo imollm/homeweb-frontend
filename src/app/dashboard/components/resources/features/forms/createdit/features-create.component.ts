@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {FeaturesService} from '../../../../../../services/_feature/features.service';
-import {AlertService} from '../../../../../../_alert/alert.service';
+import {AlertService} from '../../../../../../services/_alert/alert.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ResponseStatus} from '../../../../../../api/response-status';
 

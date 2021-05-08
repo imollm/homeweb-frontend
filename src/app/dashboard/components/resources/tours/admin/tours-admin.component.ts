@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ITour} from '../../../../../models/tour';
 import {ToursService} from '../../../../../services/_tour/tours.service';
-import {AlertService} from '../../../../../_alert/alert.service';
+import {AlertService} from '../../../../../services/_alert/alert.service';
 import {ResponseStatus} from '../../../../../api/response-status';
 import {IDashboardTable} from '../../../../../models/dashboard-table';
 import {IActionButtons} from '../../../../../models/action-buttons';

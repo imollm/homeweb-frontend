@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ITour} from '../../../../../../models/tour';
 import {ToursService} from '../../../../../../services/_tour/tours.service';
-import {AlertService} from '../../../../../../_alert/alert.service';
+import {AlertService} from '../../../../../../services/_alert/alert.service';
 import {UsersService} from '../../../../../../services/_user/users.service';
 import {IUser} from '../../../../../../models/user';
 import {ResponseStatus} from '../../../../../../api/response-status';

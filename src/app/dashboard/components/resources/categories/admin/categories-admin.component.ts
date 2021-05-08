@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {IDashboardTable} from '../../../../../models/dashboard-table';
 import {CategoriesService} from '../../../../../services/_category/categories.service';
-import {AlertService} from '../../../../../_alert/alert.service';
+import {AlertService} from '../../../../../services/_alert/alert.service';
 import {Color, Label, SingleDataSet} from 'ng2-charts';
 import {IActionButtons} from '../../../../../models/action-buttons';
 import {HelpersService} from '../../../../../services/_helpers/helpers.service';

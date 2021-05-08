@@ -3,7 +3,7 @@ import {ICountry} from '../../../../../models/country';
 import {CountriesService} from '../../../../../services/_country/countries.service';
 import {ActivatedRoute} from '@angular/router';
 import {ResponseStatus} from '../../../../../api/response-status';
-import {AlertService} from '../../../../../_alert/alert.service';
+import {AlertService} from '../../../../../services/_alert/alert.service';
 import {IDashboardCard} from '../../../../../models/dashboard-card';
 import {IDashboardTable} from '../../../../../models/dashboard-table';
 import {IActionButtons} from '../../../../../models/action-buttons';

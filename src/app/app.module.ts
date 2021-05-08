@@ -19,7 +19,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptorService } from './services/_auth/auth-interceptor.service';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { AlertModule } from './_alert/alert.module';
+import { AlertModule } from './services/_alert/alert.module';
 import { CategoryComponent } from './components/category/category.component';
 import { PropertyComponent } from './components/property/property.component';
 import { CardComponent } from './components/layouts/card/card.component';

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {IDashboardTable} from '../../../../../models/dashboard-table';
 import {IActionButtons} from '../../../../../models/action-buttons';
 import {Color, Label} from 'ng2-charts';
-import {AlertService} from '../../../../../_alert/alert.service';
+import {AlertService} from '../../../../../services/_alert/alert.service';
 import {CountriesService} from '../../../../../services/_country/countries.service';
 import {ICountry} from '../../../../../models/country';
 import {ICity} from '../../../../../models/city';

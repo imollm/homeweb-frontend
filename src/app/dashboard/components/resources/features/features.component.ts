@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../../../services/_auth/auth.service';
 import {ResponseStatus} from '../../../../api/response-status';
-import {AlertService} from '../../../../_alert/alert.service';
+import {AlertService} from '../../../../services/_alert/alert.service';
 import {ActivatedRoute, Route, Router} from '@angular/router';
 import {FeaturesService} from '../../../../services/_feature/features.service';
 

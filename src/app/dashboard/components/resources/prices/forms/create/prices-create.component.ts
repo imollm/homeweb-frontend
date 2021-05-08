@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {PricesService} from '../../../../../../services/_price/prices.service';
-import {AlertService} from '../../../../../../_alert/alert.service';
+import {AlertService} from '../../../../../../services/_alert/alert.service';
 import {PropertiesService} from '../../../../../../services/_property/properties.service';
 import {IProperty} from '../../../../../../models/property';
 import {ResponseStatus} from '../../../../../../api/response-status';

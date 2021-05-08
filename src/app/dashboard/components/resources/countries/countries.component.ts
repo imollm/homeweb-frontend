@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../../../services/_auth/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CategoriesService} from '../../../../services/_category/categories.service';
-import {AlertService} from '../../../../_alert/alert.service';
+import {AlertService} from '../../../../services/_alert/alert.service';
 import {ResponseStatus} from '../../../../api/response-status';
 import {CountriesService} from '../../../../services/_country/countries.service';
 

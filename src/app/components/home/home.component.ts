@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {IProperty} from '../../models/property';
 import {PropertiesService} from '../../services/_property/properties.service';
-import {AlertService} from '../../_alert/alert.service';
+import {AlertService} from '../../services/_alert/alert.service';
 import {ImageService} from '../../services/_image/image.service';
 import {HelpersService} from '../../services/_helpers/helpers.service';
 

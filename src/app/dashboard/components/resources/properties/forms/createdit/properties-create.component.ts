@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit} from '@angular/core';
 import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {PropertiesService} from '../../../../../../services/_property/properties.service';
-import {AlertService} from '../../../../../../_alert/alert.service';
+import {AlertService} from '../../../../../../services/_alert/alert.service';
 import {CategoriesService} from '../../../../../../services/_category/categories.service';
 import {ICity} from '../../../../../../models/city';
 import {IEnergeticCertificate} from '../../../../../../models/energetic-certificate';

@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ISale} from '../../../../../../models/sale';
-import {AlertService} from '../../../../../../_alert/alert.service';
+import {AlertService} from '../../../../../../services/_alert/alert.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {IUser} from '../../../../../../models/user';
 import {IProperty} from '../../../../../../models/property';

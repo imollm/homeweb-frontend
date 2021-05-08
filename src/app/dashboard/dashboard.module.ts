@@ -15,7 +15,7 @@ import { CustomerComponent } from './components/home/customer/customer.component
 import { OwnerComponent } from './components/home/owner/owner.component';
 import { ChartsModule } from 'ng2-charts';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AlertModule } from '../_alert/alert.module';
+import { AlertModule } from '../services/_alert/alert.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgToggleModule } from 'ngx-toggle-button';
 

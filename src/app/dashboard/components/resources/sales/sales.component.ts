@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../../../services/_auth/auth.service';
 import {ActivatedRoute} from '@angular/router';
-import {AlertService} from '../../../../_alert/alert.service';
+import {AlertService} from '../../../../services/_alert/alert.service';
 import {ResponseStatus} from '../../../../api/response-status';
 
 @Component({

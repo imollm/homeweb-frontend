@@ -4,7 +4,7 @@ import {ToursService} from '../../../../../services/_tour/tours.service';
 import {ActivatedRoute} from '@angular/router';
 import {IDashboardCard} from '../../../../../models/dashboard-card';
 import {ResponseStatus} from '../../../../../api/response-status';
-import {AlertService} from '../../../../../_alert/alert.service';
+import {AlertService} from '../../../../../services/_alert/alert.service';
 import {IDashboardTable} from '../../../../../models/dashboard-table';
 import {IActionButtons} from '../../../../../models/action-buttons';
 import {ILocation, IMaps} from "../../../../../models/maps";

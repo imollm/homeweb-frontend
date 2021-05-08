@@ -3,7 +3,7 @@ import {ISale} from '../../../../../models/sale';
 import {SalesService} from '../../../../../services/_sale/sales.service';
 import {ActivatedRoute} from '@angular/router';
 import {ResponseStatus} from '../../../../../api/response-status';
-import {AlertService} from '../../../../../_alert/alert.service';
+import {AlertService} from '../../../../../services/_alert/alert.service';
 import {IDashboardCard} from '../../../../../models/dashboard-card';
 import {IUser} from '../../../../../models/user';
 import {IProperty} from '../../../../../models/property';
