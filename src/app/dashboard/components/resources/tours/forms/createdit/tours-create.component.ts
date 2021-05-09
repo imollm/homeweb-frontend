@@ -124,12 +124,12 @@ export class ToursCreateComponent implements OnInit {
   }
 
   onDateSelect(evt: NgbDate): void {
-    this.day = evt;
+    this.date.setValue(evt);
   }
 
   private formatDateAndTime(): void {
     this.time.setValue(HelpersService.timeFromJsonToTime(this.time.value));
-    this.date.setValue(HelpersService.dateFromJsonToDate(this.day));
+    this.date.setValue(HelpersService.dateFromJsonToDate(this.date.value));
   }
 
   private editMode(): void {
@@ -144,7 +144,7 @@ export class ToursCreateComponent implements OnInit {
           property_id: this.tour.property_id,
           date: {
             year: date.getFullYear(),
-            month: date.getMonth() + 1,
+            month: date.getMonth(),
             day: date.getDate()
           },
           time: {
@@ -156,7 +156,7 @@ export class ToursCreateComponent implements OnInit {
         this.day = new NgbDate(date.getFullYear(), date.getMonth(), date.getDay());
       }
     }).catch((error) => {
-      ResponseStatus.displayErrorMessage(error);
+      this.alertService.error(ResponseStatus.displayErrorMessage(error));
       console.error(error);
     }).finally(() => {
       this.setDayOfCalendar();
@@ -172,7 +172,7 @@ export class ToursCreateComponent implements OnInit {
     }
     this.dp.navigateTo({
       year: date.getFullYear(),
-      month: date.getMonth() + 1,
+      month: date.getMonth(),
       day: date.getDate()
     });
   }
