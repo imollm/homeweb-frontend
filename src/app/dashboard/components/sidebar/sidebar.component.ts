@@ -90,6 +90,7 @@ export class SidebarComponent implements OnInit, OnChanges {
   private isOwner(): void {
     this.properties = true;
     this.sales = true;
+    this.tours = true;
     this.priceChange = true;
   }
 }

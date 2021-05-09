@@ -55,4 +55,9 @@ export class ToursService {
     const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'toursOfEmployee');
     return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
   }
+
+  getToursByOwner(): Promise<ApiResponseI> {
+    const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'toursOfOwner');
+    return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
+  }
 }

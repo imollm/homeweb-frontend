@@ -327,6 +327,11 @@
         "uri": "/tours/byEmployee",
         "method": "GET",
         "auth": true
+      },
+      "toursOfOwner": {
+        "uri": "/tours/byOwner",
+        "method": "GET",
+        "auth": true
       }
     },
     "features": {
