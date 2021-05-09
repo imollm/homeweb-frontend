@@ -9,6 +9,7 @@ import {AlertService} from '../../../../../services/_alert/alert.service';
 import {ResponseStatus} from '../../../../../api/response-status';
 import {IActionButtons} from '../../../../../models/action-buttons';
 import {HelpersService} from '../../../../../services/_helpers/helpers.service';
+import {AuthService} from '../../../../../services/_auth/auth.service';
 
 @Component({
   selector: 'app-dashboard-property-details',
@@ -17,6 +18,7 @@ import {HelpersService} from '../../../../../services/_helpers/helpers.service';
 })
 export class PropertyDetailsComponent implements OnInit {
 
+  role: string;
   propertyId: string;
   property: IProperty = {} as IProperty;
 
@@ -40,10 +42,12 @@ export class PropertyDetailsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private propertiesService: PropertiesService,
     private imageService: ImageService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
+    this.getRole();
     this.propertyId = this.activatedRoute.snapshot.params.id;
     this.propertiesService.getPropertyById(this.propertyId).then((response) => {
       if (response.success) {
@@ -65,6 +69,19 @@ export class PropertyDetailsComponent implements OnInit {
         this.property.imageBase64 = imageDecoded;
       });
     }
+  }
+
+  private getRole(): void {
+    this.authService.getAuthUser().then((response) => {
+      if (response.success) {
+        this.role = response.data.name;
+      } else {
+        this.alertService.warn(response.message);
+      }
+    }).catch((error) => {
+      this.alertService.error(ResponseStatus.displayErrorMessage(error));
+      console.error(error);
+    });
   }
 
   private setLocation(): void {

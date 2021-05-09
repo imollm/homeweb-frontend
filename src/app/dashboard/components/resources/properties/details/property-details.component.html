@@ -47,8 +47,8 @@
       ></app-dashboard-table>
     </div>
   </div>
-  <hr class="topbar-divider"/>
-  <div class="d-flex justify-content-center align-items-center">
+  <hr class="topbar-divider" *ngIf="role==='admin'||role==='employee'"/>
+  <div class="d-flex justify-content-center align-items-center" *ngIf="role==='admin'||role==='employee'">
     <div class="h5">Vols que sigui visible a la web?</div>
     <div class="ml-2">
       <ng-toggle
