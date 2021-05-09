@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common';
 import { MapsComponent } from '../components/maps/maps.component';
 import { TableComponent } from '../dashboard/components/table/table.component';
 import { AgmCoreModule } from '@agm/core';
-import {RouterModule} from '@angular/router';
-import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CardComponent } from '../components/layouts/card/card.component';
 
 @NgModule({
-  declarations: [MapsComponent, TableComponent],
+  declarations: [MapsComponent, TableComponent, CardComponent],
   imports: [
     CommonModule,
     AgmCoreModule.forRoot({
@@ -17,6 +18,6 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
     RouterModule,
     FontAwesomeModule,
   ],
-  exports: [MapsComponent, TableComponent]
+  exports: [MapsComponent, TableComponent, CardComponent]
 })
 export class SharedModule { }

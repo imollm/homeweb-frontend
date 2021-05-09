@@ -22,7 +22,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AlertModule } from './services/_alert/alert.module';
 import { CategoryComponent } from './components/category/category.component';
 import { PropertyComponent } from './components/property/property.component';
-import { CardComponent } from './components/layouts/card/card.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from './shared/shared.module';
 
@@ -41,8 +40,7 @@ import { SharedModule } from './shared/shared.module';
     SearcherComponent,
     NotFoundComponent,
     CategoryComponent,
-    PropertyComponent,
-    CardComponent
+    PropertyComponent
   ],
   imports: [
     BrowserModule,
