@@ -3,7 +3,7 @@ import {IProperty} from '../../models/property';
 import {PropertiesService} from '../../services/_property/properties.service';
 import {AlertService} from '../../services/_alert/alert.service';
 import {ImageService} from '../../services/_image/image.service';
-import {HelpersService} from '../../services/_helpers/helpers.service';
+import {ResponseStatus} from '../../api/response-status';
 
 @Component({
   selector: 'app-home',
@@ -28,17 +28,9 @@ export class HomeComponent implements OnInit {
       } else {
         this.alertService.warn(response.message);
       }
-    }).then(() => {
-      if (this.properties.length > 0) {
-        this.properties.map((property) => {
-          property.price = HelpersService.formatPrice(property.price);
-          if (property.image) {
-            this.imageService.sanitizeBase64EncodedImage(property.image, 'properties').then((base64ImageDecoded) => {
-              property.imageBase64 = base64ImageDecoded;
-            });
-          }
-        });
-      }
+    }).catch((error) => {
+      this.alertService.error(ResponseStatus.displayErrorMessage(error));
+      console.log(error);
     });
   }
 }
