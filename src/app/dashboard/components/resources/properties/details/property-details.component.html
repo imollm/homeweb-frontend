@@ -78,11 +78,21 @@
   <div class="row">
     <div class="col-12">
       <h5 class="p-3 input-group-text">Característiques</h5>
-      <div class="text-center border d-flex justify-content-around p-4">
-        <span *ngFor="let feature of property.features">
-          {{feature.name}}
-        </span>
-      </div>
+      <div class="text-center border p-4"
+        *ngIf="property.features && property.features.length > 0; then withFeatures else withOutFeatures"></div>
+      <ng-template #withFeatures>
+        <div class="d-flex justify-content-around">
+          <div *ngFor="let feature of property.features" class="my-5 p-3 card border-left-primary">
+            {{feature.name}}
+          </div>
+        </div>
+      </ng-template>
+      <ng-template #withOutFeatures>
+        <h6 class="text-center p-3">
+          Aquesta propietat encara no té característiques.
+        </h6>
+      </ng-template>
+      <hr class="topbar-divider"/>
     </div>
   </div>
   <div class="row mt-3 bg-light">
