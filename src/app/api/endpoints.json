@@ -87,6 +87,11 @@
         "uri": "/properties/forSale",
         "method": "GET",
         "auth": false
+      },
+      "byLimit": {
+        "uri": "/properties/propertiesWithLimit/%s",
+        "method": "GET",
+        "auth": false
       }
     },
     "roles": {
