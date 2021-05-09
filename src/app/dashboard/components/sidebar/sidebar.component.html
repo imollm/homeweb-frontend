@@ -44,7 +44,13 @@
   <li class="nav-item" *ngIf="sales">
     <a class="nav-link collapsed" [routerLink]="['/dashboard/sales']">
       <fa-icon [icon]="faSale"></fa-icon>
-      <span class="ml-3">Vendes</span>
+      <div *ngIf="user.role.name==='customer'; then buyer else seller"></div>
+      <ng-template #buyer>
+        <span class="ml-3">Compres</span>
+      </ng-template>
+      <ng-template #seller>
+        <span class="ml-3">Vendes</span>
+      </ng-template>
     </a>
   </li>
 

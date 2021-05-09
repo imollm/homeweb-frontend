@@ -4,4 +4,7 @@
       [role]="role"
     ></app-dashboard-sales-admin-employee>
   </div>
+  <div *ngIf="role==='customer'">
+    <app-purchases-customer></app-purchases-customer>
+  </div>
 </div>

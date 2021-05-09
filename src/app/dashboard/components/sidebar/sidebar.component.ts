@@ -1,6 +1,7 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import { faTachometerAlt, faHome, faAngleLeft, faFlag, faGlobeEurope, faCity, faMoneyCheckAlt, faMapMarkerAlt, faCogs, faExchangeAlt } from '@fortawesome/free-solid-svg-icons';
 import {IAuthUser} from '../../../models/auth-user';
+import { IRole } from '../../../models/role';
 
 @Component({
   selector: 'app-dashboard-sidebar',
@@ -85,6 +86,7 @@ export class SidebarComponent implements OnInit, OnChanges {
   private isCustomer(): void {
     this.properties = true;
     this.tours = true;
+    this.sales = true;
   }
 
   private isOwner(): void {

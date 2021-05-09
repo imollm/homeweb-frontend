@@ -270,7 +270,12 @@
         "auth": true
       },
       "salesOfSeller": {
-        "uri": "/sales/seller",
+        "uri": "/sales/mySales",
+        "method": "GET",
+        "auth": true
+      },
+      "purchasesOfCustomer": {
+        "uri": "/sales/myPurchases",
         "method": "GET",
         "auth": true
       }
