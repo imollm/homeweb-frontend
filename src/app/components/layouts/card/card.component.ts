@@ -32,9 +32,15 @@ export class CardComponent implements OnInit {
   }
 
   private getImage(): void {
-    this.imageService.sanitizeBase64EncodedImage(this.property.image, 'properties').then((base64ImageDecoded) => {
-      this.property.imageBase64 = base64ImageDecoded;
-    });
+    if (this.property.image &&
+      ( this.property.image.endsWith('.jpg') ||
+        this.property.image.endsWith('.png') ||
+        this.property.image.endsWith('.jpeg'))
+    ) {
+      this.imageService.sanitizeBase64EncodedImage(this.property.image, 'properties').then((base64ImageDecoded) => {
+        this.property.imageBase64 = base64ImageDecoded;
+      });
+    }
   }
 
   formatPrice(price: number): string {
