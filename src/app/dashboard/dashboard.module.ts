@@ -67,6 +67,7 @@ import { PricesOwnerComponent } from './components/resources/prices/owner/prices
 import { PricesCreateComponent } from './components/resources/prices/forms/create/prices-create.component';
 import {ToursComponent} from './components/resources/tours/tours.component';
 import { PurchasesCustomerComponent } from './components/resources/sales/customer/purchases-customer.component';
+import { SalesOwnerComponent } from './components/resources/sales/owner/sales-owner.component';
 
 @NgModule({
   declarations: [
@@ -115,7 +116,8 @@ import { PurchasesCustomerComponent } from './components/resources/sales/custome
     PricesEmployeeComponent,
     PricesOwnerComponent,
     PricesCreateComponent,
-    PurchasesCustomerComponent
+    PurchasesCustomerComponent,
+    SalesOwnerComponent
   ],
     imports: [
         CommonModule,
