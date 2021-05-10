@@ -11,8 +11,8 @@
 
   <hr class="topbar-divider">
 
-  <div class="row" *ngIf="lastSales.length > 0">
-
+  <div class="row" *ngIf="lastSales.length > 0; then withSales else withOutSales"></div>
+  <ng-template #withSales>
     <div class="col-12">
 
       <div class="d-flex flex-row">
@@ -34,8 +34,23 @@
       ></app-dashboard-table>
 
     </div>
+  </ng-template>
+  <ng-template #withOutSales>
+    <div class="col-12">
 
-  </div>
+      <div class="d-flex justify-content-center">
+        <h6 class="p-3" *ngIf="role==='admin'">
+          Encara no hi ha vendes al sistema.
+        </h6>
+        <h6 class="p-3" *ngIf="role==='employee'">
+          Encara no has realitzar cap venda.
+        </h6>
+      </div>
+
+    </div>
+  </ng-template>
+
+  <hr class="topbar-divider">
 
   <div class="row" *ngIf="haveSystemSales()">
     <div class="col-12 my-4 text-center">
@@ -43,7 +58,7 @@
     </div>
   </div>
 
-  <div class="row my-5" *ngIf="haveSystemSales()">
+  <div class="row my-5" *ngIf="salesByCountriesChartData.length > 0 || salesByCitiesChartData.length > 0">
 
     <div class="col-12 col-lg-6" *ngIf="salesByCountriesChartData.length > 0">
       <div class="d-block border shadow">
@@ -73,7 +88,7 @@
 
   </div>
 
-  <div class="row" *ngIf="true">
+  <div class="row" *ngIf="salesByCategoriesChartData.length > 0 || salesBySellersChartData.length > 0">
 
     <div class="col-12 col-lg-6" *ngIf="salesByCategoriesChartData.length > 0">
       <div class="d-block border shadow">

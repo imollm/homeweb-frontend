@@ -120,8 +120,6 @@ export class SalesCreateComponent implements OnInit {
         }).catch((error) => {
           this.alertService.error(ResponseStatus.displayErrorMessage(error));
           console.error(error);
-        }).finally(() => {
-          this.router.navigate(['/dashboard/sales']);
         });
       } else if (this.mode === 'edit') {
         this.salesService.updateSale(this.form.value).then((response) => {
@@ -133,10 +131,9 @@ export class SalesCreateComponent implements OnInit {
         }).catch((error) => {
           this.alertService.error(ResponseStatus.displayErrorMessage(error));
           console.error(error);
-        }).finally(() => {
-          this.router.navigate(['/dashboard/sales']);
         });
       }
+      this.router.navigate(['/dashboard/sales']);
     }
   }
 
