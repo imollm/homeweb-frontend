@@ -12,7 +12,7 @@
         <input type="text" class="form-control" aria-describedby="tour-hash-id" formControlName="hash_id" hidden>
 
         <!-- CUSTOMER -->
-        <div class="input-group mb-3">
+        <div class="input-group mb-3" #customerSelect>
           <span class="input-group-text" id="customer-id">Client*</span>
           <select class="form-control" formControlName="customer_id">
             <option [ngValue]="" disabled selected>Tria un client</option>
@@ -28,7 +28,7 @@
         </div>
 
         <!-- EMPLOYEE -->
-        <div class="input-group mb-3">
+        <div class="input-group mb-3" #employeeSelect>
           <span class="input-group-text" id="employee-id">Empleat*</span>
           <select class="form-control" formControlName="employee_id">
             <option [ngValue]="" disabled selected>Tria un empleat</option>

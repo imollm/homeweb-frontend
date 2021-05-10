@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ITour} from '../../../../../../models/tour';
 import {ToursService} from '../../../../../../services/_tour/tours.service';
@@ -11,6 +11,8 @@ import {PropertiesService} from '../../../../../../services/_property/properties
 import {IProperty} from '../../../../../../models/property';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HelpersService} from '../../../../../../services/_helpers/helpers.service';
+import {AuthService} from '../../../../../../services/_auth/auth.service';
+import {IAuthUser} from '../../../../../../models/auth-user';
 
 @Component({
   selector: 'app-tours-create-form',
@@ -20,10 +22,13 @@ import {HelpersService} from '../../../../../../services/_helpers/helpers.servic
 export class ToursCreateComponent implements OnInit {
 
   @ViewChild('dp') dp: NgbDatepicker;
+  @ViewChild('customerSelect') customerSelect: ElementRef;
+  @ViewChild('employeeSelect') employeeSelect: ElementRef;
 
   modeTitle = 'Crear';
   form: FormGroup;
   mode: string;
+  authUser: IAuthUser = {} as IAuthUser;
   tour: ITour;
   tourId: string;
   customers: IUser[] = [];
@@ -38,7 +43,8 @@ export class ToursCreateComponent implements OnInit {
     private propertiesService: PropertiesService,
     private alertService: AlertService,
     private router: Router,
-    private activateRoute: ActivatedRoute
+    private activateRoute: ActivatedRoute,
+    private authService: AuthService
   ) {
     this.form = this.fb.group({
       hash_id: new FormControl({value: null, readonly: true}),
@@ -117,10 +123,37 @@ export class ToursCreateComponent implements OnInit {
         this.alertService.error(ResponseStatus.displayErrorMessage(error));
         console.error(error);
       });
+    }).then(() => this.getUserRole() )
+      .catch((error) => {
+      this.alertService.error(ResponseStatus.displayErrorMessage(error));
+      console.error(error);
+    });
+  }
+
+  private getUserRole(): void {
+    this.authService.getAuthUser().then((response) => {
+      if (response.success) {
+        this.authUser = response.data[0];
+        if (this.authUser.role.name === 'customer') {
+          this.customerMode();
+        } else if (this.authUser.role.name === 'employee') {
+          this.employeeMode();
+        }
+      }
     }).catch((error) => {
       this.alertService.error(ResponseStatus.displayErrorMessage(error));
       console.error(error);
     });
+  }
+
+  private customerMode(): void {
+    this.customer.setValue(this.authUser.id);
+    this.customerSelect.nativeElement.style.display = 'none';
+  }
+
+  private employeeMode(): void {
+    this.employee.setValue(this.authUser.id);
+    this.employeeSelect.nativeElement.style.display = 'none';
   }
 
   onDateSelect(evt: NgbDate): void {
@@ -144,7 +177,7 @@ export class ToursCreateComponent implements OnInit {
           property_id: this.tour.property_id,
           date: {
             year: date.getFullYear(),
-            month: date.getMonth(),
+            month: date.getMonth() + 1,
             day: date.getDate()
           },
           time: {
@@ -172,7 +205,7 @@ export class ToursCreateComponent implements OnInit {
     }
     this.dp.navigateTo({
       year: date.getFullYear(),
-      month: date.getMonth(),
+      month: date.getMonth() + 1,
       day: date.getDate()
     });
   }
