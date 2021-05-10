@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {PropertiesService} from '../../../../../../services/_property/properties.service';
 import {AlertService} from '../../../../../../services/_alert/alert.service';
@@ -15,6 +15,8 @@ import {ResponseStatus} from '../../../../../../api/response-status';
 import {ILocation, IMaps} from '../../../../../../models/maps';
 import {IFeature} from '../../../../../../models/feature';
 import {FeaturesService} from '../../../../../../services/_feature/features.service';
+import {IAuthUser} from '../../../../../../models/auth-user';
+import {AuthService} from '../../../../../../services/_auth/auth.service';
 
 @Component({
   selector: 'app-properties-create-form',
@@ -25,8 +27,11 @@ export class PropertiesCreateComponent implements OnInit {
 
   // This component can create or edit a property
 
+  @ViewChild('ownerSelect') ownerSelect: ElementRef;
+
   form: FormGroup;
   isSubmitted = false;
+  authUser: IAuthUser = {} as IAuthUser;
   property: IProperty = {
     features: []
   } as IProperty;
@@ -56,7 +61,8 @@ export class PropertiesCreateComponent implements OnInit {
     private usersService: UsersService,
     private alertService: AlertService,
     private activateRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {
     this.form = this.fb.group({
       id: new FormControl({value: null, readonly: true}),
@@ -83,6 +89,7 @@ export class PropertiesCreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getAuthUser();
     this.getValues();
     this.mode = this.activateRoute.snapshot.url[1].path;
     this.propertyId = this.activateRoute.snapshot.params.id;
@@ -90,6 +97,24 @@ export class PropertiesCreateComponent implements OnInit {
       this.editMode();
       this.modeTitle = 'Actualitza';
     }
+  }
+
+  private getAuthUser(): void {
+    this.authService.getAuthUser().then((response) => {
+      if (response.success) {
+        this.authUser = response.data[0];
+      } else {
+        this.alertService.warn(response.message);
+      }
+    }).then(() => {
+      if (this.authUser.role.name === 'owner') {
+        this.ownerSelect.nativeElement.style.display = 'none';
+        this.owner.setValue(this.authUser.id);
+      }
+    }).catch((error) => {
+      this.alertService.error(ResponseStatus.displayErrorMessage(error));
+      console.error(error);
+    });
   }
 
   onSubmit(): void {
@@ -215,6 +240,8 @@ export class PropertiesCreateComponent implements OnInit {
       }
     });
   }
+
+  get owner(): AbstractControl { return this.form.get('user_id'); }
 
   get categoryId(): AbstractControl { return this.form.get('category_id'); }
 
