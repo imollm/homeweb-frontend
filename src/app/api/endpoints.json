@@ -92,6 +92,11 @@
         "uri": "/properties/propertiesWithLimit/%s",
         "method": "GET",
         "auth": false
+      },
+      "ownedByOwner": {
+        "uri": "/properties/getPropertiesOwnedByOwner",
+        "method": "GET",
+        "auth": true
       }
     },
     "roles": {

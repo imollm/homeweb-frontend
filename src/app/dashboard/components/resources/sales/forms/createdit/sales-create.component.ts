@@ -180,7 +180,7 @@ export class SalesCreateComponent implements OnInit {
         this.setDayOfCalendar();
       }
     }).catch((error) => {
-      ResponseStatus.displayErrorMessage(error);
+      this.alertService.error(ResponseStatus.displayErrorMessage(error));
       console.error(error);
     });
   }

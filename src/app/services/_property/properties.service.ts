@@ -71,4 +71,9 @@ export class PropertiesService {
     const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'byLimit', limit);
     return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
   }
+
+  getMyProperties(): Promise<ApiResponseI> {
+    const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'ownedByOwner');
+    return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
+  }
 }

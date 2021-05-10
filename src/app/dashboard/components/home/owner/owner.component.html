@@ -1,1 +1,38 @@
-<h1>Home Owner</h1>
+<h1 class="px-2 py-4 text-center">{{title}}</h1>
+<h3>{{subTitle}}</h3>
+<hr class="topbar-divider">
+<div class="row d-flex justify-content-between">
+  <div class="col-xl-3 col-md-6 mb-4">
+    <app-dashboard-card
+      [toShow]="propertiesRegisteredCard"
+    ></app-dashboard-card>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <app-dashboard-card
+      [toShow]="visiblePropertiesCard"
+    ></app-dashboard-card>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <app-dashboard-card
+      [toShow]="sealedPropertiesCard"
+    ></app-dashboard-card>
+  </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <app-dashboard-card
+      [toShow]="totalSealedAmountCard"
+    ></app-dashboard-card>
+  </div>
+</div>
+<hr class="topbar-divider">
+<div class="row" *ngIf="sealedProperties.length > 0">
+  <div class="col-12">
+    <h5 class="text-center p-3">Propietats venudes</h5>
+  </div>
+</div>
+<div class="row" *ngIf="sealedProperties.length > 0">
+  <div class="col-12 col-md-4" *ngFor="let property of sealedProperties">
+    <app-card
+      [property]="property"
+    ></app-card>
+  </div>
+</div>
