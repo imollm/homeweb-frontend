@@ -162,7 +162,7 @@ export class SalesCreateComponent implements OnInit {
         this.authUser = response.data[0];
       }
     }).then(() => {
-      if (this.authUser.role.name === 'employee') {
+      if (this.authUser.role.name === 'employee' && this.mode === 'create') {
         this.seller.setValue(this.authUser.id);
         this.sellerSelect.nativeElement.style.display = 'none';
       }
