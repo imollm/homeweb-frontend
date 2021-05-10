@@ -63,7 +63,7 @@ export class PricesAdminComponent implements OnInit {
         amount: HelpersService.formatPrice(c.amount),
         price: c.property.price,
         start: HelpersService.formatDate(c.start),
-        end: c.end !== '' ? HelpersService.formatDate(c.end) : '-'
+        end: c.end !== null ? HelpersService.formatDate(c.end) : '-'
       });
       this.pricesTable.data = data;
     });

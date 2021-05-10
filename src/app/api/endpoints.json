@@ -391,6 +391,11 @@
         "uri": "/priceHistory/%s/show",
         "method": "GET",
         "auth": true
+      },
+      "propertiesOfOwner": {
+        "uri": "/priceHistory/propertiesOfOwner",
+        "method": "GET",
+        "auth": true
       }
     }
   }

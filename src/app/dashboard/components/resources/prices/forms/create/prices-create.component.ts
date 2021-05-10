@@ -8,6 +8,8 @@ import {ResponseStatus} from '../../../../../../api/response-status';
 import {IPriceChange} from '../../../../../../models/price-change';
 import {HelpersService} from '../../../../../../services/_helpers/helpers.service';
 import {Router} from '@angular/router';
+import {AuthService} from '../../../../../../services/_auth/auth.service';
+import {IAuthUser} from '../../../../../../models/auth-user';
 
 @Component({
   selector: 'app-prices-create',
@@ -16,6 +18,7 @@ import {Router} from '@angular/router';
 })
 export class PricesCreateComponent implements OnInit, AfterViewInit {
 
+  authUser: IAuthUser = {} as IAuthUser;
   form: FormGroup;
   properties: IProperty[] = [];
   propertyToMakePriceChange: IProperty;
@@ -29,7 +32,8 @@ export class PricesCreateComponent implements OnInit, AfterViewInit {
     private pricesService: PricesService,
     private alertService: AlertService,
     private propertiesService: PropertiesService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {
     this.form = this.fb.group({
       property_id: new FormControl(''),
@@ -40,7 +44,19 @@ export class PricesCreateComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.getProperties();
+    this.getAuthUserRole();
+  }
+
+  private getAuthUserRole(): void {
+    this.authService.getAuthUser().then((response) => {
+      if (response.success) {
+        this.authUser = response.data[0];
+      }
+    }).then(() => this.getProperties())
+      .catch((error) => {
+      this.alertService.error(ResponseStatus.displayErrorMessage(error));
+      console.error(error);
+    });
   }
 
   ngAfterViewInit(): void {
@@ -49,7 +65,6 @@ export class PricesCreateComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit(): void {
-    console.log(this.form.value);
     if (this.form.valid && this.acceptChange.nativeElement.checked) {
       this.pricesService.createPriceChange(this.form.value).then((response) => {
         if (response.success) {
@@ -66,16 +81,29 @@ export class PricesCreateComponent implements OnInit, AfterViewInit {
   }
 
   private getProperties(): void {
-    this.propertiesService.getProperties().then((response) => {
-      if (response.success) {
-        this.properties = response.data;
-      } else {
-        this.alertService.warn(response.message);
-      }
-    }).catch((error) => {
-      this.alertService.error(ResponseStatus.displayErrorMessage(error));
-      console.error(error);
-    });
+    if (this.authUser.role.name === 'owner') {
+      this.propertiesService.getMyProperties().then((response) => {
+        if (response.success) {
+          this.properties = response.data.properties;
+        } else {
+          this.alertService.warn(response.message);
+        }
+      }).catch((error) => {
+        this.alertService.error(ResponseStatus.displayErrorMessage(error));
+        console.error(error);
+      });
+    } else {
+      this.propertiesService.getProperties().then((response) => {
+        if (response.success) {
+          this.properties = response.data;
+        } else {
+          this.alertService.warn(response.message);
+        }
+      }).catch((error) => {
+        this.alertService.error(ResponseStatus.displayErrorMessage(error));
+        console.error(error);
+      });
+    }
   }
 
   onPropertySelect(evt: EventTarget): void {

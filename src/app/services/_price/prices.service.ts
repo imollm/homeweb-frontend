@@ -30,4 +30,9 @@ export class PricesService {
     return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
   }
 
+  getPriceChangesOfPropertiesOwnedByOwner(): Promise<ApiResponseI> {
+    const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'propertiesOfOwner');
+    return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
+  }
+
 }
