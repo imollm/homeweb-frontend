@@ -1,1 +1,43 @@
-<p>owner works!</p>
+<h1 class="px-2 py-4 text-center">{{title}}</h1>
+<h3>{{subTitle}}</h3>
+
+<hr class="topbar-divider">
+
+<div class="p-4">
+  <button [routerLink]="['/dashboard/properties/create']" class="btn btn-outline-primary">Crear propietat</button>
+</div>
+
+<hr class="topbar-divider">
+
+<div class="row" *ngIf="propertiesRegistered.length > 0">
+
+  <div class="col-12">
+    <app-dashboard-table
+      [toShow]="propertiesRegisteredTable"
+      [actionButtons]="actionButtons"
+    ></app-dashboard-table>
+  </div>
+
+</div>
+
+<div class="row" *ngIf="visibleProperties.length > 0">
+
+  <div class="col-12">
+    <app-dashboard-table
+      [toShow]="visiblePropertiesTable"
+      [actionButtons]="actionButtons"
+    ></app-dashboard-table>
+  </div>
+
+</div>
+
+<div class="row" *ngIf="sealedProperties.length > 0">
+
+  <div class="col-12">
+    <app-dashboard-table
+      [toShow]="sealedPropertiesTable"
+      [actionButtons]="actionButtons"
+    ></app-dashboard-table>
+  </div>
+
+</div>
