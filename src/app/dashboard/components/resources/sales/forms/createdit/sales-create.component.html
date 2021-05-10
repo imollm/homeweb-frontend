@@ -40,7 +40,7 @@
         <!-- SELLER -->
         <div *ngIf="mode=='create'; then droppingSellerList else selectedSeller"></div>
         <ng-template #droppingSellerList>
-          <div class="input-group mb-3">
+          <div class="input-group mb-3" #sellerSelect>
             <span class="input-group-text" id="employee-id">Venedor*</span>
             <select class="form-control" formControlName="seller_id">
               <option [ngValue]="" disabled selected>Tria un venedor</option>

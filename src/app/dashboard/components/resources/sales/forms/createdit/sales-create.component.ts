@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ISale} from '../../../../../../models/sale';
 import {AlertService} from '../../../../../../services/_alert/alert.service';
@@ -11,6 +11,8 @@ import {ResponseStatus} from '../../../../../../api/response-status';
 import {SalesService} from '../../../../../../services/_sale/sales.service';
 import {NgbDate, NgbDatepicker} from '@ng-bootstrap/ng-bootstrap';
 import {HelpersService} from '../../../../../../services/_helpers/helpers.service';
+import {IAuthUser} from '../../../../../../models/auth-user';
+import {AuthService} from '../../../../../../services/_auth/auth.service';
 
 @Component({
   selector: 'app-sales-create',
@@ -20,10 +22,12 @@ import {HelpersService} from '../../../../../../services/_helpers/helpers.servic
 export class SalesCreateComponent implements OnInit {
 
   @ViewChild('dp') dp: NgbDatepicker;
+  @ViewChild('sellerSelect') sellerSelect: ElementRef;
 
   modeTitle = 'Crear';
   form: FormGroup;
   mode: string;
+  authUser: IAuthUser = {} as IAuthUser;
   sale: ISale = {
     property: {} as IProperty,
     seller: {} as IUser,
@@ -44,7 +48,8 @@ export class SalesCreateComponent implements OnInit {
     private propertiesService: PropertiesService,
     private alertService: AlertService,
     private router: Router,
-    private activateRoute: ActivatedRoute
+    private activateRoute: ActivatedRoute,
+    private authService: AuthService
   ) {
     this.form = this.fb.group({
       hash_id: new FormControl({value: null, readonly: true}),
@@ -98,6 +103,7 @@ export class SalesCreateComponent implements OnInit {
       console.error(error);
     }).finally(() => {
       this.setDayOfCalendar();
+      this.getAuthUser();
     });
   }
 
@@ -151,6 +157,22 @@ export class SalesCreateComponent implements OnInit {
 
   private formatDate(): void {
     this.date.setValue(HelpersService.dateFromJsonToDate(this.sellDate));
+  }
+
+  private getAuthUser(): void {
+    this.authService.getAuthUser().then((response) => {
+      if (response.success) {
+        this.authUser = response.data[0];
+      }
+    }).then(() => {
+      if (this.authUser.role.name === 'employee') {
+        this.seller.setValue(this.authUser.id);
+        this.sellerSelect.nativeElement.style.display = 'none';
+      }
+    }).catch((error) => {
+      ResponseStatus.displayErrorMessage(error);
+      console.error(error);
+    });
   }
 
   private editMode(): void {
