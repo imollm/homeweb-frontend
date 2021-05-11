@@ -8,11 +8,11 @@ import {HelpersService} from '../../../../../services/_helpers/helpers.service';
 import {IActionButtons} from '../../../../../models/action-buttons';
 
 @Component({
-  selector: 'app-dashboard-prices-admin',
-  templateUrl: './prices-admin.component.html',
-  styleUrls: ['./prices-admin.component.css']
+  selector: 'app-dashboard-prices-admin-employee',
+  templateUrl: './prices-admin-employee.component.html',
+  styleUrls: ['./prices-admin-employee.component.css']
 })
-export class PricesAdminComponent implements OnInit {
+export class PricesAdminEmployeeComponent implements OnInit {
 
   title = 'Admin Dashboard';
   subTitle = 'Canvis de preu';
@@ -53,7 +53,7 @@ export class PricesAdminComponent implements OnInit {
     this.pricesTable.colsName = [
       {colName: 'reference', text: 'Referència'},
       {colName: 'amount', text: 'Preu'},
-      {colName: 'price', text: 'Preu inicial'},
+      {colName: 'price', text: 'Preu actual'},
       {colName: 'start', text: 'Inici'},
       {colName: 'end', text: 'Fi'}
     ];

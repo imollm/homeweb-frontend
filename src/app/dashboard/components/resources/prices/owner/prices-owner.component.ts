@@ -53,7 +53,7 @@ export class PricesOwnerComponent implements OnInit {
     this.pricesTable.colsName = [
       {colName: 'reference', text: 'Referència'},
       {colName: 'amount', text: 'Preu'},
-      {colName: 'price', text: 'Preu inicial'},
+      {colName: 'price', text: 'Preu actual'},
       {colName: 'start', text: 'Inici'},
       {colName: 'end', text: 'Fi'}
     ];
