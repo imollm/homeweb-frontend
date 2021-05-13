@@ -9,7 +9,7 @@
       <table *ngIf="dataTable" class="table table-bordered" id="dataTable">
         <thead>
         <tr *ngIf="!dataTable.inverse">
-          <th *ngFor="let colName of dataTable.colsName">
+          <th *ngFor="let colName of dataTable.colsName" class="text-center">
             {{colName.text}}
           </th>
           <th *ngIf="actionButtons.active">
@@ -17,14 +17,14 @@
           </th>
         </tr>
         </thead>
-        <div *ngIf="dataTable.inverse; then inverse else normal"></div>
+        <div *ngIf="dataTable.inverse; then inverse else normal" class="text-center"></div>
         <ng-template #normal>
           <tfoot>
           <tr>
-            <th *ngFor="let colName of dataTable.colsName">
+            <th *ngFor="let colName of dataTable.colsName" class="text-center">
               {{colName.text | titlecase}}
             </th>
-            <th *ngIf="actionButtons.active">
+            <th *ngIf="actionButtons.active" class="text-center">
               Accions
             </th>
           </tr>
@@ -33,32 +33,39 @@
           <tr *ngFor="let element of dataTable.data">
             <td *ngFor="let row of dataTable.colsName">
               <div [ngSwitch]="row.colName">
-                <div *ngSwitchCase="'price'">
+                <div *ngSwitchCase="'reference'" class="text-center">
+                  {{element[row.colName]}}
+                </div>
+                <div *ngSwitchCase="'price'" class="text-center">
                   {{formatPrice(element[row.colName])}}
                 </div>
-                <div *ngSwitchCase="'built_meters'" [innerHTML]="formatMeters(element[row.colName])"></div>
-                <div *ngSwitchCase="'created_at'">
+                <div *ngSwitchCase="'built_meters'" innerHTML="<div class='text-center'>{{formatMeters(element[row.colName])}}</div>"></div>
+                <div *ngSwitchCase="'created_at'" class="text-center">
                   {{formatDate(element[row.colName])}}
                 </div>
-                <div *ngSwitchCase="'plot_meters'" [innerHTML]="formatMeters(element[row.colName])"></div>
+                <div *ngSwitchCase="'plot_meters'" innerHTML="<div class='text-center'>{{formatMeters(element[row.colName])}}</div>"></div>
                 <div *ngSwitchCase="'sold'">
                   {{element[row.colName]==1 ? 'Si' : 'No'}}
                 </div>
-                <div *ngSwitchCase="'start'">
+                <div *ngSwitchCase="'start'" class="text-center">
                   {{formatDate(element[row.colName])}}
                 </div>
                 <div *ngSwitchCase="'end'">
-                  <div *ngIf="element[row.colName]==='-'; then withOutDate else withDate"></div>
+                  <div *ngIf="element[row.colName]==='-'; then withOutDate else withDate" class="text-center"></div>
                   <ng-template #withOutDate>-</ng-template>
                   <ng-template #withDate>{{formatDate(element[row.colName])}}</ng-template>
                 </div>
-                <div *ngSwitchCase="'date'">
+                <div *ngSwitchCase="'date'" class="text-center">
                   {{formatDate(element[row.colName])}}
                 </div>
                 <div *ngSwitchDefault>
-                  <div *ngIf="_isNumber(element[row.colName]); then isNumber else isString"></div>
-                  <ng-template #isString>{{element[row.colName] | titlecase}}</ng-template>
-                  <ng-template #isNumber>{{element[row.colName]}}</ng-template>
+                  <div *ngIf="_isNumber(element[row.colName]); then isNumber else isString" class="text-center"></div>
+                  <ng-template #isString>
+                    <div class="text-center">{{element[row.colName] | titlecase}}</div>
+                  </ng-template>
+                  <ng-template #isNumber>
+                    <div class="text-center">{{element[row.colName]}}</div>
+                  </ng-template>
                 </div>
               </div>
             </td>
