@@ -2,7 +2,7 @@
   <div class="card-header">
     <div *ngIf="property.city; then withCity; else withRef"></div>
       <ng-template #withCity>
-        <em>Ciutat: </em>{{property.city.name |titlecase}}
+        {{property.city.name |titlecase}}
       </ng-template>
       <ng-template #withRef>
         <em>Ref: </em>{{property.reference}}
@@ -17,10 +17,10 @@
       <img src="assets/img/default-house.jpg" class="card-img-top" alt="default-property-image">
     </ng-template>
     <h5 class="card-title mt-4">{{property.title |titlecase}}</h5>
-    <p *ngIf="property.category" class="card-text"><em>Categoria: </em>{{property.category.name}}</p>
+    <p *ngIf="property.category" class="card-text">{{property.category.name}}</p>
     <a class="btn btn-primary"
       [routerLink]="[detailsPropertyLink, property.id]"
     >Detall</a>
   </div>
-  <div class="card-footer">Preu: {{formatPrice(property.price)}}</div>
+  <div class="card-footer text-right">{{formatPrice(property.price)}}</div>
 </div>
