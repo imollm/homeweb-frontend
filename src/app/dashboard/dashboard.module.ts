@@ -39,6 +39,7 @@ import { CountriesAdminComponent } from './components/resources/countries/admin/
 import { SalesComponent } from './components/resources/sales/sales.component';
 import { SalesAdminEmployeeComponent } from './components/resources/sales/admin-employee/sales-admin-employee.component';
 
+import { ToursComponent } from './components/resources/tours/tours.component';
 import { ToursAdminEmployeeCustomerComponent } from './components/resources/tours/admin-employee-customer/tours-admin-employee-customer.component';
 import { ToursOwnerComponent } from './components/resources/tours/owner/tours-owner.component';
 import { ToursCreateComponent } from './components/resources/tours/forms/createdit/tours-create.component';
@@ -55,18 +56,22 @@ import { CountriesCreateComponent } from './components/resources/countries/forms
 
 import { CityDetailsComponent } from './components/resources/cities/details/city-details.component';
 import { CitiesCreateComponent } from './components/resources/cities/forms/createdit/cities-create.component';
+
 import { SalesCreateComponent } from './components/resources/sales/forms/createdit/sales-create.component';
 import { SaleDetailsComponent } from './components/resources/sales/details/sale-details.component';
+import { SalesOwnerComponent } from './components/resources/sales/owner/sales-owner.component';
+
 import { FeaturesComponent } from './components/resources/features/features.component';
 import { FeaturesAdminComponent } from './components/resources/features/admin/features-admin.component';
 import { FeaturesCreateComponent } from './components/resources/features/forms/createdit/features-create.component';
+
+import { PurchasesCustomerComponent } from './components/resources/sales/customer/purchases-customer.component';
+
 import { PricesComponent } from './components/resources/prices/prices.component';
 import { PricesAdminEmployeeComponent } from './components/resources/prices/admin-employee/prices-admin-employee.component';
 import { PricesOwnerComponent } from './components/resources/prices/owner/prices-owner.component';
 import { PricesCreateComponent } from './components/resources/prices/forms/create/prices-create.component';
-import {ToursComponent} from './components/resources/tours/tours.component';
-import { PurchasesCustomerComponent } from './components/resources/sales/customer/purchases-customer.component';
-import { SalesOwnerComponent } from './components/resources/sales/owner/sales-owner.component';
+import { PriceDetailsComponent } from './components/resources/prices/details/price-details.component';
 
 @NgModule({
   declarations: [
@@ -115,7 +120,8 @@ import { SalesOwnerComponent } from './components/resources/sales/owner/sales-ow
     PricesOwnerComponent,
     PricesCreateComponent,
     PurchasesCustomerComponent,
-    SalesOwnerComponent
+    SalesOwnerComponent,
+    PriceDetailsComponent
   ],
     imports: [
         CommonModule,

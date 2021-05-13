@@ -6,6 +6,10 @@ import {ResponseStatus} from '../../../../../api/response-status';
 import {IDashboardTable} from '../../../../../models/dashboard-table';
 import {HelpersService} from '../../../../../services/_helpers/helpers.service';
 import {IActionButtons} from '../../../../../models/action-buttons';
+import {AuthService} from '../../../../../services/_auth/auth.service';
+import {IAuthUser} from '../../../../../models/auth-user';
+import {ChartDataSets, ChartOptions} from 'chart.js';
+import {Label} from 'ng2-charts';
 
 @Component({
   selector: 'app-dashboard-prices-admin-employee',
@@ -14,8 +18,10 @@ import {IActionButtons} from '../../../../../models/action-buttons';
 })
 export class PricesAdminEmployeeComponent implements OnInit {
 
-  title = 'Admin Dashboard';
+  title: string;
   subTitle = 'Canvis de preu';
+
+  authUser: IAuthUser = {} as IAuthUser;
   changes: IPriceChange[] = [];
   pricesTable: IDashboardTable = {} as IDashboardTable;
   actionButtons: IActionButtons = {
@@ -24,11 +30,28 @@ export class PricesAdminEmployeeComponent implements OnInit {
 
   constructor(
     private pricesService: PricesService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
-    this.getLastPriceChanges();
+    this.getAuthUser();
+  }
+
+  private getAuthUser(): void {
+    this.authService.getAuthUser().then((response) => {
+      if (response.success) {
+        this.authUser = response.data[0];
+      } else {
+        this.alertService.warn(response.message);
+      }
+    }).then(() => {
+      this.title = HelpersService.capitalize(this.authUser.role.name) + ' Dashboard';
+      this.getLastPriceChanges();
+    }).catch((error) => {
+      this.alertService.error(ResponseStatus.displayErrorMessage(error));
+      console.error(error);
+    });
   }
 
   private getLastPriceChanges(): void {

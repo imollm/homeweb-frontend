@@ -20,7 +20,9 @@ export class PricesOwnerComponent implements OnInit {
   changes: IPriceChange[] = [];
   pricesTable: IDashboardTable = {} as IDashboardTable;
   actionButtons: IActionButtons = {
-    active: false
+    active: true,
+    resource: 'prices',
+    actions: {view: true, edit: false, delete: false}
   } as IActionButtons;
 
   constructor(
@@ -35,7 +37,7 @@ export class PricesOwnerComponent implements OnInit {
   private getPriceHistoryOfMyProperties(): void {
     this.pricesService.getPriceChangesOfPropertiesOwnedByOwner().then((response) => {
       if (response.success) {
-        this.changes = response.data;
+        this.changes = response.data.changes;
       } else {
         this.alertService.warn(response.message);
       }
@@ -59,6 +61,7 @@ export class PricesOwnerComponent implements OnInit {
     ];
     this.changes.map((c) => {
       data.push({
+        id: c.property_id,
         reference: c.property.reference,
         amount: HelpersService.formatPrice(c.amount),
         price: c.property.price,

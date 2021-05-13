@@ -1,0 +1,33 @@
+<div class="container">
+  <h3 class="text-center p-3">
+    Detalls canvis de preu
+  </h3>
+
+  <hr class="topbar-divider">
+
+  <div class="row">
+    <div class="col-12">
+      <div class="d-block">
+        <canvas baseChart
+                [data]="lineChartData"
+                [labels]="lineChartLabels"
+                [options]="lineChartOptions"
+                [colors]="lineChartColors"
+                [legend]="lineChartLegend"
+                [chartType]="lineChartType"
+        ></canvas>
+      </div>
+    </div>
+  </div>
+
+  <hr class="topbar-divider">
+
+  <div class="row">
+    <div class="col-12">
+      <app-dashboard-table
+        [toShow]="pricesTable"
+        [actionButtons]="actionButtons"
+      ></app-dashboard-table>
+    </div>
+  </div>
+</div>
