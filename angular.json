@@ -18,7 +18,9 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "allowedCommonJsDependencies": [
-              "lodash"
+              "lodash",
+              "chart.js",
+              "s-printf"
             ],
             "outputPath": "dist/homeweb-frontend",
             "index": "src/index.html",
