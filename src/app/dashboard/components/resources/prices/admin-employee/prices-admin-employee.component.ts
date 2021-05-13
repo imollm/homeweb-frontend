@@ -85,8 +85,8 @@ export class PricesAdminEmployeeComponent implements OnInit {
         reference: c.property.reference,
         amount: HelpersService.formatPrice(c.amount),
         price: c.property.price,
-        start: HelpersService.formatDate(c.start),
-        end: c.end !== null ? HelpersService.formatDate(c.end) : '-'
+        start: c.start,
+        end: c.end !== null ? c.end : '-'
       });
       this.pricesTable.data = data;
     });
