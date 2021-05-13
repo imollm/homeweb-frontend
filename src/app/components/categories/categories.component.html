@@ -9,7 +9,7 @@
           <div class="bg-dark wrap-category-img text-center" [attr.datatype]="category.name">
             <span class="text-white" [attr.datatype]="category.name">{{category.name.toUpperCase()}}</span>
           </div>
-          <img [src]="category.safeUrl" [attr.alt]="category.name" class="figure-img img-fluid" [attr.datatype]="category.name"/>
+          <img [src]="category.imageBase64" [attr.alt]="category.name" class="figure-img img-fluid" [attr.datatype]="category.name"/>
         </div>
       </a>
     </div>

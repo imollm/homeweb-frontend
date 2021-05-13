@@ -3,25 +3,28 @@
     Categoria {{category.name | titlecase}}
   </h3>
   <hr class="topbar-divider">
-  <div class="d-flex flex-column justify-content-center align-items-center">
-    <div>
+  <div class="d-flex flex-row justify-content-around align-items-center">
+    <div *ngIf="category && category.image">
+      <img [src]="category.imageBase64" class="img-fluid">
+    </div>
+    <div class="mt-4">
       <app-dashboard-card
         [toShow]="totalPropertiesCard"
       ></app-dashboard-card>
     </div>
-    <div class="row" *ngIf="chartData.length > 0">
-      <div class="col-12">
-        <div class="d-block shadow border">
-          <h5 class="text-center text-primary p-4">Propietats per preu</h5>
-          <canvas baseChart class="pb-4"
-            [data]="chartData"
-            [labels]="chartLabels"
-            [colors]="chartColors"
-            [legend]="chartLegend"
-            [chartType]="'bar'"
-            [options]="chartOptions"
-          ></canvas>
-        </div>
+  </div>
+  <div class="row mt-5" *ngIf="chartData.length > 0">
+    <div class="col-12">
+      <div class="d-block shadow border">
+        <h5 class="text-center text-primary p-4">Propietats per preu</h5>
+        <canvas baseChart class="pb-4"
+          [data]="chartData"
+          [labels]="chartLabels"
+          [colors]="chartColors"
+          [legend]="chartLegend"
+          [chartType]="'bar'"
+          [options]="chartOptions"
+        ></canvas>
       </div>
     </div>
   </div>

@@ -43,7 +43,7 @@ export class CategoriesComponent implements OnInit {
   private getCategoriesImages(): void {
     this.categories.map((category) => {
       this.imageService.sanitizeBase64EncodedImage(category.image, 'categories').then((imageDecoded) => {
-        category.safeUrl = imageDecoded;
+        category.imageBase64 = imageDecoded;
       });
     });
   }

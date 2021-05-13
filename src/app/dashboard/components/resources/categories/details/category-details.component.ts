@@ -7,6 +7,9 @@ import {IDashboardCard} from '../../../../../models/dashboard-card';
 import {Color, Label, SingleDataSet} from 'ng2-charts';
 import {HelpersService} from '../../../../../services/_helpers/helpers.service';
 import {ChartOptions} from 'chart.js';
+import {AlertService} from '../../../../../services/_alert/alert.service';
+import {ResponseStatus} from '../../../../../api/response-status';
+import {ImageService} from '../../../../../services/_image/image.service';
 
 @Component({
   selector: 'app-category-details',
@@ -48,7 +51,9 @@ export class CategoryDetailsComponent implements OnInit {
 
   constructor(
     private categoriesService: CategoriesService,
-    private activateRoute: ActivatedRoute
+    private activateRoute: ActivatedRoute,
+    private alertService: AlertService,
+    private imageService: ImageService
   ) { }
 
   ngOnInit(): void {
@@ -64,7 +69,23 @@ export class CategoryDetailsComponent implements OnInit {
       this.totalProperties();
     }).then(() => {
       this.chartPropertyPrices();
+    }).then(() => {
+      if (this.category.image) {
+        this.getImage();
+      }
+    })
+      .catch((error) => {
+      this.alertService.error(ResponseStatus.displayErrorMessage(error));
+      console.error(error);
     });
+  }
+
+  private getImage(): void {
+    if (this.category.image) {
+      this.imageService.sanitizeBase64EncodedImage(this.category.image, 'categories').then((imageDecoded) => {
+        this.category.imageBase64 = imageDecoded;
+      });
+    }
   }
 
   private totalProperties(): void {
