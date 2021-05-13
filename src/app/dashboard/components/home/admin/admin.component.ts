@@ -113,7 +113,7 @@ export class AdminComponent implements OnInit {
       if (response.success) {
         const sales = response.data;
         sales.map((sale) => {
-          this.chartLabels.push(sale.month);
+          this.chartLabels.push(sale.mes);
           this.chartData.push(sale.amount);
         });
       }
