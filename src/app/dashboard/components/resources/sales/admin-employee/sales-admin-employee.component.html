@@ -62,8 +62,8 @@
 
     <div class="col-12 col-lg-6" *ngIf="salesByCountriesChartData.length > 0">
       <div class="d-block border shadow">
-        <h5 class="text-center p-2 text-primary">Vendes per països</h5>
-        <canvas baseChart
+        <h5 class="text-center p-4 text-primary">Vendes per països</h5>
+        <canvas baseChart class="pb-4"
           [data]="salesByCountriesChartData"
           [labels]="salesByCountriesChartLabels"
           [legend]="true"
@@ -75,8 +75,8 @@
 
     <div class="col-12 col-lg-6" *ngIf="salesByCitiesChartData.length > 0">
       <div class="d-block border shadow">
-        <h5 class="text-center p-2 text-primary">Vendes per ciutats</h5>
-        <canvas baseChart
+        <h5 class="text-center p-4 text-primary">Vendes per ciutats</h5>
+        <canvas baseChart class="pb-4"
           [data]="salesByCitiesChartData"
           [labels]="salesByCitiesChartLabels"
           [legend]="false"
@@ -92,8 +92,8 @@
 
     <div class="col-12 col-lg-6" *ngIf="salesByCategoriesChartData.length > 0">
       <div class="d-block border shadow">
-        <h5 class="text-center p-2 text-primary">Vendes per categories</h5>
-        <canvas baseChart
+        <h5 class="text-center p-4 text-primary">Vendes per categories</h5>
+        <canvas baseChart class="pb-4"
           [data]="salesByCategoriesChartData"
           [labels]="salesByCategoriesChartLabels"
           [legend]="true"
@@ -105,8 +105,8 @@
 
     <div class="col-12 col-lg-6" *ngIf="salesBySellersChartData.length > 0">
       <div class="d-block border shadow">
-        <h5 class="text-center p-2 text-primary">Vendes per venedor</h5>
-        <canvas baseChart
+        <h5 class="text-center p-4 text-primary">Vendes per venedor</h5>
+        <canvas baseChart class="pb-4"
           [data]="salesBySellersChartData"
           [labels]="salesBySellersChartLabels"
           [legend]="false"

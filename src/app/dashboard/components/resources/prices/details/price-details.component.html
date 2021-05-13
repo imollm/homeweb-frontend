@@ -5,10 +5,10 @@
 
   <hr class="topbar-divider">
 
-  <div class="row">
+  <div class="row" *ngIf="lineChartData.length > 0">
     <div class="col-12">
-      <div class="d-block">
-        <canvas baseChart
+      <div class="d-block shadow border">
+        <canvas baseChart class="p-4"
                 [data]="lineChartData"
                 [labels]="lineChartLabels"
                 [options]="lineChartOptions"

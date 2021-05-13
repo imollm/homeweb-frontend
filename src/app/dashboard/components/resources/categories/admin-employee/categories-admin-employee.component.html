@@ -12,7 +12,7 @@
   <hr class="topbar-divider">
 
   <div class="row">
-    <div class="col-12 col-lg-8">
+    <div class="col-12 col-lg-8" *ngIf="categoriesTable.data && categoriesTable.data.length > 0">
       <div class="">
         <app-dashboard-table
           [toShow]="categoriesTable"
@@ -20,12 +20,12 @@
         ></app-dashboard-table>
       </div>
     </div>
-    <div class="col-12 col-lg-4 d-flex flex-column justify-content-center align-items-center">
-      <div class="d-block w-100">
-        <h5 class="text-center p-3">
+    <div class="col-12 col-lg-4 d-flex flex-column justify-content-center align-items-center" *ngIf="chartData.length > 0">
+      <div class="d-block shadow border">
+        <h5 class="text-center p-4 text-primary">
           Propietats per categoria
         </h5>
-        <canvas baseChart
+        <canvas baseChart class="pb-4"
           [data]="chartData"
           [labels]="chartLabels"
           [colors]="chartColors"

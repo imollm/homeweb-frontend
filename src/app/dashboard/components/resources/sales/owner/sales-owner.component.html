@@ -28,11 +28,11 @@
 
   <div class="row" *ngIf="sealedProperties.length > 0">
     <div class="col-12">
-      <div class="d-block">
-        <h4 class="text-center">
+      <div class="d-block border shadow">
+        <h4 class="text-center p-4 text-primary">
           Vendes per any
         </h4>
-        <canvas baseChart
+        <canvas baseChart class="pb-4"
           [data]="chartData"
           [labels]="chartLabels"
           [colors]="chartColors"
