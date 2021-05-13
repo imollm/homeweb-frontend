@@ -81,7 +81,7 @@ export class PropertiesCreateComponent implements OnInit {
       longitude: new FormControl(this.mapData.location.lng, [Validators.required, Validators.max(180), Validators.min(-180)]),
       description: new FormControl(''),
       energetic_certification: new FormControl('obtingut'),
-      sold: new FormControl(0),
+      sold: new FormControl(false),
       active: new FormControl(true),
       price: new FormControl(0),
       features: new FormArray([])
