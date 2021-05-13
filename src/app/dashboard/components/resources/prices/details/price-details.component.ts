@@ -33,12 +33,24 @@ export class PriceDetailsComponent implements OnInit {
     responsive: true,
     scales: {
       xAxes: [{}],
-      yAxes: [
-        {
-          id: 'y-axis-0',
-          position: 'left',
+      yAxes: [{
+        id: 'y-axis-0',
+        position: 'left',
+        ticks: {
+          beginAtZero: true,
+          stepSize: 100000,
+          callback: (value, index, values) => {
+            value = value.toString();
+            let separated = [];
+            separated = value.split(/(?=(?:...)*$)/);
+            return separated.join('.') + ' €';
+          }
         }
-      ]
+      }]
+    },
+    title: {
+      display: false,
+      text: ''
     }
   };
   lineChartColors: Color[] = [];

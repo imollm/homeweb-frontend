@@ -7,6 +7,7 @@ import {AlertService} from '../../../../../services/_alert/alert.service';
 import {IActionButtons} from '../../../../../models/action-buttons';
 import {HelpersService} from '../../../../../services/_helpers/helpers.service';
 import {Color, Label, SingleDataSet} from 'ng2-charts';
+import {ChartOptions} from 'chart.js';
 
 @Component({
   selector: 'app-dashboard-sales-admin-employee',
@@ -49,6 +50,31 @@ export class SalesAdminEmployeeComponent implements OnInit {
   salesBySellersChartLabels: Label[] = [];
   salesBySellersChartData: SingleDataSet = [];
   salesBySellersChartDataColors: Color[] = [{backgroundColor: [] = []}];
+  salesBySellersChartOptions: (ChartOptions & { annotation: any }) = {
+  annotation: undefined,
+  responsive: true,
+  scales: {
+    xAxes: [{}],
+    yAxes: [{
+        id: 'y-axis-0',
+        position: 'left',
+        ticks: {
+          beginAtZero: true,
+          stepSize: 100000,
+          callback: (value, index, values) => {
+            value = value.toString();
+            let separated = [];
+            separated = value.split(/(?=(?:...)*$)/);
+            return separated.join('.') + ' €';
+          }
+        }
+      }]
+    },
+    title: {
+      display: false,
+      text: ''
+    }
+  };
 
   constructor(
     private salesService: SalesService,

@@ -7,6 +7,7 @@ import {IActionButtons} from '../../../../../models/action-buttons';
 import {HelpersService} from '../../../../../services/_helpers/helpers.service';
 import {IProperty} from '../../../../../models/property';
 import {Color, Label, SingleDataSet} from 'ng2-charts';
+import {ChartOptions} from 'chart.js';
 
 @Component({
   selector: 'app-dashboard-sales-owner',
@@ -28,6 +29,31 @@ export class SalesOwnerComponent implements OnInit {
   chartLabels: Label[] = [];
   chartColors: Color[] = [];
   chartLegend = false;
+  chartOptions: (ChartOptions & { annotation: any }) = {
+    annotation: undefined,
+    responsive: true,
+    scales: {
+      xAxes: [{}],
+      yAxes: [{
+        id: 'y-axis-0',
+        position: 'left',
+        ticks: {
+          beginAtZero: true,
+          stepSize: 100000,
+          callback: (value, index, values) => {
+            value = value.toString();
+            let separated = [];
+            separated = value.split(/(?=(?:...)*$)/);
+            return separated.join('.') + ' €';
+          }
+        }
+      }]
+    },
+    title: {
+      display: false,
+      text: ''
+    }
+  };
 
   constructor(
     private alertService: AlertService,
@@ -43,6 +69,7 @@ export class SalesOwnerComponent implements OnInit {
       if (response.success) {
         this.sealedProperties = response.data.sealed_properties;
         this.salesByYear = response.data.sales_by_year;
+        console.log(this.salesByYear);
       }
     }).then(() => {
       this.setSalesTable();

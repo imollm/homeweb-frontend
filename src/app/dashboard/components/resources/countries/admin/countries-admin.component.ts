@@ -8,7 +8,7 @@ import {ICountry} from '../../../../../models/country';
 import {ICity} from '../../../../../models/city';
 import {IProperty} from '../../../../../models/property';
 import {ResponseStatus} from '../../../../../api/response-status';
-import {ChartDataSets} from 'chart.js';
+import {ChartDataSets, ChartOptions} from 'chart.js';
 import {HelpersService} from '../../../../../services/_helpers/helpers.service';
 
 @Component({
@@ -43,6 +43,25 @@ export class CountriesAdminComponent implements OnInit {
   chartLabels: Label[] = [];
   chartColors: Color[] = [];
   chartLegend = true;
+  chartOptions: (ChartOptions & { annotation: any }) = {
+    annotation: undefined,
+    responsive: true,
+    scales: {
+      xAxes: [{}],
+      yAxes: [{
+        id: 'y-axis-0',
+        position: 'left',
+        ticks: {
+          beginAtZero: true,
+          stepSize: 1
+        }
+      }]
+    },
+    title: {
+      display: false,
+      text: ''
+    }
+  };
 
   constructor(
     private countriesService: CountriesService,

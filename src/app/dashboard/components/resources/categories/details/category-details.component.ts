@@ -6,6 +6,7 @@ import {IProperty} from '../../../../../models/property';
 import {IDashboardCard} from '../../../../../models/dashboard-card';
 import {Color, Label, SingleDataSet} from 'ng2-charts';
 import {HelpersService} from '../../../../../services/_helpers/helpers.service';
+import {ChartOptions} from 'chart.js';
 
 @Component({
   selector: 'app-category-details',
@@ -23,6 +24,25 @@ export class CategoryDetailsComponent implements OnInit {
     backgroundColor: [] = []
   }];
   chartLegend = false;
+  chartOptions: (ChartOptions & { annotation: any }) = {
+    annotation: undefined,
+    responsive: true,
+    scales: {
+      xAxes: [{}],
+      yAxes: [{
+        id: 'y-axis-0',
+        position: 'left',
+        ticks: {
+          beginAtZero: true,
+          stepSize: 1
+        }
+      }]
+    },
+    title: {
+      display: false,
+      text: ''
+    }
+  };
 
   @Input() totalPropertiesCard: IDashboardCard = {} as IDashboardCard;
 

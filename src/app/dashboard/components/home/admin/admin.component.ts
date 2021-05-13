@@ -8,6 +8,7 @@ import {Color, Label, SingleDataSet} from 'ng2-charts';
 import {IActionButtons} from '../../../../models/action-buttons';
 import {ResponseStatus} from '../../../../api/response-status';
 import {AlertService} from '../../../../services/_alert/alert.service';
+import {ChartOptions} from 'chart.js';
 
 @Component({
   selector: 'app-dashboard-home-admin',
@@ -34,6 +35,25 @@ export class AdminComponent implements OnInit {
   chartLabels: Label[] = [];
   chartColors: Color[] = [];
   chartLegend = false;
+  chartOptions: (ChartOptions & {annotation: any}) = {
+    annotation: undefined,
+    responsive: true,
+    scales: {
+      xAxes: [{}],
+      yAxes: [{
+        ticks: {
+          beginAtZero: true,
+          stepSize: 100000,
+          callback: (value, index, values) => {
+            value = value.toString();
+            let separated = [];
+            separated = value.split(/(?=(?:...)*$)/);
+            return separated.join('.') + ' €';
+          }
+        }
+      }]
+    }
+  };
 
   constructor(
     private salesService: SalesService,
