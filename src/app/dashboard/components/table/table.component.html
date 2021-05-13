@@ -44,13 +44,13 @@
                   {{formatDate(element[row.colName])}}
                 </div>
                 <div *ngSwitchCase="'plot_meters'" innerHTML="<div class='text-center'>{{formatMeters(element[row.colName])}}</div>"></div>
-                <div *ngSwitchCase="'sold'">
+                <div *ngSwitchCase="'sold'" class="text-center">
                   {{element[row.colName]==1 ? 'Si' : 'No'}}
                 </div>
                 <div *ngSwitchCase="'start'" class="text-center">
                   {{formatDate(element[row.colName])}}
                 </div>
-                <div *ngSwitchCase="'end'">
+                <div *ngSwitchCase="'end'" class="text-center">
                   <div *ngIf="element[row.colName]==='-'; then withOutDate else withDate" class="text-center"></div>
                   <ng-template #withOutDate>-</ng-template>
                   <ng-template #withDate>{{formatDate(element[row.colName])}}</ng-template>
@@ -58,13 +58,13 @@
                 <div *ngSwitchCase="'date'" class="text-center">
                   {{formatDate(element[row.colName])}}
                 </div>
-                <div *ngSwitchDefault>
-                  <div *ngIf="_isNumber(element[row.colName]); then isNumber else isString" class="text-center"></div>
+                <div *ngSwitchDefault class="text-center">
+                  <div *ngIf="_isNumber(element[row.colName]); then isNumber else isString"></div>
                   <ng-template #isString>
-                    <div class="text-center">{{element[row.colName] | titlecase}}</div>
+                    {{element[row.colName] | titlecase}}
                   </ng-template>
                   <ng-template #isNumber>
-                    <div class="text-center">{{element[row.colName]}}</div>
+                    {{element[row.colName]}}
                   </ng-template>
                 </div>
               </div>
