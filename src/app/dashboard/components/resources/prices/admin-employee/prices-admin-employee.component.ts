@@ -25,7 +25,9 @@ export class PricesAdminEmployeeComponent implements OnInit {
   changes: IPriceChange[] = [];
   pricesTable: IDashboardTable = {} as IDashboardTable;
   actionButtons: IActionButtons = {
-    active: false
+    active: true,
+    resource: 'prices',
+    actions: {view: true, edit: false, delete: false}
   } as IActionButtons;
 
   constructor(
@@ -82,6 +84,7 @@ export class PricesAdminEmployeeComponent implements OnInit {
     ];
     this.changes.map((c) => {
       data.push({
+        id: c.property_id,
         reference: c.property.reference,
         amount: HelpersService.formatPrice(c.amount),
         price: c.property.price,
