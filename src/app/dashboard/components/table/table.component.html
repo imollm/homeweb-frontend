@@ -48,7 +48,9 @@
                   {{formatDate(element[row.colName])}}
                 </div>
                 <div *ngSwitchCase="'end'">
-                  {{formatDate(element[row.colName])}}
+                  <div *ngIf="element[row.colName]==='-'; then withOutDate else withDate"></div>
+                  <ng-template #withOutDate>-</ng-template>
+                  <ng-template #withDate>{{formatDate(element[row.colName])}}</ng-template>
                 </div>
                 <div *ngSwitchCase="'date'">
                   {{formatDate(element[row.colName])}}
