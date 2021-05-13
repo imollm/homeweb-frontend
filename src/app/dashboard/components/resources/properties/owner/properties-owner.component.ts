@@ -94,6 +94,7 @@ export class PropertiesOwnerComponent implements OnInit {
     const sealedData = [];
     this.sealedProperties.map((property) => {
       sealedData.push({
+        id: property.id,
         reference: property.reference,
         price: property.price,
         amount: HelpersService.formatPrice(property.sales[0].amount),
