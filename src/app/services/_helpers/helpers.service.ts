@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import moment from 'moment/moment';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class HelpersService {
   }
 
   static formatDate(timestamp: string): string {
-    return new Date(timestamp).toLocaleDateString('es-ES');
+    return moment(timestamp).locale('ca').format('LL');
   }
 
   static isNumber(value: any): boolean {

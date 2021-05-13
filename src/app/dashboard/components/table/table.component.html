@@ -44,6 +44,15 @@
                 <div *ngSwitchCase="'sold'">
                   {{element[row.colName]==1 ? 'Si' : 'No'}}
                 </div>
+                <div *ngSwitchCase="'start'">
+                  {{formatDate(element[row.colName])}}
+                </div>
+                <div *ngSwitchCase="'end'">
+                  {{formatDate(element[row.colName])}}
+                </div>
+                <div *ngSwitchCase="'date'">
+                  {{formatDate(element[row.colName])}}
+                </div>
                 <div *ngSwitchDefault>
                   <div *ngIf="_isNumber(element[row.colName]); then isNumber else isString"></div>
                   <ng-template #isString>{{element[row.colName] | titlecase}}</ng-template>
