@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ILocation, IMaps} from '../../../../../../models/maps';
 import {ResponseStatus} from '../../../../../../api/response-status';
 import {CountriesService} from '../../../../../../services/_country/countries.service';
+import {ModalResultService} from '../../../../../../services/_modal/modal.service';
 
 @Component({
   selector: 'app-countries-create',
@@ -34,7 +35,8 @@ export class CountriesCreateComponent implements OnInit {
     private countriesService: CountriesService,
     private alertService: AlertService,
     private activateRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private modalResultService: ModalResultService
   ) {
     this.form = this.fb.group({
       id: new FormControl({value: null, readonly: true}),
@@ -59,28 +61,23 @@ export class CountriesCreateComponent implements OnInit {
     if (this.form.valid) {
       if (this.mode === 'edit') {
         this.countriesService.updateCountry(this.form.value).then((response) => {
-          if (response.success) {
-            this.alertService.success(response.message);
-          } else {
-            this.alertService.warn(response.message);
-          }
+          this.router.navigate(['dashboard/countries']).then(() => {
+            this.modalResultService.editResultModal(response);
+          });
         }).catch((error) => {
           this.alertService.error(ResponseStatus.displayErrorMessage(error));
           console.error(error);
         });
       } else if (this.mode === 'create') {
         this.countriesService.createCountry(this.form.value).then((response) => {
-          if (response.success) {
-            this.alertService.success(response.message);
-          } else {
-            this.alertService.warn(response.message);
-          }
+          this.router.navigate(['dashboard/countries']).then(() => {
+            this.modalResultService.createResultModal(response);
+          });
         }).catch((error) => {
           this.alertService.error(ResponseStatus.displayErrorMessage(error));
           console.error(error);
         });
       }
-      this.router.navigate(['dashboard/countries']);
     }
   }
 

@@ -4,6 +4,8 @@ import {PropertiesService} from '../../../../services/_property/properties.servi
 import {ActivatedRoute, Router} from '@angular/router';
 import {AlertService} from '../../../../services/_alert/alert.service';
 import {ResponseStatus} from '../../../../api/response-status';
+import {ModalResultService} from '../../../../services/_modal/modal.service';
+import {ApiResponseI} from '../../../../models/api-response';
 
 @Component({
   selector: 'app-properties',
@@ -15,13 +17,15 @@ export class PropertiesComponent implements OnInit {
   role: string;
   mode: string;
   propertyId: string;
+  apiResponse: ApiResponseI;
 
   constructor(
     private authService: AuthService,
     private propertiesService: PropertiesService,
     private activateRoute: ActivatedRoute,
     private router: Router,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private modalResultService: ModalResultService
   ) { }
 
   ngOnInit(): void {
@@ -35,16 +39,15 @@ export class PropertiesComponent implements OnInit {
       if (this.activateRoute.snapshot.url[1] && this.activateRoute.snapshot.url[1].path === 'delete') {
         this.propertyId = this.activateRoute.snapshot.params.id;
         this.propertiesService.deleteProperty(this.propertyId).then((response) => {
-          if (response.success) {
-            this.alertService.success(response.message);
-          } else {
-            this.alertService.warn(response.message);
-          }
+          this.apiResponse = response;
+        }).then(() => {
+          this.router.navigate(['/dashboard/properties']).then(() => {
+            this.modalResultService.deleteResultModal(this.apiResponse);
+          });
         }).catch((error) => {
           this.alertService.error(ResponseStatus.displayErrorMessage(error));
           console.error(error);
         });
-        this.router.navigate(['/dashboard/properties']);
       }
     });
   }

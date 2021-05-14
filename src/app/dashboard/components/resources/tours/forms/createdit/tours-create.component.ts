@@ -13,6 +13,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {HelpersService} from '../../../../../../services/_helpers/helpers.service';
 import {AuthService} from '../../../../../../services/_auth/auth.service';
 import {IAuthUser} from '../../../../../../models/auth-user';
+import {ModalResultService} from '../../../../../../services/_modal/modal.service';
 
 @Component({
   selector: 'app-tours-create-form',
@@ -44,7 +45,8 @@ export class ToursCreateComponent implements OnInit {
     private alertService: AlertService,
     private router: Router,
     private activateRoute: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private modalResultService: ModalResultService
   ) {
     this.form = this.fb.group({
       hash_id: new FormControl({value: null, readonly: true}),
@@ -71,28 +73,23 @@ export class ToursCreateComponent implements OnInit {
       this.formatDateAndTime();
       if (this.mode === 'create') {
         this.toursService.createTour(this.form.value).then((response) => {
-          if (response.success) {
-            this.alertService.success(response.message);
-          } else {
-            this.alertService.warn(response.message);
-          }
+          this.router.navigate(['dashboard/tours']).then(() => {
+            this.modalResultService.createResultModal(response);
+          });
         }).catch((error) => {
           this.alertService.error(ResponseStatus.displayErrorMessage(error));
           console.error(error);
         });
       } else if (this.mode === 'edit') {
         this.toursService.updateTour(this.form.value).then((response) => {
-          if (response.success) {
-            this.alertService.success(response.message);
-          } else {
-            this.alertService.warn(response.message);
-          }
+          this.router.navigate(['dashboard/tours']).then(() => {
+            this.modalResultService.editResultModal(response);
+          });
         }).catch((error) => {
           this.alertService.error(ResponseStatus.displayErrorMessage(error));
           console.error(error);
         });
       }
-      this.router.navigate(['dashboard/tours']);
     }
   }
 

@@ -10,6 +10,7 @@ import {HelpersService} from '../../../../../../services/_helpers/helpers.servic
 import {Router} from '@angular/router';
 import {AuthService} from '../../../../../../services/_auth/auth.service';
 import {IAuthUser} from '../../../../../../models/auth-user';
+import {ModalResultService} from '../../../../../../services/_modal/modal.service';
 
 @Component({
   selector: 'app-prices-create',
@@ -33,7 +34,8 @@ export class PricesCreateComponent implements OnInit, AfterViewInit {
     private alertService: AlertService,
     private propertiesService: PropertiesService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private modalResultService: ModalResultService
   ) {
     this.form = this.fb.group({
       property_id: new FormControl(''),
@@ -67,16 +69,13 @@ export class PricesCreateComponent implements OnInit, AfterViewInit {
   onSubmit(): void {
     if (this.form.valid && this.acceptChange.nativeElement.checked) {
       this.pricesService.createPriceChange(this.form.value).then((response) => {
-        if (response.success) {
-          this.alertService.success(response.message);
-        } else {
-          this.alertService.warn(response.message);
-        }
+        this.router.navigate(['/dashboard/prices']).then(() => {
+          this.modalResultService.createResultModal(response);
+        });
       }).catch((error) => {
         this.alertService.error(ResponseStatus.displayErrorMessage(error));
         console.error(error);
       });
-      this.router.navigate(['/dashboard/prices']);
     }
   }
 

@@ -7,6 +7,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {CitiesService} from '../../../../../../services/_city/cities.service';
 import {ICountry} from '../../../../../../models/country';
 import {ResponseStatus} from '../../../../../../api/response-status';
+import {ModalResultService} from '../../../../../../services/_modal/modal.service';
 
 @Component({
   selector: 'app-cities-create',
@@ -36,7 +37,8 @@ export class CitiesCreateComponent implements OnInit {
     private countriesService: CountriesService,
     private alertService: AlertService,
     private activateRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private modalResultService: ModalResultService
   ) {
     this.form = this.fb.group({
       id: new FormControl({value: null, readonly: true}),
@@ -61,28 +63,23 @@ export class CitiesCreateComponent implements OnInit {
     if (this.form.valid) {
       if (this.mode === 'edit') {
         this.citiesService.updateCity(this.form.value).then((response) => {
-          if (response.success) {
-            this.alertService.success(response.message);
-          } else {
-            this.alertService.warn(response.message);
-          }
+          this.router.navigate(['dashboard/cities']).then(() => {
+            this.modalResultService.editResultModal(response);
+          });
         }).catch((error) => {
           this.alertService.error(ResponseStatus.displayErrorMessage(error));
           console.error(error);
         });
       } else if (this.mode === 'create') {
         this.citiesService.createCity(this.form.value).then((response) => {
-          if (response.success) {
-            this.alertService.success(response.message);
-          } else {
-            this.alertService.warn(response.message);
-          }
+          this.router.navigate(['dashboard/cities']).then(() => {
+            this.modalResultService.createResultModal(response);
+          });
         }).catch((error) => {
           this.alertService.error(ResponseStatus.displayErrorMessage(error));
           console.error(error);
         });
       }
-      this.router.navigate(['dashboard/cities']);
     }
   }
 

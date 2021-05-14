@@ -4,6 +4,7 @@ import {FeaturesService} from '../../../../../../services/_feature/features.serv
 import {AlertService} from '../../../../../../services/_alert/alert.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ResponseStatus} from '../../../../../../api/response-status';
+import {ModalResultService} from '../../../../../../services/_modal/modal.service';
 
 @Component({
   selector: 'app-features-create',
@@ -22,7 +23,8 @@ export class FeaturesCreateComponent implements OnInit {
     private featureService: FeaturesService,
     private alertService: AlertService,
     private activateRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private modalResultService: ModalResultService
   ) {
     this.form = this.fb.group({
       id: new FormControl({value: null, readonly: true}),
@@ -42,28 +44,23 @@ export class FeaturesCreateComponent implements OnInit {
   onSubmit(): void {
     if (this.mode === 'create') {
       this.featureService.createFeature(this.form.value).then((response) => {
-        if (response.success) {
-          this.alertService.success(response.message);
-        } else {
-          this.alertService.warn(response.message);
-        }
+        this.router.navigate(['dashboard/features']).then(() => {
+          this.modalResultService.createResultModal(response);
+        });
       }).catch((error) => {
         this.alertService.error(ResponseStatus.displayErrorMessage(error));
         console.error(error);
       });
     } else if (this.mode === 'edit') {
       this.featureService.updateFeature(this.form.value).then((response) => {
-        if (response.success) {
-          this.alertService.success(response.message);
-        } else {
-          this.alertService.warn(response.message);
-        }
+        this.router.navigate(['dashboard/features']).then(() => {
+          this.modalResultService.editResultModal(response);
+        });
       }).catch((error) => {
         this.alertService.error(ResponseStatus.displayErrorMessage(error));
         console.error(error);
       });
     }
-    this.router.navigate(['dashboard/features']);
   }
 
   private editMode(): void {

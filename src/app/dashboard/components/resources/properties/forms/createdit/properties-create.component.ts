@@ -17,6 +17,8 @@ import {IFeature} from '../../../../../../models/feature';
 import {FeaturesService} from '../../../../../../services/_feature/features.service';
 import {IAuthUser} from '../../../../../../models/auth-user';
 import {AuthService} from '../../../../../../services/_auth/auth.service';
+import {ModalResultService} from '../../../../../../services/_modal/modal.service';
+import {ApiResponseI} from '../../../../../../models/api-response';
 
 @Component({
   selector: 'app-properties-create-form',
@@ -62,7 +64,8 @@ export class PropertiesCreateComponent implements OnInit {
     private alertService: AlertService,
     private activateRoute: ActivatedRoute,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private modalResultService: ModalResultService
   ) {
     this.form = this.fb.group({
       id: new FormControl({value: null, readonly: true}),
@@ -122,28 +125,23 @@ export class PropertiesCreateComponent implements OnInit {
     if (this.form.valid) {
       if (this.mode === 'edit') {
         this.propertiesService.updateProperty(this.form.value).then((response) => {
-          if (response.success) {
-              this.alertService.success(response.message);
-          } else {
-            this.alertService.warn(response.message);
-          }
+          this.router.navigate(['/dashboard/properties']).then(() => {
+            this.modalResultService.editResultModal(response);
+          });
         }).catch((error) => {
           this.alertService.error(ResponseStatus.displayErrorMessage(error));
           console.error(error);
         });
       } else if (this.mode === 'create') {
         this.propertiesService.createProperty(this.form.value).then((response) => {
-          if (response.success) {
-            this.alertService.success(response.message);
-          } else {
-            this.alertService.warn(response.message);
-          }
+          this.router.navigate(['/dashboard/properties']).then(() => {
+            this.modalResultService.createResultModal(response);
+          });
         }).catch((error) => {
           this.alertService.error(ResponseStatus.displayErrorMessage(error));
           console.error(error);
         });
       }
-      this.router.navigate(['/dashboard/properties']);
     }
   }
 

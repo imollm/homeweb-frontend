@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ICategory} from '../../../../../../models/category';
 import {ImageService} from '../../../../../../services/_image/image.service';
 import {ResponseStatus} from '../../../../../../api/response-status';
+import {ModalResultService} from '../../../../../../services/_modal/modal.service';
 
 @Component({
   selector: 'app-categories-create',
@@ -29,7 +30,8 @@ export class CategoriesCreateComponent implements OnInit {
     private alertService: AlertService,
     private activateRoute: ActivatedRoute,
     private imageService: ImageService,
-    private router: Router
+    private router: Router,
+    private modalResultService: ModalResultService
   ) {
     this.form = this.fb.group({
       id: new FormControl({value: null, readonly: true}),
@@ -66,28 +68,23 @@ export class CategoriesCreateComponent implements OnInit {
 
     if (this.mode === 'edit') {
       this.categoriesService.updateCategory(categoryFormData).then((response) => {
-        if (response.success) {
-          this.alertService.success(response.message);
-        } else {
-          this.alertService.warn(response.message);
-        }
+        this.router.navigate(['/dashboard/categories']).then(() => {
+          this.modalResultService.editResultModal(response);
+        });
       }).catch((error) => {
         this.alertService.error(ResponseStatus.displayErrorMessage(error));
         console.error(error);
       });
     } else if (this.mode === 'create') {
       this.categoriesService.createCategory(categoryFormData).then((response) => {
-        if (response.success) {
-          this.alertService.success(response.message);
-        } else {
-          this.alertService.warn(response.message);
-        }
+        this.router.navigate(['dashboard/categories']).then(() => {
+          this.modalResultService.createResultModal(response);
+        });
       }).catch((error) => {
         this.alertService.error(ResponseStatus.displayErrorMessage(error));
         console.error(error);
       });
     }
-    this.router.navigate(['/dashboard/categories']);
   }
 
   private editMode(): void {
