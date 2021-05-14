@@ -18,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AlertModule } from '../services/_alert/alert.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgToggleModule } from 'ngx-toggle-button';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 // Common components of AppModule and DashboardModule
 import { SharedModule } from '../shared/shared.module';
@@ -132,7 +133,8 @@ import { PriceDetailsComponent } from './components/resources/prices/details/pri
         AlertModule,
         NgbModule,
         SharedModule,
-        NgToggleModule
+        NgToggleModule,
+        SweetAlert2Module
     ]
 })
 export class DashboardModule { }
