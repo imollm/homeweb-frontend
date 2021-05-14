@@ -82,7 +82,7 @@
                   </a>
                 </div>
                 <div *ngIf="actionButtons.actions.delete">
-                  <a [routerLink]="['/dashboard/'+actionButtons.resource+'/delete', element.id]">
+                  <a (click)="showDeleteModal('/dashboard/' + actionButtons.resource + '/delete/' + element.id)">
                     <fa-icon [icon]="faDelete" class="icon-delete"></fa-icon>
                   </a>
                 </div>
