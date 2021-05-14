@@ -46,14 +46,16 @@ export class ResponseStatus {
 
   // HTTP ERROR 422
   private static unprocessableEntity(httpError: HttpErrorResponse): string {
-    if (httpError.error.errors.name && httpError.error.errors.name.length > 0) {
+    if (httpError.error.errors) {
       let message = '';
-      const errors = httpError.error.errors.name;
-      for (let i = 0; i <= errors.length; i++) {
-        if (typeof errors[i] !== 'undefined') {
-          message += i === 0 ? errors[i] : '\n' + errors[i];
+      const errors = httpError.error.errors;
+      Object.keys(errors).forEach((key) => {
+        if (key.length > 0) {
+          errors[key].forEach((error) => {
+            message += error + '\n';
+          });
         }
-      }
+      });
       return message;
     }
     return httpError.error.statusText;
