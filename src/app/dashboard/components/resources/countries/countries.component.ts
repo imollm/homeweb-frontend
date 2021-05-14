@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../../../services/_auth/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {CategoriesService} from '../../../../services/_category/categories.service';
 import {AlertService} from '../../../../services/_alert/alert.service';
 import {ResponseStatus} from '../../../../api/response-status';
 import {CountriesService} from '../../../../services/_country/countries.service';
+import {ModalResultService} from '../../../../services/_modal/modal.service';
 
 @Component({
   selector: 'app-countries',
@@ -21,7 +21,8 @@ export class CountriesComponent implements OnInit {
     private activateRoute: ActivatedRoute,
     private countriesService: CountriesService,
     private router: Router,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private modalResultService: ModalResultService
   ) { }
 
   ngOnInit(): void {
@@ -44,16 +45,13 @@ export class CountriesComponent implements OnInit {
   private deleteCountry(): void {
     const countryId = this.activateRoute.snapshot.params.id;
     this.countriesService.deleteCountry(countryId).then((response) => {
-      if (response.success) {
-        this.alertService.success(response.message);
-      } else {
-        this.alertService.warn(response.message);
-      }
+      this.router.navigate(['/dashboard/countries']).then(() => {
+        this.modalResultService.deleteResultModal(response);
+      });
     }).catch((error) => {
       this.alertService.error(ResponseStatus.displayErrorMessage(error));
       console.error(error);
     });
-    this.router.navigate(['/dashboard/countries']);
   }
 
 }

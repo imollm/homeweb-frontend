@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AlertService} from '../../../../services/_alert/alert.service';
 import {ResponseStatus} from '../../../../api/response-status';
 import {CitiesService} from '../../../../services/_city/cities.service';
+import {ModalResultService} from '../../../../services/_modal/modal.service';
 
 @Component({
   selector: 'app-cities',
@@ -20,7 +21,8 @@ export class CitiesComponent implements OnInit {
     private activateRoute: ActivatedRoute,
     private citiesService: CitiesService,
     private router: Router,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private modalResultService: ModalResultService
   ) { }
 
   ngOnInit(): void {
@@ -46,16 +48,13 @@ export class CitiesComponent implements OnInit {
   private deleteCity(): void {
     const cityId = this.activateRoute.snapshot.params.id;
     this.citiesService.deleteCity(cityId).then((response) => {
-      if (response.success) {
-        this.alertService.success(response.message);
-      } else {
-        this.alertService.warn(response.message);
-      }
+      this.router.navigate(['/dashboard/cities']).then(() => {
+        this.modalResultService.deleteResultModal(response);
+      });
     }).catch((error) => {
       this.alertService.error(ResponseStatus.displayErrorMessage(error));
       console.error(error);
     });
-    this.router.navigate(['/dashboard/cities']);
   }
 
 }

@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ToursService} from '../../../../services/_tour/tours.service';
 import {AlertService} from '../../../../services/_alert/alert.service';
 import {ResponseStatus} from '../../../../api/response-status';
+import {ModalResultService} from '../../../../services/_modal/modal.service';
 
 @Component({
   selector: 'app-tours',
@@ -20,7 +21,8 @@ export class ToursComponent implements OnInit {
     private activateRoute: ActivatedRoute,
     private toursService: ToursService,
     private alertService: AlertService,
-    private router: Router
+    private router: Router,
+    private modalResultService: ModalResultService
   ) { }
 
   ngOnInit(): void {
@@ -46,16 +48,13 @@ export class ToursComponent implements OnInit {
   private deleteTour(): void {
     const tourId = this.activateRoute.snapshot.params.id;
     this.toursService.deleteTour(tourId).then((response) => {
-      if (response.success) {
-        this.alertService.success(response.message);
-      } else {
-        this.alertService.warn(response.message);
-      }
+      this.router.navigate(['/dashboard/tours']).then(() => {
+        this.modalResultService.deleteResultModal(response);
+      });
     }).catch((error) => {
       this.alertService.error(ResponseStatus.displayErrorMessage(error));
       console.error(error);
     });
-    this.router.navigate(['/dashboard/tours']);
   }
 
 }

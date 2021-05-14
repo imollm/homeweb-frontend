@@ -17,7 +17,6 @@ export class PropertiesComponent implements OnInit {
   role: string;
   mode: string;
   propertyId: string;
-  apiResponse: ApiResponseI;
 
   constructor(
     private authService: AuthService,
@@ -39,10 +38,8 @@ export class PropertiesComponent implements OnInit {
       if (this.activateRoute.snapshot.url[1] && this.activateRoute.snapshot.url[1].path === 'delete') {
         this.propertyId = this.activateRoute.snapshot.params.id;
         this.propertiesService.deleteProperty(this.propertyId).then((response) => {
-          this.apiResponse = response;
-        }).then(() => {
           this.router.navigate(['/dashboard/properties']).then(() => {
-            this.modalResultService.deleteResultModal(this.apiResponse);
+            this.modalResultService.deleteResultModal(response);
           });
         }).catch((error) => {
           this.alertService.error(ResponseStatus.displayErrorMessage(error));
