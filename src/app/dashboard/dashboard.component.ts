@@ -25,4 +25,8 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
+
+  deleteResource(): void {
+
+  }
 }

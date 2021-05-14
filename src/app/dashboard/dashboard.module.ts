@@ -72,6 +72,7 @@ import { PricesAdminEmployeeComponent } from './components/resources/prices/admi
 import { PricesOwnerComponent } from './components/resources/prices/owner/prices-owner.component';
 import { PricesCreateComponent } from './components/resources/prices/forms/create/prices-create.component';
 import { PriceDetailsComponent } from './components/resources/prices/details/price-details.component';
+import {SweetAlert2Module} from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -123,16 +124,17 @@ import { PriceDetailsComponent } from './components/resources/prices/details/pri
     SalesOwnerComponent,
     PriceDetailsComponent
   ],
-    imports: [
-        CommonModule,
-        DashboardRoutingModule,
-        FontAwesomeModule,
-        ChartsModule,
-        ReactiveFormsModule,
-        AlertModule,
-        NgbModule,
-        SharedModule,
-        NgToggleModule
-    ]
+  imports: [
+    CommonModule,
+    DashboardRoutingModule,
+    FontAwesomeModule,
+    ChartsModule,
+    ReactiveFormsModule,
+    AlertModule,
+    NgbModule,
+    SharedModule,
+    NgToggleModule,
+    SweetAlert2Module
+  ]
 })
 export class DashboardModule { }
