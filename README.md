@@ -1,27 +1,80 @@
 # HomewebFrontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.2.
+Download this branch if you would run this app on local environment, otherwise if you like run on docker environment pull docker branch.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+<!-- ABOUT THE PROJECT -->
+### About The Project
 
-## Code scaffolding
+Is a final project of UOC informatics engineering degree. About web development, this repository consumes backend [Homeweb Backend](https://github.com/imollm/homeweb-backend).
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Built With
 
-## Build
+* [JavaScript](https://developer.mozilla.org/es/docs/Web/JavaScript)
+* [TypeScript](https://www.typescriptlang.org/)
+* [Bootstrap](https://getbootstrap.com/)  
+* [Angular](https://laravel.com/)
+* [Docker](https://www.docker.com/)
+* [PHPStorm](https://www.jetbrains.com/es-es/phpstorm/)
+* [Postman](https://www.postman.com/)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+<!-- GETTING STARTED -->
+### Getting Started
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+To get a local copy and running, follow these simple steps.
 
-## Running end-to-end tests
+### Prerequisites
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+* Install [NodeJS](https://nodejs.org/es/download/)
+* Sure that NodeJS is installed.
+    ```sh
+      node --version
+    ```
+* Install [Angular CLI](https://angular.io/cli)
+* Sure that Angular CLI is installed.
+    ```sh
+      ng --version
+    ```
 
-## Further help
+### Installation and usage
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1. Git clone
+   ```sh
+   cd ~/
+   git clone https://github.com/imollm/homeweb-frontend
+   ```
+2. Install dependencies
+   ```sh
+   cd ~/homeweb-frontend
+   npm install
+   ```
+3. Compile and run
+   ```sh
+   ng serve
+   ```
+4. Visit http://localhost:4200
+
+<!-- CONTRIBUTING -->
+## Contributing
+
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+<!-- LICENSE -->
+## License
+
+Distributed under the MIT License.
+
+<!-- CONTACT -->
+## Contact
+
+Ivan Moll Moll - imollm@uoc.edu
+
+Project Link: [https://github.com/imollm/homeweb-backend](https://github.com/imollm/homeweb-backend)
+
