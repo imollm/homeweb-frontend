@@ -7,7 +7,7 @@ Frontend that consume on https://github.com/imollm/homeweb-backend
 1. Clone repository
 
    ````sh
-    git clone https://github.com/imollm/homeweb-frontend
+    git clone --branch docker https://github.com/imollm/homeweb-frontend
    ````
    
 2. Build image through Dockerfile
