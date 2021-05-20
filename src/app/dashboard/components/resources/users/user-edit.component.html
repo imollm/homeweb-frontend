@@ -1,0 +1,86 @@
+<div class="container-fluid">
+
+  <h3 class="text-center my-5">{{title}}</h3>
+
+  <div class="row">
+
+    <div class="col-12 col-md-6 offset-md-3 col-lg-4 offset-lg-4 d-flex flex-column align-items-center">
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+        <!-- ID -->
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="user-id">ID</span>
+          <input type="text" class="form-control" aria-describedby="user-id" formControlName="id" readonly>
+        </div>
+
+        <!-- NAME -->
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="user-name">Nom*</span>
+          <input type="text" class="form-control" aria-describedby="user-name" formControlName="name">
+        </div>
+        <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger mt-0 mb-2">
+          <div *ngIf="name.errors.required">
+            El nom es requerit
+          </div>
+        </div>
+
+        <!-- EMAIL -->
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="user-email">Email</span>
+          <input type="text" class="form-control" aria-describedby="user-email" formControlName="email" readonly>
+        </div>
+
+        <!-- PHONE -->
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="user-phone">Telèfon*</span>
+          <input type="text" class="form-control" aria-describedby="user-phone" formControlName="phone">
+        </div>
+        <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="text-danger mt-0 mb-2">
+          <div *ngIf="phone.errors.required">
+            El telèfon es requerit
+          </div>
+        </div>
+
+        <!-- ADDRESS -->
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="user-address">Adreça*</span>
+          <input type="text" class="form-control" aria-describedby="user-address" formControlName="address">
+        </div>
+        <div *ngIf="address.invalid && (address.dirty || address.touched)" class="text-danger mt-0 mb-2">
+          <div *ngIf="address.errors.required">
+            La adreça es requerida
+          </div>
+        </div>
+
+        <!-- FISCAL ID -->
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="user-fiscalId">Num. fiscal*</span>
+          <input type="text" class="form-control" aria-describedby="user-fiscalId" formControlName="fiscal_id">
+        </div>
+        <div *ngIf="fiscalId.invalid && (fiscalId.dirty || fiscalId.touched)" class="text-danger mt-0 mb-2">
+          <div *ngIf="fiscalId.errors.required">
+            El nombre fiscal es requerit
+          </div>
+        </div>
+
+        <!-- ROLE ID -->
+        <input type="text" class="form-control" aria-describedby="user-role-id" formControlName="role_id" hidden>
+        <!-- ROLE -->
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="user-role">Rol</span>
+          <input #role type="text" class="form-control" aria-describedby="user-role" readonly>
+        </div>
+
+        <!-- SUBMIT -->
+        <div class="input-group my-5 d-flex justify-content-center">
+          <button type="submit" class="btn btn-secondary">Guarda</button>
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>

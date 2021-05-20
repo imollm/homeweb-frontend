@@ -73,6 +73,7 @@ import { PricesOwnerComponent } from './components/resources/prices/owner/prices
 import { PricesCreateComponent } from './components/resources/prices/forms/create/prices-create.component';
 import { PriceDetailsComponent } from './components/resources/prices/details/price-details.component';
 import {SweetAlert2Module} from '@sweetalert2/ngx-sweetalert2';
+import { UserEditComponent } from './components/resources/users/user-edit.component';
 
 @NgModule({
   declarations: [
@@ -122,7 +123,8 @@ import {SweetAlert2Module} from '@sweetalert2/ngx-sweetalert2';
     PricesCreateComponent,
     PurchasesCustomerComponent,
     SalesOwnerComponent,
-    PriceDetailsComponent
+    PriceDetailsComponent,
+    UserEditComponent
   ],
   imports: [
     CommonModule,
