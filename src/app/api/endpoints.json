@@ -300,6 +300,11 @@
         "uri": "/users/employees",
         "method": "GET",
         "auth": false
+      },
+      "update": {
+        "uri": "/users/update",
+        "method": "PUT",
+        "auth": true
       }
     },
     "tours": {

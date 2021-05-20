@@ -1,3 +1,5 @@
+import {IRole} from './role';
+
 export interface IUser {
   id: number;
   name: string;
@@ -7,4 +9,5 @@ export interface IUser {
   address: string;
   fiscal_id: string;
   role_id?: number;
+  role: IRole;
 }

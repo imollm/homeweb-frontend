@@ -74,6 +74,13 @@ export class ModalResultService {
     this.fireSwal();
   }
 
+  errorResultModal(apiResponse: ApiResponseI): void {
+    this.resultTitle = 'Ooops!';
+    this.resultText = 'Alguna cosa no ha anat bé, torna a provar d\'aquí una estona';
+    this.resultIcon = ModalResultIcon.error;
+    this.fireSwal();
+  }
+
   private fireSwal(): void {
     Swal.fire({
       title: this.resultTitle,
