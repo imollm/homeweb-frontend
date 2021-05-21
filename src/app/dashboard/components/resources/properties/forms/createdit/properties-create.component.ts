@@ -18,7 +18,7 @@ import {FeaturesService} from '../../../../../../services/_feature/features.serv
 import {IAuthUser} from '../../../../../../models/auth-user';
 import {AuthService} from '../../../../../../services/_auth/auth.service';
 import {ModalResultService} from '../../../../../../services/_modal/modal.service';
-import {ApiResponseI} from '../../../../../../models/api-response';
+import {ImageService} from '../../../../../../services/_image/image.service';
 
 @Component({
   selector: 'app-properties-create-form',
@@ -44,6 +44,7 @@ export class PropertiesCreateComponent implements OnInit {
   isCountrySelected = false;
   certificates: any = IEnergeticCertificate;
   mode: string;
+  imgPreview: string;
   propertyId: string;
   modeTitle = 'Crear';
   mapData: IMaps = {
@@ -62,24 +63,24 @@ export class PropertiesCreateComponent implements OnInit {
     private featuresService: FeaturesService,
     private usersService: UsersService,
     private alertService: AlertService,
+    private imageService: ImageService,
     private activateRoute: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
     private modalResultService: ModalResultService
   ) {
     this.form = this.fb.group({
-      id: new FormControl({value: null, readonly: true}),
+      id: new FormControl(''),
       user_id: new FormControl(''),
       category_id: new FormControl(1, Validators.required),
       city_id: new FormControl(1, Validators.required),
       title: new FormControl('guyfcuyc', Validators.required),
       reference: new FormControl('gufgfg', Validators.required),
-      image: new FormControl(''),
       plot_meters: new FormControl(0),
       built_meters: new FormControl(0),
       rooms: new FormControl(0),
       baths: new FormControl(0),
-      address: new FormControl(''),
+      address: new FormControl('', Validators.required),
       latitude: new FormControl(this.mapData.location.lat, [Validators.required, Validators.max(90), Validators.min(-90)]),
       longitude: new FormControl(this.mapData.location.lng, [Validators.required, Validators.max(180), Validators.min(-180)]),
       description: new FormControl(''),
@@ -99,6 +100,9 @@ export class PropertiesCreateComponent implements OnInit {
     if (this.mode === 'edit') {
       this.editMode();
       this.modeTitle = 'Actualitza';
+      this.form.addControl('image', new FormControl(null));
+    } else if (this.mode === 'create') {
+      this.form.addControl('image', new FormControl(null, Validators.required));
     }
   }
 
@@ -123,25 +127,44 @@ export class PropertiesCreateComponent implements OnInit {
   onSubmit(): void {
     this.isSubmitted = true;
     if (this.form.valid) {
-      if (this.mode === 'edit') {
-        this.propertiesService.updateProperty(this.form.value).then((response) => {
-          this.router.navigate(['/dashboard/properties']).then(() => {
-            this.modalResultService.editResultModal(response);
-          });
-        }).catch((error) => {
-          this.alertService.error(ResponseStatus.displayErrorMessage(error));
-          console.error(error);
-        });
-      } else if (this.mode === 'create') {
-        this.propertiesService.createProperty(this.form.value).then((response) => {
-          this.router.navigate(['/dashboard/properties']).then(() => {
-            this.modalResultService.createResultModal(response);
-          });
-        }).catch((error) => {
-          this.alertService.error(ResponseStatus.displayErrorMessage(error));
-          console.error(error);
-        });
+      this.sendFormData();
+    }
+  }
+
+  private prepareDataToBeSendIt(propertyFormData: FormData): void {
+    console.log(this.form.value);
+    Object.keys(this.form.controls).forEach((key) => {
+      if (key === 'active') {
+        const value = this.form.get(key).value ? '1' : '0';
+        propertyFormData.append(key, value);
+      } else {
+        propertyFormData.append(key, this.form.get(key).value);
       }
+    });
+  }
+
+  private sendFormData(): void {
+    const propertyFormData = new FormData();
+    this.prepareDataToBeSendIt(propertyFormData);
+
+    if (this.mode === 'edit') {
+      this.propertiesService.updateProperty(propertyFormData).then((response) => {
+        this.router.navigate(['/dashboard/properties']).then(() => {
+          this.modalResultService.editResultModal(response);
+        });
+      }).catch((error) => {
+        this.alertService.error(ResponseStatus.displayErrorMessage(error));
+        console.error(error);
+      });
+    } else if (this.mode === 'create') {
+      this.propertiesService.createProperty(propertyFormData).then((response) => {
+        this.router.navigate(['/dashboard/properties']).then(() => {
+          this.modalResultService.createResultModal(response);
+        });
+      }).catch((error) => {
+        this.alertService.error(ResponseStatus.displayErrorMessage(error));
+        console.error(error);
+      });
     }
   }
 
@@ -191,8 +214,19 @@ export class PropertiesCreateComponent implements OnInit {
     this.propertiesService.getPropertyById(this.propertyId).then((response) => {
       if (response.success) {
         this.property = response.data;
-        this.preparePropertyValuesToEditForm();
+      } else {
+        this.alertService.warn(response.message);
       }
+    }).then(() => {
+      this.mapData.zoom = 6;
+      this.preparePropertyValuesToEditForm();
+    }).then(() => {
+      this.imageService.sanitizeBase64EncodedImage(this.property.image, 'properties').then((imageDecoded) => {
+        this.imgPreview = imageDecoded;
+      });
+    }).catch((error) => {
+      this.alertService.error(ResponseStatus.displayErrorMessage(error));
+      console.error(error);
     });
   }
 
@@ -202,12 +236,22 @@ export class PropertiesCreateComponent implements OnInit {
       if (key === 'features') {
         formValues[key] = [];
       } else if (key === 'active') {
-        formValues[key] = Boolean(this.property[key]);
+        formValues[key] = Boolean(this.property.active);
+      } else if (key === 'image') {
+        formValues[key] = null;
+      } else if (key === 'longitude') {
+        this.mapData.location.lng = Number(this.property.longitude);
+        this.mapData.markers[0].lng = Number(this.property.longitude);
+        formValues[key] = this.property.longitude;
+      } else if (key === 'latitude') {
+        this.mapData.location.lat = Number(this.property.latitude);
+        this.mapData.markers[0].lat = Number(this.property.latitude);
+        formValues[key] = this.property.latitude;
       } else {
         formValues[key] = this.property[key];
       }
     });
-    this.form.setValue(formValues);
+    this.form.patchValue(formValues);
   }
 
   getMarkerLocation(location: ILocation): void {
@@ -239,6 +283,18 @@ export class PropertiesCreateComponent implements OnInit {
     });
   }
 
+  previewImage(evt: any): void {
+    if (evt.target.files && evt.target.files[0]) {
+      const file = evt.target.files[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imgPreview = reader.result as string;
+      };
+      reader.readAsDataURL(file);
+      this.form.get('image').setValue(file);
+    }
+  }
+
   get owner(): AbstractControl { return this.form.get('user_id'); }
 
   get categoryId(): AbstractControl { return this.form.get('category_id'); }
@@ -252,4 +308,8 @@ export class PropertiesCreateComponent implements OnInit {
   get latitude(): AbstractControl { return this.form.get('latitude'); }
 
   get longitude(): AbstractControl { return this.form.get('longitude'); }
+
+  get image(): AbstractControl { return this.form.get('image'); }
+
+  get address(): AbstractControl { return this.form.get('address'); }
 }

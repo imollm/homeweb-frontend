@@ -60,7 +60,7 @@
       },
       "update": {
         "uri": "/properties/update",
-        "method": "PUT",
+        "method": "POST",
         "auth": true
       },
       "last": {

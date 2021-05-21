@@ -2,206 +2,233 @@
 
   <h1 class="text-center my-5">{{modeTitle | titlecase}} propietat</h1>
 
-  <div class="mt-4 border-dark d-flex flex-column justify-content-center align-items-center">
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="mt-4 col-12 col-sm-6 offset-sm-3 border-dark">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-      <!-- ID -->
-      <input type="text" class="form-control" aria-describedby="property-id" formControlName="id" hidden>
-
-      <!-- REFERENCE -->
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="property-reference">Referència*</span>
-        <input type="text" class="form-control" aria-describedby="property-reference" formControlName="reference">
-      </div>
-      <div *ngIf="reference.invalid && (reference.dirty || reference.touched)" class="text-danger mt-0 mb-2">
-        <div *ngIf="reference.errors.required">
-          La referència es requerida
+        <div class="row">
+          <div class="col-12">
+            <!-- IMAGE PREVIEW -->
+            <img [src]="imgPreview" *ngIf="imgPreview" class="img-fluid" alt="property-image">
+          </div>
         </div>
-      </div>
-      <!-- END REFERENCE -->
 
-      <!-- TITLE -->
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="property-title">Títol*</span>
-        <input type="text" class="form-control" aria-describedby="property-title" formControlName="title">
-      </div>
-      <div *ngIf="title.invalid && (title.dirty || title.touched)" class="text-danger mt-0 mb-2">
-        <div *ngIf="title.errors.required">
-          El títol es requerit
+        <!-- IMAGE -->
+        <div class="mb-3">
+          <label for="image" class="form-label">Selecciona una imatge</label>
+          <input class="form-control" accept="image/*" type="file" id="image" (change)="previewImage($event)"/>
         </div>
-      </div>
-
-      <!-- PLOT METERS -->
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="property-plot-meters">Metres solar</span>
-        <input type="number" class="form-control" aria-describedby="property-plot-meters" formControlName="plot_meters">
-      </div>
-
-      <!-- BUILT METERS -->
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="property-built-meters">Metres construïts</span>
-        <input type="number" class="form-control" aria-describedby="property-built-meters" formControlName="built_meters">
-      </div>
-
-      <!-- ROOMS -->
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="property-rooms">Habitacions</span>
-        <input type="number" class="form-control" aria-describedby="property-rooms" formControlName="rooms"/>
-      </div>
-
-      <!-- BATHS -->
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="property-baths">Banys</span>
-        <input type="number" class="form-control" aria-describedby="property-baths" formControlName="baths"/>
-      </div>
-
-      <!-- ADDRESS -->
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="property-address">Adreça</span>
-        <input type="text" class="form-control" aria-describedby="property-address" formControlName="address">
-      </div>
-
-      <!-- CITIES -->
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="property-cities">Ciutat*</span>
-        <select class="form-control" formControlName="city_id">
-          <option [ngValue]="" disabled selected>Tria una ciutat</option>
-          <option *ngFor="let city of cities" [ngValue]="city.id">
-            {{ city.name | titlecase }}
-          </option>
-        </select>
-      </div>
-      <div *ngIf="cityId.invalid && (cityId.dirty || cityId.touched)" class="text-danger mt-0 mb-2">
-        <div *ngIf="cityId.errors.required">
-          Has de escollir una ciutat
+        <div *ngIf="mode=='create'">
+          <div *ngIf="(image.invalid && (image.dirty || image.touched) && image.errors.required || (isSubmitted && form.invalid))" class="text-danger mt-0 mb-2">
+            Selecciona una imatge vàlida.
+          </div>
         </div>
-      </div>
-      <!-- END CITIES -->
 
+        <!-- ID -->
+        <input type="text" class="form-control" aria-describedby="property-id" formControlName="id" hidden>
 
-      <!-- DESCRIPTION -->
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="property-description">Descripció</span>
-        <textarea class="form-control" aria-describedby="property-description" formControlName="description"></textarea>
-      </div>
-
-      <!-- ENERGETIC CERTIFICATE -->
-      <div class="input-group mb-3">
-        <span class="input-group-text">Certificat energètic</span>
-        <div *ngFor="let certificate of certificates | keyvalue">
-        <label class="input-group-text">
-          <input
-            type="radio"
-            [formControlName]="'energetic_certification'"
-            [name]="'energetic_certification'"
-            [value]="certificate.value"
-          >
-          <span class="ml-2">{{certificate.value}}</span>
-        </label>
+        <!-- REFERENCE -->
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="property-reference">Referència*</span>
+          <input type="text" class="form-control" aria-describedby="property-reference" formControlName="reference">
         </div>
-      </div>
-
-      <!-- CATEGORY -->
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="property-category">Categoria*</span>
-        <select class="form-control" formControlName="category_id">
-          <option [ngValue]="" disabled selected>Tria una categoria</option>
-          <option *ngFor="let category of categories" [ngValue]="category.id">
-            {{ category.name | titlecase}}
-          </option>
-        </select>
-      </div>
-      <div *ngIf="categoryId.invalid && (categoryId.dirty || categoryId.touched)" class="text-danger mt-0 mb-2">
-        <div *ngIf="categoryId.errors.required">
-          Has de escollir una categoria
+        <div *ngIf="reference.invalid && (reference.dirty || reference.touched)" class="text-danger mt-0 mb-2">
+          <div *ngIf="reference.errors.required">
+            La referència es requerida
+          </div>
         </div>
-      </div>
-      <!-- END CATEGORY -->
+        <!-- END REFERENCE -->
 
-      <!-- ACTIVE -->
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="property-active">Actiu</span>
-        <label class="input-group-text">
-          <input type="radio" name="active" [value]="true" formControlName="active" />
-          <span class="ml-2">Si</span>
-        </label>
-        <label class="input-group-text">
-          <input type="radio" name="active" [value]="false" formControlName="active" />
-          <span class="ml-2">No</span>
-        </label>
-      </div>
-
-      <!-- PRICE -->
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="property-price">Preu</span>
-        <input type="number" class="form-control" aria-describedby="property-price" formControlName="price">
-      </div>
-
-      <!-- OWNER -->
-      <div class="input-group mb-3" #ownerSelect>
-        <span class="input-group-text" id="property-owner">Té propietari? Qui?</span>
-        <select class="form-control" formControlName="user_id">
-          <option [ngValue]="" disabled selected>-</option>
-          <option *ngFor="let owner of owners" [ngValue]="owner.id">
-            {{ owner.name }}
-          </option>
-        </select>
-      </div>
-
-      <!-- MAP -->
-      <h5 class="p-3 text-center">Tria la localització</h5>
-      <app-map
-        [mapData]="mapData"
-        (markerLocation)="getMarkerLocation($event)"
-      ></app-map>
-
-      <!-- LATITUDE -->
-      <div class="input-group my-3">
-        <span class="input-group-text" id="property-latitude">Lat*</span>
-        <input type="number" class="form-control" aria-describedby="property-latitude" formControlName="latitude">
-      </div>
-      <div *ngIf="latitude.invalid && (latitude.dirty || latitude.touched)" class="text-danger mt-0 mb-2">
-        <div *ngIf="latitude.errors.required">
-          Tria la localització
+        <!-- TITLE -->
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="property-title">Títol*</span>
+          <input type="text" class="form-control" aria-describedby="property-title" formControlName="title">
         </div>
-        <div *ngIf="latitude.errors.max || latitude.errors.min">
-          Localització incorrecte, latitud entre 90 i -90
+        <div *ngIf="title.invalid && (title.dirty || title.touched)" class="text-danger mt-0 mb-2">
+          <div *ngIf="title.errors.required">
+            El títol es requerit
+          </div>
         </div>
-      </div>
 
-      <!-- LONGITUDE -->
-      <div class="input-group">
-        <span class="input-group-text" id="property-longitude">Lng*</span>
-        <input type="number" class="form-control" aria-describedby="property-longitude" formControlName="longitude">
-      </div>
-      <div *ngIf="longitude.invalid && (longitude.dirty || longitude.touched)" class="text-danger mt-0 mb-2">
-        <div *ngIf="longitude.errors.required">
-          Tria la localització
+        <!-- PLOT METERS -->
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="property-plot-meters">Metres solar</span>
+          <input type="number" class="form-control" aria-describedby="property-plot-meters" formControlName="plot_meters">
         </div>
-        <div *ngIf="longitude.errors.max || longitude.errors.min">
-          Localització incorrecte, longitud entre 180 i -180
-        </div>
-      </div>
 
-      <!-- FEATURES -->
-      <div class="row mt-5">
-        <div class="col-12">
-          <h5 class="p-3 text-center input-group-text">Característiques</h5>
-          <div class="text-center border">
-            <div class="d-inline-block p-3" formArrayName="features" *ngFor="let feature of featuresFormArray.controls; let i = index">
-              <input class="form-check-input" type="checkbox" [formControlName]="i">
-              <label [for]="i" class="form-check-label">{{features[i].name}}</label>
+        <!-- BUILT METERS -->
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="property-built-meters">Metres construïts</span>
+          <input type="number" class="form-control" aria-describedby="property-built-meters"
+                 formControlName="built_meters">
+        </div>
+
+        <!-- ROOMS -->
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="property-rooms">Habitacions</span>
+          <input type="number" class="form-control" aria-describedby="property-rooms" formControlName="rooms"/>
+        </div>
+
+        <!-- BATHS -->
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="property-baths">Banys</span>
+          <input type="number" class="form-control" aria-describedby="property-baths" formControlName="baths"/>
+        </div>
+
+        <!-- ADDRESS -->
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="property-address">Adreça*</span>
+          <input type="text" class="form-control" aria-describedby="property-address" formControlName="address">
+        </div>
+        <div *ngIf="(address.invalid && (address.dirty || address.touched))" class="text-danger mt-0 mb-2">
+          <div *ngIf="address.errors.required">
+            La adreça es requerida
+          </div>
+        </div>
+
+        <!-- CITIES -->
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="property-cities">Ciutat*</span>
+          <select class="form-control" formControlName="city_id">
+            <option [ngValue]="" disabled selected>Tria una ciutat</option>
+            <option *ngFor="let city of cities" [ngValue]="city.id">
+              {{ city.name | titlecase }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="cityId.invalid && (cityId.dirty || cityId.touched)" class="text-danger mt-0 mb-2">
+          <div *ngIf="cityId.errors.required">
+            Has de escollir una ciutat
+          </div>
+        </div>
+        <!-- END CITIES -->
+
+
+        <!-- DESCRIPTION -->
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="property-description">Descripció</span>
+          <textarea class="form-control" aria-describedby="property-description" formControlName="description"></textarea>
+        </div>
+
+        <!-- ENERGETIC CERTIFICATE -->
+        <div class="input-group mb-3">
+          <span class="input-group-text">Certificat energètic</span>
+          <div *ngFor="let certificate of certificates | keyvalue">
+            <label class="input-group-text">
+              <input
+                type="radio"
+                [formControlName]="'energetic_certification'"
+                [name]="'energetic_certification'"
+                [value]="certificate.value"
+              >
+              <span class="ml-2">{{certificate.value}}</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- CATEGORY -->
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="property-category">Categoria*</span>
+          <select class="form-control" formControlName="category_id">
+            <option [ngValue]="" disabled selected>Tria una categoria</option>
+            <option *ngFor="let category of categories" [ngValue]="category.id">
+              {{ category.name | titlecase}}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="categoryId.invalid && (categoryId.dirty || categoryId.touched)" class="text-danger mt-0 mb-2">
+          <div *ngIf="categoryId.errors.required">
+            Has de escollir una categoria
+          </div>
+        </div>
+        <!-- END CATEGORY -->
+
+        <!-- ACTIVE -->
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="property-active">Actiu</span>
+          <label class="input-group-text">
+            <input type="radio" name="active" [value]="true" formControlName="active"/>
+            <span class="ml-2">Si</span>
+          </label>
+          <label class="input-group-text">
+            <input type="radio" name="active" [value]="false" formControlName="active"/>
+            <span class="ml-2">No</span>
+          </label>
+        </div>
+
+        <!-- PRICE -->
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="property-price">Preu</span>
+          <input type="number" class="form-control" aria-describedby="property-price" formControlName="price">
+        </div>
+
+        <!-- OWNER -->
+        <div class="input-group mb-3" #ownerSelect>
+          <span class="input-group-text" id="property-owner">Té propietari? Qui?</span>
+          <select class="form-control" formControlName="user_id">
+            <option [ngValue]="" disabled selected>-</option>
+            <option *ngFor="let owner of owners" [ngValue]="owner.id">
+              {{ owner.name }}
+            </option>
+          </select>
+        </div>
+
+        <!-- MAP -->
+        <h5 class="p-3 text-center">Tria la localització</h5>
+        <app-map *ngIf="mapData.location.lng&&mapData.location.lat"
+                 [mapData]="mapData"
+                 (markerLocation)="getMarkerLocation($event)"
+        ></app-map>
+
+        <!-- LATITUDE -->
+        <div class="input-group my-3">
+          <span class="input-group-text" id="property-latitude">Lat*</span>
+          <input type="number" class="form-control" aria-describedby="property-latitude" formControlName="latitude">
+        </div>
+        <div *ngIf="latitude.invalid && (latitude.dirty || latitude.touched)" class="text-danger mt-0 mb-2">
+          <div *ngIf="latitude.errors.required">
+            Tria la localització
+          </div>
+          <div *ngIf="latitude.errors.max || latitude.errors.min">
+            Localització incorrecte, latitud entre 90 i -90
+          </div>
+        </div>
+
+        <!-- LONGITUDE -->
+        <div class="input-group">
+          <span class="input-group-text" id="property-longitude">Lng*</span>
+          <input type="number" class="form-control" aria-describedby="property-longitude" formControlName="longitude">
+        </div>
+        <div *ngIf="longitude.invalid && (longitude.dirty || longitude.touched)" class="text-danger mt-0 mb-2">
+          <div *ngIf="longitude.errors.required">
+            Tria la localització
+          </div>
+          <div *ngIf="longitude.errors.max || longitude.errors.min">
+            Localització incorrecte, longitud entre 180 i -180
+          </div>
+        </div>
+
+        <!-- FEATURES -->
+        <div class="row mt-5">
+          <div class="col-12">
+            <h5 class="p-3 text-center input-group-text">Característiques</h5>
+            <div class="text-center border">
+              <div class="d-inline-block p-3" formArrayName="features"
+                   *ngFor="let feature of featuresFormArray.controls; let i = index">
+                <input class="form-check-input" type="checkbox" [formControlName]="i">
+                <label [for]="i" class="form-check-label">{{features[i].name}}</label>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <!-- SUBMIT -->
-      <div class="input-group my-5 d-flex justify-content-center">
-        <button type="submit" class="btn btn-secondary">{{modeTitle}}</button>
-      </div>
+        <!-- SUBMIT -->
+        <div class="input-group my-5 d-flex justify-content-center">
+          <button type="submit" class="btn btn-secondary">{{modeTitle}}</button>
+        </div>
 
-    </form>
+      </form>
+    </div>
   </div>
 
 </div>

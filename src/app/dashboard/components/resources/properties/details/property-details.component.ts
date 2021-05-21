@@ -74,7 +74,7 @@ export class PropertyDetailsComponent implements OnInit {
   private getRole(): void {
     this.authService.getAuthUser().then((response) => {
       if (response.success) {
-        this.role = response.data.name;
+        this.role = response.data[0].role.name;
       } else {
         this.alertService.warn(response.message);
       }
