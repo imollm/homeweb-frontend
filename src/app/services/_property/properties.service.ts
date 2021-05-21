@@ -21,14 +21,14 @@ export class PropertiesService {
     return this.httpClient.get<ApiResponseI>(endpoint).toPromise();
   }
 
-  createProperty(property: IProperty): Promise<ApiResponseI> {
+  createProperty(property: FormData): Promise<ApiResponseI> {
     const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'create');
     return this.httpClient.post<ApiResponseI>(endpoint, property).toPromise();
   }
 
-  updateProperty(property: IProperty): Promise<ApiResponseI> {
-    const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'update', String(property.id));
-    return this.httpClient.put<ApiResponseI>(endpoint, property).toPromise();
+  updateProperty(property: FormData): Promise<ApiResponseI> {
+    const endpoint = this.endPointMapper.getEndPointUrl(this.resource, 'update');
+    return this.httpClient.post<ApiResponseI>(endpoint, property).toPromise();
   }
 
   getLastProperties(): Promise<ApiResponseI> {

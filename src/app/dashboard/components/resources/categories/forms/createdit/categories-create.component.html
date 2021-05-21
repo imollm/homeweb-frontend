@@ -14,23 +14,21 @@
         <span class="input-group-text" id="category-reference">Nom*</span>
         <input type="text" class="form-control" aria-describedby="category-reference" formControlName="name">
       </div>
-      <div *ngIf="name.invalid && (name.dirty || name.touched) && name.errors.required || (isSubmitted && form.invalid)" class="text-danger mt-0 mb-2">
-        El nom es requerit
-      </div>
-
-      <!-- IMAGE -->
-      <div class="imb-3">
-        <label for="image" class="form-label">Selecciona una imatge</label>
-        <input class="form-control" accept="image/*" type="file" id="image" (change)="previewImage($event)" />
-      </div>
-      <div *ngIf="mode=='create'">
-        <div *ngIf="(image.invalid && (image.dirty || image.touched) && image.errors.required || (isSubmitted && form.invalid))" class="text-danger mt-0 mb-2">
-          Selecciona una imatge vàlida.
+      <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger mt-0 mb-2">
+        <div *ngIf="name.errors.required">
+          El nom es requerit
         </div>
       </div>
 
+      <!-- IMAGE -->
+      <div class="mb-3">
+        <label for="image" class="form-label">Selecciona una imatge</label>
+        <input class="form-control" accept="image/*" type="file" id="image" (change)="previewImage($event)" />
+      </div>
+this.
+
       <!-- IMAGE PREVIEW -->
-      <img [src]="imgPreview" *ngIf="imgPreview" style="height: 200px; width:400px">
+      <img [src]="imgPreview" *ngIf="imgPreview" style="height: 200px; width:400px" alt="property-image">
 
       <!-- SUBMIT -->
       <div class="input-group my-5 d-flex justify-content-center">
