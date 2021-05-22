@@ -11,8 +11,7 @@
 
   <hr class="topbar-divider">
 
-  <div class="row" *ngIf="lastTours.length > 0">
-
+  <div class="row" *ngIf="lastTours && lastTours.length > 0">
     <div class="col-12">
 
       <div class="d-flex flex-row">
@@ -34,7 +33,6 @@
       ></app-dashboard-table>
 
     </div>
-
   </div>
 
 </div>

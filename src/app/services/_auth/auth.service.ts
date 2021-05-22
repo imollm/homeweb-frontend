@@ -8,6 +8,7 @@ import {IAuthService} from './auth-service-interface';
 import {Router} from '@angular/router';
 import {EndPointMapper} from '../../api/end-point-mapper';
 import {ApiResponseI} from '../../models/api-response';
+import {ModalResultService} from '../_modal/modal.service';
 
 @Injectable()
 export class AuthService implements IAuthService {
@@ -22,7 +23,8 @@ export class AuthService implements IAuthService {
   constructor(
     private httpClient: HttpClient,
     private router: Router,
-    private endPointMapper: EndPointMapper
+    private endPointMapper: EndPointMapper,
+    private modalResultService: ModalResultService
   ) {
     this.registerEndPoint = this.endPointMapper.getEndPointUrl(this.resource, 'register');
     this.loginEndPoint = this.endPointMapper.getEndPointUrl(this.resource, 'login');
@@ -35,8 +37,9 @@ export class AuthService implements IAuthService {
       user).pipe(tap(
       (res: IJwtResponse) => {
         if (res.success) {
-          this.saveToken(res.dataUser.accessToken);
-          this.router.navigate(['login']);
+          this.router.navigate(['auth/login']).then(() => {
+            this.modalResultService.registerResultModal(res);
+          });
         }
       }
     ));

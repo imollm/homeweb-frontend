@@ -51,7 +51,7 @@ export class ToursAdminEmployeeCustomerComponent implements OnInit {
         this.alertService.warn(response.message);
       }
     }).then(() => {
-      if (this.lastTours.length > 0) {
+      if (this.lastTours && this.lastTours.length > 0) {
         this.prepareToursTable();
       }
     }).catch((error) => {

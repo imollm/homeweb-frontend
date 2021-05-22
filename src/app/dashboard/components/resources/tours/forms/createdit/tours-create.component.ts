@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ITour} from '../../../../../../models/tour';
 import {ToursService} from '../../../../../../services/_tour/tours.service';
@@ -70,6 +70,7 @@ export class ToursCreateComponent implements OnInit {
 
   onSubmit(): void {
     if (this.form.valid) {
+      console.log(this.form.value);
       this.formatDateAndTime();
       if (this.mode === 'create') {
         this.toursService.createTour(this.form.value).then((response) => {
@@ -79,6 +80,8 @@ export class ToursCreateComponent implements OnInit {
         }).catch((error) => {
           this.alertService.error(ResponseStatus.displayErrorMessage(error));
           console.error(error);
+          this.date.setValue('');
+          this.time.setValue('');
         });
       } else if (this.mode === 'edit') {
         this.toursService.updateTour(this.form.value).then((response) => {
@@ -88,9 +91,24 @@ export class ToursCreateComponent implements OnInit {
         }).catch((error) => {
           this.alertService.error(ResponseStatus.displayErrorMessage(error));
           console.error(error);
+          this.resetDateAndTime();
         });
       }
     }
+  }
+
+  private resetDateAndTime(): void {
+    const date = new Date(this.tour.date + 'T' + this.tour.time);
+    this.date.setValue({
+      year: date.getFullYear(),
+      month: date.getMonth() + 1,
+      day: date.getDate()
+    });
+    this.time.setValue({
+      hour: date.getHours(),
+      minute: date.getMinutes(),
+      second: date.getSeconds()
+    });
   }
 
   private getCustomersEmployeesAndProperties(): void {
@@ -120,7 +138,7 @@ export class ToursCreateComponent implements OnInit {
         this.alertService.error(ResponseStatus.displayErrorMessage(error));
         console.error(error);
       });
-    }).then(() => this.getUserRole() )
+    }).then(() => this.getUserRole())
       .catch((error) => {
       this.alertService.error(ResponseStatus.displayErrorMessage(error));
       console.error(error);
@@ -188,22 +206,6 @@ export class ToursCreateComponent implements OnInit {
     }).catch((error) => {
       this.alertService.error(ResponseStatus.displayErrorMessage(error));
       console.error(error);
-    }).finally(() => {
-      this.setDayOfCalendar();
-    });
-  }
-
-  private setDayOfCalendar(): void {
-    let date: Date;
-    if (this.mode === 'create') {
-      date = new Date();
-    } else {
-      date = new Date(this.tour.date);
-    }
-    this.dp.navigateTo({
-      year: date.getFullYear(),
-      month: date.getMonth() + 1,
-      day: date.getDate()
     });
   }
 

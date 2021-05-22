@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/_auth/auth.service';
-import {AbstractControl, EmailValidator, Form, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -11,15 +11,14 @@ import {AbstractControl, EmailValidator, Form, FormBuilder, FormControl, FormGro
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-  submitted = false;
 
   constructor(
     private authService: AuthService,
     private router: Router)
   {
     this.loginForm = new FormGroup({
-      email: new FormControl('employee@homeweb.com', [Validators.required, Validators.email]),
-      password: new FormControl('12345678', [Validators.required], )
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required], )
     });
   }
 
