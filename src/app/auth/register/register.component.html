@@ -17,8 +17,11 @@
                      required
                      formControlName="name"
               >
-              <div *ngIf="name!.errors && name!.hasError('required')" class="text-danger">Name is required</div>
-              <div *ngIf="name!.errors && name!.hasError('minlength')" class="text-danger">Name must be at least 4 characters</div>
+              <div *ngIf="name.invalid && (name.dirty || name.touched)" class="text-danger mt-0 mb-2">
+                <div *ngIf="name.errors.required">
+                  El nom es requerit
+                </div>
+              </div>
             </div>
             <div class="form-group">
               <label for="email">Email</label>
@@ -30,8 +33,14 @@
                      required
                      formControlName="email"
               >
-              <div *ngIf="email!.errors && email!.hasError('required')" class="text-danger">Email is required</div>
-              <div *ngIf="email!.errors && email!.hasError('email')" class="text-danger">Is not a valid format email</div>
+              <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger mt-0 mb-2">
+                <div *ngIf="email.errors.required">
+                  Email requerit
+                </div>
+                <div *ngIf="email.errors.email">
+                  No es un email correcte
+                </div>
+              </div>
             </div>
             <div class="form-group">
               <label for="password">Contrasenya</label>
@@ -43,7 +52,14 @@
                      required
                      formControlName="password"
               >
-              <span *ngIf="password!.invalid && password!.touched" class="text-danger">Password is required</span>
+              <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger mt-0 mb-2">
+                <div *ngIf="password.errors.required">
+                  Contrasenya requerida
+                </div>
+                <div *ngIf="password.errors.minlength">
+                  La contrasenya mínim ha de tenir 8 caràcters
+                </div>
+              </div>
             </div>
             <div class="form-group">
               <label for="phone">Telèfon</label>
@@ -55,8 +71,14 @@
                      required
                      formControlName="phone"
               >
-              <div *ngIf="phone!.errors && phone!.hasError('required')" class="text-danger">Phone is required</div>
-              <div *ngIf="phone!.errors && phone!.hasError('minlength')" class="text-danger">Phone must be at least 9 numbers</div>
+              <div *ngIf="phone.invalid && (phone.dirty || phone.touched)" class="text-danger mt-0 mb-2">
+                <div *ngIf="phone.errors.required">
+                  El telefon es requerit
+                </div>
+                <div *ngIf="phone.errors.minlength">
+                  EL telefon mínim ha de tenir 9 caràcters
+                </div>
+              </div>
             </div>
             <div class="form-group">
               <label for="address">Direcció</label>
@@ -68,8 +90,14 @@
                      required
                      formControlName="address"
               >
-              <div *ngIf="address!.errors && address!.hasError('required')" class="text-danger">Address is required</div>
-              <div *ngIf="address!.errors && address!.hasError('maxlength')" class="text-danger">Address cannot be more than 255 characters </div>
+              <div *ngIf="address.invalid && (address.dirty || address.touched)" class="text-danger mt-0 mb-2">
+                <div *ngIf="address.errors.required">
+                  La adreça es requerida
+                </div>
+                <div *ngIf="address.errors.maxlength">
+                  La adreça no pot tenir més de 255 caràcters
+                </div>
+              </div>
             </div>
             <div class="form-group">
               <label for="fiscal_id">Identificació fiscal</label>
@@ -81,27 +109,33 @@
                      required
                      formControlName="fiscal_id"
               >
-              <div *ngIf="fiscalId!.errors && fiscalId!.hasError('required')" class="text-danger">Fiscal ID is required</div>
-              <div *ngIf="fiscalId!.errors && fiscalId!.hasError('maxlength')" class="text-danger">Fiscal ID cannot be more than 25 characters</div>
+              <div *ngIf="fiscalId.invalid && (fiscalId.dirty || fiscalId.touched)" class="text-danger mt-0 mb-2">
+                <div *ngIf="fiscalId.errors.required">
+                  L´identificador fiscal es requerit
+                </div>
+                <div *ngIf="fiscalId.errors.maxlength">
+                  L´identificador fiscal no pot tenir més de 255 caràcters
+                </div>
+              </div>
             </div>
             <fieldset class="form-group">
               <label>Rol usuari</label>
               <div class="form-check">
                 <label class="form-check-label">
                   <input type="radio" formControlName="role" class="form-check-input" name="role" id="optionsRadios1" value="customer" checked="">
-                  Customer
+                  Client
                 </label>
               </div>
               <div class="form-check">
                 <label class="form-check-label">
                   <input type="radio" formControlName="role" class="form-check-input" name="role" id="optionsRadios2" value="employee">
-                  Employee
+                  Empleat
                 </label>
               </div>
               <div class="form-check">
                 <label class="form-check-label">
                   <input type="radio" formControlName="role" class="form-check-input" name="role" id="optionsRadios3" value="owner">
-                  Owner
+                  Propietari
                 </label>
               </div>
               <div *ngIf="role!.errors && role!.hasError('required')" class="text-danger">Role is required</div>

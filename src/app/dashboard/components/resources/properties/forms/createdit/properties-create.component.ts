@@ -132,7 +132,6 @@ export class PropertiesCreateComponent implements OnInit {
   }
 
   private prepareDataToBeSendIt(propertyFormData: FormData): void {
-    console.log(this.form.value);
     Object.keys(this.form.controls).forEach((key) => {
       if (key === 'active') {
         const value = this.form.get(key).value ? '1' : '0';

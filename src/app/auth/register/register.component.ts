@@ -15,16 +15,16 @@ export class RegisterComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
   ) {
     this.registerForm = this.fb.group({
-        name: ['Ivan', [Validators.required, Validators.minLength(4)]],
-        email: ['ivan@ivan.com', [Validators.required, Validators.email]],
-        password: ['12345678', [Validators.required]],
-        phone: ['554234234', [Validators.required, Validators.minLength(9)]],
-        address: ['ST Barbara', [Validators.required, Validators.maxLength(255)]],
-        fiscal_id: ['1234567890', [Validators.required, Validators.maxLength(25)]],
-        role: ['', [Validators.required]]
+        name: ['', [Validators.required]],
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required, Validators.minLength(8)]],
+        phone: ['', [Validators.required, Validators.minLength(9)]],
+        address: ['', [Validators.required, Validators.maxLength(255)]],
+        fiscal_id: ['', [Validators.required, Validators.maxLength(25)]],
+        role: ['customer', [Validators.required]]
     });
   }
 
@@ -33,9 +33,7 @@ export class RegisterComponent implements OnInit {
 
   onRegister(): void {
     if (this.registerForm.valid) {
-      this.authService.register(this.registerForm.value).subscribe(res => {
-        this.router.navigateByUrl('/login');
-      });
+      this.authService.register(this.registerForm.value).subscribe(res => { });
     }
   }
 

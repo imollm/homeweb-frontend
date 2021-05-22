@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import Swal from 'sweetalert2';
 import {ApiResponseI} from '../../models/api-response';
+import {IJwtResponse} from '../../models/jwt-response';
+import {HelpersService} from '../_helpers/helpers.service';
 
 enum ModalResultIcon {
   success = 'success',
@@ -42,7 +44,7 @@ export class ModalResultService {
       this.resultIcon = ModalResultIcon.success;
     } else {
       this.resultTitle = this.createTitleError;
-      this.resultText = this.createTextError;
+      this.resultText = apiResponse.message ? apiResponse.message : this.createTextError;
       this.resultIcon = ModalResultIcon.error;
     }
     this.fireSwal();
@@ -55,7 +57,7 @@ export class ModalResultService {
       this.resultIcon = ModalResultIcon.success;
     } else {
       this.resultTitle = this.editTitleError;
-      this.resultText = this.editTextError;
+      this.resultText = apiResponse.message ? apiResponse.message : this.editTextError;
       this.resultIcon = ModalResultIcon.error;
     }
     this.fireSwal();
@@ -68,7 +70,7 @@ export class ModalResultService {
       this.resultIcon = ModalResultIcon.success;
     } else {
       this.resultTitle = this.deleteTitleError;
-      this.resultText = this.deleteTextError;
+      this.resultText = apiResponse.message ? apiResponse.message : this.deleteTextError;
       this.resultIcon = ModalResultIcon.error;
     }
     this.fireSwal();
@@ -76,8 +78,21 @@ export class ModalResultService {
 
   errorResultModal(apiResponse: ApiResponseI): void {
     this.resultTitle = 'Ooops!';
-    this.resultText = 'Alguna cosa no ha anat bé, torna a provar d\'aquí una estona';
+    this.resultText = apiResponse.message ? apiResponse.message : 'Alguna cosa no ha anat bé, torna a provar d\'aquí una estona';
     this.resultIcon = ModalResultIcon.error;
+    this.fireSwal();
+  }
+
+  registerResultModal(apiResponse: IJwtResponse): void {
+    if (apiResponse.success) {
+      this.resultTitle = 'Enhorabona ' + HelpersService.capitalize(apiResponse.dataUser.name) + '!';
+      this.resultText = 'Te has registrat a HomeWeb.';
+      this.resultIcon = ModalResultIcon.success;
+    } else {
+      this.resultTitle = 'Ooops!';
+      this.resultText = 'El registre ha fallat, contacte amb l\'Administrador.';
+      this.resultIcon = ModalResultIcon.error;
+    }
     this.fireSwal();
   }
 
