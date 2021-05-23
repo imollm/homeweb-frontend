@@ -25,7 +25,6 @@
         <label for="image" class="form-label">Selecciona una imatge</label>
         <input class="form-control" accept="image/*" type="file" id="image" (change)="previewImage($event)" />
       </div>
-this.
 
       <!-- IMAGE PREVIEW -->
       <img [src]="imgPreview" *ngIf="imgPreview" style="height: 200px; width:400px" alt="property-image">

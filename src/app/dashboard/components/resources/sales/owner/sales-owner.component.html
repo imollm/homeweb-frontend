@@ -5,26 +5,16 @@
 
 <div class="container">
 
-  <div class="row" *ngIf="sealedProperties.length > 0; then withSales else withOutSales"></div>
-
-  <ng-template #withSales>
+  <div class="row" *ngIf="sealedProperties.length > 0">
     <div class="col-12 d-flex justify-content-center">
       <app-dashboard-table
         [toShow]="salesTable"
         [actionButtons]="actionButtons"
       ></app-dashboard-table>
     </div>
-  </ng-template>
+  </div>
 
-  <ng-template #withOutSales>
-    <div class="col-12 d-flex justify-content-center">
-      <h6 class="p-3">
-        Encara no han comprat cap propietat teva.
-      </h6>
-    </div>
-  </ng-template>
-
-  <hr class="topbar-divider">
+  <hr class="topbar-divider" *ngIf="sealedProperties.length > 0">
 
   <div class="row" *ngIf="sealedProperties.length > 0">
     <div class="col-12">

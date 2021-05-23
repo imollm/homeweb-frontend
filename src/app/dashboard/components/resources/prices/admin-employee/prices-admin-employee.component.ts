@@ -8,8 +8,6 @@ import {HelpersService} from '../../../../../services/_helpers/helpers.service';
 import {IActionButtons} from '../../../../../models/action-buttons';
 import {AuthService} from '../../../../../services/_auth/auth.service';
 import {IAuthUser} from '../../../../../models/auth-user';
-import {ChartDataSets, ChartOptions} from 'chart.js';
-import {Label} from 'ng2-charts';
 
 @Component({
   selector: 'app-dashboard-prices-admin-employee',
@@ -78,7 +76,6 @@ export class PricesAdminEmployeeComponent implements OnInit {
     this.pricesTable.colsName = [
       {colName: 'reference', text: 'Referència'},
       {colName: 'amount', text: 'Preu'},
-      {colName: 'price', text: 'Preu actual'},
       {colName: 'start', text: 'Inici'},
       {colName: 'end', text: 'Fi'}
     ];
@@ -87,7 +84,6 @@ export class PricesAdminEmployeeComponent implements OnInit {
         id: c.property_id,
         reference: c.property.reference,
         amount: HelpersService.formatPrice(c.amount),
-        price: c.property.price,
         start: c.start,
         end: c.end !== null ? c.end : '-'
       });

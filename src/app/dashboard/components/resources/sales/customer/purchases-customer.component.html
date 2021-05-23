@@ -5,23 +5,13 @@
 
 <div class="container">
 
-  <div class="row" *ngIf="purchases.length > 0; then withPurchases else withOutPurchases"></div>
-
-    <ng-template #withPurchases>
-      <div class="col-12 d-flex justify-content-center">
-        <app-dashboard-table
-          [toShow]="purchasesTable"
-          [actionButtons]="actionButtons"
-        ></app-dashboard-table>
-      </div>
-    </ng-template>
-
-    <ng-template #withOutPurchases>
-      <div class="col-12 d-flex justify-content-center">
-        <h6 class="p-3">
-          Encara no has comprat cap propietat.
-        </h6>
-      </div>
-    </ng-template>
+  <div class="row" *ngIf="purchases && purchases.length > 0">
+    <div class="col-12 d-flex justify-content-center">
+      <app-dashboard-table
+        [toShow]="purchasesTable"
+        [actionButtons]="actionButtons"
+      ></app-dashboard-table>
+    </div>
+  </div>
 
 </div>

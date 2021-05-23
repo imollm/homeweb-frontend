@@ -10,6 +10,7 @@ import {ResponseStatus} from '../../../../api/response-status';
 import {ISale} from '../../../../models/sale';
 import {ToursService} from '../../../../services/_tour/tours.service';
 import {ITour} from '../../../../models/tour';
+import {IProperty} from '../../../../models/property';
 
 @Component({
   selector: 'app-dashboard-home-employee',
@@ -36,6 +37,7 @@ export class EmployeeComponent implements OnInit {
 
   sales: ISale[] = [];
   tours: ITour[] = [];
+  lastProperties: IProperty[] = [];
   totalSalesAmount = 0;
   totalSalesLastMonthAmount = 0;
 
@@ -84,6 +86,7 @@ export class EmployeeComponent implements OnInit {
 
     this.propertiesService.getLastProperties().then((response) => {
       if (response.success) {
+        this.lastProperties             = response.data;
         this.dataTable.title            = 'Darreres propietats afegides';
         this.dataTable.data             = response.data;
         this.dataTable.colsName         = [

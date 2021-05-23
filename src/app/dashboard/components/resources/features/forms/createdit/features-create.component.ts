@@ -66,7 +66,7 @@ export class FeaturesCreateComponent implements OnInit {
   private editMode(): void {
     this.featureService.getFeatureById(this.featureId).then((response) => {
       if (response.success) {
-        this.form.patchValue(response.data);
+        this.form.patchValue(response.data[0]);
       } else {
         this.alertService.warn(response.message);
       }

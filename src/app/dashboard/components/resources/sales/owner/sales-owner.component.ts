@@ -69,7 +69,6 @@ export class SalesOwnerComponent implements OnInit {
       if (response.success) {
         this.sealedProperties = response.data.sealed_properties;
         this.salesByYear = response.data.sales_by_year;
-        console.log(this.salesByYear);
       }
     }).then(() => {
       this.setSalesTable();

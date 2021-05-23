@@ -113,11 +113,4 @@ export class CountriesAdminComponent implements OnInit {
       });
     }
   }
-
-  // private setColorsOfChart(): void {
-  //   const colors = [HelpersService.randomColor(), HelpersService.randomColor()];
-  //   this.chartColors[0].backgroundColor = colors;
-  //   this.chartData[0].backgroundColor[0].push(colors[0]);
-  //   this.chartData[1].backgroundColor[0].push(colors[1]);
-  // }
 }

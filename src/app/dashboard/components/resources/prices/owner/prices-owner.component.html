@@ -9,7 +9,7 @@
 
 <hr class="topbar-divider">
 
-<div class="row">
+<div class="row" *ngIf="changes && changes.length > 0">
   <div class="col-12">
     <app-dashboard-table
       [toShow]="pricesTable"
