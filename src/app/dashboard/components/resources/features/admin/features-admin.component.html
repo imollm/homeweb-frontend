@@ -11,9 +11,13 @@
 
   <hr class="topbar-divider">
 
-  <app-dashboard-table
-    [toShow]="featuresTable"
-    [actionButtons]="actionButtons"
-  ></app-dashboard-table>
+  <div class="row" *ngIf="features && features.length > 0">
+    <div class="col-12">
+      <app-dashboard-table
+        [toShow]="featuresTable"
+        [actionButtons]="actionButtons"
+      ></app-dashboard-table>
+    </div>
+  </div>
 
 </div>

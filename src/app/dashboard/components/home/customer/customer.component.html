@@ -5,28 +5,20 @@
 
   <div class="col-12">
 
-    <div *ngIf="properties && properties.length > 0; then withProperties else withOutProperties"></div>
-    <ng-template #withProperties>
+    <div *ngIf="properties && properties.length > 0">
       <div class="container">
-        <h3 class="text-center p-3">
-          Propietats a la venda
-        </h3>
-        <div class="row">
-          <div *ngFor="let property of properties" class="col-12 col-md-4 mb-3">
-            <app-card
-              [property]="property"
-            ></app-card>
-          </div>
+      <h3 class="text-center p-3">
+        Propietats a la venda
+      </h3>
+      <div class="row">
+        <div *ngFor="let property of properties" class="col-12 col-md-4 mb-3">
+          <app-card
+            [property]="property"
+          ></app-card>
         </div>
       </div>
-    </ng-template>
-    <ng-template #withOutProperties>
-      <div class="d-flex justify-content-center">
-        <div>
-          <h6 class="text-center p-4">Encara no hi ha propietats registrades al sistema.</h6>
-        </div>
-      </div>
-    </ng-template>
+    </div>
+    </div>
 
   </div>
 

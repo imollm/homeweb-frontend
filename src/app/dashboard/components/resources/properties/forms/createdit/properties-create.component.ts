@@ -72,15 +72,15 @@ export class PropertiesCreateComponent implements OnInit {
     this.form = this.fb.group({
       id: new FormControl(''),
       user_id: new FormControl(''),
-      category_id: new FormControl(1, Validators.required),
-      city_id: new FormControl(1, Validators.required),
+      category_id: new FormControl('', Validators.required),
+      city_id: new FormControl('', Validators.required),
       title: new FormControl('guyfcuyc', Validators.required),
       reference: new FormControl('gufgfg', Validators.required),
       plot_meters: new FormControl(0),
       built_meters: new FormControl(0),
       rooms: new FormControl(0),
       baths: new FormControl(0),
-      address: new FormControl('', Validators.required),
+      address: new FormControl('kjkjkjkj', Validators.required),
       latitude: new FormControl(this.mapData.location.lat, [Validators.required, Validators.max(90), Validators.min(-90)]),
       longitude: new FormControl(this.mapData.location.lng, [Validators.required, Validators.max(180), Validators.min(-180)]),
       description: new FormControl(''),
@@ -263,23 +263,26 @@ export class PropertiesCreateComponent implements OnInit {
   }
 
   private addFeaturesCheckboxes(): void {
-    let flag = false;
-    this.features.forEach((feature) => {
-      if (this.mode === 'edit') {
-        flag = false;
-        this.property.features.forEach((pFeature) => {
-          if (feature.id === pFeature.id) {
-            this.featuresFormArray.push(new FormControl(true));
-            flag = true;
+
+    if (this.features && this.features.length > 0) {
+      let flag = false;
+      this.features.forEach((feature) => {
+        if (this.mode === 'edit') {
+          flag = false;
+          this.property.features.forEach((pFeature) => {
+            if (feature.id === pFeature.id) {
+              this.featuresFormArray.push(new FormControl(true));
+              flag = true;
+            }
+          });
+          if (!flag) {
+            this.featuresFormArray.push(new FormControl(false));
           }
-        });
-        if (!flag) {
+        } else {
           this.featuresFormArray.push(new FormControl(false));
         }
-      } else {
-        this.featuresFormArray.push(new FormControl(false));
-      }
-    });
+      });
+    }
   }
 
   previewImage(evt: any): void {

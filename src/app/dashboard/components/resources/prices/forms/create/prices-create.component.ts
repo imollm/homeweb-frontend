@@ -140,6 +140,10 @@ export class PricesCreateComponent implements OnInit, AfterViewInit {
     return HelpersService.formatPrice(price);
   }
 
+  formatDate(date: string): string {
+    return HelpersService.formatDate(date);
+  }
+
   today(): string {
     const today = new Date();
     const jsonDate = {

@@ -9,6 +9,8 @@ import {IActionButtons} from '../../../../models/action-buttons';
 import {ResponseStatus} from '../../../../api/response-status';
 import {AlertService} from '../../../../services/_alert/alert.service';
 import {ChartOptions} from 'chart.js';
+import {IProperty} from '../../../../models/property';
+import {ISale} from '../../../../models/sale';
 
 @Component({
   selector: 'app-dashboard-home-admin',
@@ -55,6 +57,9 @@ export class AdminComponent implements OnInit {
     }
   };
 
+  lastProperties: IProperty[] = [];
+  sales = [];
+
   constructor(
     private salesService: SalesService,
     private propertiesService: PropertiesService,
@@ -84,7 +89,8 @@ export class AdminComponent implements OnInit {
     this.propertiesService.getLastProperties().then((response) => {
       if (response.success) {
         this.dataTable.title            = 'Darreres propietats afegides';
-        this.dataTable.data             = response.data;
+        this.lastProperties             = response.data;
+        this.dataTable.data             = this.lastProperties;
         this.dataTable.colsName         = [
           {colName: 'reference', text: 'Referència'},
           {colName: 'title', text: 'Títol'},
@@ -111,8 +117,8 @@ export class AdminComponent implements OnInit {
 
     this.salesService.getLastYear().then((response) => {
       if (response.success) {
-        const sales = response.data;
-        sales.map((sale) => {
+        this.sales = response.data;
+        this.sales.map((sale) => {
           this.chartLabels.push(sale.mes);
           this.chartData.push(sale.amount);
         });

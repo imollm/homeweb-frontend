@@ -3,9 +3,7 @@
 
 <hr class="topbar-divider">
 
-<div class="row" *ngIf="properties.length > 0; then withProperties else withOutProperties"></div>
-
-<ng-template #withProperties>
+<div class="row" *ngIf="properties.length > 0">
   <div class="col-12">
     <div class="d-flex flex-row">
       <div class="p-2">Limit:</div>
@@ -24,9 +22,4 @@
       [actionButtons]="actionButtons"
     ></app-dashboard-table>
   </div>
-</ng-template>
-<ng-template #withOutProperties>
-  <div class="col-12">
-    <h5 class="p-3 text-center">No hi ha propietats al sistema encara.</h5>
-  </div>
-</ng-template>
+</div>

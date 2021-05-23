@@ -5,9 +5,7 @@
 
   <hr class="topbar-divider">
 
-  <div class="row" *ngIf="tours.length > 0; then withTours else withOutTours"></div>
-
-  <ng-template #withTours>
+  <div class="row" *ngIf="tours && tours.length > 0">
     <div class="col-12">
 
       <div class="d-flex flex-row">
@@ -29,12 +27,6 @@
       ></app-dashboard-table>
 
     </div>
-  </ng-template>
-
-  <ng-template #withOutTours>
-    <div class="col-12">
-      <h5 class="text-center">No tens visites a les teves propietats</h5>
-    </div>
-  </ng-template>
+  </div>
 
 </div>

@@ -11,21 +11,13 @@
 
   <hr class="topbar-divider">
 
-  <div class="row" *ngIf="properties.length > 0; then withProperties else withOutProperties"></div>
-  <ng-template #withProperties>
+  <div class="row" *ngIf="properties.length > 0">
     <div class="col-12">
-
       <app-dashboard-table
         [toShow]="propertiesTable"
         [actionButtons]="propertiesTableActions"
       ></app-dashboard-table>
-
     </div>
-  </ng-template>
-  <ng-template #withOutProperties>
-    <div class="col-12">
-      <h4 class="text-center">Encara no hi ha propietats al sistema.</h4>
-    </div>
-  </ng-template>
+  </div>
 
 </div>

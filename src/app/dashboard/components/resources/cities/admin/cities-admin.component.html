@@ -11,7 +11,7 @@
 
   <hr class="topbar-divider">
 
-  <div class="w-100">
+  <div class="w-100" *ngIf="cities && cities.length > 0">
     <div class="">
       <app-dashboard-table
         [toShow]="citiesTable"

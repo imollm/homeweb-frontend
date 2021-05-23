@@ -43,7 +43,7 @@ export class ToursOwnerComponent implements OnInit {
         this.alertService.warn(response.message);
       }
     }).then(() => {
-      if (this.tours.length > 0) {
+      if (this.tours && this.tours.length > 0) {
         this.setToursTable();
       }
     }).catch((error) => {

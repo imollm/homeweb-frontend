@@ -23,7 +23,7 @@
     ></app-dashboard-card>
   </div>
 </div>
-<div class="row">
+<div class="row" *ngIf="lastProperties.length > 0">
   <div class="col-xl-12">
     <app-dashboard-table
       [toShow]="dataTable"
@@ -31,8 +31,8 @@
     ></app-dashboard-table>
   </div>
 </div>
-<hr class="topbar-divider">
-<div class="row">
+<hr class="topbar-divider" *ngIf="tours.length > 0">
+<div class="row" *ngIf="tours.length > 0">
   <div class="col-xl-12">
     <app-dashboard-table
       [toShow]="toursTable"
