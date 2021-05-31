@@ -4,15 +4,17 @@
 
 <div class="container">
   <div class="text-center p-4">
-  <div *ngIf="results.length > 0; then withResults else noResults"></div>
-    <ng-template #withResults><h1>Resultats de la cerca</h1></ng-template>
+  <div *ngIf="results && results.length > 0; then withResults else noResults"></div>
+    <ng-template #withResults>
+      <h1>Resultats de la cerca</h1>
+      <div class="row">
+        <div *ngFor="let result of results" class="col-12 col-md-4 mb-3">
+          <app-card
+            [property]="result"
+          ></app-card>
+        </div>
+      </div>
+    </ng-template>
     <ng-template #noResults><h1>Sense resultats</h1></ng-template>
-  </div>
-  <div class="row">
-    <div *ngFor="let result of results" class="col-12 col-md-4 mb-3">
-      <app-card
-        [property]="result"
-      ></app-card>
-    </div>
   </div>
 </div>
