@@ -76,5 +76,5 @@ Distributed under the MIT License.
 
 Ivan Moll Moll - imollm@uoc.edu
 
-Project Link: [https://github.com/imollm/homeweb-backend](https://github.com/imollm/homeweb-frontend)
+Project Link: [https://github.com/imollm/homeweb-frontend](https://github.com/imollm/homeweb-frontend)
 
